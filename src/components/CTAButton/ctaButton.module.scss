@@ -1,0 +1,56 @@
+.button {
+  border: 0;
+  border-radius: 1.563rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &--primary {
+    color: #fff;
+    background-color: #51087e;
+  }
+
+  &--secondary {
+    color: #51087e;
+    background-color: #fff;
+    border: 1px solid #51087e;
+  }
+
+  &--disabled {
+    opacity: 0.7;
+    cursor: unset;
+  }
+
+  &--text-button {
+    font-size: 0.75rem;
+    border: none;
+    background-color: transparent;
+    font-weight: 800;
+
+    &:hover {
+      font-size: 1rem;
+      transition: font-size 0.2s ease;
+    }
+  }
+
+  &--micro {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 50%;
+  }
+
+  &--small {
+    font-size: 0.75rem;
+    padding: 0.75rem 0.875rem;
+  }
+  &--medium {
+    font-size: 0.875;
+    padding: 0.875rem 1rem;
+  }
+  &--large {
+    font-size: 1rem;
+    padding: 1rem 1.75rem;
+  }
+}
