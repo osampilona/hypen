@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import CtaButton from "@/components/CTAButton/CtaButton";
+import CtaButton, { ICtaButtonProps } from "@/components/CTAButton/CtaButton";
 
 const meta: Meta = {
   title: "Atomic Components/CtaButton",
@@ -14,24 +14,27 @@ const meta: Meta = {
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = {
+  args: ICtaButtonProps;
+};
 
 export const Primary: Story = {
   args: {
-    primary: true,
+    buttonType: "primary",
     label: "Button",
   },
 };
 
 export const Secondary: Story = {
   args: {
+    buttonType: "secondary",
     label: "Button",
   },
 };
 
 export const TextButton: Story = {
   args: {
-    size: "text",
+    size: "text-button",
     label: "See more",
   },
 };

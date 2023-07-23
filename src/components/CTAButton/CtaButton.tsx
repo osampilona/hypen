@@ -2,7 +2,7 @@ import React from "react";
 import ctaButton from "./ctaButton.module.scss";
 import Image from "next/image";
 
-interface ICtaButtonProps {
+export interface ICtaButtonProps {
   label: string;
   buttonType?: "primary" | "secondary";
   disabled?: boolean;
@@ -14,7 +14,7 @@ interface ICtaButtonProps {
 
 const CtaButton = ({
   label,
-  buttonType = "secondary",
+  buttonType = "primary",
   disabled = false,
   backgroundColor,
   size = "medium",
