@@ -7,7 +7,7 @@ export interface ICtaButtonProps {
   buttonType?: "primary" | "secondary";
   disabled?: boolean;
   backgroundColor?: string;
-  size?: "text-button" | "micro" | "small" | "medium" | "large";
+  size?: "micro" | "small" | "medium" | "large";
   icon?: any;
   onClick?: () => void;
 }

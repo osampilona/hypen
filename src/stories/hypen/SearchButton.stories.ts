@@ -5,7 +5,7 @@ import SearchButton, {
 import * as CtaButtonStories from "./CtaButton.stories"; // Import CtaButton stories
 
 const meta: Meta = {
-  title: "Atomic Components/SearchButton",
+  title: "Atomic Components/Search Button",
   component: SearchButton,
   parameters: {
     layout: "centered",
@@ -31,7 +31,7 @@ export const SearchButtonPrimary: Story = {
   args: {
     isPrimary: false,
     label: "Search",
-    size: "medium",
+    size: "small",
     disabled: false,
   },
 };

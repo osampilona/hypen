@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import CtaButton, { ICtaButtonProps } from "@/components/CTAButton/CtaButton";
 
 const meta: Meta = {
-  title: "Atomic Components/CtaButton",
+  title: "Atomic Components/CTA Button",
   component: CtaButton,
   parameters: {
     layout: "centered",
@@ -29,13 +29,6 @@ export const Secondary: Story = {
   args: {
     buttonType: "secondary",
     label: "Button",
-  },
-};
-
-export const TextButton: Story = {
-  args: {
-    size: "text-button",
-    label: "See more",
   },
 };
 

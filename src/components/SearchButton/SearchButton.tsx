@@ -7,7 +7,7 @@ import searchWhite from "@/icons/search/searchWhite.svg";
 export interface ISearchButtonProps {
   label: string;
   isPrimary?: boolean;
-  size?: "micro" | "small" | "medium" | "large" | "text-button";
+  size?: "small" | "medium" | "large";
   disabled?: boolean;
   backgroundColor?: string;
 }

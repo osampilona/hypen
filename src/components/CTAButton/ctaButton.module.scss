@@ -23,18 +23,6 @@
     cursor: unset;
   }
 
-  &--text-button {
-    font-size: 0.75rem;
-    border: none;
-    background-color: transparent;
-    font-weight: 800;
-
-    &:hover {
-      font-size: 1rem;
-      transition: font-size 0.2s ease;
-    }
-  }
-
   &--micro {
     font-size: 0.75rem;
     padding: 0.5rem 0.75rem;
@@ -43,7 +31,7 @@
 
   &--small {
     font-size: 0.75rem;
-    padding: 0.75rem 0.875rem;
+    padding: 0.65rem 0.875rem;
   }
   &--medium {
     font-size: 0.875;
