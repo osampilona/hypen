@@ -8,5 +8,11 @@
 
   .search {
     display: flex;
+
+    .icon svg {
+      fill: #706868;
+      height: 20px;
+      width: 20px;
+    }
   }
 }

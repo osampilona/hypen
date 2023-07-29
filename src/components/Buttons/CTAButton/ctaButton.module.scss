@@ -10,12 +10,14 @@
   &--primary {
     color: #fff;
     background-color: #51087e;
+    fill: #fff;
   }
 
   &--secondary {
     color: #51087e;
     background-color: #fff;
     border: 1px solid #51087e;
+    fill: #51087e;
   }
 
   &--disabled {

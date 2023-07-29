@@ -2,8 +2,7 @@
 import React from "react";
 import ctaButton from "./ctaButton.module.scss";
 import Image from "next/image";
-import SearchWhite from "@/icons/search/SearchWhite";
-import SearchPurple from "@/icons/search/SearchPurple";
+import Search from "@/icons/Search";
 
 export interface ICtaButtonProps {
   label: string;
@@ -40,8 +39,7 @@ const CtaButton = ({
         ].join(" ")}
         {...props}
       >
-        {icon &&
-          (buttonType === "primary" ? <SearchWhite /> : <SearchPurple />)}
+        {icon && <Search />}
         {label}
       </button>
       <style jsx>{`
