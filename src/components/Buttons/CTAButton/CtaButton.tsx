@@ -2,7 +2,7 @@
 import React from "react";
 import ctaButton from "./ctaButton.module.scss";
 import Image from "next/image";
-import Search from "@/icons/Search";
+import Search from "@/icons/SearchIcon";
 
 export interface ICtaButtonProps {
   label: string;

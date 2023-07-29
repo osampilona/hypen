@@ -1,6 +1,6 @@
 import React from "react";
 
-const SearchWhite = (props: any) => {
+const SearchIcon = (props: any) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,4 +13,4 @@ const SearchWhite = (props: any) => {
   );
 };
 
-export default SearchWhite;
+export default SearchIcon;
