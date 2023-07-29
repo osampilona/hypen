@@ -20,16 +20,18 @@ const SearchButton = ({
   backgroundColor,
 }: ISearchButtonProps) => {
   return (
-    <button className={searchButton.button}>
-      <CtaButton
-        label={label}
-        icon={isPrimary ? searchWhite : searchPurple}
-        buttonType={isPrimary ? "primary" : "secondary"}
-        size={size}
-        disabled={disabled}
-        backgroundColor={backgroundColor}
-      />
-    </button>
+    <>
+      <button className={searchButton.button}>
+        <CtaButton
+          label={label}
+          icon={isPrimary ? searchWhite : searchPurple}
+          buttonType={isPrimary ? "primary" : "secondary"}
+          size={size}
+          disabled={disabled}
+          backgroundColor={backgroundColor}
+        />
+      </button>
+    </>
   );
 };
 
