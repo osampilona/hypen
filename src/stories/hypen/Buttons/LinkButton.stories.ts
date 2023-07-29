@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import LinkButton, {
   ILinkButtonProps,
-} from "@/components/LinkButton/LinkButton";
+} from "@/components/Buttons/LinkButton/LinkButton";
 
 const meta: Meta = {
-  title: "Atomic Components/Link Button",
+  title: "Atomic Components/Buttons/Link Button",
   component: LinkButton,
   parameters: {
     layout: "centered",
