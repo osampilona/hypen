@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import CtaButton, { ICtaButtonProps } from "@/components/CTAButton/CtaButton";
+import CtaButton, {
+  ICtaButtonProps,
+} from "@/components/Buttons/CTAButton/CtaButton";
 
 const meta: Meta = {
-  title: "Atomic Components/CTA Button",
+  title: "Atomic Components/Buttons/CTA Button",
   component: CtaButton,
   parameters: {
     layout: "centered",

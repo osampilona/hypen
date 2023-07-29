@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
 import ctaButton from "./ctaButton.module.scss";
 import Image from "next/image";
+import Search from "@/icons/SearchIcon";
 
 export interface ICtaButtonProps {
   label: string;
@@ -8,7 +10,7 @@ export interface ICtaButtonProps {
   disabled?: boolean;
   backgroundColor?: string;
   size?: "micro" | "small" | "medium" | "large";
-  icon?: any;
+  icon?: React.ReactNode;
   onClick?: () => void;
 }
 
@@ -37,9 +39,7 @@ const CtaButton = ({
         ].join(" ")}
         {...props}
       >
-        {icon && (
-          <Image src={icon} alt="search-icon" height={24} width={24}></Image>
-        )}
+        {icon && <Search />}
         {label}
       </button>
       <style jsx>{`

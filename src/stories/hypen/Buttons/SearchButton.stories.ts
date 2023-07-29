@@ -1,11 +1,10 @@
 import { Meta } from "@storybook/react";
 import SearchButton, {
   ISearchButtonProps,
-} from "@/components/SearchButton/SearchButton";
-import * as CtaButtonStories from "./CtaButton.stories"; // Import CtaButton stories
+} from "@/components/Buttons/SearchButton/SearchButton";
 
 const meta: Meta = {
-  title: "Atomic Components/Search Button",
+  title: "Atomic Components/Buttons/Search Button",
   component: SearchButton,
   parameters: {
     layout: "centered",
@@ -14,8 +13,8 @@ const meta: Meta = {
   argTypes: {
     // Define the argTypes for SearchButton here
     backgroundColor: { control: "color" },
-    isPrimary: { control: "boolean" }, // Add the isSecondary control
-    label: { control: "text" }, // Add the label control
+    isPrimary: { control: "boolean" },
+    label: { control: "text" },
     size: { control: "radio" },
     disabled: { control: "boolean" },
   },

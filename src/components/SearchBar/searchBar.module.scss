@@ -1,0 +1,36 @@
+.container {
+  border-radius: 1.5625rem;
+  border: 0.3px solid rgba(69, 69, 69, 0.3);
+  background: #fff;
+  box-shadow: 1px 0px 15px 2px rgba(40, 40, 40, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.78rem 1.5rem;
+  color: #686868;
+  gap: 2rem;
+
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    svg {
+      fill: #706868;
+      height: 20px;
+      width: auto;
+    }
+  }
+
+  .separator {
+    width: 0.05rem;
+    height: 1.125rem;
+    background-color: #e9e9e9;
+    opacity: 0.8;
+  }
+}

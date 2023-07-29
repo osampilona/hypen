@@ -1,5 +1,6 @@
+"use client";
 import React from "react";
-import linkButton from "@/components/LinkButton/linkButton.module.scss";
+import linkButton from "@/components/Buttons/LinkButton/linkButton.module.scss";
 
 export interface ILinkButtonProps {
   label: string;
