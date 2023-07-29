@@ -1,5 +1,6 @@
 import React from "react";
 import searchBar from "@/components/SearchBar/searchBar.module.scss";
+import FilterIcon from "@/icons/FilterIcon";
 
 export interface ISearchBarProps {
   labelWhat: string;
@@ -15,7 +16,7 @@ const SearchBar = (props: ISearchBarProps) => {
         <div>{props.labelWhen}</div>
         <div>{props.labelWhere}</div>
       </div>
-      <div>filter</div>
+      <FilterIcon />
     </div>
   );
 };

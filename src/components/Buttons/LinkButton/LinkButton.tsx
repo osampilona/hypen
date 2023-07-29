@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import linkButton from "@/components/Buttons/LinkButton/linkButton.module.scss";
 
