@@ -1,4 +1,5 @@
 .container {
+  width: 23.875rem;
   border-radius: 1.5625rem;
   border: 0.3px solid rgba(69, 69, 69, 0.3);
   background: #fff;
@@ -13,7 +14,8 @@
   .search {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: space-between;
+    width: 90%;
   }
 
   .icon {
@@ -22,8 +24,6 @@
     gap: 10px;
     svg {
       fill: #706868;
-      height: 20px;
-      width: auto;
     }
   }
 
