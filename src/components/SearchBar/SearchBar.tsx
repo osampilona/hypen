@@ -17,17 +17,17 @@ const SearchBar = (props: ISearchBarProps) => {
       <div className={searchBar.search}>
         <div className={searchBar.icon}>
           <SearchIcon />
-          {props.labelWhat}
+          <p>{props.labelWhat}</p>
         </div>
         <div className={searchBar.separator}></div>
         <div className={searchBar.icon}>
           <LocationIcon />
-          {props.labelWhere}
+          <p>{props.labelWhere}</p>
         </div>
         <div className={searchBar.separator}></div>
         <div className={searchBar.icon}>
           <CalendarIcon />
-          {props.labelWhen}
+          <p>{props.labelWhen}</p>
         </div>
       </div>
       <div className={searchBar.icon}>
