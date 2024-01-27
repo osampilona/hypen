@@ -9,17 +9,23 @@
   color: #686868;
   position: relative;
 
-  .icons {
+  .screen {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1rem 0;
+    width: -webkit-fill-available;
 
-    .label {
-      gap: 0.5rem;
+    .icons {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      width: 100vw;
+
+      padding: 1rem 0;
+
+      .label {
+        gap: 0.5rem;
+        display: flex;
+        align-items: center;
+      }
     }
   }
 

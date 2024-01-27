@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import navigationBar from "@/components/NavigationBar/navigationBar.module.scss";
 import SearchBar from "../SearchBar/SearchBar";
-import MobileLogo from "@/icons/MobileLogo";
 import ProfileIcon from "@/icons/ProfileIcon";
 import BigScreenLogoIcon from "@/icons/BigScreenLogoIcon";
 
@@ -27,12 +26,16 @@ const NavigationBar = (props: INavigationBarProps) => {
 
   return (
     <div className={navigationBar.container}>
-      <div className={navigationBar.icons}>
-        {viewportWidth <= 481 ? <MobileLogo /> : <BigScreenLogoIcon />}
-        <div className={navigationBar.label}>
-          <p>{props.labelPartner}</p>
-          <ProfileIcon />
-        </div>
+      <div className={navigationBar.screen}>
+        {viewportWidth <= 769 ? null : (
+          <div className={navigationBar.icons}>
+            <BigScreenLogoIcon />
+            <div className={navigationBar.label}>
+              <p>{props.labelPartner}</p>
+              <ProfileIcon />
+            </div>
+          </div>
+        )}
       </div>
       <SearchBar labelWhat={"What"} labelWhere={"Where"} labelWhen={"When"} />
     </div>

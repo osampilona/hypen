@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import searchBar from "@/components/SearchBar/searchBar.module.scss";
 import FilterIcon from "@/icons/FilterIcon";
 import SearchIcon from "@/icons/SearchIcon";
@@ -12,22 +12,55 @@ export interface ISearchBarProps {
 }
 
 const SearchBar = (props: ISearchBarProps) => {
+  const [isLabelClicked, setIsLabelClicked] = useState<string | null>(null);
+
+  const handleClick = (label: string) => {
+    setIsLabelClicked(label === isLabelClicked ? null : label);
+  };
+
   return (
     <div className={searchBar.container}>
       <div className={searchBar.search}>
-        <div className={searchBar.icon}>
+        <div
+          className={searchBar.icon}
+          onClick={() => handleClick("labelWhat")}
+        >
           <SearchIcon />
-          <p>{props.labelWhat}</p>
+          <p
+            className={`${searchBar.label} ${
+              isLabelClicked === "labelWhat" ? searchBar.underlined : ""
+            }`}
+          >
+            {props.labelWhat}
+          </p>
         </div>
         <div className={searchBar.separator}></div>
-        <div className={searchBar.icon}>
+        <div
+          className={searchBar.icon}
+          onClick={() => handleClick("labelWhere")}
+        >
           <LocationIcon />
-          <p>{props.labelWhere}</p>
+          <p
+            className={`${searchBar.label} ${
+              isLabelClicked === "labelWhere" ? searchBar.underlined : ""
+            }`}
+          >
+            {props.labelWhere}
+          </p>
         </div>
         <div className={searchBar.separator}></div>
-        <div className={searchBar.icon}>
+        <div
+          className={searchBar.icon}
+          onClick={() => handleClick("labelWhen")}
+        >
           <CalendarIcon />
-          <p>{props.labelWhen}</p>
+          <p
+            className={`${searchBar.label} ${
+              isLabelClicked === "labelWhen" ? searchBar.underlined : ""
+            }`}
+          >
+            {props.labelWhen}
+          </p>
         </div>
       </div>
       <div className={searchBar.icon}>
