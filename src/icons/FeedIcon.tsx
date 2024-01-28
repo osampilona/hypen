@@ -1,6 +1,6 @@
 import React from "react";
 
-const FeedIcon = (props: any) => {
+const FeedIcon = () => {
   return (
     <svg
       width="23"
