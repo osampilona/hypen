@@ -1,6 +1,6 @@
 /* navigationBar.module.scss */
 .container {
-  background-color: aqua;
+  // background-color: aqua;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
   align-items: center;
   color: #686868;
   position: relative;
-
+  padding: 1rem 0;
   .screen {
     display: flex;
     width: -webkit-fill-available;
