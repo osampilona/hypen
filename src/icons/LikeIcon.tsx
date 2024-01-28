@@ -1,6 +1,6 @@
 import React from "react";
 
-const LikeIcon = (props: any) => {
+const LikeIcon = () => {
   return (
     <svg
       width="21"

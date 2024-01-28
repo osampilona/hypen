@@ -6,8 +6,9 @@
   position: fixed;
   bottom: 0;
   padding: inherit;
+  left: 0;
 
-  @media (min-width: 769px) {
+  @media (min-width: 1025px) {
     display: none;
   }
 }

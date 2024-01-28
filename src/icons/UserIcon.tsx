@@ -1,6 +1,6 @@
 import React from "react";
 
-const UserIcon = (props: any) => {
+const UserIcon = () => {
   return (
     <svg
       width="24"
