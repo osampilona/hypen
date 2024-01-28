@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import menuBar from "@/components/Menubar/menuBar.module.scss";
+import React from "react";
+import menuBar from "@/components/MenuBar/menuBar.module.scss";
 import MenuIcon from "../MenuIcon/MenuIcon";
 import FeedIcon from "@/icons/FeedIcon";
 import LikeIcon from "@/icons/LikeIcon";
@@ -17,7 +17,7 @@ const MenuBar = () => {
         <LikeIcon />
       </MenuIcon>
       <MenuIcon label="Profile">
-        <UserIcon />{" "}
+        <UserIcon />
       </MenuIcon>
       <MenuIcon label="Settings">
         <SettingsIcon />

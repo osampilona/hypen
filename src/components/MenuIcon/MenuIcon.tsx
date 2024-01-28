@@ -1,16 +1,16 @@
 import React, { ReactNode } from "react";
 import menuIcon from "@/components/MenuIcon/menuIcon.module.scss";
 
-export interface IMenuIconProps {
+interface IMenuIconProps {
   children: ReactNode;
   label: string;
 }
 
-const MenuIcon = (props: IMenuIconProps) => {
+const MenuIcon: React.FC<IMenuIconProps> = ({ children, label }) => {
   return (
     <div className={menuIcon.container}>
-      {props.children}
-      {props.label}
+      {children}
+      {label}
     </div>
   );
 };

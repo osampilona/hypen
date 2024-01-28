@@ -27,7 +27,7 @@ const NavigationBar = (props: INavigationBarProps) => {
   return (
     <div className={navigationBar.container}>
       <div className={navigationBar.screen}>
-        {viewportWidth <= 769 ? null : (
+        {viewportWidth <= 1024 ? null : (
           <div className={navigationBar.icons}>
             <BigScreenLogoIcon />
             <div className={navigationBar.label}>
