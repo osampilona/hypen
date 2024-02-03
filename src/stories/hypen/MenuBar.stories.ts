@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import MenuBar from "@/components/MenuBar/MenuBar";
 
 const meta: Meta<typeof MenuBar> = {
@@ -6,6 +6,9 @@ const meta: Meta<typeof MenuBar> = {
   component: MenuBar,
   parameters: {
     layout: "centered",
+    viewport: {
+      defaultViewport: "tablet",
+    },
   },
   tags: ["autodocs"],
 };
