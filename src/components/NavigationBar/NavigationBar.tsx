@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import navigationBar from "@/components/NavigationBar/navigationBar.module.scss";
 import SearchBar from "../SearchBar/SearchBar";
-import ProfileIcon from "@/assets/icons/ProfileIcon";
+import { HiOutlineUserCircle } from "react-icons/hi2";
 import BigScreenLogoIcon from "@/assets/icons/BigScreenLogoIcon";
 
 export interface INavigationBarProps {
@@ -32,7 +32,7 @@ const NavigationBar = (props: INavigationBarProps) => {
             <BigScreenLogoIcon />
             <div className={navigationBar.label}>
               <p>{props.labelPartner}</p>
-              <ProfileIcon />
+              <HiOutlineUserCircle size={36} />
             </div>
           </div>
         )}

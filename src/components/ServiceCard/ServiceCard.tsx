@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import serviceCard from "@/components/ServiceCard/serviceCard.module.scss";
 import { fetchServiceImage } from "@/services/apiService";
 import Image from "next/image";
+import { TiStarHalfOutline } from "react-icons/ti";
 
 export interface IServiceCardProps {
   //   serviceName: string;
@@ -54,7 +55,10 @@ const ServiceCard = (props: IServiceCardProps) => {
       <div className={serviceCard.info}>
         <div className={serviceCard.info__service}>
           <h1>Full makeup</h1>
-          <p>4.5</p>
+          <div className={serviceCard.info__service__rate}>
+            <TiStarHalfOutline />
+            <p>4.5</p>
+          </div>
         </div>
       </div>
     </div>
