@@ -2,10 +2,10 @@
 import React from "react";
 import menuBar from "@/components/MenuBar/menuBar.module.scss";
 import MenuIcon from "../MenuIcon/MenuIcon";
-import FeedIcon from "@/icons/FeedIcon";
-import LikeIcon from "@/icons/LikeIcon";
-import UserIcon from "@/icons/UserIcon";
-import SettingsIcon from "@/icons/SettingsIcon";
+import FeedIcon from "@/assets/icons/FeedIcon";
+import LikeIcon from "@/assets/icons/LikeIcon";
+import UserIcon from "@/assets/icons/UserIcon";
+import SettingsIcon from "@/assets/icons/SettingsIcon";
 
 const MenuBar = () => {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import searchButton from "./searchButton.module.scss";
 import CtaButton from "../CTAButton/CtaButton";
-import SearchIcon from "@/icons/SearchIcon";
+import SearchIcon from "@/assets/icons/SearchIcon";
 
 export interface ISearchButtonProps {
   label: string;

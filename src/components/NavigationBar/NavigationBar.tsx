@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 import navigationBar from "@/components/NavigationBar/navigationBar.module.scss";
 import SearchBar from "../SearchBar/SearchBar";
-import ProfileIcon from "@/icons/ProfileIcon";
-import BigScreenLogoIcon from "@/icons/BigScreenLogoIcon";
+import ProfileIcon from "@/assets/icons/ProfileIcon";
+import BigScreenLogoIcon from "@/assets/icons/BigScreenLogoIcon";
 
 export interface INavigationBarProps {
   labelPartner: string;

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import searchBar from "@/components/SearchBar/searchBar.module.scss";
-import FilterIcon from "@/icons/FilterIcon";
-import SearchIcon from "@/icons/SearchIcon";
-import LocationIcon from "@/icons/LocationIcon";
-import CalendarIcon from "@/icons/CalendarIcon";
+import FilterIcon from "@/assets/icons/FilterIcon";
+import SearchIcon from "@/assets/icons/SearchIcon";
+import LocationIcon from "@/assets/icons/LocationIcon";
+import CalendarIcon from "@/assets/icons/CalendarIcon";
 
 export interface ISearchBarProps {
   labelWhat: string;
