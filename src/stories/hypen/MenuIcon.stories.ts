@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import MenuIcon, { IMenuIconProps } from "@/components/MenuIcon/MenuIcon";
-import FeedIcon from "@/assets/icons/FeedIcon";
+import { GoHeart } from "react-icons/go";
+import { ReactNode } from "react";
 
 const meta: Meta = {
   title: "Atomic Components/Menu Icon",
@@ -18,7 +19,7 @@ type Story = {
 
 export const Default: Story = {
   args: {
-    children: FeedIcon(),
+    children: GoHeart as unknown as ReactNode,
     label: "Feed",
   },
 };

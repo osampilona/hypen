@@ -2,7 +2,7 @@
 import React from "react";
 import ctaButton from "./ctaButton.module.scss";
 import Image from "next/image";
-import Search from "@/assets/icons/SearchIcon";
+import { GoSearch } from "react-icons/go";
 
 export interface ICtaButtonProps {
   label: string;
@@ -39,7 +39,7 @@ const CtaButton = ({
         ].join(" ")}
         {...props}
       >
-        {icon && <Search />}
+        {icon && <GoSearch />}
         {label}
       </button>
       <style jsx>{`

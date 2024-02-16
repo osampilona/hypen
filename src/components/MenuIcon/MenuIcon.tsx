@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import menuIcon from "@/components/MenuIcon/menuIcon.module.scss";
 
-interface IMenuIconProps {
+export interface IMenuIconProps {
   children: ReactNode;
   label: string;
 }

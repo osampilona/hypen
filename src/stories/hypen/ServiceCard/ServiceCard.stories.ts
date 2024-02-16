@@ -4,7 +4,7 @@ import ServiceCard, {
 } from "@/components/ServiceCard/ServiceCard";
 
 const meta: Meta = {
-  title: "Atomic Components/Service card",
+  title: "Atomic Components/Service card/Service card",
   component: ServiceCard,
   parameters: {
     layout: "centered",

@@ -1,7 +1,7 @@
 import React from "react";
 import searchButton from "./searchButton.module.scss";
 import CtaButton from "../CTAButton/CtaButton";
-import SearchIcon from "@/assets/icons/SearchIcon";
+import { GoSearch } from "react-icons/go";
 
 export interface ISearchButtonProps {
   label: string;
@@ -23,7 +23,7 @@ const SearchButton = ({
       <button className={searchButton.button}>
         <CtaButton
           label={label}
-          icon={<SearchIcon />}
+          icon={<GoSearch />}
           buttonType={isPrimary ? "primary" : "secondary"}
           size={size}
           disabled={disabled}
