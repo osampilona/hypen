@@ -1,7 +1,6 @@
 import serviceCard from "@/components/ServiceCard/serviceCard.module.scss";
 import ServiceCardDevider from "../ServiceCardDevider/ServiceCardDevider";
 import ServiceCardInfo from "../ServiceCardInfo/ServiceCardInfo";
-import ServiceCardDetails from "../ServiceCardDetails/ServiceCardDetails";
 import ServiceCardBusiness from "../ServiceCardBusiness/ServiceCardBusiness";
 import ServiceCardImage from "../ServiceCardImage/ServiceCardImage";
 
@@ -24,7 +23,6 @@ const ServiceCard = (props: IServiceCardProps) => {
       <ServiceCardImage />
       <div className={serviceCard.info}>
         <ServiceCardInfo />
-        <ServiceCardDetails />
         <ServiceCardDevider />
         <ServiceCardBusiness />
       </div>

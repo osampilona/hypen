@@ -13,3 +13,28 @@
     gap: 5px;
   }
 }
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &__days {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 12px;
+
+    &__dot {
+      width: 2px;
+      height: 2px;
+      background-color: black;
+      border-radius: 50%;
+    }
+
+    &__hours {
+      color: #999999;
+      font-size: 11px;
+    }
+  }
+}
