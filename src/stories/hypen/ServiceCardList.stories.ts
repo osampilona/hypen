@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import ServiceCardImage from "@/components/ServiceCardImage/ServiceCardImage";
+import ServiceCardList from "@/components/ServiceCardList/ServiceCardList";
 
 const meta: Meta = {
-  title: "Atomic Components/Service card/Image",
-  component: ServiceCardImage,
+  title: "Atomic Components/Service card list",
+  component: ServiceCardList,
   parameters: {
     layout: "centered",
   },

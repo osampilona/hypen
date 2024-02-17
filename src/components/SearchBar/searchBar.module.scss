@@ -46,17 +46,14 @@
   }
 
   @media (min-width: 481px) {
-    width: 23.875rem;
+    width: 23rem;
     padding: 0.78rem 1.5rem;
+    margin-right: 2rem;
     gap: 2rem;
     justify-content: space-between;
   }
 
   @media (min-width: 1024px) {
-    width: 23.875rem;
-    padding: 0.78rem 1.5rem;
-    gap: 2rem;
-    justify-content: space-between;
     position: absolute;
     top: 50%;
     left: 50%;
