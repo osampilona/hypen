@@ -1,0 +1,28 @@
+[
+  {
+    "serviceName": "Full Makeup",
+    "serviceRate": 4.5,
+    "workingDays": "Mon/Sat",
+    "workingHours": "9:00-19:00",
+    "serviceNote": "Deposit 30% of the price",
+    "serviceDistance": "1.3 km. away from you",
+    "companyName": "Chiaroscuro salon",
+    "companyAdress": "Hannemanns Alle 4A, st.3",
+    "companyAdressDetail": "",
+    "companyFollowingState": "Follow",
+    "imageURL": "https://api.unsplash.com"
+  },
+  {
+    "serviceName": "Hair Styling",
+    "serviceRate": 4.2,
+    "workingDays": "Tue/Fri",
+    "workingHours": "10:00-18:00",
+    "serviceNote": "No deposit required",
+    "serviceDistance": "2.5 km. away from you",
+    "companyName": "Elegance Hair Studio",
+    "companyAdress": "123 Main Street",
+    "companyAdressDetail": "Suite 101",
+    "companyFollowingState": "Follow",
+    "imageURL": "https://api.unsplash.com"
+  }
+]
