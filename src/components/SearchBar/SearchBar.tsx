@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import searchBar from "@/components/SearchBar/searchBar.module.scss";
-import FilterIcon from "@/icons/FilterIcon";
-import SearchIcon from "@/icons/SearchIcon";
-import LocationIcon from "@/icons/LocationIcon";
-import CalendarIcon from "@/icons/CalendarIcon";
-
+import { GoSearch } from "react-icons/go";
+import { IoLocationOutline } from "react-icons/io5";
+import { GoCalendar } from "react-icons/go";
+import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 export interface ISearchBarProps {
   labelWhat: string;
   labelWhere: string;
@@ -25,7 +24,7 @@ const SearchBar = (props: ISearchBarProps) => {
           className={searchBar.icon}
           onClick={() => handleClick("labelWhat")}
         >
-          <SearchIcon />
+          <GoSearch />
           <p
             className={`${searchBar.label} ${
               isLabelClicked === "labelWhat" ? searchBar.underlined : ""
@@ -39,7 +38,7 @@ const SearchBar = (props: ISearchBarProps) => {
           className={searchBar.icon}
           onClick={() => handleClick("labelWhere")}
         >
-          <LocationIcon />
+          <IoLocationOutline />
           <p
             className={`${searchBar.label} ${
               isLabelClicked === "labelWhere" ? searchBar.underlined : ""
@@ -53,7 +52,7 @@ const SearchBar = (props: ISearchBarProps) => {
           className={searchBar.icon}
           onClick={() => handleClick("labelWhen")}
         >
-          <CalendarIcon />
+          <GoCalendar />
           <p
             className={`${searchBar.label} ${
               isLabelClicked === "labelWhen" ? searchBar.underlined : ""
@@ -64,7 +63,7 @@ const SearchBar = (props: ISearchBarProps) => {
         </div>
       </div>
       <div className={searchBar.icon}>
-        <FilterIcon />
+        <HiAdjustmentsHorizontal />
       </div>
     </div>
   );

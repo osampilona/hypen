@@ -2,25 +2,25 @@
 import React from "react";
 import menuBar from "@/components/MenuBar/menuBar.module.scss";
 import MenuIcon from "../MenuIcon/MenuIcon";
-import FeedIcon from "@/icons/FeedIcon";
-import LikeIcon from "@/icons/LikeIcon";
-import UserIcon from "@/icons/UserIcon";
-import SettingsIcon from "@/icons/SettingsIcon";
+import { GoHome } from "react-icons/go";
+import { GoHeart } from "react-icons/go";
+import { AiOutlineUser } from "react-icons/ai";
+import { IoSettingsOutline } from "react-icons/io5";
 
 const MenuBar = () => {
   return (
     <div className={menuBar.container}>
       <MenuIcon label="Feed">
-        <FeedIcon />
+        <GoHome size={24} />
       </MenuIcon>
       <MenuIcon label="Favourites">
-        <LikeIcon />
+        <GoHeart size={24} />
       </MenuIcon>
       <MenuIcon label="Profile">
-        <UserIcon />
+        <AiOutlineUser size={24} />
       </MenuIcon>
       <MenuIcon label="Settings">
-        <SettingsIcon />
+        <IoSettingsOutline size={24} />
       </MenuIcon>
     </div>
   );
