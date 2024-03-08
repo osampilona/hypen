@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Image from "next/image";
 import styles from "./carousel.module.scss";
+import { FaCircle } from "react-icons/fa";
 
 type ImagesUrlProps = {
   imagesUrl: string[];
@@ -62,6 +63,23 @@ const Carousel = ({ imagesUrl }: ImagesUrlProps) => {
       >
         <IoIosArrowForward />
       </button>
+      <div className={styles.container__image__navigation}>
+        {imagesUrl.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setImageIndex(index)}
+            className={styles.container__image__navigation__dot}
+          >
+            {index === imageIndex ? (
+              <FaCircle
+                className={styles.container__image__navigation__dot__active}
+              />
+            ) : (
+              <FaCircle />
+            )}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
