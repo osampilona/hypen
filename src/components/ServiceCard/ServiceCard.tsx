@@ -7,6 +7,18 @@ import { GoHeart } from "react-icons/go";
 import { TiStarHalfOutline } from "react-icons/ti";
 import { AiOutlineUser } from "react-icons/ai";
 
+//import carousel component
+import Carousel from "@/components/Carousel/Carousel";
+
+//import images for testing carousel
+import img_1 from "../../../src/assets/img/image_1.jpeg";
+import img_2 from "../../../src/assets/img/image_2.jpeg";
+import img_3 from "../../../src/assets/img/image_3.jpeg";
+import img_4 from "../../../src/assets/img/image_4.jpeg";
+import img_5 from "../../../src/assets/img/image_5.jpeg";
+
+const IMAGES = [img_1, img_2, img_3, img_4, img_5];
+
 export interface IServiceCardProps {
   //   serviceName: string;
   //   serviceRate: number;
@@ -25,25 +37,25 @@ const ServiceCard = (props: IServiceCardProps) => {
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetchServiceImage()
-      .then((data) => {
-        //handle data
-        setData(data);
-        console.log("Random Image:", data);
-      })
-      .catch((error) => {
-        //handle error
-        setError(error);
-        console.error("Error fetching random image:", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetchServiceImage()
+  //     .then((data) => {
+  //       //handle data
+  //       setData(data);
+  //       console.log("Random Image:", data);
+  //     })
+  //     .catch((error) => {
+  //       //handle error
+  //       setError(error);
+  //       console.error("Error fetching random image:", error);
+  //     });
+  // }, []);
 
   return (
     <div className={serviceCard.container}>
       <div className={serviceCard.container__image}>
-        {!error && !data && <p>loading...</p>}
-        {data && (
+        {/* {!error && !data && <p>loading...</p>} */}
+        {/* {data && (
           <Image
             className={serviceCard.container__image}
             src={data.urls.full}
@@ -52,7 +64,10 @@ const ServiceCard = (props: IServiceCardProps) => {
             height={280}
             width={343}
           />
-        )}
+        )} */}
+        <div className={serviceCard.container__image}>
+          <Carousel imagesUrl={IMAGES}></Carousel>
+        </div>
         <div className={serviceCard.container__image__heart}>
           <GoHeart style={{ color: "#fff" }} />
         </div>
