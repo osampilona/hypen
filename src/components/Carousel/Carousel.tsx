@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
+import Image, { StaticImageData } from "next/image";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
-import Image, { StaticImageData } from "next/image";
-import styles from "./carousel.module.scss";
+import { GoHeart } from "react-icons/go";
+import carousel from "./carousel.module.scss";
 
 type imagesProps = {
   images: {
@@ -53,7 +54,7 @@ const Carousel = ({ images }: imagesProps) => {
   return (
     <section
       aria-label="Image carousel"
-      className={styles.container}
+      className={carousel.container}
       ref={containerRef}
       tabIndex={0}
     >
@@ -70,7 +71,7 @@ const Carousel = ({ images }: imagesProps) => {
             key={url.toString()}
             src={url}
             alt={alt}
-            className={styles.container__image}
+            className={carousel.container__image}
             style={{ transform: `translateX(${-100 * imageIndex}%)` }}
             aria-hidden={index !== imageIndex}
             priority={index === imageIndex}
@@ -79,7 +80,7 @@ const Carousel = ({ images }: imagesProps) => {
       </div>
       <button
         onClick={showPrevImage}
-        className={styles.container__image__button}
+        className={carousel.container__image__button}
         style={{ left: 0 }}
         ref={prevButtonRef}
         aria-label="View previous image"
@@ -88,14 +89,17 @@ const Carousel = ({ images }: imagesProps) => {
       </button>
       <button
         onClick={showNextImage}
-        className={styles.container__image__button}
+        className={carousel.container__image__button}
         style={{ right: 0 }}
         ref={nextButtonRef}
         aria-label="View next image"
       >
         <IoIosArrowForward aria-hidden />
       </button>
-      <div className={styles.container__image__navigation}>
+      <div className={carousel.container__image__heart}>
+        <GoHeart aria-hidden style={{ color: "#fff" }} />
+      </div>
+      <div className={carousel.container__image__navigation}>
         {images.map((_, index) => (
           <button
             key={index}
@@ -103,9 +107,9 @@ const Carousel = ({ images }: imagesProps) => {
               setImageIndex(index);
             }}
             aria-label={`View image ${index + 1}`}
-            className={`${styles.container__image__navigation__dot} ${
+            className={`${carousel.container__image__navigation__dot} ${
               index === imageIndex
-                ? styles.container__image__navigation__dot__active
+                ? carousel.container__image__navigation__dot__active
                 : ""
             }`}
           >

@@ -74,9 +74,6 @@ const ServiceCard = (props: IServiceCardProps) => {
         <div className={serviceCard.container__image}>
           <Carousel images={IMAGES}></Carousel>
         </div>
-        <div className={serviceCard.container__image__heart}>
-          <GoHeart style={{ color: "#fff" }} />
-        </div>
       </div>
       <div className={serviceCard.container__info}>
         <div className={serviceCard.container__info__service}>
