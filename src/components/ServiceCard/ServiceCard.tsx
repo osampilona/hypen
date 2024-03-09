@@ -1,16 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { fetchServiceImage } from "@/services/apiService";
+import Carousel from "@/components/Carousel/Carousel";
 import serviceCard from "@/components/ServiceCard/serviceCard.module.scss";
-import Image from "next/image";
-import { GoHeart } from "react-icons/go";
 import { TiStarHalfOutline } from "react-icons/ti";
 import { AiOutlineUser } from "react-icons/ai";
 
-//import carousel component
-import Carousel from "@/components/Carousel/Carousel";
-
-//import images for testing carousel
+//TODO: remove this when data is fetched from the server
+//import images for testing carousel staticaly
 import img_1 from "../../../src/assets/img/image_1.jpeg";
 import img_2 from "../../../src/assets/img/image_2.jpeg";
 import img_3 from "../../../src/assets/img/image_3.jpeg";
@@ -43,37 +40,30 @@ const ServiceCard = (props: IServiceCardProps) => {
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   fetchServiceImage()
-  //     .then((data) => {
-  //       //handle data
-  //       setData(data);
-  //       console.log("Random Image:", data);
-  //     })
-  //     .catch((error) => {
-  //       //handle error
-  //       setError(error);
-  //       console.error("Error fetching random image:", error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetchServiceImage()
+      .then((data) => {
+        //handle data
+        setData(data);
+        console.log("Random Image:", data);
+      })
+      .catch((error) => {
+        //handle error
+        setError(error);
+        console.error("Error fetching random image:", error);
+      });
+  }, []);
 
   return (
     <div className={serviceCard.container}>
       <div className={serviceCard.container__image}>
-        {/* {!error && !data && <p>loading...</p>} */}
+        {!error && !data && <p>loading...</p>}
         {/* {data && (
-          <Image
-            className={serviceCard.container__image}
-            src={data.urls.full}
-            // src=""
-            alt="Image"
-            height={280}
-            width={343}
-          />
+          <Carousel
+            images={[{ url: data.urls.full, alt: "Random Image" }]}
+          ></Carousel>
         )} */}
-        <div className={serviceCard.container__image}>
-          <Carousel images={IMAGES}></Carousel>
-        </div>
+        <Carousel images={IMAGES} />
       </div>
       <div className={serviceCard.container__info}>
         <div className={serviceCard.container__info__service}>
