@@ -1,31 +1,59 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import ServiceCard from "../ServiceCard/ServiceCard";
+import SkeletonElement from "../Skeletons/SkeletonElement";
 import serviceCardList from "@/components/ServiceCardList/serviceCardList.module.scss";
 import { ServiceCardType } from "@/types/services/card";
-import { serviceData } from "@/data/serviceData";
+import { serviceData as initialServiceData } from "@/data/serviceData";
 
-const ServiceCardList = async () => {
-  // const serviceData = Array.from({ length: 2 }, (_, index) => index + 1);
-  // const [serviceDataFromBackend, setServiceDataFromBackend] = useState<ServiceCardType[]>([]);
+const ServiceCardList = () => {
+  const [loading, setLoading] = useState(true);
+  const [serviceData, setServiceData] = useState<ServiceCardType[]>([]);
+  const skeletonArray = Array.from({ length: 10 }, (_, index) => index + 1);
 
-  // // Call backend for data
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/api/serviceData")
-  //     .then((response) => response.json())
-  //     .then((data) => setServiceDataFromBackend(data))
-  // },[])
-  // }
+  useEffect(() => {
+    console.log("LOADING:: ", loading);
 
-  // 3 states possible:
-  // 1. Loading
-  // 2. Error
-  // 3. Data
+    const timer = setTimeout(() => {
+      setServiceData(initialServiceData);
+      setLoading(false);
+    }, 60000);
+
+    return () => clearTimeout(timer);
+  }, [loading]);
+
   return (
-    <div className={serviceCardList.container}>
-      {serviceData.map((service: ServiceCardType, index: number) => (
-        <ServiceCard {...service} key={`${service.serviceName}-${index}`} />
-      ))}
-    </div>
+    <>
+      {/* <SkeletonElement type={"skeleton"} /> */}
+      <div className={serviceCardList.container}>
+        {loading &&
+          skeletonArray.map((index) => (
+            <SkeletonElement key={index} type={"card"}>
+              <SkeletonElement type="image" />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "80%",
+                  justifyContent: "space-between",
+                  gap: "1rem",
+                }}
+              >
+                <SkeletonElement type="title" />
+                <SkeletonElement type="text" />
+                <SkeletonElement type="text" />
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <SkeletonElement type="avatar" />
+                  <SkeletonElement type="detail" />
+                </div>
+              </div>
+            </SkeletonElement>
+          ))}
+        {serviceData.map((service: ServiceCardType, index: number) => (
+          <ServiceCard {...service} key={`${service.serviceName}-${index}`} />
+        ))}
+      </div>
+    </>
   );
 };
 
