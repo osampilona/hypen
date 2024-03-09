@@ -17,7 +17,13 @@ import img_3 from "../../../src/assets/img/image_3.jpeg";
 import img_4 from "../../../src/assets/img/image_4.jpeg";
 import img_5 from "../../../src/assets/img/image_5.jpeg";
 
-const IMAGES = [img_1, img_2, img_3, img_4, img_5];
+const IMAGES = [
+  { url: img_1, alt: "Image 1" },
+  { url: img_2, alt: "Image 2" },
+  { url: img_3, alt: "Image 3" },
+  { url: img_4, alt: "Image 4" },
+  { url: img_5, alt: "Image 5" },
+];
 
 export interface IServiceCardProps {
   //   serviceName: string;
@@ -66,7 +72,7 @@ const ServiceCard = (props: IServiceCardProps) => {
           />
         )} */}
         <div className={serviceCard.container__image}>
-          <Carousel imagesUrl={IMAGES}></Carousel>
+          <Carousel images={IMAGES}></Carousel>
         </div>
         <div className={serviceCard.container__image__heart}>
           <GoHeart style={{ color: "#fff" }} />

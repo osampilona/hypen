@@ -45,6 +45,16 @@
           opacity: 1;
         }
       }
+
+      &:focus-visible {
+        background-color: rgba(81, 8, 126, 1);
+
+        > svg {
+          stroke: white;
+          fill: white;
+          opacity: 1;
+        }
+      }
     }
 
     &__navigation {
@@ -79,6 +89,11 @@
 
           &:hover {
             opacity: 1;
+            scale: 1.4;
+          }
+
+          &:focus-visible {
+            opacity: 1 !important;
             scale: 1.4;
           }
         }
