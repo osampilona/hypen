@@ -5,6 +5,15 @@ import { FaCircle } from "react-icons/fa";
 import { GoHeart } from "react-icons/go";
 import carousel from "./carousel.module.scss";
 
+//TODO: add this when data is fetched from the server
+// type imagesProps = {
+//   images: {
+//     url: string;
+//     alt: string;
+//   }[];
+// };
+
+//TODO: remove this when data is fetched from the server
 type imagesProps = {
   images: {
     url: StaticImageData;
@@ -68,6 +77,7 @@ const Carousel = ({ images }: imagesProps) => {
       >
         {images.map(({ url, alt }, index) => (
           <Image
+            // key={url}
             key={url.toString()}
             src={url}
             alt={alt}
@@ -75,6 +85,8 @@ const Carousel = ({ images }: imagesProps) => {
             style={{ transform: `translateX(${-100 * imageIndex}%)` }}
             aria-hidden={index !== imageIndex}
             priority={index === imageIndex}
+            height={280}
+            width={343}
           />
         ))}
       </div>
