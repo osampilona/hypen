@@ -17,14 +17,13 @@ const ServiceCardList = () => {
     const timer = setTimeout(() => {
       setServiceData(initialServiceData);
       setLoading(false);
-    }, 60000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, [loading]);
 
   return (
     <>
-      {/* <SkeletonElement type={"skeleton"} /> */}
       <div className={serviceCardList.container}>
         {loading &&
           skeletonArray.map((index) => (
