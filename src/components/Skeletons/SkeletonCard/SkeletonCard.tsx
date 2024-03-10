@@ -1,5 +1,5 @@
 import React from "react";
-import skeleton from "@/components/Skeletons/skeletonElement.module.scss";
+import skeleton from "@/components/Skeletons/SkeletonCard/skeletonCard.module.scss";
 
 const SkeletonElement = ({
   type,

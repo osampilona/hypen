@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import ServiceCard from "../ServiceCard/ServiceCard";
-import SkeletonElement from "../Skeletons/SkeletonElement";
+import SkeletonCard from "../Skeletons/SkeletonCard/SkeletonCard";
+import Shimmer from "../Skeletons/Shimmer/Shimmer";
 import serviceCardList from "@/components/ServiceCardList/serviceCardList.module.scss";
 import { ServiceCardType } from "@/types/services/card";
 import { serviceData as initialServiceData } from "@/data/serviceData";
@@ -12,12 +13,10 @@ const ServiceCardList = () => {
   const skeletonArray = Array.from({ length: 10 }, (_, index) => index + 1);
 
   useEffect(() => {
-    console.log("LOADING:: ", loading);
-
     const timer = setTimeout(() => {
       setServiceData(initialServiceData);
       setLoading(false);
-    }, 60000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, [loading]);
@@ -27,27 +26,58 @@ const ServiceCardList = () => {
       <div className={serviceCardList.container}>
         {loading &&
           skeletonArray.map((index) => (
-            <SkeletonElement key={index} type={"card"}>
-              <SkeletonElement type="image" />
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "80%",
-                  justifyContent: "space-between",
-                  gap: "1rem",
-                  marginLeft: "1rem",
-                }}
+            <SkeletonCard
+              key={index}
+              type="skeleton-wrapper"
+              aria-label="skeleton wrapper"
+            >
+              <SkeletonCard
+                key={index}
+                type={"card"}
+                aria-label="skeleton card"
               >
-                <SkeletonElement type="title" />
-                <SkeletonElement type="text" />
-                <SkeletonElement type="text" />
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <SkeletonElement type="avatar" />
-                  <SkeletonElement type="detail" />
-                </div>
-              </div>
-            </SkeletonElement>
+                <SkeletonCard type="image" aria-label="skeleton card image">
+                  <Shimmer />
+                </SkeletonCard>
+                <SkeletonCard
+                  type="wrapper-info"
+                  aria-label="skeleton card info wrapper"
+                >
+                  <SkeletonCard
+                    type="title"
+                    aria-label="skeleton card info title"
+                  >
+                    <Shimmer />
+                  </SkeletonCard>
+                  <SkeletonCard
+                    type="text"
+                    aria-label="skeleton card info text"
+                  >
+                    <Shimmer />
+                  </SkeletonCard>
+                  <SkeletonCard
+                    type="text"
+                    aria-label="skeleton card info text"
+                  >
+                    <Shimmer />
+                  </SkeletonCard>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <SkeletonCard
+                      type="avatar"
+                      aria-label="skeleton card avatar"
+                    >
+                      <Shimmer />
+                    </SkeletonCard>
+                    <SkeletonCard
+                      type="detail"
+                      aria-label="skeleton card detail"
+                    >
+                      <Shimmer />
+                    </SkeletonCard>
+                  </div>
+                </SkeletonCard>
+              </SkeletonCard>
+            </SkeletonCard>
           ))}
         {serviceData.map((service: ServiceCardType, index: number) => (
           <ServiceCard {...service} key={`${service.serviceName}-${index}`} />
