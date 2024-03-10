@@ -5,6 +5,11 @@ import img_2 from "../assets/img/image_2.jpeg";
 import img_3 from "../assets/img/image_3.jpeg";
 import img_4 from "../assets/img/image_4.jpeg";
 import img_5 from "../assets/img/image_5.jpeg";
+import img_6 from "../assets/img/image_6.jpeg";
+import img_7 from "../assets/img/image_7.jpeg";
+import img_8 from "../assets/img/image_8.jpeg";
+import img_9 from "../assets/img/image_9.jpeg";
+import img_10 from "../assets/img/image_10.jpeg";
 
 export const serviceData: ServiceCardType[] = [
   {
@@ -38,6 +43,26 @@ export const serviceData: ServiceCardType[] = [
       {
         url: img_5,
         alt: "Image 5",
+      },
+      {
+        url: img_6,
+        alt: "Image 6",
+      },
+      {
+        url: img_7,
+        alt: "Image 7",
+      },
+      {
+        url: img_8,
+        alt: "Image 8",
+      },
+      {
+        url: img_9,
+        alt: "Image 9",
+      },
+      {
+        url: img_10,
+        alt: "Image 10",
       },
     ],
   },
@@ -73,6 +98,26 @@ export const serviceData: ServiceCardType[] = [
         url: img_5,
         alt: "Image 5",
       },
+      {
+        url: img_6,
+        alt: "Image 6",
+      },
+      {
+        url: img_7,
+        alt: "Image 7",
+      },
+      {
+        url: img_8,
+        alt: "Image 8",
+      },
+      {
+        url: img_9,
+        alt: "Image 9",
+      },
+      {
+        url: img_10,
+        alt: "Image 10",
+      },
     ],
   },
   {
@@ -106,6 +151,26 @@ export const serviceData: ServiceCardType[] = [
       {
         url: img_5,
         alt: "Image 5",
+      },
+      {
+        url: img_6,
+        alt: "Image 6",
+      },
+      {
+        url: img_7,
+        alt: "Image 7",
+      },
+      {
+        url: img_8,
+        alt: "Image 8",
+      },
+      {
+        url: img_9,
+        alt: "Image 9",
+      },
+      {
+        url: img_10,
+        alt: "Image 10",
       },
     ],
   },
@@ -141,6 +206,26 @@ export const serviceData: ServiceCardType[] = [
         url: img_5,
         alt: "Image 5",
       },
+      {
+        url: img_6,
+        alt: "Image 6",
+      },
+      {
+        url: img_7,
+        alt: "Image 7",
+      },
+      {
+        url: img_8,
+        alt: "Image 8",
+      },
+      {
+        url: img_9,
+        alt: "Image 9",
+      },
+      {
+        url: img_10,
+        alt: "Image 10",
+      },
     ],
   },
   {
@@ -175,6 +260,26 @@ export const serviceData: ServiceCardType[] = [
         url: img_5,
         alt: "Image 5",
       },
+      {
+        url: img_6,
+        alt: "Image 6",
+      },
+      {
+        url: img_7,
+        alt: "Image 7",
+      },
+      {
+        url: img_8,
+        alt: "Image 8",
+      },
+      {
+        url: img_9,
+        alt: "Image 9",
+      },
+      {
+        url: img_10,
+        alt: "Image 10",
+      },
     ],
   },
   {
@@ -208,6 +313,26 @@ export const serviceData: ServiceCardType[] = [
       {
         url: img_5,
         alt: "Image 5",
+      },
+      {
+        url: img_6,
+        alt: "Image 6",
+      },
+      {
+        url: img_7,
+        alt: "Image 7",
+      },
+      {
+        url: img_8,
+        alt: "Image 8",
+      },
+      {
+        url: img_9,
+        alt: "Image 9",
+      },
+      {
+        url: img_10,
+        alt: "Image 10",
       },
     ],
   },
