@@ -17,7 +17,7 @@ const ServiceCardList = () => {
     const timer = setTimeout(() => {
       setServiceData(initialServiceData);
       setLoading(false);
-    }, 5000);
+    }, 60000);
 
     return () => clearTimeout(timer);
   }, [loading]);
@@ -36,6 +36,7 @@ const ServiceCardList = () => {
                   width: "80%",
                   justifyContent: "space-between",
                   gap: "1rem",
+                  marginLeft: "1rem",
                 }}
               >
                 <SkeletonElement type="title" />
