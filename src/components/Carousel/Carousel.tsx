@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
-import Image, { StaticImageData } from "next/image";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
 import { GoHeart } from "react-icons/go";
 import carousel from "./carousel.module.scss";
+import { CardImage } from "@/types/services/card";
 
 //TODO: add this when data is fetched from the server
 // type imagesProps = {
@@ -15,10 +16,7 @@ import carousel from "./carousel.module.scss";
 
 //TODO: remove this when data is fetched from the server
 type imagesProps = {
-  images: {
-    url: StaticImageData;
-    alt: string;
-  }[];
+  images: CardImage[];
 };
 
 const Carousel = ({ images }: imagesProps) => {
@@ -27,38 +25,38 @@ const Carousel = ({ images }: imagesProps) => {
   const prevButtonRef = useRef<HTMLButtonElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const showNextImage = () => {
+  const showNextImage = useCallback(() => {
     setImageIndex((index) => {
       const newIndex = index === images.length - 1 ? 0 : index + 1;
       nextButtonRef.current?.focus();
       return newIndex;
     });
-  };
+  }, [images.length]);
 
-  const showPrevImage = () => {
+  const showPrevImage = useCallback(() => {
     setImageIndex((index) => {
       const newIndex = index === 0 ? images.length - 1 : index - 1;
       prevButtonRef.current?.focus();
       return newIndex;
     });
-  };
-
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "ArrowRight") {
-      showNextImage();
-    } else if (event.key === "ArrowLeft") {
-      showPrevImage();
-    }
-  };
+  }, [images.length]);
 
   useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowRight") {
+        showNextImage();
+      } else if (event.key === "ArrowLeft") {
+        showPrevImage();
+      }
+    };
+
     const container = containerRef.current;
     container?.addEventListener("keydown", handleKeyDown);
 
     return () => {
       container?.addEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [showNextImage, showPrevImage]);
 
   return (
     <section
@@ -77,8 +75,7 @@ const Carousel = ({ images }: imagesProps) => {
       >
         {images.map(({ url, alt }, index) => (
           <Image
-            // key={url}
-            key={url.toString()}
+            key={`${url.toString()}-${index}`}
             src={url}
             alt={alt}
             className={carousel.container__image}
