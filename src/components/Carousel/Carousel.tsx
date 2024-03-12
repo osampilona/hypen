@@ -6,15 +6,6 @@ import { GoHeart } from "react-icons/go";
 import carousel from "./carousel.module.scss";
 import { CardImage } from "@/types/services/card";
 
-//TODO: add this when data is fetched from the server
-// type imagesProps = {
-//   images: {
-//     url: string;
-//     alt: string;
-//   }[];
-// };
-
-//TODO: remove this when data is fetched from the server
 type imagesProps = {
   images: CardImage[];
 };
@@ -26,19 +17,13 @@ const Carousel = ({ images }: imagesProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const showNextImage = useCallback(() => {
-    setImageIndex((index) => {
-      const newIndex = index === images.length - 1 ? 0 : index + 1;
-      nextButtonRef.current?.focus();
-      return newIndex;
-    });
+    setImageIndex((index) => (index === images.length - 1 ? 0 : index + 1));
+    nextButtonRef.current?.focus();
   }, [images.length]);
 
   const showPrevImage = useCallback(() => {
-    setImageIndex((index) => {
-      const newIndex = index === 0 ? images.length - 1 : index - 1;
-      prevButtonRef.current?.focus();
-      return newIndex;
-    });
+    setImageIndex((index) => (index === 0 ? images.length - 1 : index - 1));
+    prevButtonRef.current?.focus();
   }, [images.length]);
 
   useEffect(() => {
@@ -87,45 +72,54 @@ const Carousel = ({ images }: imagesProps) => {
           />
         ))}
       </div>
-      <button
-        onClick={showPrevImage}
-        className={carousel.container__image__button}
-        style={{ left: 0 }}
-        ref={prevButtonRef}
-        aria-label="View previous image"
-      >
-        <IoIosArrowBack aria-hidden />
-      </button>
-      <button
-        onClick={showNextImage}
-        className={carousel.container__image__button}
-        style={{ right: 0 }}
-        ref={nextButtonRef}
-        aria-label="View next image"
-      >
-        <IoIosArrowForward aria-hidden />
-      </button>
+
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={showPrevImage}
+            className={carousel.container__image__button}
+            style={{ left: 0 }}
+            ref={prevButtonRef}
+            aria-label="View previous image"
+          >
+            <IoIosArrowBack aria-hidden />
+          </button>
+          <button
+            onClick={showNextImage}
+            className={carousel.container__image__button}
+            style={{ right: 0 }}
+            ref={nextButtonRef}
+            aria-label="View next image"
+          >
+            <IoIosArrowForward aria-hidden />
+          </button>
+        </>
+      )}
+
       <div className={carousel.container__image__heart}>
         <GoHeart aria-hidden style={{ color: "#fff" }} />
       </div>
-      <div className={carousel.container__image__navigation}>
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => {
-              setImageIndex(index);
-            }}
-            aria-label={`View image ${index + 1}`}
-            className={`${carousel.container__image__navigation__dot} ${
-              index === imageIndex
-                ? carousel.container__image__navigation__dot__active
-                : ""
-            }`}
-          >
-            <FaCircle aria-hidden />
-          </button>
-        ))}
-      </div>
+
+      {images.length > 1 && (
+        <div className={carousel.container__image__navigation}>
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setImageIndex(index);
+              }}
+              aria-label={`View image ${index + 1}`}
+              className={`${carousel.container__image__navigation__dot} ${
+                index === imageIndex
+                  ? carousel.container__image__navigation__dot__active
+                  : ""
+              }`}
+            >
+              <FaCircle aria-hidden />
+            </button>
+          ))}
+        </div>
+      )}
     </section>
   );
 };
