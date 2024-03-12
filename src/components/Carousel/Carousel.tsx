@@ -43,6 +43,25 @@ const Carousel = ({ images }: imagesProps) => {
     };
   }, [showNextImage, showPrevImage]);
 
+  const getDotsState = useCallback(() => {
+    let dotsCount = Math.min(5, images.length);
+    let dots = Array(dotsCount).fill(false);
+
+    if (images.length > 5) {
+      if (imageIndex === 0) dots[0] = true;
+      else if (imageIndex === 1) dots[1] = true;
+      else if (imageIndex === images.length - 1) dots[4] = true;
+      else if (imageIndex === images.length - 2) dots[3] = true;
+      else dots[2] = true;
+    } else {
+      dots[imageIndex] = true;
+    }
+
+    return dots;
+  }, [imageIndex, images.length]);
+
+  const dotsState = getDotsState();
+
   return (
     <section
       aria-label="Image carousel"
@@ -102,15 +121,25 @@ const Carousel = ({ images }: imagesProps) => {
 
       {images.length > 1 && (
         <div className={carousel.container__image__navigation}>
-          {images.map((_, index) => (
+          {dotsState.map((isActive, index) => (
             <button
               key={index}
               onClick={() => {
-                setImageIndex(index);
+                if (images.length <= 5 || index === 0) {
+                  setImageIndex(index);
+                } else if (index === 1 && images.length > 5) {
+                  setImageIndex(1);
+                } else if (index === 4 && images.length > 5) {
+                  setImageIndex(images.length - 1);
+                } else if (index === 3 && images.length > 5) {
+                  setImageIndex(images.length - 2);
+                } else if (index === 2 && images.length > 5) {
+                  setImageIndex(Math.floor(images.length / 2));
+                }
               }}
               aria-label={`View image ${index + 1}`}
               className={`${carousel.container__image__navigation__dot} ${
-                index === imageIndex
+                isActive
                   ? carousel.container__image__navigation__dot__active
                   : ""
               }`}

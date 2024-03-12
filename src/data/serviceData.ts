@@ -86,38 +86,38 @@ export const serviceData: ServiceCardType[] = [
         url: img_2,
         alt: "Image 2",
       },
-      {
-        url: img_3,
-        alt: "Image 3",
-      },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
+      // {
+      //   url: img_3,
+      //   alt: "Image 3",
+      // },
+      // {
+      //   url: img_4,
+      //   alt: "Image 4",
+      // },
+      // {
+      //   url: img_5,
+      //   alt: "Image 5",
+      // },
+      // {
+      //   url: img_6,
+      //   alt: "Image 6",
+      // },
+      // {
+      //   url: img_7,
+      //   alt: "Image 7",
+      // },
+      // {
+      //   url: img_8,
+      //   alt: "Image 8",
+      // },
+      // {
+      //   url: img_9,
+      //   alt: "Image 9",
+      // },
+      // {
+      //   url: img_10,
+      //   alt: "Image 10",
+      // },
     ],
   },
   {
@@ -144,34 +144,34 @@ export const serviceData: ServiceCardType[] = [
         url: img_3,
         alt: "Image 3",
       },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
+      // {
+      //   url: img_4,
+      //   alt: "Image 4",
+      // },
+      // {
+      //   url: img_5,
+      //   alt: "Image 5",
+      // },
+      // {
+      //   url: img_6,
+      //   alt: "Image 6",
+      // },
+      // {
+      //   url: img_7,
+      //   alt: "Image 7",
+      // },
+      // {
+      //   url: img_8,
+      //   alt: "Image 8",
+      // },
+      // {
+      //   url: img_9,
+      //   alt: "Image 9",
+      // },
+      // {
+      //   url: img_10,
+      //   alt: "Image 10",
+      // },
     ],
   },
   {
@@ -202,30 +202,30 @@ export const serviceData: ServiceCardType[] = [
         url: img_4,
         alt: "Image 4",
       },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
+      // {
+      //   url: img_5,
+      //   alt: "Image 5",
+      // },
+      // {
+      //   url: img_6,
+      //   alt: "Image 6",
+      // },
+      // {
+      //   url: img_7,
+      //   alt: "Image 7",
+      // },
+      // {
+      //   url: img_8,
+      //   alt: "Image 8",
+      // },
+      // {
+      //   url: img_9,
+      //   alt: "Image 9",
+      // },
+      // {
+      //   url: img_10,
+      //   alt: "Image 10",
+      // },
     ],
   },
   {
@@ -260,26 +260,26 @@ export const serviceData: ServiceCardType[] = [
         url: img_5,
         alt: "Image 5",
       },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
+      // {
+      //   url: img_6,
+      //   alt: "Image 6",
+      // },
+      // {
+      //   url: img_7,
+      //   alt: "Image 7",
+      // },
+      // {
+      //   url: img_8,
+      //   alt: "Image 8",
+      // },
+      // {
+      //   url: img_9,
+      //   alt: "Image 9",
+      // },
+      // {
+      //   url: img_10,
+      //   alt: "Image 10",
+      // },
     ],
   },
   {
