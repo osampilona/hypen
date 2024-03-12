@@ -89,16 +89,23 @@
         align-items: center;
         transition: scale 100ms ease-in-out;
 
-        &__active {
-          opacity: 1 !important;
+        &:first-of-type,
+        &:last-of-type {
+          scale: 0.7;
+        }
+
+        &__active,
+        &:first-of-type.container__image__navigation__dot__active,
+        &:last-of-type.container__image__navigation__dot__active {
           scale: 1.4;
+          left: 0;
         }
 
         > svg {
           stroke: white;
           fill: white;
           stroke-width: 0.5rem;
-          opacity: 0.6;
+          opacity: 1;
           width: 0.325em;
           height: 0.325em;
 
@@ -108,7 +115,6 @@
           }
 
           &:focus-visible {
-            opacity: 1 !important;
             scale: 1.4;
           }
         }
