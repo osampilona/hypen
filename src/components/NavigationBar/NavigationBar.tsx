@@ -11,23 +11,24 @@ export interface INavigationBarProps {
 }
 
 const NavigationBar = (props: INavigationBarProps) => {
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const [viewportWidth, setViewportWidth] = useState<number | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     const handleResize = () => {
       setViewportWidth(window.innerWidth);
     };
+    handleResize();
     window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.addEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <div className={navigationBar.container}>
       <div className={navigationBar.screen}>
-        {viewportWidth <= 1024 ? null : (
+        {(viewportWidth ?? 0) <= 1024 ? null : (
           <div className={navigationBar.icons}>
             <BigScreenLogoIcon />
             <div className={navigationBar.label}>
