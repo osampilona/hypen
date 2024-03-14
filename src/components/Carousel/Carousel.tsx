@@ -12,21 +12,24 @@ type imagesProps = {
 
 const Carousel = ({ images }: imagesProps) => {
   const [imageIndex, setImageIndex] = useState(0);
+  const [startX, setStartX] = useState(0);
+  const [isSwiping, setIsSwiping] = useState(false);
   const nextButtonRef = useRef<HTMLButtonElement>(null);
   const prevButtonRef = useRef<HTMLButtonElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const showNextImage = useCallback(() => {
     setImageIndex((index) => (index === images.length - 1 ? 0 : index + 1));
-    nextButtonRef.current?.focus();
   }, [images.length]);
 
   const showPrevImage = useCallback(() => {
     setImageIndex((index) => (index === 0 ? images.length - 1 : index - 1));
-    prevButtonRef.current?.focus();
   }, [images.length]);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowRight") {
         showNextImage();
@@ -35,13 +38,52 @@ const Carousel = ({ images }: imagesProps) => {
       }
     };
 
-    const container = containerRef.current;
-    container?.addEventListener("keydown", handleKeyDown);
+    const handlePointerDown = (e: PointerEvent) => {
+      setStartX(e.clientX);
+      setIsSwiping(true); // Indicate that a swipe has started
+      e.preventDefault();
+    };
+
+    const handlePointerMove = (e: PointerEvent) => {
+      if (!isSwiping) return; // Only track movement if a swipe has started
+    };
+
+    const handlePointerUp = (e: PointerEvent) => {
+      if (!isSwiping) return; // Only calculate swipe if it was actually started
+
+      const endX = e.clientX;
+      const distance = startX - endX;
+
+      if (Math.abs(distance) > 10) {
+        // Threshold for swipe action
+        if (distance > 0) {
+          console.log("swipe left");
+          showNextImage();
+        } else {
+          console.log("swipe right");
+          showPrevImage();
+        }
+      }
+
+      setIsSwiping(false); // Reset swipe tracking
+    };
+
+    // Adding event listeners
+    container.addEventListener("keydown", handleKeyDown);
+    container.addEventListener("pointerdown", handlePointerDown);
+    container.addEventListener("pointermove", handlePointerMove);
+    container.addEventListener("pointerup", handlePointerUp);
+    container.addEventListener("pointercancel", handlePointerUp); // Handle case where pointer is canceled
 
     return () => {
-      container?.addEventListener("keydown", handleKeyDown);
+      // Removing event listeners on cleanup
+      container.removeEventListener("keydown", handleKeyDown);
+      container.removeEventListener("pointerdown", handlePointerDown);
+      container.removeEventListener("pointermove", handlePointerMove);
+      container.removeEventListener("pointerup", handlePointerUp);
+      container.removeEventListener("pointercancel", handlePointerUp);
     };
-  }, [showNextImage, showPrevImage]);
+  }, [showNextImage, showPrevImage, isSwiping, startX]);
 
   const getDotsState = useCallback(() => {
     let dotsCount = Math.min(5, images.length);
