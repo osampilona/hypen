@@ -20,10 +20,12 @@ const Carousel = ({ images }: imagesProps) => {
 
   const showNextImage = useCallback(() => {
     setImageIndex((index) => (index === images.length - 1 ? 0 : index + 1));
+    nextButtonRef.current?.focus();
   }, [images.length]);
 
   const showPrevImage = useCallback(() => {
     setImageIndex((index) => (index === 0 ? images.length - 1 : index - 1));
+    prevButtonRef.current?.focus();
   }, [images.length]);
 
   useEffect(() => {
