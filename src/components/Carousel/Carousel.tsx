@@ -12,6 +12,8 @@ type imagesProps = {
 
 const Carousel = ({ images }: imagesProps) => {
   const [imageIndex, setImageIndex] = useState(0);
+  const [startX, setStartX] = useState(0);
+  const [isSwiping, setIsSwiping] = useState(false);
   const nextButtonRef = useRef<HTMLButtonElement>(null);
   const prevButtonRef = useRef<HTMLButtonElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,6 +29,10 @@ const Carousel = ({ images }: imagesProps) => {
   }, [images.length]);
 
   useEffect(() => {
+    const container = containerRef.current;
+    container?.focus();
+    if (!container) return;
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowRight") {
         showNextImage();
@@ -35,13 +41,46 @@ const Carousel = ({ images }: imagesProps) => {
       }
     };
 
-    const container = containerRef.current;
+    const handlePointerDown = (e: PointerEvent) => {
+      setStartX(e.clientX);
+      setIsSwiping(true);
+      e.preventDefault();
+    };
+
+    const handlePointerMove = (e: PointerEvent) => {
+      if (!isSwiping) return;
+    };
+
+    const handlePointerUp = (e: PointerEvent) => {
+      if (!isSwiping) return;
+
+      const endX = e.clientX;
+      const distance = startX - endX;
+
+      if (Math.abs(distance) > 10) {
+        if (distance > 0) {
+          showNextImage();
+        } else {
+          showPrevImage();
+        }
+      }
+      setIsSwiping(false);
+    };
+
     container?.addEventListener("keydown", handleKeyDown);
+    container?.addEventListener("pointerdown", handlePointerDown);
+    container?.addEventListener("pointermove", handlePointerMove);
+    container?.addEventListener("pointerup", handlePointerUp);
+    container?.addEventListener("pointercancel", handlePointerUp);
 
     return () => {
-      container?.addEventListener("keydown", handleKeyDown);
+      container?.removeEventListener("keydown", handleKeyDown);
+      container?.removeEventListener("pointerdown", handlePointerDown);
+      container?.removeEventListener("pointermove", handlePointerMove);
+      container?.removeEventListener("pointerup", handlePointerUp);
+      container?.removeEventListener("pointercancel", handlePointerUp);
     };
-  }, [showNextImage, showPrevImage]);
+  }, [showNextImage, showPrevImage, isSwiping, startX]);
 
   const getDotsState = useCallback(() => {
     let dotsCount = Math.min(5, images.length);
