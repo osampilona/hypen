@@ -30,57 +30,50 @@ const Carousel = ({ images }: imagesProps) => {
 
   useEffect(() => {
     const container = containerRef.current;
+    container?.focus();
     if (!container) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowRight") {
-        console.log("right");
         showNextImage();
       } else if (event.key === "ArrowLeft") {
-        console.log("left");
         showPrevImage();
       }
     };
 
     const handlePointerDown = (e: PointerEvent) => {
       setStartX(e.clientX);
-      setIsSwiping(true); // Indicate that a swipe has started
+      setIsSwiping(true);
       e.preventDefault();
     };
 
     const handlePointerMove = (e: PointerEvent) => {
-      if (!isSwiping) return; // Only track movement if a swipe has started
+      if (!isSwiping) return;
     };
 
     const handlePointerUp = (e: PointerEvent) => {
-      if (!isSwiping) return; // Only calculate swipe if it was actually started
+      if (!isSwiping) return;
 
       const endX = e.clientX;
       const distance = startX - endX;
 
       if (Math.abs(distance) > 10) {
-        // Threshold for swipe action
         if (distance > 0) {
-          console.log("swipe left");
           showNextImage();
         } else {
-          console.log("swipe right");
           showPrevImage();
         }
       }
-
-      setIsSwiping(false); // Reset swipe tracking
+      setIsSwiping(false);
     };
 
-    // Adding event listeners
     container?.addEventListener("keydown", handleKeyDown);
     container?.addEventListener("pointerdown", handlePointerDown);
     container?.addEventListener("pointermove", handlePointerMove);
     container?.addEventListener("pointerup", handlePointerUp);
-    container?.addEventListener("pointercancel", handlePointerUp); // Handle case where pointer is canceled
+    container?.addEventListener("pointercancel", handlePointerUp);
 
     return () => {
-      // Removing event listeners on cleanup
       container?.removeEventListener("keydown", handleKeyDown);
       container?.removeEventListener("pointerdown", handlePointerDown);
       container?.removeEventListener("pointermove", handlePointerMove);
