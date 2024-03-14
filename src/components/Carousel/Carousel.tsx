@@ -34,8 +34,10 @@ const Carousel = ({ images }: imagesProps) => {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowRight") {
+        console.log("right");
         showNextImage();
       } else if (event.key === "ArrowLeft") {
+        console.log("left");
         showPrevImage();
       }
     };
@@ -71,19 +73,19 @@ const Carousel = ({ images }: imagesProps) => {
     };
 
     // Adding event listeners
-    container.addEventListener("keydown", handleKeyDown);
-    container.addEventListener("pointerdown", handlePointerDown);
-    container.addEventListener("pointermove", handlePointerMove);
-    container.addEventListener("pointerup", handlePointerUp);
-    container.addEventListener("pointercancel", handlePointerUp); // Handle case where pointer is canceled
+    container?.addEventListener("keydown", handleKeyDown);
+    container?.addEventListener("pointerdown", handlePointerDown);
+    container?.addEventListener("pointermove", handlePointerMove);
+    container?.addEventListener("pointerup", handlePointerUp);
+    container?.addEventListener("pointercancel", handlePointerUp); // Handle case where pointer is canceled
 
     return () => {
       // Removing event listeners on cleanup
-      container.removeEventListener("keydown", handleKeyDown);
-      container.removeEventListener("pointerdown", handlePointerDown);
-      container.removeEventListener("pointermove", handlePointerMove);
-      container.removeEventListener("pointerup", handlePointerUp);
-      container.removeEventListener("pointercancel", handlePointerUp);
+      container?.removeEventListener("keydown", handleKeyDown);
+      container?.removeEventListener("pointerdown", handlePointerDown);
+      container?.removeEventListener("pointermove", handlePointerMove);
+      container?.removeEventListener("pointerup", handlePointerUp);
+      container?.removeEventListener("pointercancel", handlePointerUp);
     };
   }, [showNextImage, showPrevImage, isSwiping, startX]);
 
