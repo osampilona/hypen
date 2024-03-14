@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import ServiceCard, {
-  IServiceCardProps,
-} from "@/components/ServiceCard/ServiceCard";
+import ServiceCard from "@/components/ServiceCard/ServiceCard";
+import type { ServiceCardType } from "@/types/services/card";
 
 const meta: Meta = {
   title: "Atomic Components/Service card",
@@ -17,9 +16,9 @@ const meta: Meta = {
 
 export default meta;
 type Story = {
-  args: IServiceCardProps;
+  args: ServiceCardType;
 };
 
 export const Default: Story = {
-  args: {},
+  args: {} as ServiceCardType,
 };
