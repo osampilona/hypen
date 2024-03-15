@@ -15,10 +15,12 @@ const meta: Meta = {
 export default meta;
 type Story = {
   args: IMenuIconProps;
+  children: ReactNode;
 };
 
 export const Default: Story = {
   args: {
     children: GoHeart as unknown as ReactNode,
   },
+  children: GoHeart as unknown as ReactNode,
 };
