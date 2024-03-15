@@ -18,6 +18,9 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
+  core: {
+    disableTelemetry: true, // 👈 Disables telemetry
+  },
   // Add Webpack configuration here
   webpackFinal: async (config) => {
     // Resolve the `@` alias to the src directory
