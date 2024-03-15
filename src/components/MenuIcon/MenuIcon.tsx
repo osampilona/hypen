@@ -3,16 +3,10 @@ import menuIcon from "@/components/MenuIcon/menuIcon.module.scss";
 
 export interface IMenuIconProps {
   children: ReactNode;
-  label: string;
 }
 
-const MenuIcon: React.FC<IMenuIconProps> = ({ children, label }) => {
-  return (
-    <div className={menuIcon.container}>
-      {children}
-      {label}
-    </div>
-  );
+const MenuIcon: React.FC<IMenuIconProps> = ({ children }) => {
+  return <div className={menuIcon.container}>{children}</div>;
 };
 
 export default MenuIcon;
