@@ -10,16 +10,16 @@ import { IoSettingsOutline } from "react-icons/io5";
 const MenuBar = () => {
   return (
     <div className={menuBar.container}>
-      <MenuIcon label="Feed">
+      <MenuIcon>
         <GoHome size={24} />
       </MenuIcon>
-      <MenuIcon label="Favourites">
+      <MenuIcon>
         <GoHeart size={24} />
       </MenuIcon>
-      <MenuIcon label="Profile">
+      <MenuIcon>
         <AiOutlineUser size={24} />
       </MenuIcon>
-      <MenuIcon label="Settings">
+      <MenuIcon>
         <IoSettingsOutline size={24} />
       </MenuIcon>
     </div>

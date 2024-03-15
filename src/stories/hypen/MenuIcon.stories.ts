@@ -20,6 +20,5 @@ type Story = {
 export const Default: Story = {
   args: {
     children: GoHeart as unknown as ReactNode,
-    label: "Feed",
   },
 };
