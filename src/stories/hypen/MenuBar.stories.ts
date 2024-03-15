@@ -15,5 +15,4 @@ const meta: Meta<typeof MenuBar> = {
 
 export default meta;
 
-// Define the story
 export const Default = () => MenuBar();
