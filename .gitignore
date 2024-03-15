@@ -35,7 +35,7 @@ yarn-error.log*
 next-env.d.ts
 
 # chromatic
-.env.local
+.env
 
 # storybook
 build-storybook.log
