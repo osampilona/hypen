@@ -33,3 +33,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# chromatic
+.env
+
+# storybook
+build-storybook.log
+doctor-storybook.log
+migration-storybook.log
+storybook.log
