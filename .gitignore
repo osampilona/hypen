@@ -34,9 +34,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# chromatic
-.env
-
 # storybook
 build-storybook.log
 doctor-storybook.log
