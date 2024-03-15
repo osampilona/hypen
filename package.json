@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "npx chromatic CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@storybook/testing-library": "^0.2.2",
@@ -26,7 +25,6 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^1.2.22",
     "@storybook/addon-essentials": "^8.0.0",
     "@storybook/addon-interactions": "^8.0.0",
     "@storybook/addon-links": "^8.0.0",
@@ -35,7 +33,6 @@
     "@storybook/blocks": "^8.0.0",
     "@storybook/nextjs": "^8.0.0",
     "@storybook/react": "^8.0.0",
-    "chromatic": "^11.0.8",
     "eslint-plugin-storybook": "^0.8.0",
     "sass": "^1.64.1",
     "storybook": "^8.0.0"
