@@ -10,12 +10,12 @@ const ServiceCard = (props: ServiceCardType) => {
   return (
     <div className={serviceCard.container}>
       <div className={serviceCard.container__image}>
-  {props.images && props.images.length > 0 ? ( // Added conditional check
-    <Carousel images={props.images} />
-  ) : (
-    <div>No images available</div>
-  )} 
-</div>
+        {props.images && props.images.length > 0 ? ( // Added conditional check
+          <Carousel images={props.images} />
+        ) : (
+          <div>No images available</div>
+        )}
+      </div>
       <div className={serviceCard.container__info}>
         <div className={serviceCard.container__info__service}>
           <h1>{props.serviceName}</h1>
