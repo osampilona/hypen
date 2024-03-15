@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Carousel from "@/components/Carousel/Carousel";
-import serviceCard from "@/components/ServiceCard/serviceCard.module.scss";
+import serviceCard from "./serviceCard.module.scss";
 import { TiStarHalfOutline } from "react-icons/ti";
 import { AiOutlineUser } from "react-icons/ai";
 import { ServiceCardType } from "@/types/services/card";
