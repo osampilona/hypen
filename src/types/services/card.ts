@@ -8,8 +8,8 @@ export interface ServiceCardType {
   serviceNote: string;
   serviceDistance: string;
   companyName: string;
-  companyAdress: string;
-  companyAdressDetail: string;
+  companyAddress: string;
+  companyAddressDetail: string;
   companyFollowingState: string;
   images: CardImage[];
 }

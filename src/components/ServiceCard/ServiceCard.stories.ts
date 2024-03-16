@@ -12,9 +12,9 @@ interface IServiceCardProps {
   serviceNote: string;
   serviceDistance: string;
   companyName: string;
-  companyAdress: string; // Typo here? companyAdress -> companyAddress
+  companyAddress: string;
   companyFollowingState: string;
-  companyAdressDetail: string; // Typo here? companyAdressDetail -> companyAddressDetail
+  companyAddressDetail: string;
   images: { url: string; alt: string }[];
 }
 
@@ -57,9 +57,9 @@ Default.args = {
   serviceNote: "Please make an appointment before coming.",
   serviceDistance: "1.5 km",
   companyName: "Hypen",
-  companyAdress: "Hannemans Allé 4A",
+  companyAddress: "Hannemans Allé 4A",
   companyFollowingState: "Following",
-  companyAdressDetail: "",
+  companyAddressDetail: "",
   images: [
     {
       url: img_1.toString(),
