@@ -30,7 +30,7 @@ const Carousel = ({ images }: imagesProps) => {
 
   useEffect(() => {
     const container = containerRef.current;
-    container?.focus();
+    // container?.focus();
     if (!container) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {

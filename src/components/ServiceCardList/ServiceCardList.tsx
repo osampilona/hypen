@@ -12,6 +12,7 @@ const ServiceCardList = () => {
   const [serviceData, setServiceData] = useState<ServiceCardType[]>([]);
   const skeletonArray = Array.from({ length: 10 }, (_, index) => index + 1);
 
+  // window.scrollTo(0, 0);
   useEffect(() => {
     const timer = setTimeout(() => {
       setServiceData(initialServiceData);
