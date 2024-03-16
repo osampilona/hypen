@@ -47,7 +47,7 @@ const ServiceCard = (props: ServiceCardType) => {
             </div>
             <div className={serviceCard.container__business__left__details}>
               <h1>{props.companyName}</h1>
-              <p>{props.companyAdress}</p>
+              <p>{props.companyAddress}</p>
             </div>
           </div>
           <p className={serviceCard.container__business__follow}>

@@ -20,8 +20,8 @@ export const serviceData: ServiceCardType[] = [
     serviceNote: "Deposit 30% of the price",
     serviceDistance: "1.3 km. away from you",
     companyName: "Chiaroscuro salon",
-    companyAdress: "Hannemanns Alle 4A",
-    companyAdressDetail: "st.3",
+    companyAddress: "Hannemanns Alle 4A",
+    companyAddressDetail: "st.3",
     companyFollowingState: "Follow",
     images: [
       {
@@ -74,8 +74,8 @@ export const serviceData: ServiceCardType[] = [
     serviceNote: "No deposit required",
     serviceDistance: "2.5 km. away from you",
     companyName: "Elegance Hair Studio",
-    companyAdress: "123 Main Street",
-    companyAdressDetail: "Suite 101",
+    companyAddress: "123 Main Street",
+    companyAddressDetail: "Suite 101",
     companyFollowingState: "Following",
     images: [
       {
@@ -128,8 +128,8 @@ export const serviceData: ServiceCardType[] = [
     serviceNote: "Requires booking confirmation",
     serviceDistance: "0.8 km. away from you",
     companyName: "Lavish Nails Boutique",
-    companyAdress: "Beauty Plaza, 22nd Avenue",
-    companyAdressDetail: "Shop #12",
+    companyAddress: "Beauty Plaza, 22nd Avenue",
+    companyAddressDetail: "Shop #12",
     companyFollowingState: "Follow",
     images: [
       {
@@ -182,8 +182,8 @@ export const serviceData: ServiceCardType[] = [
     serviceNote: "First-time clients receive 10% off",
     serviceDistance: "3.2 km. away from you",
     companyName: "Glow and Radiance Spa",
-    companyAdress: "Elm Street",
-    companyAdressDetail: "Building B, Unit 5",
+    companyAddress: "Elm Street",
+    companyAddressDetail: "Building B, Unit 5",
     companyFollowingState: "Following",
     images: [
       {
@@ -236,8 +236,8 @@ export const serviceData: ServiceCardType[] = [
     serviceNote: "Walk-ins welcome",
     serviceDistance: "1.0 km. away from you",
     companyName: "Brow Bar Lounge",
-    companyAdress: "Market Street 5",
-    companyAdressDetail: "Second Floor, Room 204",
+    companyAddress: "Market Street 5",
+    companyAddressDetail: "Second Floor, Room 204",
     companyFollowingState: "Follow",
     images: [
       {
@@ -290,8 +290,8 @@ export const serviceData: ServiceCardType[] = [
     serviceNote: "By appointment only, 20% off for members",
     serviceDistance: "4.0 km. away from you",
     companyName: "Tranquility Wellness Spa",
-    companyAdress: "Pinecrest Avenue 17",
-    companyAdressDetail: "Ground Floor",
+    companyAddress: "Pinecrest Avenue 17",
+    companyAddressDetail: "Ground Floor",
     companyFollowingState: "Follow",
     images: [
       {
