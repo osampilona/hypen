@@ -5,6 +5,7 @@ import navigationBar from "@/components/NavigationBar/navigationBar.module.scss"
 import SearchBar from "../SearchBar/SearchBar";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import BigScreenLogoIcon from "@/assets/icons/BigScreenLogoIcon";
+import SubNavigationBar from "../SubNavigationBar/SubNavigationBar";
 
 export interface INavigationBarProps {
   labelPartner: string;
@@ -12,7 +13,7 @@ export interface INavigationBarProps {
 
 const NavigationBar = (props: INavigationBarProps) => {
   const [viewportWidth, setViewportWidth] = useState<number | undefined>(
-    undefined
+    undefined,
   );
 
   useEffect(() => {
@@ -26,19 +27,22 @@ const NavigationBar = (props: INavigationBarProps) => {
   }, []);
 
   return (
-    <div className={navigationBar.container}>
-      <div className={navigationBar.screen}>
-        {(viewportWidth ?? 0) <= 1024 ? null : (
-          <div className={navigationBar.icons}>
-            <BigScreenLogoIcon />
-            <div className={navigationBar.label}>
-              <p>{props.labelPartner}</p>
-              <HiOutlineUserCircle size={36} />
+    <div className={navigationBar.main}>
+      <div className={navigationBar.container}>
+        <div className={navigationBar.screen}>
+          {(viewportWidth ?? 0) <= 1024 ? null : (
+            <div className={navigationBar.icons}>
+              <BigScreenLogoIcon />
+              <div className={navigationBar.label}>
+                <p>{props.labelPartner}</p>
+                <HiOutlineUserCircle size={36} />
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
+        <SearchBar labelWhat={"What"} labelWhere={"Where"} labelWhen={"When"} />
       </div>
-      <SearchBar labelWhat={"What"} labelWhere={"Where"} labelWhen={"When"} />
+      <SubNavigationBar />
     </div>
   );
 };
