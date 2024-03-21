@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import SearchBar, { ISearchBarProps } from "@/components/SearchBar/SearchBar";
 
 const meta: Meta<typeof SearchBar> = {
@@ -12,11 +12,12 @@ const meta: Meta<typeof SearchBar> = {
 
 export default meta;
 
-const Template: StoryFn<ISearchBarProps> = (args) => SearchBar({ ...args });
+type Story = StoryObj<ISearchBarProps>;
 
-export const Default = Template.bind({});
-Default.args = {
-  labelWhat: "What",
-  labelWhere: "Where",
-  labelWhen: "When",
+export const Default: Story = {
+  args: {
+    labelWhat: "What",
+    labelWhere: "Where",
+    labelWhen: "When",
+  },
 };

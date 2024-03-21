@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import MenuBar from "@/components/MenuBar/MenuBar";
 
 const meta: Meta<typeof MenuBar> = {
@@ -15,6 +15,8 @@ const meta: Meta<typeof MenuBar> = {
 
 export default meta;
 
-const Template: StoryFn = () => MenuBar();
+type Story = StoryObj<typeof MenuBar>;
 
-export const Default = Template.bind({});
+export const Default: Story = {
+  render: () => MenuBar(),
+};
