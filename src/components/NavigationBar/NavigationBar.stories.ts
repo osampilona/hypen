@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import NavigationBar from "@/components/NavigationBar/NavigationBar";
 
 interface INavigationBarProps {
@@ -17,10 +17,10 @@ const meta: Meta<typeof NavigationBar> = {
 
 export default meta;
 
-const Template: StoryFn<INavigationBarProps> = (args) =>
-  NavigationBar({ ...args, labelPartner: args.labelPartner || "" });
+type Story = StoryObj<INavigationBarProps>;
 
-export const Default = Template.bind({});
-Default.args = {
-  labelPartner: "Become a Partner",
+export const Default: Story = {
+  args: {
+    labelPartner: "Become a Partner",
+  },
 };

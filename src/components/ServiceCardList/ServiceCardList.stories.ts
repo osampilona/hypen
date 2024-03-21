@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import ServiceCardList from "@/components/ServiceCardList/ServiceCardList";
 import type { ServiceCardType } from "@/types/services/card";
 
@@ -24,6 +24,8 @@ const meta: Meta<typeof ServiceCardList> = {
 
 export default meta;
 
-const Template: StoryFn<IServiceCardListProps> = () => ServiceCardList();
+type Story = StoryObj<IServiceCardListProps>;
 
-export const Default = Template.bind({});
+export const Default: Story = {
+  render: () => ServiceCardList(),
+};

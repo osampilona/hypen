@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import SubNavigationBar from "@/components/SubNavigationBar/SubNavigationBar";
 
 const meta: Meta<typeof SubNavigationBar> = {
@@ -12,7 +12,8 @@ const meta: Meta<typeof SubNavigationBar> = {
 
 export default meta;
 
-const Template: StoryFn = (args) => SubNavigationBar();
+type Story = StoryObj<typeof SubNavigationBar>;
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {
+  render: () => SubNavigationBar(),
+};

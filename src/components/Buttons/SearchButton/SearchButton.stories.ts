@@ -1,9 +1,9 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import SearchButton, {
   ISearchButtonProps,
 } from "@/components/Buttons/SearchButton/SearchButton";
 
-const meta: Meta = {
+const meta: Meta<typeof SearchButton> = {
   title: "Atomic Components/Buttons/Search Button",
   component: SearchButton,
   parameters: {
@@ -21,12 +21,13 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: StoryFn<ISearchButtonProps> = (args) => SearchButton(args);
+type Story = StoryObj<ISearchButtonProps>;
 
-export const SearchButtonPrimary = Template.bind({});
-SearchButtonPrimary.args = {
-  isPrimary: false,
-  label: "Search",
-  size: "small",
-  disabled: false,
+export const SearchButtonPrimary: Story = {
+  args: {
+    isPrimary: true,
+    label: "Search",
+    size: "small",
+    disabled: false,
+  },
 };
