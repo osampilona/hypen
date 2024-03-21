@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
 
 interface ICtaButtonProps {
@@ -34,40 +34,46 @@ const meta: Meta<typeof CtaButton> = {
 
 export default meta;
 
-const Template: StoryFn<ICtaButtonProps> = (args) => CtaButton(args);
+type Story = StoryObj<ICtaButtonProps>;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  buttonType: "primary",
-  label: "Button",
+export const Primary: Story = {
+  args: {
+    buttonType: "primary",
+    label: "Button",
+  },
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  buttonType: "secondary",
-  label: "Button",
+export const Secondary: Story = {
+  args: {
+    buttonType: "secondary",
+    label: "Button",
+  },
 };
 
-export const Micro = Template.bind({});
-Micro.args = {
-  size: "micro",
-  label: "1",
+export const Micro: Story = {
+  args: {
+    size: "micro",
+    label: "1",
+  },
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  size: "small",
-  label: "Button",
+export const Small: Story = {
+  args: {
+    size: "small",
+    label: "Button",
+  },
 };
 
-export const Medium = Template.bind({});
-Medium.args = {
-  size: "medium",
-  label: "Button",
+export const Medium: Story = {
+  args: {
+    size: "medium",
+    label: "Button",
+  },
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  size: "large",
-  label: "Button",
+export const Large: Story = {
+  args: {
+    size: "large",
+    label: "Button",
+  },
 };

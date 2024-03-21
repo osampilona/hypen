@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import LinkButton from "@/components/Buttons/LinkButton/LinkButton";
 
 interface ILinkButtonProps {
@@ -25,11 +25,12 @@ const meta: Meta<typeof LinkButton> = {
 
 export default meta;
 
-const Template: StoryFn<ILinkButtonProps> = (args) => LinkButton(args);
+type Story = StoryObj<ILinkButtonProps>;
 
-export const LinkButtonPrimary = Template.bind({});
-LinkButtonPrimary.args = {
-  label: "Search",
-  isPrimary: false,
-  disabled: false,
+export const LinkButtonPrimary: Story = {
+  args: {
+    label: "Search",
+    isPrimary: true,
+    disabled: false,
+  },
 };
