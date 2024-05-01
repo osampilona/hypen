@@ -19,10 +19,10 @@ export const serviceData: ServiceCardType[] = [
     workingHours: "9:00-19:00",
     serviceNote: "Deposit 30% of the price",
     serviceDistance: "1.3 km. away from you",
-    companyName: "Chiaroscuro salon",
+    companyName: "Chiaroscuro salon & spa for men and woman",
     companyAddress: "Hannemanns Alle 4A",
     companyAddressDetail: "st.3",
-    companyFollowingState: "Follow",
+    companyFollowingState: false,
     images: [
       {
         url: img_1,
@@ -76,7 +76,7 @@ export const serviceData: ServiceCardType[] = [
     companyName: "Elegance Hair Studio",
     companyAddress: "123 Main Street",
     companyAddressDetail: "Suite 101",
-    companyFollowingState: "Following",
+    companyFollowingState: true,
     images: [
       {
         url: img_1,
@@ -130,7 +130,7 @@ export const serviceData: ServiceCardType[] = [
     companyName: "Lavish Nails Boutique",
     companyAddress: "Beauty Plaza, 22nd Avenue",
     companyAddressDetail: "Shop #12",
-    companyFollowingState: "Follow",
+    companyFollowingState: true,
     images: [
       {
         url: img_1,
@@ -184,7 +184,7 @@ export const serviceData: ServiceCardType[] = [
     companyName: "Glow and Radiance Spa",
     companyAddress: "Elm Street",
     companyAddressDetail: "Building B, Unit 5",
-    companyFollowingState: "Following",
+    companyFollowingState: true,
     images: [
       {
         url: img_1,
@@ -238,7 +238,7 @@ export const serviceData: ServiceCardType[] = [
     companyName: "Brow Bar Lounge",
     companyAddress: "Market Street 5",
     companyAddressDetail: "Second Floor, Room 204",
-    companyFollowingState: "Follow",
+    companyFollowingState: false,
     images: [
       {
         url: img_1,
@@ -292,7 +292,7 @@ export const serviceData: ServiceCardType[] = [
     companyName: "Tranquility Wellness Spa",
     companyAddress: "Pinecrest Avenue 17",
     companyAddressDetail: "Ground Floor",
-    companyFollowingState: "Follow",
+    companyFollowingState: false,
     images: [
       {
         url: img_1,
