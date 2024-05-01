@@ -5,12 +5,20 @@ import serviceCard from "@/components/ServiceCard/serviceCard.module.scss";
 import { TiStarHalfOutline } from "react-icons/ti";
 import { AiOutlineUser } from "react-icons/ai";
 import { ServiceCardType } from "@/types/services/card";
+import { FiUserPlus } from "react-icons/fi";
+import { FiUserCheck } from "react-icons/fi";
 
 const ServiceCard = (props: ServiceCardType) => {
+  const truncateText = (text: string, maxLength: number = 21) => {
+    return text.length > maxLength
+      ? text.substring(0, maxLength) + "..."
+      : text;
+  };
+
   return (
     <div className={serviceCard.container}>
       <div className={serviceCard.container__image}>
-        {props.images && props.images.length > 0 ? ( // Added conditional check
+        {props.images && props.images.length > 0 ? (
           <Carousel images={props.images} />
         ) : (
           <div>No images available</div>
@@ -39,19 +47,27 @@ const ServiceCard = (props: ServiceCardType) => {
             {props.serviceDistance}
           </p>
         </div>
-        <div className={serviceCard.container__devider}></div>
+        <div className={serviceCard.container__divider}></div>
         <div className={serviceCard.container__business}>
           <div className={serviceCard.container__business__left}>
             <div className={serviceCard.container__business__left__image}>
               <AiOutlineUser size={24} />
             </div>
             <div className={serviceCard.container__business__left__details}>
-              <h1>{props.companyName}</h1>
-              <p>{props.companyAddress}</p>
+              <h1 title={props.companyName}>
+                {truncateText(props.companyName)}
+              </h1>
+              <p title={props.companyAddress}>
+                {truncateText(props.companyAddress)}
+              </p>
             </div>
           </div>
           <p className={serviceCard.container__business__follow}>
-            {props.companyFollowingState}
+            {props.companyFollowingState ? (
+              <FiUserCheck size={24} />
+            ) : (
+              <FiUserPlus size={24} />
+            )}
           </p>
         </div>
       </div>

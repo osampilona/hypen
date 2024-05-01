@@ -10,7 +10,7 @@ export interface ServiceCardType {
   companyName: string;
   companyAddress: string;
   companyAddressDetail: string;
-  companyFollowingState: string;
+  companyFollowingState: boolean;
   images: CardImage[];
 }
 
