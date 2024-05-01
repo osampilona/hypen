@@ -29,6 +29,10 @@
       align-items: center;
       text-decoration: none;
       gap: 0.2rem;
+
+      &:focus {
+        text-decoration: underline;
+      }
     }
   }
 }
