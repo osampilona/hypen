@@ -1,5 +1,5 @@
 .skeleton {
-  background: #ddd;
+  background: #e5e5e5;
   border-radius: 0.938rem;
   margin: 0;
   position: relative;
@@ -22,7 +22,7 @@
   &.image {
     height: 280px;
     width: 100%;
-    background-color: #c7c7c7;
+    background-color: #d4d4d4;
     margin: 0;
     border-radius: 0.938rem 0.938rem 0 0;
   }
@@ -31,13 +31,13 @@
     margin-top: 2rem;
     width: 50%;
     height: 2.5rem;
-    background-color: #c7c7c7;
+    background-color: #d4d4d4;
     border-radius: 4px;
   }
 
   &.text {
     height: 1rem;
-    background-color: #c7c7c7;
+    background-color: #d4d4d4;
     margin-right: 0;
     border-radius: 4px;
   }
@@ -45,7 +45,7 @@
   &.detail {
     width: 80%;
     height: 2rem;
-    background-color: #c7c7c7;
+    background-color: #d4d4d4;
     margin: 0;
     margin-left: 1rem;
     border-radius: 4px;
@@ -55,7 +55,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #c7c7c7;
+    background-color: #d4d4d4;
     margin-right: 0;
   }
 }
