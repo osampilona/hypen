@@ -16,12 +16,14 @@
     display: flex;
     gap: 1rem;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-decoration: none;
+    overflow-x: auto;
+    white-space: nowrap;
 
     a {
       color: #686868;
-      padding: 0 1rem;
+      padding: 0 0.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
