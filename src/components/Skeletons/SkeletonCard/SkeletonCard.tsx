@@ -10,7 +10,11 @@ const SkeletonElement = ({
 }) => {
   const classes = `${skeleton.skeleton} ${skeleton[type]}`;
 
-  return <div className={classes}>{children}</div>;
+  return (
+    <div data-testid="skeleton-card" className={classes}>
+      {children}
+    </div>
+  );
 };
 
 export default SkeletonElement;
