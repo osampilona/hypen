@@ -11,7 +11,7 @@ export type Props = {
 
 const SubNavigationBar: React.FC<{ items: Props[] }> = ({ items }) => {
   return (
-    <div className={subNavigation.container}>
+    <div className={subNavigation.container} data-testId="subnavigation-bar">
       <div className={subNavigation.links}>
         {items.map((item) => (
           <Link href={item.serviceLink} key={item.serviceLink}>
