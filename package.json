@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest --coverage --ui"
   },
   "dependencies": {
     "@storybook/test": "^8.0.2",
@@ -34,9 +35,16 @@
     "@storybook/blocks": "^8.0.2",
     "@storybook/nextjs": "^8.0.2",
     "@storybook/react": "^8.0.2",
+    "@testing-library/react": "^15.0.7",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
     "eslint-plugin-storybook": "^0.8.0",
+    "jsdom": "^24.0.0",
     "sass": "^1.64.1",
     "storybook": "^8.0.2",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^1.6.0"
   }
 }
