@@ -3,7 +3,7 @@ import Image from "next/image";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
 import { GoHeart } from "react-icons/go";
-import carousel from "./carousel.module.scss";
+import carousel from "@/components/Carousel/carousel.module.scss";
 import { CardImage } from "@/types/services/card";
 
 type imagesProps = {

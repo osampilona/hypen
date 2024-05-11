@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import navigationBar from "@/components/NavigationBar/navigationBar.module.scss";
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "@/components/SearchBar/SearchBar";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import BigScreenLogoIcon from "@/assets/icons/BigScreenLogoIcon";
-import SubNavigationBar from "../SubNavigationBar/SubNavigationBar";
+import SubNavigationBar from "@/components/SubNavigationBar/SubNavigationBar";
 import { serviceItems } from "@/data/serviceList";
 
 export interface INavigationBarProps {

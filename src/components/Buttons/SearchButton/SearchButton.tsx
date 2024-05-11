@@ -1,6 +1,6 @@
 import React from "react";
-import searchButton from "./searchButton.module.scss";
-import CtaButton from "../CTAButton/CtaButton";
+import searchButton from "@/searchButton.module.scss";
+import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
 import { GoSearch } from "react-icons/go";
 
 export interface ISearchButtonProps {
