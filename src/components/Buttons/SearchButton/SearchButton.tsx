@@ -1,5 +1,5 @@
 import React from "react";
-import searchButton from "@/searchButton.module.scss";
+import searchButton from "@/components/Buttons/SearchButton/searchButton.module.scss";
 import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
 import { GoSearch } from "react-icons/go";
 

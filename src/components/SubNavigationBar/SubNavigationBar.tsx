@@ -3,13 +3,13 @@ import subNavigation from "@/components/SubNavigationBar/subNavigationBar.module
 import Link from "next/link";
 import { IconType } from "react-icons";
 
-export type Props = {
+export type serviceProps = {
   serviceLink: string;
   serviceLabel: string;
   serviceIcon: IconType;
 };
 
-const SubNavigationBar: React.FC<{ items: Props[] }> = ({ items }) => {
+const SubNavigationBar: React.FC<{ items: serviceProps[] }> = ({ items }) => {
   return (
     <div className={subNavigation.container} data-testid="subnavigation-bar">
       <div className={subNavigation.links}>
