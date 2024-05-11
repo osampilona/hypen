@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import ServiceCard from "../ServiceCard/ServiceCard";
-import SkeletonCard from "../Skeletons/SkeletonCard/SkeletonCard";
+import ServiceCard from "@/components/ServiceCard/ServiceCard";
+import SkeletonCard from "@/components/Skeletons/SkeletonCard/SkeletonCard";
 import Shimmer from "../Skeletons/Shimmer/Shimmer";
 import serviceCardList from "@/components/ServiceCardList/serviceCardList.module.scss";
 import { ServiceCardType } from "@/types/services/card";
