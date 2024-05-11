@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ctaButton from "@/ctaButton.module.scss";
+import ctaButton from "@/components/Buttons/CTAButton/ctaButton.module.scss";
 import { GoSearch } from "react-icons/go";
 
 export interface ICtaButtonProps {
