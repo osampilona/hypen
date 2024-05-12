@@ -107,6 +107,7 @@ const Carousel = ({ images }: imagesProps) => {
       className={carousel.container}
       ref={containerRef}
       tabIndex={0}
+      data-testid="carousel"
     >
       <div
         style={{
