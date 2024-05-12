@@ -192,6 +192,7 @@ exports[`NavigationBar > renders correctly 1`] = `
             href="/#"
           >
             <svg
+              data-testid="subnavigation-icon-0"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -215,6 +216,7 @@ exports[`NavigationBar > renders correctly 1`] = `
             href="/#"
           >
             <svg
+              data-testid="subnavigation-icon-1"
               fill="currentColor"
               height="24"
               stroke="currentColor"
@@ -235,6 +237,7 @@ exports[`NavigationBar > renders correctly 1`] = `
             href="/#"
           >
             <svg
+              data-testid="subnavigation-icon-2"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -307,6 +310,7 @@ exports[`NavigationBar > renders correctly 1`] = `
             href="/#"
           >
             <svg
+              data-testid="subnavigation-icon-3"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -341,6 +345,7 @@ exports[`NavigationBar > renders correctly 1`] = `
             href="/#"
           >
             <svg
+              data-testid="subnavigation-icon-4"
               fill="currentColor"
               height="24"
               stroke="currentColor"
@@ -361,6 +366,7 @@ exports[`NavigationBar > renders correctly 1`] = `
             href="/#"
           >
             <svg
+              data-testid="subnavigation-icon-5"
               fill="currentColor"
               height="24"
               stroke="currentColor"
