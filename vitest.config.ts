@@ -8,6 +8,8 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
     environment: "jsdom",
-    coverage: { exclude: ["**/*.js", "**/*stories.ts", "*/stories"] },
+    coverage: {
+      exclude: ["**/*.js", "**/*stories.ts", "*/stories", "**/*storybook"],
+    },
   },
 });
