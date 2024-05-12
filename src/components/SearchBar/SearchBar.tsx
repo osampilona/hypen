@@ -29,6 +29,9 @@ const SearchBar = (props: ISearchBarProps) => {
             className={`${searchBar.label} ${
               isLabelClicked === "labelWhat" ? searchBar.underlined : ""
             }`}
+            data-testid={
+              isLabelClicked === "labelWhat" ? "underlined-label" : ""
+            }
           >
             {props.labelWhat}
           </p>
@@ -43,6 +46,9 @@ const SearchBar = (props: ISearchBarProps) => {
             className={`${searchBar.label} ${
               isLabelClicked === "labelWhere" ? searchBar.underlined : ""
             }`}
+            data-testid={
+              isLabelClicked === "labelWhere" ? "underlined-label" : ""
+            }
           >
             {props.labelWhere}
           </p>
@@ -57,6 +63,9 @@ const SearchBar = (props: ISearchBarProps) => {
             className={`${searchBar.label} ${
               isLabelClicked === "labelWhen" ? searchBar.underlined : ""
             }`}
+            data-testid={
+              isLabelClicked === "labelWhen" ? "underlined-label" : ""
+            }
           >
             {props.labelWhen}
           </p>
