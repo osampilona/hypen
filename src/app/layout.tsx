@@ -1,3 +1,4 @@
+import NavigationBar from "@/components/NavigationBar/NavigationBar";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
@@ -21,7 +22,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={roboto.className}>
-      <body>{children}</body>
+      <body>
+        <nav>
+          <NavigationBar labelPartner="Become a partner" />
+        </nav>
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
