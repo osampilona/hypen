@@ -1,8 +1,10 @@
-// SkeletonCardList.tsx
-
 import React from "react";
 import SkeletonCard from "@/components/Skeletons/SkeletonCard/SkeletonCard";
-import Shimmer from "@/components/Skeletons/Shimmer/Shimmer";
+import AvatarSkeleton from "@/components/Skeletons/AvatarSkeleton/AvatarSkeleton";
+import CardImageSkeleton from "@/components/Skeletons/CardImageSkeleton/CardImageSkeleton";
+import CardTitleSkeleton from "@/components/Skeletons/CardTitleSkeleton/CardTitleSkeleton";
+import CardTextSkeleton from "@/components/Skeletons/CardTextSkeleton/CardTextSkeleton";
+import CardDetailSkeleton from "@/components/Skeletons/CardDetailSkeleton/CardDetailSkeleton";
 
 const SkeletonCardList = ({ skeletonArray }: { skeletonArray: number[] }) => (
   <>
@@ -13,29 +15,17 @@ const SkeletonCardList = ({ skeletonArray }: { skeletonArray: number[] }) => (
         aria-label="skeleton wrapper"
       >
         <SkeletonCard key={index} type={"card"} aria-label="skeleton card">
-          <SkeletonCard type="image" aria-label="skeleton card image">
-            <Shimmer />
-          </SkeletonCard>
+          <CardImageSkeleton />
           <SkeletonCard
             type="wrapper-info"
             aria-label="skeleton card info wrapper"
           >
-            <SkeletonCard type="title" aria-label="skeleton card info title">
-              <Shimmer />
-            </SkeletonCard>
-            <SkeletonCard type="text" aria-label="skeleton card info text">
-              <Shimmer />
-            </SkeletonCard>
-            <SkeletonCard type="text" aria-label="skeleton card info text">
-              <Shimmer />
-            </SkeletonCard>
+            <CardTitleSkeleton />
+            <CardTextSkeleton />
+            <CardTextSkeleton />
             <div style={{ display: "flex", alignItems: "center" }}>
-              <SkeletonCard type="avatar" aria-label="skeleton card avatar">
-                <Shimmer />
-              </SkeletonCard>
-              <SkeletonCard type="detail" aria-label="skeleton card detail">
-                <Shimmer />
-              </SkeletonCard>
+              <AvatarSkeleton />
+              <CardDetailSkeleton />
             </div>
           </SkeletonCard>
         </SkeletonCard>
