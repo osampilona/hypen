@@ -25,14 +25,13 @@
 
     .screen {
       display: flex;
-      width: -webkit-fill-available;
+      width: 100%;
 
       .icons {
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 100%;
-
         padding: 1rem 0;
 
         .label {
@@ -43,8 +42,10 @@
       }
     }
 
-    @media (min-width: 1025px) {
-      flex-direction: row;
+    @media (max-width: 1024px) {
+      .screen {
+        display: none;
+      }
     }
   }
 }

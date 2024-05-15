@@ -64,9 +64,9 @@ const ServiceCard = (props: ServiceCardType) => {
           </div>
           <p className={serviceCard.container__business__follow}>
             {props.companyFollowingState ? (
-              <FiUserCheck size={24} />
+              <FiUserCheck size={24} data-testid="company-following-icon" />
             ) : (
-              <FiUserPlus size={24} />
+              <FiUserPlus size={24} data-testid="company-not-following-icon" />
             )}
           </p>
         </div>

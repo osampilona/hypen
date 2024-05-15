@@ -7,4 +7,10 @@ describe("MenuBar", () => {
     const { container } = render(<MenuBar />);
     expect(container).toMatchSnapshot();
   });
+
+  test("renders 4 icons", () => {
+    const { container } = render(<MenuBar />);
+    const icons = container.querySelectorAll("svg");
+    expect(icons.length).toBe(4);
+  });
 });

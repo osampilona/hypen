@@ -13,11 +13,16 @@ const SubNavigationBar: React.FC<{ items: serviceProps[] }> = ({ items }) => {
   return (
     <div className={subNavigation.container} data-testid="subnavigation-bar">
       <div className={subNavigation.links}>
-        {items.map((item) => (
-          <Link href={item.serviceLink} key={item.serviceLink}>
-            <item.serviceIcon size={24} />
-            {item.serviceLabel}
-          </Link>
+        {items.map((item, index) => (
+          <div key={index}>
+            <Link href={item.serviceLink}>
+              <item.serviceIcon
+                size={24}
+                data-testid={`subnavigation-icon-${index}`}
+              />
+              {item.serviceLabel}
+            </Link>
+          </div>
         ))}
       </div>
     </div>
