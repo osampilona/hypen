@@ -1,3 +1,5 @@
+@import "@/styles/variables";
+
 .button {
   border: 0;
   border-radius: 1.563rem;
@@ -9,15 +11,15 @@
 
   &--primary {
     color: #fff;
-    background-color: #51087e;
+    background-color: $primary-color;
     fill: #fff;
   }
 
   &--secondary {
-    color: #51087e;
+    color: $primary-color;
     background-color: #fff;
-    border: 1px solid #51087e;
-    fill: #51087e;
+    border: 1px solid $primary-color;
+    fill: $primary-color;
   }
 
   &--disabled {
