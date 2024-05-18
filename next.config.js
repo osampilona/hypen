@@ -4,6 +4,7 @@ const path = require("path");
 const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
+    additionalData: `@import "src/styles/variables.scss";`,
   },
   images: {
     domains: ["images.unsplash.com"],
