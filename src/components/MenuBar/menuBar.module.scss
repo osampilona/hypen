@@ -7,12 +7,12 @@
   bottom: 0;
   padding: 1rem;
   left: 0;
-  background-color: #fbf7f5;
+  background-color: $light-bg-color;
   z-index: 100;
   box-shadow: 1px 0px 15px 2px rgba(40, 40, 40, 0.05);
 
   a {
-    color: #686868;
+    color: $light-bg-labels-color;
   }
 
   @media (min-width: 1025px) {
