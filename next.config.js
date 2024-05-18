@@ -1,13 +1,10 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-module.exports = nextConfig;
-
 const path = require("path");
 
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
+    additionalData: `@import "src/styles/variables.scss";`,
   },
   images: {
     domains: ["images.unsplash.com"],
@@ -20,4 +17,14 @@ module.exports = {
       },
     ],
   },
+  webpack: function (
+    config,
+    { buildId, dev, isServer, defaultLoaders, webpack },
+  ) {
+    // Important: return the modified config
+    config.resolve.alias["@styles"] = path.join(__dirname, "styles");
+    return config;
+  },
 };
+
+module.exports = nextConfig;

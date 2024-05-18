@@ -1,4 +1,3 @@
-/* navigationBar.module.scss */
 .main {
   display: flex;
   flex-direction: column;
@@ -13,7 +12,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    color: #686868;
+    color: $light-bg-labels-color;
     position: relative;
     padding: 1rem 1.5rem;
     position: fixed;

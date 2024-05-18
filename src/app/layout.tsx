@@ -1,5 +1,5 @@
 import NavigationBar from "@/components/NavigationBar/NavigationBar";
-import "./globals.css";
+import "@/app/globals.scss";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 
