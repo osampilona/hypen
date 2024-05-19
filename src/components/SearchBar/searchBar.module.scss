@@ -1,15 +1,16 @@
-/* SearchBar.module.scss */
+// MOJA BUBI JE NAJBOLJA <3
+
 .container {
-  width: 100%;
   border-radius: 5rem;
-  border: 0.3px solid rgba(69, 69, 69, 0.3);
-  background: #fff;
-  box-shadow: 1px 0px 15px 2px rgba(40, 40, 40, 0.05);
+  background: $white-bg-color; /* Use light background color variable */
+  box-shadow: $box-shadow; /* Use box shadow variable */
   display: flex;
   align-items: center;
-  padding: 0.4rem 0.5rem;
+  padding: 0.78rem 1.5rem;
   color: $light-bg-labels-color;
   gap: 0.5rem;
+  position: absolute;
+  width: 80%;
 
   .search {
     display: flex;
@@ -21,11 +22,8 @@
   .icon {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     cursor: pointer;
-    svg {
-      fill: #706868;
-    }
   }
 
   .separator {
@@ -33,8 +31,7 @@
     height: 1.125rem;
     background-color: #e9e9e9;
     opacity: 0.8;
-    margin: 5px;
-    padding-right: inherit;
+    margin: 0 5px; /* Adjust margin */
   }
 
   .label {
@@ -45,30 +42,11 @@
     }
   }
 
-  @media (min-width: 481px) {
+  @include respond-to($breakpoint-md, min) {
     width: 23rem;
-    padding: 0.78rem 1.5rem;
-    margin-right: 2rem;
-    gap: 2rem;
-    justify-content: space-between;
-  }
-
-  @media (min-width: 1024px) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    .icon {
-      gap: 10px;
-    }
-
-    .separator {
-      margin: 0;
-    }
 
     .label {
-      font-size: 16px;
+      font-size: $font-size-md; /* Use medium font size */
     }
   }
 }

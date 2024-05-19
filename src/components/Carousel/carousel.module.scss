@@ -37,7 +37,7 @@
       }
 
       &:hover {
-        background-color: rgba(81, 8, 126, 1);
+        background-color: $primary-color;
 
         > svg {
           stroke: white;
@@ -47,7 +47,7 @@
       }
 
       &:focus-visible {
-        background-color: rgba(81, 8, 126, 1);
+        background-color: $primary-color;
 
         > svg {
           stroke: white;

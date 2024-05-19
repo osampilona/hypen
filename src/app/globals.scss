@@ -1,3 +1,4 @@
+// styles/globals.scss
 @import "@/styles/variables";
 
 * {
@@ -11,4 +12,23 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   font-family: "Roboto", sans-serif;
+  background-color: $light-bg-color;
+  color: $light-bg-text-color;
+  font-size: $font-size-md; // Default font size
+
+  @include respond-to(sm) {
+    font-size: $font-size-sm; // ~14.4px
+  }
+
+  @include respond-to(md) {
+    font-size: $font-size-md; // 16px
+  }
+
+  @include respond-to(lg) {
+    font-size: $font-size-lg; // ~17.6px
+  }
+
+  @include respond-to(xl) {
+    font-size: $font-size-xl; // ~19.2px
+  }
 }

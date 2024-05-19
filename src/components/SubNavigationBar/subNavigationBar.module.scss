@@ -33,6 +33,18 @@
       &:focus {
         text-decoration: underline;
       }
+
+      @include respond-to(sm) {
+        font-size: $font-size-md; // Adjust font size for small screens
+      }
+
+      @include respond-to(md) {
+        font-size: $font-size-lg; // Adjust font size for medium screens
+      }
+
+      @include respond-to(lg) {
+        font-size: $font-size-xl; // Adjust font size for large screens
+      }
     }
   }
 }

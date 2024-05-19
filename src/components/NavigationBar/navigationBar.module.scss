@@ -3,16 +3,16 @@
   flex-direction: column;
   height: 6.124rem;
   margin-bottom: 3rem;
-  background-color: #fff;
-  box-shadow: 1px 0px 15px 2px rgba(40, 40, 40, 0.05);
+  background-color: $white-bg-color; /* Use light background color variable */
+  box-shadow: $box-shadow; /* Use box shadow variable */
 
   .container {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    color: $light-bg-labels-color;
+    color: $light-bg-labels-color; /* Use light labels color variable */
     position: relative;
     padding: 1rem 1.5rem;
     position: fixed;
@@ -37,12 +37,11 @@
           gap: 0.5rem;
           display: flex;
           align-items: center;
+          color: $light-bg-text-color; /* Use light text color variable */
         }
       }
-    }
 
-    @media (max-width: 1024px) {
-      .screen {
+      @include respond-to($breakpoint-xl, max) {
         display: none;
       }
     }
