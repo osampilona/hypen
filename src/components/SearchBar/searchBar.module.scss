@@ -2,8 +2,8 @@
 
 .container {
   border-radius: 5rem;
-  background: $white-bg-color; /* Use light background color variable */
-  box-shadow: $box-shadow; /* Use box shadow variable */
+  background: $white-bg-color;
+  box-shadow: $box-shadow;
   display: flex;
   align-items: center;
   padding: 0.78rem 1.5rem;
@@ -29,9 +29,9 @@
   .separator {
     width: 0.05rem;
     height: 1.125rem;
-    background-color: #e9e9e9;
+    background-color: $light-bg-forms-bg-color;
     opacity: 0.8;
-    margin: 0 5px; /* Adjust margin */
+    margin: 0 5px;
   }
 
   .label {
@@ -46,7 +46,7 @@
     width: 23rem;
 
     .label {
-      font-size: $font-size-md; /* Use medium font size */
+      font-size: $font-size-md;
     }
   }
 }

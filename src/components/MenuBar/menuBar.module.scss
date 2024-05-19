@@ -7,9 +7,9 @@
   bottom: 0;
   padding: 1rem;
   left: 0;
-  background-color: $light-bg-color;
+  background-color: $white;
   z-index: 100;
-  box-shadow: $box-shadow; /* Use box shadow variable */
+  box-shadow: $box-shadow;
   a {
     color: $light-bg-labels-color;
   }

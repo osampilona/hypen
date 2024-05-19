@@ -35,15 +35,15 @@
       }
 
       @include respond-to(sm) {
-        font-size: $font-size-md; // Adjust font size for small screens
+        font-size: $font-size-md;
       }
 
       @include respond-to(md) {
-        font-size: $font-size-lg; // Adjust font size for medium screens
+        font-size: $font-size-lg;
       }
 
       @include respond-to(lg) {
-        font-size: $font-size-xl; // Adjust font size for large screens
+        font-size: $font-size-xl;
       }
     }
   }
