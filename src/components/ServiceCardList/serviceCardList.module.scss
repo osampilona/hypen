@@ -3,17 +3,4 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   row-gap: 2.375rem;
   column-gap: 2.25rem;
-
-  > :last-child {
-    margin-bottom: 4rem;
-  }
-
-  @media (min-width: 1025px) {
-    row-gap: 3.8125rem;
-    padding: 0 1rem;
-
-    > :last-child {
-      margin-bottom: 0rem;
-    }
-  }
 }

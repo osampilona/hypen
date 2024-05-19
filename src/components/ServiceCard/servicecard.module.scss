@@ -1,12 +1,11 @@
 .container {
-  height: 31rem;
   width: 100%;
   border-radius: 0.938rem;
   border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 1px 0px 15px 2px rgba(40, 40, 40, 0.05);
+  box-shadow: $box-shadow;
   position: relative;
   color: $light-bg-text-color;
-  background-color: #fff;
+  background-color: $white;
 
   &__info {
     display: flex;
@@ -44,12 +43,12 @@
         &__dot {
           width: 2px;
           height: 2px;
-          background-color: black;
+          background-color: $light-bg-text-color;
           border-radius: 50%;
         }
 
         &__hours {
-          color: #999999;
+          color: $light-bg-labels-color;
           font-size: 11px;
         }
       }
@@ -59,9 +58,9 @@
   &__divider {
     height: 2px;
     width: 100%;
-    border: 0.3px solid #fafafa;
-    background-color: #fafafa;
-    box-shadow: 1px 0px 15px 2px rgba(40, 40, 40, 0.05);
+    border: 0.3px solid $light-bg-forms-bg-color;
+    background-color: $light-bg-forms-bg-color;
+    box-shadow: $box-shadow;
   }
 
   &__business {
@@ -81,7 +80,7 @@
         border-radius: 50%;
         height: 2.5rem;
         width: 3.3rem;
-        background-color: #fafafa;
+        background-color: $light-bg-forms-bg-color;
       }
 
       &__details {

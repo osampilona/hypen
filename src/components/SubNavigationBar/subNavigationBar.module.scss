@@ -33,6 +33,18 @@
       &:focus {
         text-decoration: underline;
       }
+
+      @include respond-to(sm) {
+        font-size: $font-size-md;
+      }
+
+      @include respond-to(md) {
+        font-size: $font-size-lg;
+      }
+
+      @include respond-to(lg) {
+        font-size: $font-size-xl;
+      }
     }
   }
 }
