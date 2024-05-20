@@ -1,0 +1,24 @@
+import { Meta, StoryObj } from '@storybook/react';
+import {{pascalCase name}} from '@/components/{{pascalCase name}}/{{pascalCase name}}';
+
+interface I{{pascalCase name}}Props {
+  // Add your component props here
+}
+
+const meta: Meta<typeof {{pascalCase name}}> = {
+  title: 'Atomic components/{{pascalCase name}}',
+  component: {{pascalCase name}},
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+}
+
+export default meta;
+
+type Story = StoryObj<I{{pascalCase name}}Props>;
+export const Default: Story = {
+  args: {
+      // Add your props here
+  },
+}

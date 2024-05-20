@@ -1,0 +1,12 @@
+import { describe, test, expect } from "vitest";
+import { render, screen } from '@testing-library/react';
+import {{pascalCase name}} from '@/components/{{pascalCase name}}/{{pascalCase name}}';
+
+describe('{{pascalCase name}}', () => {
+    test('renders correctly {{pascalCase name}} component', () => {
+        render(<{{pascalCase name}} />);
+
+        const element = screen.getByTestId("{{camelCase name}}");
+        expect(element).toBeTruthy();
+    });
+});
