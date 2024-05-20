@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "plop": "plop",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest --coverage --ui"
@@ -41,6 +42,7 @@
     "@vitest/ui": "^1.6.0",
     "eslint-plugin-storybook": "^0.8.0",
     "jsdom": "^24.0.0",
+    "plop": "^4.0.1",
     "sass": "^1.77.2",
     "storybook": "^8.0.2",
     "ts-node": "^10.9.2",
