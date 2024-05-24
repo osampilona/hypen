@@ -1,5 +1,5 @@
 import MenuBar from "@/components/MenuBar/MenuBar";
-import styles from "@/app/page.module.scss";
+import styles from "@/app/home/home.module.scss";
 import ServiceCardList from "@/components/ServiceCardList/ServiceCardList";
 
 export default function Home() {
