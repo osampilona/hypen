@@ -9,9 +9,9 @@ $white: #ffffff;
 
 // Backgrounds
 $light-bg-color: #fbf7f5;
-$white-bg-color: #ffffff;
-$dark-bg-color: #121921;
-$dark-cinder-bg-color: #262c32;
+$white-items-bg-color: #ffffff;
+$dark-bg-color: #121212;
+$dark-items-bg-color: #1e1e1e;
 
 // Fonts
 $light-bg-text-color: #282828;
@@ -27,6 +27,7 @@ $dark-bg-forms-bg-color: #282828;
 
 // Box shadow
 $box-shadow: 1px 0px 15px 2px rgba(40, 40, 40, 0.05);
+$box-shadow-dark-bg: 0 2px 4px rgba(0, 0, 0, 0.2);
 
 // Font sizes
 $font-size-base: 16px;
