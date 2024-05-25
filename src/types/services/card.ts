@@ -8,6 +8,7 @@ export interface ServiceCardType {
   workingHours: string;
   serviceNote: string;
   serviceDistance: string;
+  companyId: string;
   companyName: string;
   companyAddress: string;
   companyAddressDetail: string;
