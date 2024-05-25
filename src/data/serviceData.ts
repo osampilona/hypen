@@ -13,6 +13,7 @@ import img_10 from "../assets/img/image_10.jpeg";
 
 export const serviceData: ServiceCardType[] = [
   {
+    serviceId: "1",
     serviceName: "Full Makeup",
     serviceRate: 4.5,
     workingDays: "Mon/Sat",
@@ -67,6 +68,7 @@ export const serviceData: ServiceCardType[] = [
     ],
   },
   {
+    serviceId: "2",
     serviceName: "Hair Styling",
     serviceRate: 4.2,
     workingDays: "Tue/Fri",
@@ -121,6 +123,7 @@ export const serviceData: ServiceCardType[] = [
     ],
   },
   {
+    serviceId: "3",
     serviceName: "Nail Art",
     serviceRate: 4.8,
     workingDays: "Wed/Sun",
@@ -175,6 +178,7 @@ export const serviceData: ServiceCardType[] = [
     ],
   },
   {
+    serviceId: "4",
     serviceName: "Facial Treatment",
     serviceRate: 4.7,
     workingDays: "Mon/Thu",
@@ -229,6 +233,7 @@ export const serviceData: ServiceCardType[] = [
     ],
   },
   {
+    serviceId: "5",
     serviceName: "Eyebrow Threading",
     serviceRate: 4.6,
     workingDays: "Mon/Wed/Fri",
@@ -283,6 +288,7 @@ export const serviceData: ServiceCardType[] = [
     ],
   },
   {
+    serviceId: "6",
     serviceName: "Deep Tissue Massage",
     serviceRate: 4.9,
     workingDays: "Tue/Thu/Sat",
