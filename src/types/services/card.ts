@@ -1,6 +1,7 @@
 import { StaticImageData } from "next/image";
 
 export interface ServiceCardType {
+  serviceId: string;
   serviceName: string;
   serviceRate: number;
   workingDays: string;
