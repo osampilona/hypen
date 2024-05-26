@@ -9,9 +9,7 @@ interface IServiceCardListProps {
 const meta: Meta<typeof ServiceCardList> = {
   title: "Atomic Components/Service Card List",
   component: ServiceCardList,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
   tags: ["autodocs"],
   argTypes: {
     cards: {
