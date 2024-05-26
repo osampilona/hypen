@@ -3,7 +3,6 @@ import NavigationBar from "@/components/NavigationBar/NavigationBar";
 
 interface INavigationBarProps {
   labelPartner?: string;
-  // Add other NavigationBar props here
 }
 
 const meta: Meta<typeof NavigationBar> = {

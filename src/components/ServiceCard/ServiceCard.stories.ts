@@ -31,7 +31,7 @@ type Story = StoryObj<IServiceCardProps>;
 
 export const Default: Story = {
   args: {
-    serviceName: "makeup",
+    serviceName: "Makeup",
     serviceRate: 4.5,
     workingDays: "Monday - Friday",
     workingHours: "09:00 - 18:00",
