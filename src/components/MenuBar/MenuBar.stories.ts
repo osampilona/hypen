@@ -4,12 +4,7 @@ import MenuBar from "@/components/MenuBar/MenuBar";
 const meta: Meta<typeof MenuBar> = {
   title: "Atomic Components/Menu Bar",
   component: MenuBar,
-  parameters: {
-    layout: "centered",
-    viewport: {
-      defaultViewport: "tablet",
-    },
-  },
+  parameters: {},
   tags: ["autodocs"],
 };
 

@@ -3,15 +3,12 @@ import NavigationBar from "@/components/NavigationBar/NavigationBar";
 
 interface INavigationBarProps {
   labelPartner?: string;
-  // Add other NavigationBar props here
 }
 
 const meta: Meta<typeof NavigationBar> = {
   title: "Atomic Components/Navigation Bar",
   component: NavigationBar,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
   tags: ["autodocs"],
 };
 
