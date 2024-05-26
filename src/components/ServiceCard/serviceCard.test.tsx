@@ -29,20 +29,22 @@ describe("ServiceCard", () => {
   };
 
   test("renders service name", () => {
-    render(<ServiceCard {...mockProps} />);
+    render(<ServiceCard serviceId={""} companyId={""} {...mockProps} />);
     const serviceName = screen.getByText("Test Service");
     expect(serviceName).toBeTruthy();
   });
 
   test("renders 'No images available' if no images are provided", () => {
     const propsWithoutImages = { ...mockProps, images: [] };
-    render(<ServiceCard {...propsWithoutImages} />);
+    render(
+      <ServiceCard serviceId={""} companyId={""} {...propsWithoutImages} />,
+    );
     const noImagesMessage = screen.getByText("No images available");
     expect(noImagesMessage).toBeTruthy();
   });
 
   test("renders company name", () => {
-    render(<ServiceCard {...mockProps} />);
+    render(<ServiceCard serviceId={""} companyId={""} {...mockProps} />);
     const companyName = screen.getAllByText("Test Company");
     expect(companyName).toBeTruthy();
   });
@@ -50,7 +52,7 @@ describe("ServiceCard", () => {
   //renders truncated company name
 
   test("renders company following state", () => {
-    render(<ServiceCard {...mockProps} />);
+    render(<ServiceCard serviceId={""} companyId={""} {...mockProps} />);
     const companyFollowingStateIcon = screen.getAllByTestId(
       "company-following-icon",
     );
@@ -59,7 +61,9 @@ describe("ServiceCard", () => {
 
   test("renders company not following state", () => {
     const propsNotFollowing = { ...mockProps, companyFollowingState: false };
-    render(<ServiceCard {...propsNotFollowing} />);
+    render(
+      <ServiceCard serviceId={""} companyId={""} {...propsNotFollowing} />,
+    );
     const companyNotFollowingStateIcon = screen.getAllByTestId(
       "company-not-following-icon",
     );

@@ -21,9 +21,7 @@ interface IServiceCardProps {
 const meta: Meta<typeof ServiceCard> = {
   title: "Atomic Components/Service Card",
   component: ServiceCard,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
   tags: ["autodocs"],
 };
 

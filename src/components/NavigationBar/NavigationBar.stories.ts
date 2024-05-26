@@ -9,9 +9,7 @@ interface INavigationBarProps {
 const meta: Meta<typeof NavigationBar> = {
   title: "Atomic Components/Navigation Bar",
   component: NavigationBar,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
   tags: ["autodocs"],
 };
 
