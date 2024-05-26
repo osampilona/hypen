@@ -38,6 +38,10 @@
           display: flex;
           align-items: center;
           color: $light-bg-text-color;
+
+          svg {
+            stroke: $light-bg-labels-color;
+          }
         }
       }
 
