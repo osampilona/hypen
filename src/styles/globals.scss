@@ -36,3 +36,52 @@ body {
     font-size: $font-size-xl; // ~19.2px
   }
 }
+
+// Dark theme styles
+body.dark-theme {
+  background-color: $dark-bg-color;
+  color: $dark-bg-text-color;
+
+  a {
+    color: $dark-bg-text-color;
+  }
+
+  .main {
+    background-color: $dark-bg-color;
+    color: $dark-bg-text-color; // Ensure text color is also updated
+  }
+
+  .styles_main__ZYsCT,
+  .serviceCard_container__business__left__image__gc8Qr {
+    background-color: $dark-bg-color;
+    color: $dark-bg-text-color;
+  }
+
+  .navigationBar_main__4Pzlr,
+  .menuBar_container__BzJmr,
+  .serviceCard_container__YSmRV,
+  .serviceCard_container__info__DqHwf,
+  .serviceCard_container__business__left__L4MFQ {
+    background-color: $dark-items-bg-color;
+    color: $dark-bg-text-color;
+  }
+
+  // Add any other elements that need dark theme styles
+  // For example, form elements, labels, etc.
+  input,
+  textarea,
+  select,
+  .searchBar_container__25CVr {
+    background-color: $dark-bg-forms-bg-color;
+    color: $dark-bg-text-color;
+  }
+
+  .label,
+  .icon {
+    color: $dark-bg-labels-color;
+  }
+
+  .box-shadow {
+    box-shadow: $box-shadow-dark-bg;
+  }
+}
