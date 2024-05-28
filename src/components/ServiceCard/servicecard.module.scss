@@ -5,7 +5,7 @@
   box-shadow: $box-shadow;
   position: relative;
   color: $light-bg-text-color;
-  background-color: $white;
+  background-color: $white-items-bg-color;
 
   &__info {
     display: flex;
@@ -13,6 +13,8 @@
     padding: 1rem;
     gap: 1.15rem;
     color: $light-bg-text-color;
+    background-color: $white-items-bg-color;
+    border-radius: 0 0 0.938rem 0.938rem;
 
     &__service {
       display: flex;

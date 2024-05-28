@@ -37,12 +37,18 @@
           gap: 0.5rem;
           display: flex;
           align-items: center;
-          color: $light-bg-text-color;
+          color: $light-bg-labels-color;
 
           svg {
             stroke: $light-bg-labels-color;
           }
         }
+      }
+
+      button {
+        border-radius: 50%;
+        height: 24px;
+        width: 24px;
       }
 
       @include respond-to($breakpoint-xl, max) {
