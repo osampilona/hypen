@@ -61,7 +61,8 @@ body.dark-theme {
   .menuBar_container__BzJmr,
   .serviceCard_container__YSmRV,
   .serviceCard_container__info__DqHwf,
-  .serviceCard_container__business__left__L4MFQ {
+  .serviceCard_container__business__left__L4MFQ,
+  .subNavigationBar_links__Xi6P7 a {
     background-color: $dark-items-bg-color;
     color: $dark-bg-text-color;
   }
@@ -77,7 +78,9 @@ body.dark-theme {
   }
 
   .label,
-  .icon {
+  .icon,
+  .navigationBar_icons__e4XNl,
+  .navigationBar_label__31lcq {
     color: $dark-bg-labels-color;
   }
 
