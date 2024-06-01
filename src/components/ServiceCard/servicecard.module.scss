@@ -1,20 +1,17 @@
 .container {
   width: 100%;
   border-radius: 0.938rem;
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: $box-shadow;
+  background-color: var(--items-bg-color);
+  border-color: var(--border-color);
+  box-shadow: var(--box-shadow);
   position: relative;
-  color: $light-bg-text-color;
-  background-color: $white-items-bg-color;
 
   &__info {
     display: flex;
     flex-direction: column;
     padding: 1rem;
     gap: 1.15rem;
-    color: $light-bg-text-color;
-    background-color: $white-items-bg-color;
-    border-radius: 0 0 0.938rem 0.938rem;
+    color: var(--text-color);
 
     &__service {
       display: flex;
@@ -46,12 +43,11 @@
         &__dot {
           width: 2px;
           height: 2px;
-          background-color: $light-bg-text-color;
+          background-color: var(--text-color);
           border-radius: 50%;
         }
 
         &__hours {
-          color: $light-bg-labels-color;
           font-size: 11px;
         }
       }
@@ -61,9 +57,9 @@
   &__divider {
     height: 2px;
     width: 100%;
-    border: 0.3px solid $light-bg-forms-bg-color;
-    background-color: $light-bg-forms-bg-color;
-    box-shadow: $box-shadow;
+    border: 0.3px solid var(--forms-bg-color);
+    background-color: var(--forms-bg-color);
+    box-shadow: var(--box-shadow);
   }
 
   &__business {
@@ -75,7 +71,7 @@
     &__left {
       display: flex;
       gap: 0.75rem;
-      color: $light-bg-text-color;
+      color: var(--text-color);
 
       &__image {
         display: flex;
@@ -84,7 +80,7 @@
         border-radius: 50%;
         height: 2.5rem;
         width: 3.3rem;
-        background-color: $light-bg-forms-bg-color;
+        background-color: var(--forms-bg-color);
       }
 
       &__details {

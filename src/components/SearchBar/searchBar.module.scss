@@ -2,12 +2,12 @@
 
 .container {
   border-radius: 5rem;
-  background: $white-items-bg-color;
-  box-shadow: $box-shadow;
+  background: var(--forms-bg-color);
+  box-shadow: var(--box-shadow);
+  color: var(--labels-color);
   display: flex;
   align-items: center;
   padding: 0.78rem 1.5rem;
-  color: $light-bg-labels-color;
   gap: 0.5rem;
   position: absolute;
   width: 80%;
@@ -29,7 +29,7 @@
   .separator {
     width: 0.05rem;
     height: 1.125rem;
-    background-color: $light-bg-forms-bg-color;
+    background-color: var(--forms-bg-color);
     opacity: 0.8;
     margin: 0 5px;
   }

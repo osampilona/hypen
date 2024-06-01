@@ -156,7 +156,7 @@ const Carousel = ({ images }: imagesProps) => {
       )}
 
       <div className={carousel.container__image__heart}>
-        <GoHeart aria-hidden style={{ color: "#fff" }} />
+        <GoHeart aria-hidden />
       </div>
 
       {images.length > 1 && (
