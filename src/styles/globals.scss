@@ -1,4 +1,3 @@
-// styles/globals.scss
 @import "@/styles/variables";
 
 * {
@@ -16,75 +15,39 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   font-family: "Roboto", sans-serif;
-  background-color: $light-bg-color;
-  color: $light-bg-text-color;
-  font-size: $font-size-md; // Default font size
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: var(--font-size-base);
 
-  @include respond-to(sm) {
-    font-size: $font-size-sm; // ~14.4px
+  @include respond-to($breakpoint-sm) {
+    font-size: var(--font-size-sm);
   }
 
-  @include respond-to(md) {
-    font-size: $font-size-md; // 16px
+  @include respond-to($breakpoint-md) {
+    font-size: var(--font-size-md);
   }
 
-  @include respond-to(lg) {
-    font-size: $font-size-lg; // ~17.6px
+  @include respond-to($breakpoint-lg) {
+    font-size: var(--font-size-lg);
   }
 
-  @include respond-to(xl) {
-    font-size: $font-size-xl; // ~19.2px
+  @include respond-to($breakpoint-xl) {
+    font-size: var(--font-size-xl);
   }
 }
 
-// Dark theme styles
-body.dark-theme {
-  background-color: $dark-bg-color;
-  color: $dark-bg-text-color;
+input,
+textarea,
+select {
+  background-color: var(--forms-bg-color);
+  color: var(--text-color);
+}
 
-  a {
-    color: $dark-bg-text-color;
-  }
+.label,
+.icon {
+  color: var(--labels-color);
+}
 
-  .main {
-    background-color: $dark-bg-color;
-    color: $dark-bg-text-color; // Ensure text color is also updated
-  }
-
-  .styles_main__ZYsCT,
-  .serviceCard_container__business__left__image__gc8Qr {
-    background-color: $dark-bg-color;
-    color: $dark-bg-text-color;
-  }
-
-  .navigationBar_main__4Pzlr,
-  .menuBar_container__BzJmr,
-  .serviceCard_container__YSmRV,
-  .serviceCard_container__info__DqHwf,
-  .serviceCard_container__business__left__L4MFQ,
-  .subNavigationBar_links__Xi6P7 a {
-    background-color: $dark-items-bg-color;
-    color: $dark-bg-text-color;
-  }
-
-  // Add any other elements that need dark theme styles
-  // For example, form elements, labels, etc.
-  input,
-  textarea,
-  select,
-  .searchBar_container__25CVr {
-    background-color: $dark-bg-forms-bg-color;
-    color: $dark-bg-text-color;
-  }
-
-  .label,
-  .icon,
-  .navigationBar_icons__e4XNl,
-  .navigationBar_label__31lcq {
-    color: $dark-bg-labels-color;
-  }
-
-  .box-shadow {
-    box-shadow: $box-shadow-dark-bg;
-  }
+.box-shadow {
+  box-shadow: var(--box-shadow);
 }

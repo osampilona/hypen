@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import MenuBar from "@/components/MenuBar/MenuBar";
 import NavigationBar from "@/components/NavigationBar/NavigationBar";
 import "@/styles/globals.scss";
+import "@/styles/variables.globals.scss";
 import styles from "@/app/styles.module.scss";
 import { Provider } from "react-redux";
 import { store } from "@/lib/store";
