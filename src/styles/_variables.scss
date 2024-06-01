@@ -22,12 +22,12 @@ $dark-bg-box-shadow: 2px 3px 8px 2px rgba(255, 255, 255, 0.05);
 $light-bg-border-color: rgba(255, 255, 255, 0.3);
 $dark-bg-border-color: rgba(0, 0, 0, 0.3);
 
-$linear-gradient: linear-gradient(
+$light-bg-linear-gradient: linear-gradient(
   to bottom,
   rgba(0, 0, 0, 0) 0%,
   rgba(0, 0, 0, 0.5) 100%
 );
-$linear-gradient-dark-bg: linear-gradient(
+$dark-bg-linear-gradient: linear-gradient(
   to bottom,
   rgba(255, 255, 255, 0) 0%,
   rgba(255, 255, 255, 0.5) 100%

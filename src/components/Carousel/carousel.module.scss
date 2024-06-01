@@ -105,8 +105,8 @@
         }
 
         > svg {
-          stroke: var(--items-bg-color);
-          fill: var(--items-bg-color);
+          stroke: $dark-bg-labels-color;
+          fill: $dark-bg-labels-color;
           stroke-width: 0.5rem;
           opacity: 1;
           width: 0.325em;
@@ -132,7 +132,7 @@
     left: 0;
     width: 100%;
     height: 25%;
-    background: var(--linear-gradient);
+    background: $light-bg-linear-gradient;
     z-index: 1;
   }
 }
