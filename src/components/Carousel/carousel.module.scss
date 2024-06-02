@@ -59,7 +59,7 @@
       height: 2.0625rem;
       width: 2.0625rem;
       border-radius: 50%;
-      background-color: var(--text-color);
+      background-color: $light-bg-text-color;
       opacity: 0.8;
       position: absolute;
       top: 1rem;
@@ -70,8 +70,8 @@
       z-index: 1;
 
       svg {
-        stroke: var(--items-bg-color);
-        fill: var(--items-bg-color);
+        stroke: $white-items-bg-color;
+        fill: $white-items-bg-color;
       }
     }
 
