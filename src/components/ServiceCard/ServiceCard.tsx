@@ -2,11 +2,14 @@
 import React from "react";
 import Carousel from "@/components/Carousel/Carousel";
 import serviceCard from "@/components/ServiceCard/serviceCard.module.scss";
-import { TiStarHalfOutline } from "react-icons/ti";
+import {
+  TiStarHalfOutline,
+  TiStarFullOutline,
+  TiStarOutline,
+} from "react-icons/ti";
 import { AiOutlineUser } from "react-icons/ai";
 import { ServiceCardType } from "@/types/services/card";
-import { FiUserPlus } from "react-icons/fi";
-import { FiUserCheck } from "react-icons/fi";
+import { FiUserPlus, FiUserCheck } from "react-icons/fi";
 import Link from "next/link";
 
 const ServiceCard = (props: ServiceCardType) => {
@@ -14,6 +17,16 @@ const ServiceCard = (props: ServiceCardType) => {
     return text.length > maxLength
       ? text.substring(0, maxLength) + "..."
       : text;
+  };
+
+  const renderStarIcon = (serviceRate: number) => {
+    if (serviceRate > 4.5) {
+      return <TiStarFullOutline />;
+    } else if (serviceRate > 1.5) {
+      return <TiStarHalfOutline />;
+    } else {
+      return <TiStarOutline />;
+    }
   };
 
   return (
@@ -31,7 +44,7 @@ const ServiceCard = (props: ServiceCardType) => {
             <div className={serviceCard.container__info__service}>
               <h1>{props.serviceName}</h1>
               <div className={serviceCard.container__info__service__rate}>
-                <TiStarHalfOutline />
+                {renderStarIcon(props.serviceRate)}
                 <p>{props.serviceRate}</p>
               </div>
             </div>

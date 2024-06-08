@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import ServiceCard from "@/components/ServiceCard/ServiceCard";
-import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList"; // Import the new component
+import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
 import { ServiceCardType } from "@/types/services/card";
 import { serviceData as initialServiceData } from "@/data/serviceData";
 import serviceCardList from "@/components/ServiceCardList/serviceCardList.module.scss";
@@ -15,7 +15,7 @@ const ServiceCardList = () => {
     const timer = setTimeout(() => {
       setServiceData(initialServiceData);
       setLoading(false);
-    }, 3000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [loading]);

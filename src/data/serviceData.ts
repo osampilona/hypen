@@ -15,7 +15,7 @@ export const serviceData: ServiceCardType[] = [
   {
     serviceId: "1",
     serviceName: "Full Makeup",
-    serviceRate: 4.5,
+    serviceRate: 1,
     workingDays: "Mon/Sat",
     workingHours: "9:00-19:00",
     serviceNote: "Deposit 30% of the price",
@@ -71,7 +71,7 @@ export const serviceData: ServiceCardType[] = [
   {
     serviceId: "2",
     serviceName: "Hair Styling",
-    serviceRate: 4.2,
+    serviceRate: 5,
     workingDays: "Tue/Fri",
     workingHours: "10:00-18:00",
     serviceNote: "No deposit required",
@@ -127,7 +127,7 @@ export const serviceData: ServiceCardType[] = [
   {
     serviceId: "3",
     serviceName: "Nail Art",
-    serviceRate: 4.8,
+    serviceRate: 3.8,
     workingDays: "Wed/Sun",
     workingHours: "10:00-16:00",
     serviceNote: "Requires booking confirmation",
@@ -183,7 +183,7 @@ export const serviceData: ServiceCardType[] = [
   {
     serviceId: "4",
     serviceName: "Facial Treatment",
-    serviceRate: 4.7,
+    serviceRate: 1.7,
     workingDays: "Mon/Thu",
     workingHours: "11:00-20:00",
     serviceNote: "First-time clients receive 10% off",
@@ -239,7 +239,7 @@ export const serviceData: ServiceCardType[] = [
   {
     serviceId: "5",
     serviceName: "Eyebrow Threading",
-    serviceRate: 4.6,
+    serviceRate: 5,
     workingDays: "Mon/Wed/Fri",
     workingHours: "12:00-18:00",
     serviceNote: "Walk-ins welcome",
