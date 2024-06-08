@@ -5,12 +5,17 @@ import { FaCircle } from "react-icons/fa";
 import { GoHeart } from "react-icons/go";
 import carousel from "@/components/Carousel/carousel.module.scss";
 import { CardImage } from "@/types/services/card";
+import Link from "next/link";
 
-type imagesProps = {
+type ImagesProps = {
   images: CardImage[];
+  serviceId: string;
 };
 
-const Carousel = ({ images }: imagesProps) => {
+const Carousel: React.FC<ImagesProps> = ({
+  images,
+  serviceId,
+}: ImagesProps) => {
   const [imageIndex, setImageIndex] = useState(0);
   const [startX, setStartX] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
@@ -109,28 +114,30 @@ const Carousel = ({ images }: imagesProps) => {
       tabIndex={0}
       data-testid="carousel"
     >
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          overflow: "hidden",
-        }}
-      >
-        {images.map(({ url, alt }, index) => (
-          <Image
-            key={`${url.toString()}-${index}`}
-            src={url}
-            alt={alt}
-            className={carousel.container__image}
-            style={{ transform: `translateX(${-100 * imageIndex}%)` }}
-            aria-hidden={index !== imageIndex}
-            priority={index === imageIndex}
-            height={280}
-            width={343}
-          />
-        ))}
-      </div>
+      <Link href={`/service/${serviceId}`}>
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            overflow: "hidden",
+          }}
+        >
+          {images.map(({ url, alt }, index) => (
+            <Image
+              key={`${url.toString()}-${index}`}
+              src={url}
+              alt={alt}
+              className={carousel.container__image}
+              style={{ transform: `translateX(${-100 * imageIndex}%)` }}
+              aria-hidden={index !== imageIndex}
+              priority={index === imageIndex}
+              height={280}
+              width={343}
+            />
+          ))}
+        </div>
+      </Link>
 
       {images.length > 1 && (
         <>
