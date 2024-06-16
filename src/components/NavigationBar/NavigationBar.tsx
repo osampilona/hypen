@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/lib/store";
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { toggleTheme } from "@/lib/features/theme/theme";
-import { throttle } from "lodash";
+import { debounce } from "lodash"; // Import debounce
 
 export interface INavigationBarProps {
   labelPartner: string;
@@ -28,9 +28,9 @@ const NavigationBar = ({
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = throttle(() => {
+    const handleScroll = debounce(() => {
       setIsScrolled(window.scrollY > 50);
-    }, 100); // Throttling with 100ms delay
+    }, 150); // Debouncing with 150ms delay
 
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -41,10 +41,8 @@ const NavigationBar = ({
   useEffect(() => {
     if (currentTheme === "dark") {
       document.body.classList.add("dark-theme");
-      console.log("Dark theme applied");
     } else {
       document.body.classList.remove("dark-theme");
-      console.log("Light theme applied");
     }
 
     const bodyStyles = getComputedStyle(document.body);
