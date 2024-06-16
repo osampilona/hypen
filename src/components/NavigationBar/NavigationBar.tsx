@@ -1,5 +1,5 @@
-"use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import navigationBar from "@/components/NavigationBar/navigationBar.module.scss";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import { HiOutlineUserCircle } from "react-icons/hi2";
@@ -11,16 +11,33 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/lib/store";
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { toggleTheme } from "@/lib/features/theme/theme";
+import { throttle } from "lodash";
 
 export interface INavigationBarProps {
   labelPartner: string;
+  isSimpleNavbar?: boolean;
 }
 
-const NavigationBar = (props: INavigationBarProps) => {
+const NavigationBar = ({
+  labelPartner,
+  isSimpleNavbar = false,
+}: INavigationBarProps) => {
   const currentTheme = useSelector(
     (state: RootState) => state.theme.currentTheme,
   );
   const dispatch = useDispatch();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = throttle(() => {
+      setIsScrolled(window.scrollY > 50);
+    }, 100); // Throttling with 100ms delay
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (currentTheme === "dark") {
@@ -31,7 +48,6 @@ const NavigationBar = (props: INavigationBarProps) => {
       console.log("Light theme applied");
     }
 
-    // Log the computed styles for an element
     const bodyStyles = getComputedStyle(document.body);
     console.log("Background color:", bodyStyles.backgroundColor);
     console.log("Text color:", bodyStyles.color);
@@ -53,16 +69,27 @@ const NavigationBar = (props: INavigationBarProps) => {
                   <MdOutlineDarkMode />
                 )}
               </button>
-              <p>{props.labelPartner}</p>
+              <p>{labelPartner}</p>
               <Link href="/login">
                 <HiOutlineUserCircle size={36} data-testid="user-icon" />
               </Link>
             </div>
           </div>
         </div>
-        <SearchBar labelWhat={"What"} labelWhere={"Where"} labelWhen={"When"} />
+        {!isSimpleNavbar && ( // Only render SearchBar if not on login page
+          <SearchBar
+            labelWhat={"What"}
+            labelWhere={"Where"}
+            labelWhen={"When"}
+          />
+        )}
       </div>
-      <SubNavigationBar items={serviceItems} />
+      {!isSimpleNavbar &&
+        !isScrolled && ( // Only render SubNavigationBar if not on login page and not scrolled
+          <div className={navigationBar.subNavigationBar}>
+            <SubNavigationBar items={serviceItems} />
+          </div>
+        )}
     </div>
   );
 };

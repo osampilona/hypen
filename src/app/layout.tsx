@@ -7,6 +7,7 @@ import "@/styles/variables.globals.scss";
 import styles from "@/app/styles.module.scss";
 import { Provider } from "react-redux";
 import { store } from "@/lib/store";
+import { usePathname } from "next/navigation";
 
 const roboto = Roboto({
   weight: "400",
@@ -19,11 +20,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
+  // Paths that should not display SubNavigationBar and SearchBar
+  const noSubNavigationPaths = ["/login", "/register"];
+
+  // Check if current path is in the array of noSubNavigationPaths
+  const shouldHideSubNavigation = noSubNavigationPaths.includes(pathname);
+
   return (
     <html lang="en" className={roboto.className}>
       <body>
         <Provider store={store}>
-          <NavigationBar labelPartner="Become a partner" />
+          <NavigationBar
+            labelPartner="Become a partner"
+            isSimpleNavbar={shouldHideSubNavigation}
+          />
           <main className={styles.main}>{children}</main>
           <MenuBar />
         </Provider>
