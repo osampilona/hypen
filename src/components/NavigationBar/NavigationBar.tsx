@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import navigationBar from "@/components/NavigationBar/navigationBar.module.scss";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import { HiOutlineUserCircle } from "react-icons/hi2";
@@ -76,7 +75,7 @@ const NavigationBar = ({
             </div>
           </div>
         </div>
-        {!isSimpleNavbar && ( // Only render SearchBar if not on login page
+        {!isSimpleNavbar && (
           <SearchBar
             labelWhat={"What"}
             labelWhere={"Where"}
@@ -84,12 +83,11 @@ const NavigationBar = ({
           />
         )}
       </div>
-      {!isSimpleNavbar &&
-        !isScrolled && ( // Only render SubNavigationBar if not on login page and not scrolled
-          <div className={navigationBar.subNavigationBar}>
-            <SubNavigationBar items={serviceItems} />
-          </div>
-        )}
+      {!isSimpleNavbar && !isScrolled && (
+        <div className={navigationBar.subNavigationBar}>
+          <SubNavigationBar items={serviceItems} />
+        </div>
+      )}
     </div>
   );
 };
