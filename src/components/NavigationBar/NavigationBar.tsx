@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/lib/store";
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { toggleTheme } from "@/lib/features/theme/theme";
-import { debounce } from "lodash"; // Import debounce
+import { debounce } from "lodash";
 
 export interface INavigationBarProps {
   labelPartner: string;
