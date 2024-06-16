@@ -25,12 +25,12 @@ const Carousel: React.FC<ImagesProps> = ({
 
   const showNextImage = useCallback(() => {
     setImageIndex((index) => (index === images.length - 1 ? 0 : index + 1));
-    nextButtonRef.current?.focus();
+    nextButtonRef.current?.blur();
   }, [images.length]);
 
   const showPrevImage = useCallback(() => {
     setImageIndex((index) => (index === 0 ? images.length - 1 : index - 1));
-    prevButtonRef.current?.focus();
+    prevButtonRef.current?.blur();
   }, [images.length]);
 
   useEffect(() => {
