@@ -1,5 +1,4 @@
-"use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import navigationBar from "@/components/NavigationBar/navigationBar.module.scss";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import { HiOutlineUserCircle } from "react-icons/hi2";
@@ -11,27 +10,41 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/lib/store";
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { toggleTheme } from "@/lib/features/theme/theme";
+import { debounce } from "lodash"; // Import debounce
 
 export interface INavigationBarProps {
   labelPartner: string;
+  isSimpleNavbar?: boolean;
 }
 
-const NavigationBar = (props: INavigationBarProps) => {
+const NavigationBar = ({
+  labelPartner,
+  isSimpleNavbar = false,
+}: INavigationBarProps) => {
   const currentTheme = useSelector(
     (state: RootState) => state.theme.currentTheme,
   );
   const dispatch = useDispatch();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = debounce(() => {
+      setIsScrolled(window.scrollY > 50);
+    }, 150); // Debouncing with 150ms delay
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (currentTheme === "dark") {
       document.body.classList.add("dark-theme");
-      console.log("Dark theme applied");
     } else {
       document.body.classList.remove("dark-theme");
-      console.log("Light theme applied");
     }
 
-    // Log the computed styles for an element
     const bodyStyles = getComputedStyle(document.body);
     console.log("Background color:", bodyStyles.backgroundColor);
     console.log("Text color:", bodyStyles.color);
@@ -53,16 +66,26 @@ const NavigationBar = (props: INavigationBarProps) => {
                   <MdOutlineDarkMode />
                 )}
               </button>
-              <p>{props.labelPartner}</p>
+              <p>{labelPartner}</p>
               <Link href="/login">
                 <HiOutlineUserCircle size={36} data-testid="user-icon" />
               </Link>
             </div>
           </div>
         </div>
-        <SearchBar labelWhat={"What"} labelWhere={"Where"} labelWhen={"When"} />
+        {!isSimpleNavbar && (
+          <SearchBar
+            labelWhat={"What"}
+            labelWhere={"Where"}
+            labelWhen={"When"}
+          />
+        )}
       </div>
-      <SubNavigationBar items={serviceItems} />
+      {!isSimpleNavbar && !isScrolled && (
+        <div className={navigationBar.subNavigationBar}>
+          <SubNavigationBar items={serviceItems} />
+        </div>
+      )}
     </div>
   );
 };
