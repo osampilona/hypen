@@ -1,0 +1,7 @@
+@include respond-to($breakpoint-xl, min) {
+  .container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+}

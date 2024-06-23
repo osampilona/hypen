@@ -5,9 +5,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { GoCalendar } from "react-icons/go";
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 import Overlay from "@/components/Overlay/Overlay";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import SearchButton from "../Buttons/SearchButton/SearchButton";
+import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 
 export interface ISearchBarProps {
   labelWhat: string;
@@ -18,7 +16,6 @@ export interface ISearchBarProps {
 const SearchBar = (props: ISearchBarProps) => {
   const [isLabelClicked, setIsLabelClicked] = useState<string | null>(null);
   const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(false);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   const handleOverlayClose = () => {
     setIsOverlayVisible(false);
@@ -158,13 +155,11 @@ const SearchBar = (props: ISearchBarProps) => {
                 </p>
               </div>
             </div>
-            <SearchButton label={"Search"} />
+            <div className={searchBar.icon}>
+              <HiAdjustmentsHorizontal />
+            </div>
           </div>
-          <DatePicker
-            selected={selectedDate}
-            onChange={(date: Date | null) => setSelectedDate(date)}
-            inline
-          />
+          <CustomCalendar />
         </div>
       </Overlay>
     </div>
