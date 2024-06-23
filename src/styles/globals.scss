@@ -51,3 +51,69 @@ select {
 .box-shadow {
   box-shadow: var(--box-shadow);
 }
+
+// React Datepicker custom styles
+.react-datepicker {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  border: none;
+
+  &__month-container {
+    float: none;
+    background-color: var(--items-bg-color);
+  }
+
+  &__header {
+    background-color: var(--items-bg-color);
+    color: var(--text-color);
+    border-bottom: none;
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      color: var(--text-color);
+    }
+  }
+
+  &__day {
+    color: var(--text-color);
+  }
+
+  &__day-name {
+    font-weight: 700;
+    color: var(--text-color);
+  }
+
+  &__day--selected {
+    background-color: $tertiary-color;
+    color: var(--items-bg-color);
+
+    &:hover {
+      background-color: darken($tertiary-color, 10%);
+    }
+  }
+
+  &__day--outside-month {
+    color: lighten($primary-color, 20%);
+  }
+
+  @include respond-to($breakpoint-md, min) {
+    &__day,
+    &__day-name {
+      margin: 1rem;
+    }
+
+    &__header {
+      gap: 1rem;
+    }
+
+    &__navigation--previous {
+      left: 1rem;
+    }
+    &__navigation--next {
+      right: 1rem;
+    }
+  }
+}

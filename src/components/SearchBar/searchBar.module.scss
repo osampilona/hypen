@@ -49,4 +49,18 @@
       font-size: $font-size-md;
     }
   }
+
+  .popupContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    gap: 20px;
+  }
+
+  .popupHeader {
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+  }
 }

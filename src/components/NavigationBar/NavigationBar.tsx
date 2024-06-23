@@ -80,12 +80,10 @@ const NavigationBar = ({
             labelWhen={"When"}
           />
         )}
-      </div>
-      {!isSimpleNavbar && !isScrolled && (
-        <div className={navigationBar.subNavigationBar}>
+        {!isSimpleNavbar && !isScrolled && (
           <SubNavigationBar items={serviceItems} />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
