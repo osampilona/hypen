@@ -6,6 +6,8 @@ import { GoCalendar } from "react-icons/go";
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 import Overlay from "@/components/Overlay/Overlay";
 import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
+import CustomInputField from "@/components/CustomInputField/CustomInputField";
+import { MdOutlineGpsFixed } from "react-icons/md";
 
 export interface ISearchBarProps {
   labelWhat: string;
@@ -24,13 +26,20 @@ const SearchBar = (props: ISearchBarProps) => {
   const handleClick = (label: string) => {
     if (label === isLabelClicked) {
       setIsLabelClicked(null);
-      if (label === "labelWhen") {
+      if (
+        label === "labelWhen" ||
+        label === "labelWhere" ||
+        label === "labelWhat"
+      ) {
         setIsOverlayVisible(false);
       }
     } else {
-      console.log("clicked");
       setIsLabelClicked(label);
-      if (label === "labelWhen") {
+      if (
+        label === "labelWhen" ||
+        label === "labelWhere" ||
+        label === "labelWhat"
+      ) {
         setIsOverlayVisible(true);
       }
     }
@@ -97,12 +106,6 @@ const SearchBar = (props: ISearchBarProps) => {
       <Overlay show={isOverlayVisible} onClose={handleOverlayClose}>
         <div className={searchBar.popupContent}>
           <div className={searchBar.popupHeader}>
-            {/* <GoSearch />
-            <p className={searchBar.label}>{props.labelWhat}</p>
-            <IoLocationOutline />
-            <p className={searchBar.label}>{props.labelWhere}</p>
-            <GoCalendar />
-            <p className={searchBar.label}>{props.labelWhen}</p> */}
             <div className={searchBar.search}>
               <div
                 className={searchBar.icon}
@@ -159,7 +162,18 @@ const SearchBar = (props: ISearchBarProps) => {
               <HiAdjustmentsHorizontal />
             </div>
           </div>
-          <CustomCalendar />
+          {isLabelClicked === "labelWhen" ? (
+            <CustomCalendar />
+          ) : isLabelClicked === "labelWhere" ? (
+            <CustomInputField
+              leftIcon={<GoSearch />}
+              placeholder={"Where"}
+              rightIcon={<MdOutlineGpsFixed />}
+            />
+          ) : isLabelClicked === "labelWhat" ? (
+            <CustomInputField leftIcon={<GoSearch />} placeholder={"What"} />
+          ) : null // Add a default component or another condition
+          }
         </div>
       </Overlay>
     </div>

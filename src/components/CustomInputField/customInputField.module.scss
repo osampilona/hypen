@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--labels-color);
+  border-radius: 25px;
+  padding: 5px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.leftIcon {
+  margin-right: 1rem;
+  color: #888;
+  position: absolute;
+  left: 10px;
+  pointer-events: none; // Prevent icon from interfering with input focus
+}
+
+.rightIcon {
+  margin-left: 1rem;
+  color: #888;
+  position: absolute;
+  right: 10px;
+  pointer-events: none; // Prevent icon from interfering with input focus
+}
+
+.input {
+  margin: 0 1rem;
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background-color: transparent;
+}
