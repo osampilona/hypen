@@ -8,14 +8,9 @@ import Overlay from "@/components/Overlay/Overlay";
 import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 import CustomInputField from "@/components/CustomInputField/CustomInputField";
 import { MdOutlineGpsFixed } from "react-icons/md";
+import SearchBarButton from "@/components/Buttons/SearchBarButton/SearchBarButton";
 
-export interface ISearchBarProps {
-  labelWhat: string;
-  labelWhere: string;
-  labelWhen: string;
-}
-
-const SearchBar = (props: ISearchBarProps) => {
+const SearchBar: React.FC = () => {
   const [isLabelClicked, setIsLabelClicked] = useState<string | null>(null);
   const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(false);
   const [searchTermWhat, setSearchTermWhat] = useState<string>("");
@@ -23,83 +18,73 @@ const SearchBar = (props: ISearchBarProps) => {
 
   const handleOverlayClose = () => {
     setIsOverlayVisible(false);
+    setIsLabelClicked(null);
   };
 
   const handleClick = (label: string) => {
     if (label === isLabelClicked) {
       setIsLabelClicked(null);
-      if (
-        label === "labelWhen" ||
-        label === "labelWhere" ||
-        label === "labelWhat"
-      ) {
-        setIsOverlayVisible(false);
-      }
+      setIsOverlayVisible(false);
     } else {
       setIsLabelClicked(label);
-      if (
-        label === "labelWhen" ||
-        label === "labelWhere" ||
-        label === "labelWhat"
-      ) {
-        setIsOverlayVisible(true);
-      }
+      setIsOverlayVisible(true);
+    }
+  };
+
+  const renderContent = () => {
+    switch (isLabelClicked) {
+      case "When":
+        return <CustomCalendar />;
+      case "Where":
+        return (
+          <CustomInputField
+            leftIcon={<GoSearch />}
+            placeholder={"Where"}
+            rightIcon={<MdOutlineGpsFixed />}
+            value={searchTermWhere}
+            onChange={setSearchTermWhere}
+          />
+        );
+      case "What":
+        return (
+          <CustomInputField
+            leftIcon={<GoSearch />}
+            placeholder={"What"}
+            value={searchTermWhat}
+            onChange={setSearchTermWhat}
+          />
+        );
+      default:
+        return null;
     }
   };
 
   return (
     <div className={searchBar.container}>
       <div className={searchBar.search}>
-        <div
-          className={searchBar.icon}
-          onClick={() => handleClick("labelWhat")}
-        >
-          <GoSearch />
-          <p
-            className={`${searchBar.label} ${
-              isLabelClicked === "labelWhat" ? searchBar.underlined : ""
-            }`}
-            data-testid={
-              isLabelClicked === "labelWhat" ? "underlined-label" : ""
-            }
-          >
-            {props.labelWhat}
-          </p>
-        </div>
+        <SearchBarButton
+          icon={<GoSearch />}
+          label="What"
+          isLabelClicked={isLabelClicked}
+          onClick={() => handleClick("What")}
+          dataTestId="What"
+        />
         <div className={searchBar.separator}></div>
-        <div
-          className={searchBar.icon}
-          onClick={() => handleClick("labelWhere")}
-        >
-          <IoLocationOutline />
-          <p
-            className={`${searchBar.label} ${
-              isLabelClicked === "labelWhere" ? searchBar.underlined : ""
-            }`}
-            data-testid={
-              isLabelClicked === "labelWhere" ? "underlined-label" : ""
-            }
-          >
-            {props.labelWhere}
-          </p>
-        </div>
+        <SearchBarButton
+          icon={<IoLocationOutline />}
+          label="Where"
+          isLabelClicked={isLabelClicked}
+          onClick={() => handleClick("Where")}
+          dataTestId="Where"
+        />
         <div className={searchBar.separator}></div>
-        <div
-          className={searchBar.icon}
-          onClick={() => handleClick("labelWhen")}
-        >
-          <GoCalendar />
-          <p
-            className={`${searchBar.label} ${
-              isLabelClicked === "labelWhen" ? searchBar.underlined : ""
-            }`}
-            data-testid={
-              isLabelClicked === "labelWhen" ? "underlined-label" : ""
-            }
-          >
-            {props.labelWhen}
-          </p>
-        </div>
+        <SearchBarButton
+          icon={<GoCalendar />}
+          label="When"
+          isLabelClicked={isLabelClicked}
+          onClick={() => handleClick("When")}
+          dataTestId="When"
+        />
       </div>
       <div className={searchBar.icon}>
         <HiAdjustmentsHorizontal />
@@ -109,79 +94,35 @@ const SearchBar = (props: ISearchBarProps) => {
         <div className={searchBar.popupContent}>
           <div className={searchBar.popupHeader}>
             <div className={searchBar.search}>
-              <div
-                className={searchBar.icon}
-                onClick={() => handleClick("labelWhat")}
-              >
-                <GoSearch />
-                <p
-                  className={`${searchBar.label} ${
-                    isLabelClicked === "labelWhat" ? searchBar.underlined : ""
-                  }`}
-                  data-testid={
-                    isLabelClicked === "labelWhat" ? "underlined-label" : ""
-                  }
-                >
-                  {props.labelWhat}
-                </p>
-              </div>
+              <SearchBarButton
+                icon={<GoSearch />}
+                label="What"
+                isLabelClicked={isLabelClicked}
+                onClick={() => handleClick("What")}
+                dataTestId="What"
+              />
               <div className={searchBar.separator}></div>
-              <div
-                className={searchBar.icon}
-                onClick={() => handleClick("labelWhere")}
-              >
-                <IoLocationOutline />
-                <p
-                  className={`${searchBar.label} ${
-                    isLabelClicked === "labelWhere" ? searchBar.underlined : ""
-                  }`}
-                  data-testid={
-                    isLabelClicked === "labelWhere" ? "underlined-label" : ""
-                  }
-                >
-                  {props.labelWhere}
-                </p>
-              </div>
+              <SearchBarButton
+                icon={<IoLocationOutline />}
+                label="Where"
+                isLabelClicked={isLabelClicked}
+                onClick={() => handleClick("Where")}
+                dataTestId="Where"
+              />
               <div className={searchBar.separator}></div>
-              <div
-                className={searchBar.icon}
-                onClick={() => handleClick("labelWhen")}
-              >
-                <GoCalendar />
-                <p
-                  className={`${searchBar.label} ${
-                    isLabelClicked === "labelWhen" ? searchBar.underlined : ""
-                  }`}
-                  data-testid={
-                    isLabelClicked === "labelWhen" ? "underlined-label" : ""
-                  }
-                >
-                  {props.labelWhen}
-                </p>
-              </div>
+              <SearchBarButton
+                icon={<GoCalendar />}
+                label="When"
+                isLabelClicked={isLabelClicked}
+                onClick={() => handleClick("When")}
+                dataTestId="When"
+              />
             </div>
             <div className={searchBar.icon}>
               <HiAdjustmentsHorizontal />
             </div>
           </div>
-          {isLabelClicked === "labelWhen" ? (
-            <CustomCalendar />
-          ) : isLabelClicked === "labelWhere" ? (
-            <CustomInputField
-              leftIcon={<GoSearch />}
-              placeholder={"Where"}
-              rightIcon={<MdOutlineGpsFixed />}
-              value={searchTermWhere}
-              onChange={setSearchTermWhere}
-            />
-          ) : isLabelClicked === "labelWhat" ? (
-            <CustomInputField
-              leftIcon={<GoSearch />}
-              placeholder={"What"}
-              value={searchTermWhat}
-              onChange={setSearchTermWhat}
-            />
-          ) : null}
+          {renderContent()}
         </div>
       </Overlay>
     </div>
