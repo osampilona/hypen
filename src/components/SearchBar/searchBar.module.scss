@@ -34,20 +34,8 @@
     margin: 0 5px;
   }
 
-  .label {
-    font-size: 12px;
-
-    &.underlined {
-      text-decoration: underline;
-    }
-  }
-
   @include respond-to($breakpoint-md, min) {
     width: 23rem;
-
-    .label {
-      font-size: $font-size-md;
-    }
   }
 
   .popupContent {
