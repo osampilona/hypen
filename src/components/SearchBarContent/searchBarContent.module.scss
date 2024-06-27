@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+
+  .separator {
+    width: 0.05rem;
+    height: 1.125rem;
+    background-color: var(--forms-bg-color);
+    opacity: 0.8;
+    margin: 0 5px;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+}

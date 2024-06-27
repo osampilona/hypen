@@ -12,28 +12,6 @@
   position: absolute;
   width: 80%;
 
-  .search {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-  }
-
-  .icon {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-  }
-
-  .separator {
-    width: 0.05rem;
-    height: 1.125rem;
-    background-color: var(--forms-bg-color);
-    opacity: 0.8;
-    margin: 0 5px;
-  }
-
   @include respond-to($breakpoint-md, min) {
     width: 23rem;
   }
@@ -44,11 +22,9 @@
     align-items: center;
     width: 80%;
     gap: 20px;
-  }
 
-  .popupHeader {
-    display: flex;
-    margin-bottom: 20px;
-    width: 100%;
+    @include respond-to($breakpoint-sm, max) {
+      width: 100%;
+    }
   }
 }

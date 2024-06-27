@@ -1,7 +1,10 @@
 import customInputField from "@/components/CustomInputField/customInputField.module.scss";
-import { useState } from "react";
+import SearchButton from "@/components/Buttons/SearchButton/SearchButton";
+import SearchBarContent from "@/components/SearchBarContent/SearchBarContent";
 
 interface CustomInputFieldProps {
+  isLabelClicked: string | null;
+  handleClick: (label: string) => void;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   placeholder?: string;
@@ -10,6 +13,8 @@ interface CustomInputFieldProps {
 }
 
 const CustomInputField: React.FC<CustomInputFieldProps> = ({
+  isLabelClicked,
+  handleClick,
   rightIcon,
   leftIcon,
   placeholder,
@@ -24,20 +29,31 @@ const CustomInputField: React.FC<CustomInputFieldProps> = ({
 
   return (
     <div className={customInputField.container}>
-      {leftIcon && (
-        <span className={customInputField.leftIcon}>{leftIcon}</span>
-      )}
-      <input
-        data-testid="customInputField"
-        className={customInputField.input}
-        type="text"
-        placeholder={placeholder || "Type here..."}
-        value={value || ""}
-        onChange={handleChange}
-      />
-      {rightIcon && (
-        <span className={customInputField.rightIcon}>{rightIcon}</span>
-      )}
+      <div className={customInputField.popupHeader}>
+        <SearchBarContent
+          isLabelClicked={isLabelClicked}
+          onClick={handleClick}
+        />
+      </div>
+      <div className={customInputField.inputContainer}>
+        {leftIcon && (
+          <span className={customInputField.leftIcon}>{leftIcon}</span>
+        )}
+        <input
+          data-testid="customInputField"
+          className={customInputField.input}
+          type="text"
+          placeholder={placeholder || "Type here..."}
+          value={value || ""}
+          onChange={handleChange}
+        />
+        {rightIcon && (
+          <span className={customInputField.rightIcon}>{rightIcon}</span>
+        )}
+      </div>
+      <div className={customInputField.button}>
+        <SearchButton isPrimary label={"Search"} />
+      </div>
     </div>
   );
 };

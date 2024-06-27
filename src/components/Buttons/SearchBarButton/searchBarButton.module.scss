@@ -12,9 +12,3 @@
 .active {
   color: $primary-color;
 }
-
-@include respond-to($breakpoint-md, min) {
-  .label {
-    font-size: $font-size-md;
-  }
-}

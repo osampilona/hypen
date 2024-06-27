@@ -1,5 +1,19 @@
 .container {
   display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-end;
+  margin-bottom: 20px;
+
+  .popupHeader {
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+}
+
+.inputContainer {
+  display: flex;
   align-items: center;
   border: 1px solid var(--labels-color);
   border-radius: 25px;
