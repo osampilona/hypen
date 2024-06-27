@@ -3,6 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { useState } from "react";
 import { enGB } from "date-fns/locale";
+import SearchButton from "@/components/Buttons/SearchButton/SearchButton";
 
 registerLocale("en-GB", enGB);
 
@@ -23,6 +24,9 @@ const CustomCalendar: React.FC<CustomCalendarProps> = (props) => {
         locale={"en-GB"}
         inline
       />
+      <div className={customCalendar.button}>
+        <SearchButton isPrimary label={"Search"} />
+      </div>
     </div>
   );
 };

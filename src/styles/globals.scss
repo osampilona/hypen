@@ -62,6 +62,9 @@ select {
   &__month-container {
     float: none;
     background-color: var(--items-bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__header {
@@ -71,19 +74,19 @@ select {
     gap: 0.5rem;
     display: flex;
     flex-direction: column;
+    align-items: center; // Center align the header content
 
     h2 {
       color: var(--text-color);
     }
   }
 
-  &__day {
-    color: var(--text-color);
-  }
-
+  &__day,
   &__day-name {
-    font-weight: 700;
     color: var(--text-color);
+    text-align: center;
+    box-sizing: border-box;
+    margin: calc(1vw + 0.2rem); // Dynamic margin
   }
 
   &__day--selected {
@@ -99,21 +102,23 @@ select {
     color: lighten($primary-color, 20%);
   }
 
+  &__month {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0.25rem;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
   @include respond-to($breakpoint-md, min) {
+    &__header {
+      padding: 1.5rem 0;
+    }
+
     &__day,
     &__day-name {
-      margin: 1rem;
-    }
-
-    &__header {
-      gap: 1rem;
-    }
-
-    &__navigation--previous {
-      left: 1rem;
-    }
-    &__navigation--next {
-      right: 1rem;
+      margin: calc(0.5vw + 0.5rem); // Adjust margin for larger screens
     }
   }
 }
