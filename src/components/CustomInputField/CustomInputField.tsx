@@ -5,13 +5,23 @@ interface CustomInputFieldProps {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   placeholder?: string;
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
 const CustomInputField: React.FC<CustomInputFieldProps> = ({
   rightIcon,
   leftIcon,
   placeholder,
+  value,
+  onChange,
 }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(e.target.value);
+    }
+  };
+
   return (
     <div className={customInputField.container}>
       {leftIcon && (
@@ -22,6 +32,8 @@ const CustomInputField: React.FC<CustomInputFieldProps> = ({
         className={customInputField.input}
         type="text"
         placeholder={placeholder || "Type here..."}
+        value={value || ""}
+        onChange={handleChange}
       />
       {rightIcon && (
         <span className={customInputField.rightIcon}>{rightIcon}</span>

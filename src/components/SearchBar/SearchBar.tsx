@@ -18,6 +18,8 @@ export interface ISearchBarProps {
 const SearchBar = (props: ISearchBarProps) => {
   const [isLabelClicked, setIsLabelClicked] = useState<string | null>(null);
   const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(false);
+  const [searchTermWhat, setSearchTermWhat] = useState<string>("");
+  const [searchTermWhere, setSearchTermWhere] = useState<string>("");
 
   const handleOverlayClose = () => {
     setIsOverlayVisible(false);
@@ -169,11 +171,17 @@ const SearchBar = (props: ISearchBarProps) => {
               leftIcon={<GoSearch />}
               placeholder={"Where"}
               rightIcon={<MdOutlineGpsFixed />}
+              value={searchTermWhere}
+              onChange={setSearchTermWhere}
             />
           ) : isLabelClicked === "labelWhat" ? (
-            <CustomInputField leftIcon={<GoSearch />} placeholder={"What"} />
-          ) : null // Add a default component or another condition
-          }
+            <CustomInputField
+              leftIcon={<GoSearch />}
+              placeholder={"What"}
+              value={searchTermWhat}
+              onChange={setSearchTermWhat}
+            />
+          ) : null}
         </div>
       </Overlay>
     </div>
