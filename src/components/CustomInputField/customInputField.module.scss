@@ -4,6 +4,12 @@
   width: 100%;
   align-items: flex-end;
   margin-bottom: 20px;
+
+  .popupHeader {
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+  }
 }
 
 .inputContainer {
