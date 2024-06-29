@@ -1,5 +1,5 @@
 import React from "react";
-import searchBarContent from "@/components/SearchBarContent/SearchBarContent.module.scss";
+import searchBarContent from "@/components/SearchBarContent/searchBarContent.module.scss";
 import { GoSearch } from "react-icons/go";
 import { IoLocationOutline } from "react-icons/io5";
 import { GoCalendar } from "react-icons/go";
