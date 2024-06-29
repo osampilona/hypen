@@ -28,6 +28,7 @@ const SearchButton = ({
           size={size}
           disabled={disabled}
           backgroundColor={backgroundColor}
+          data-testid="SearchButton"
         />
       </button>
     </>

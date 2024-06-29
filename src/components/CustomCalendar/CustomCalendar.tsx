@@ -21,7 +21,7 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   return (
-    <div className={customCalendar.container} data-testid="customCalendar">
+    <div className={customCalendar.container} data-testid="custom-calendar">
       <div className={customCalendar.popupHeader}>
         <SearchBarContent
           isLabelClicked={isLabelClicked}

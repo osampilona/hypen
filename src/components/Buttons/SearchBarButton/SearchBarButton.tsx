@@ -19,14 +19,13 @@ const SearchBarButton: React.FC<SearchBarButtonProps> = ({
   const activeClass = isLabelClicked === label ? searchBarButton.active : "";
 
   return (
-    <div className={`${searchBarButton.icon} ${activeClass}`} onClick={onClick}>
+    <div
+      className={`${searchBarButton.icon} ${activeClass}`}
+      onClick={onClick}
+      data-testid={dataTestId}
+    >
       {icon}
-      <p
-        className={`${searchBarButton.label} ${activeClass}`}
-        data-testid={dataTestId}
-      >
-        {label}
-      </p>
+      <p className={`${searchBarButton.label} ${activeClass}`}>{label}</p>
     </div>
   );
 };

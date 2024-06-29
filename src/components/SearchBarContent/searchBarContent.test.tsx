@@ -5,12 +5,7 @@ import SearchBarContent from "@/components/SearchBarContent/SearchBarContent";
 describe("SearchBarContent", () => {
   test("renders correctly SearchBarContent component", () => {
     render(
-      <SearchBarContent
-        isLabelClicked={null}
-        onClick={function (label: string): void {
-          throw new Error("Function not implemented.");
-        }}
-      />,
+      <SearchBarContent isLabelClicked={null} onClick={function (): void {}} />,
     );
 
     const element = screen.getByTestId("searchBarContent");

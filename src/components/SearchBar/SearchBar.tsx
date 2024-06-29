@@ -32,7 +32,11 @@ const SearchBar: React.FC = () => {
     <div className={searchBar.container}>
       <SearchBarContent isLabelClicked={isLabelClicked} onClick={handleClick} />
 
-      <Overlay show={isOverlayVisible} onClose={handleOverlayClose}>
+      <Overlay
+        show={isOverlayVisible}
+        onClose={handleOverlayClose}
+        data-testid="overlay-container"
+      >
         <div className={searchBar.popupContent}>
           {isLabelClicked === "When" ? (
             <CustomCalendar

@@ -46,8 +46,6 @@ const NavigationBar = ({
     }
 
     const bodyStyles = getComputedStyle(document.body);
-    console.log("Background color:", bodyStyles.backgroundColor);
-    console.log("Text color:", bodyStyles.color);
   }, [currentTheme]);
 
   return (
@@ -59,7 +57,14 @@ const NavigationBar = ({
               <BigScreenLogoIcon />
             </Link>
             <div className={navigationBar.label}>
-              <button onClick={() => dispatch(toggleTheme())}>
+              <button
+                onClick={() => dispatch(toggleTheme())}
+                aria-label={
+                  currentTheme === "light"
+                    ? "Switch to dark mode"
+                    : "Switch to light mode"
+                }
+              >
                 {currentTheme === "light" ? (
                   <MdOutlineLightMode />
                 ) : (
@@ -68,18 +73,16 @@ const NavigationBar = ({
               </button>
               <p>{labelPartner}</p>
               <Link href="/login">
-                <HiOutlineUserCircle size={36} data-testid="user-icon" />
+                <HiOutlineUserCircle
+                  aria-label="profile-icon"
+                  size={36}
+                  data-testid="user-icon"
+                />
               </Link>
             </div>
           </div>
         </div>
-        {!isSimpleNavbar && (
-          <SearchBar
-            labelWhat={"What"}
-            labelWhere={"Where"}
-            labelWhen={"When"}
-          />
-        )}
+        {!isSimpleNavbar && <SearchBar />}
         {!isSimpleNavbar && !isScrolled && (
           <SubNavigationBar items={serviceItems} />
         )}
