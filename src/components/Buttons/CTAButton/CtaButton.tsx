@@ -36,16 +36,13 @@ const CtaButton = ({
           ctaButton[mode],
           ctaButton[unMode],
         ].join(" ")}
+        data-testid="CtaButton"
+        style={{ backgroundColor: backgroundColor }}
         {...props}
       >
         {icon && <GoSearch />}
         {label}
       </button>
-      <style jsx>{`
-        button {
-          background-color: ${backgroundColor};
-        }
-      `}</style>
     </>
   );
 };

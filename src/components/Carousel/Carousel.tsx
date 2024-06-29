@@ -134,6 +134,7 @@ const Carousel: React.FC<ImagesProps> = ({
               priority={index === imageIndex}
               height={280}
               width={343}
+              data-testid={`image-${index}`}
             />
           ))}
         </div>

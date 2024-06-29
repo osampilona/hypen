@@ -26,15 +26,12 @@ const LinkButton = ({
           linkButton[mode],
           linkButton[unMode],
         ].join(" ")}
+        data-testid="linkButton"
+        style={{ color: color }}
         {...props}
       >
         {label}
       </button>
-      <style jsx>{`
-        button {
-          color: ${color};
-        }
-      `}</style>
     </>
   );
 };

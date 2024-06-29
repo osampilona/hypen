@@ -11,7 +11,7 @@ const Overlay: React.FC<OverlayProps> = ({ show, onClose, children }) => {
     show && (
       <div
         className={overlay.container}
-        data-testid="overlay"
+        data-testid="overlay-container"
         onClick={onClose}
       >
         <div

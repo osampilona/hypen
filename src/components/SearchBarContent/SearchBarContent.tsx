@@ -1,4 +1,3 @@
-// SearchBarContent.tsx
 import React from "react";
 import searchBarContent from "@/components/SearchBarContent/SearchBarContent.module.scss";
 import { GoSearch } from "react-icons/go";
@@ -17,13 +16,13 @@ const SearchBarContent: React.FC<SearchBarContentProps> = ({
   onClick,
 }) => {
   return (
-    <div className={searchBarContent.container}>
+    <div className={searchBarContent.container} data-testid="searchBarContent">
       <SearchBarButton
         icon={<GoSearch />}
         label="What"
         isLabelClicked={isLabelClicked}
         onClick={() => onClick("What")}
-        dataTestId="What"
+        dataTestId="searchBarButtonWhat"
       />
       <div className={searchBarContent.separator}></div>
       <SearchBarButton
@@ -31,7 +30,7 @@ const SearchBarContent: React.FC<SearchBarContentProps> = ({
         label="Where"
         isLabelClicked={isLabelClicked}
         onClick={() => onClick("Where")}
-        dataTestId="Where"
+        dataTestId="searchBarButtonWhere"
       />
       <div className={searchBarContent.separator}></div>
       <SearchBarButton
@@ -39,7 +38,7 @@ const SearchBarContent: React.FC<SearchBarContentProps> = ({
         label="When"
         isLabelClicked={isLabelClicked}
         onClick={() => onClick("When")}
-        dataTestId="When"
+        dataTestId="searchBarButtonWhen"
       />
       <div className={searchBarContent.icon}>
         <HiAdjustmentsHorizontal />
