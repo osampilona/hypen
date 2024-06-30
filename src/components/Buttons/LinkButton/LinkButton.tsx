@@ -27,7 +27,7 @@ const LinkButton = ({
           linkButton[unMode],
         ].join(" ")}
         data-testid="linkButton"
-        style={{ color: color }}
+        // style={{ color: color }}
         {...props}
       >
         {label}

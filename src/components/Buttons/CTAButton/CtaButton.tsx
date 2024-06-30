@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
-import ctaButton from "@/components/Buttons/CTAButton/ctaButton.module.scss";
+import styles from "@/components/Buttons/CTAButton/ctaButton.module.scss";
 import { GoSearch } from "react-icons/go";
 
 export interface ICtaButtonProps {
   label: string;
-  buttonType?: "primary" | "secondary";
+  isPrimary?: boolean;
   disabled?: boolean;
-  backgroundColor?: string;
   size?: "micro" | "small" | "medium" | "large";
   icon?: React.ReactNode;
   onClick?: () => void;
@@ -15,35 +14,33 @@ export interface ICtaButtonProps {
 
 const CtaButton = ({
   label,
-  buttonType = "primary",
+  isPrimary = true,
   disabled = false,
-  backgroundColor,
   size = "medium",
   icon,
   ...props
 }: ICtaButtonProps) => {
-  const mode =
-    buttonType === "primary" ? "button--primary" : "button--secondary";
-  const unMode = disabled ? "button--disabled" : "";
+  const modeClass = isPrimary ? "button--primary" : "button--secondary";
+  const disabledClass = disabled ? "button--disabled" : "";
 
   return (
-    <>
-      <button
-        type="button"
-        className={[
-          ctaButton.button,
-          ctaButton[`button--${size}`],
-          ctaButton[mode],
-          ctaButton[unMode],
-        ].join(" ")}
-        data-testid="CtaButton"
-        style={{ backgroundColor: backgroundColor }}
-        {...props}
-      >
-        {icon && <GoSearch />}
-        {label}
-      </button>
-    </>
+    <button
+      type="button"
+      className={[
+        styles.button,
+        styles[`button--${size}`],
+        styles[modeClass],
+        styles[disabledClass],
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      data-testid="CtaButton"
+      disabled={disabled}
+      {...props}
+    >
+      {icon && <GoSearch />}
+      {label}
+    </button>
   );
 };
 

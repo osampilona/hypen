@@ -1,5 +1,9 @@
 import type { Preview } from "@storybook/react";
+import withReduxProvider from "./withReduxProvider";
 import "../src/styles/globals.scss";
+import "../src/styles/variables.globals.scss";
+
+export const decorators = [withReduxProvider];
 
 const preview: Preview = {
   parameters: {
@@ -11,6 +15,7 @@ const preview: Preview = {
       },
     },
   },
+  tags: ["autodocs"],
 };
 
 export default preview;

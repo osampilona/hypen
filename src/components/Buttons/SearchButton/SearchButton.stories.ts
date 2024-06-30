@@ -11,10 +11,12 @@ const meta: Meta<typeof SearchButton> = {
   },
   tags: ["autodocs"],
   argTypes: {
-    backgroundColor: { control: "color" },
     isPrimary: { control: "boolean" },
     label: { control: "text" },
-    size: { control: "radio" },
+    size: {
+      control: { type: "select" },
+      options: ["small", "medium", "large"],
+    },
     disabled: { control: "boolean" },
   },
 };

@@ -8,7 +8,6 @@ export interface ISearchButtonProps {
   isPrimary?: boolean;
   size?: "small" | "medium" | "large";
   disabled?: boolean;
-  backgroundColor?: string;
 }
 
 const SearchButton = ({
@@ -16,22 +15,18 @@ const SearchButton = ({
   isPrimary,
   size,
   disabled,
-  backgroundColor,
 }: ISearchButtonProps) => {
   return (
-    <>
-      <button className={searchButton.button}>
-        <CtaButton
-          label={label}
-          icon={<GoSearch />}
-          buttonType={isPrimary ? "primary" : "secondary"}
-          size={size}
-          disabled={disabled}
-          backgroundColor={backgroundColor}
-          data-testid="SearchButton"
-        />
-      </button>
-    </>
+    <button className={searchButton.button}>
+      <CtaButton
+        label={label}
+        icon={<GoSearch />}
+        isPrimary={isPrimary}
+        size={size}
+        disabled={disabled}
+        data-testid="SearchButton"
+      />
+    </button>
   );
 };
 

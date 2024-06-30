@@ -20,7 +20,10 @@ module.exports = ({ config }) => {
         );
       if (sassLoader) {
         sassLoader.options = sassLoader.options || {};
-        sassLoader.options.additionalData = `@import '@styles/variables.scss';`;
+        sassLoader.options.additionalData = `
+          @import '@styles/variables.globals.scss';
+          @import '@styles/globals.scss';
+        `;
       }
     }
   });
