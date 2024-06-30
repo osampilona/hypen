@@ -1,22 +1,22 @@
 import React from "react";
 import searchBarButton from "@/components/Buttons/SearchBarButton/searchBarButton.module.scss";
 
-interface SearchBarButtonProps {
+export interface ISearchBarButtonProps {
   icon: React.ReactNode;
   label: string;
-  isLabelClicked: string | null;
+  isLabelClicked: boolean;
   onClick: () => void;
   dataTestId: string;
 }
 
-const SearchBarButton: React.FC<SearchBarButtonProps> = ({
+const SearchBarButton: React.FC<ISearchBarButtonProps> = ({
   icon,
   label,
   isLabelClicked,
   onClick,
   dataTestId,
 }) => {
-  const activeClass = isLabelClicked === label ? searchBarButton.active : "";
+  const activeClass = isLabelClicked && searchBarButton.active;
 
   return (
     <div

@@ -3,9 +3,8 @@ import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
 
 interface ICtaButtonProps {
   label: string;
-  buttonType?: "primary" | "secondary";
+  isPrimary?: boolean;
   disabled?: boolean;
-  backgroundColor?: string;
   size?: "micro" | "small" | "medium" | "large";
   icon?: React.ReactNode;
   onClick?: () => void;
@@ -19,11 +18,7 @@ const meta: Meta<typeof CtaButton> = {
   },
   tags: ["autodocs"],
   argTypes: {
-    backgroundColor: { control: "color" },
-    buttonType: {
-      control: { type: "select" },
-      options: ["primary", "secondary"],
-    },
+    isPrimary: { control: "boolean" },
     size: {
       control: { type: "select" },
       options: ["micro", "small", "medium", "large"],
@@ -38,14 +33,14 @@ type Story = StoryObj<ICtaButtonProps>;
 
 export const Primary: Story = {
   args: {
-    buttonType: "primary",
+    isPrimary: true,
     label: "Button",
   },
 };
 
 export const Secondary: Story = {
   args: {
-    buttonType: "secondary",
+    isPrimary: false,
     label: "Button",
   },
 };

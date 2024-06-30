@@ -8,19 +8,19 @@ import SearchBarContent from "@/components/SearchBarContent/SearchBarContent";
 import { GoSearch } from "react-icons/go";
 
 const SearchBar: React.FC = () => {
-  const [isLabelClicked, setIsLabelClicked] = useState<string | null>(null);
+  const [isLabelClicked, setIsLabelClicked] = useState<string | boolean>(false);
   const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(false);
   const [searchTermWhat, setSearchTermWhat] = useState<string>("");
   const [searchTermWhere, setSearchTermWhere] = useState<string>("");
 
   const handleOverlayClose = () => {
     setIsOverlayVisible(false);
-    setIsLabelClicked(null);
+    setIsLabelClicked(false);
   };
 
   const handleClick = (label: string) => {
     if (label === isLabelClicked) {
-      setIsLabelClicked(null);
+      setIsLabelClicked(true);
       setIsOverlayVisible(false);
     } else {
       setIsLabelClicked(label);

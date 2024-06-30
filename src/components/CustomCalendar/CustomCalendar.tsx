@@ -9,8 +9,7 @@ import SearchBarContent from "@/components/SearchBarContent/SearchBarContent";
 registerLocale("en-GB", enGB);
 
 interface CustomCalendarProps {
-  // Add your component props here
-  isLabelClicked: string | null;
+  isLabelClicked: string | boolean;
   handleClick: (label: string) => void;
 }
 
