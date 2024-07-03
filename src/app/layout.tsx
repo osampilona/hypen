@@ -4,7 +4,6 @@ import MenuBar from "@/components/MenuBar/MenuBar";
 import NavigationBar from "@/components/NavigationBar/NavigationBar";
 import "@/styles/globals.scss";
 import "@/styles/variables.globals.scss";
-import styles from "@/app/styles.module.scss";
 import { Provider } from "react-redux";
 import { store } from "@/lib/store";
 import { usePathname } from "next/navigation";
@@ -32,11 +31,8 @@ export default function RootLayout({
     <html lang="en" className={roboto.className}>
       <body>
         <Provider store={store}>
-          <NavigationBar
-            labelPartner="Become a partner"
-            isSimpleNavbar={shouldHideSubNavigation}
-          />
-          <main className={styles.main}>{children}</main>
+          <NavigationBar labelPartner="Become a partner" />
+          <main>{children}</main>
           <MenuBar />
         </Provider>
       </body>

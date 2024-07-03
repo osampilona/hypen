@@ -4,6 +4,7 @@
   margin: 0;
   position: relative;
   overflow: hidden;
+  height: max-content;
 
   &.wrapper-info {
     display: flex;

@@ -1,6 +1,10 @@
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  row-gap: 2.375rem;
-  column-gap: 2.25rem;
+  row-gap: 1.7rem;
+  column-gap: 1.5rem;
+  flex: 1;
+  height: calc(100vh - 6rem);
+  overflow-y: auto;
+  padding-top: 1.5rem;
 }
