@@ -83,9 +83,9 @@ const NavigationBar = ({
           </div>
         </div>
         {!isSimpleNavbar && <SearchBar />}
-        {!isSimpleNavbar && !isScrolled && (
+        {/* {!isSimpleNavbar && !isScrolled && (
           <SubNavigationBar items={serviceItems} />
-        )}
+        )} */}
       </div>
     </div>
   );
