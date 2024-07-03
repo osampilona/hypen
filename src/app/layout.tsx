@@ -4,6 +4,7 @@ import MenuBar from "@/components/MenuBar/MenuBar";
 import NavigationBar from "@/components/NavigationBar/NavigationBar";
 import "@/styles/globals.scss";
 import "@/styles/variables.globals.scss";
+import styles from "@/app/styles.module.scss";
 import { Provider } from "react-redux";
 import { store } from "@/lib/store";
 import { usePathname } from "next/navigation";
@@ -32,7 +33,7 @@ export default function RootLayout({
       <body>
         <Provider store={store}>
           <NavigationBar labelPartner="Become a partner" />
-          <main>{children}</main>
+          <main className={styles.mainLayout}>{children}</main>
           <MenuBar />
         </Provider>
       </body>

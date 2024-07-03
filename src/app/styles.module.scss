@@ -14,3 +14,11 @@
     margin-bottom: 0;
   }
 }
+
+.mainLayout {
+  margin-top: 6rem;
+
+  @include respond-to($breakpoint-xl, min) {
+    margin-bottom: 0;
+  }
+}

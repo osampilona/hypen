@@ -3,6 +3,7 @@ import filterCard from "@/components/FilterCard/filterCard.module.scss";
 import { useEffect, useState } from "react";
 
 import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
+import TimeSelection from "../TimeSelection/TimeSelection";
 
 interface FilterCardProps {
   // Add your component props here
@@ -24,7 +25,13 @@ const FilterCard: React.FC<FilterCardProps> = (props) => {
       {loading ? (
         <SkeletonCardList skeletonArray={skeletonArray} />
       ) : (
-        <h1>Filter Card</h1>
+        <>
+          <h3>Filters</h3>
+          <TimeSelection
+            title="Time Selection"
+            options={["Morning", "Afternoon", "Evening"]}
+          />
+        </>
       )}
     </div>
   );
