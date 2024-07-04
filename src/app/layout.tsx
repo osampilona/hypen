@@ -32,11 +32,8 @@ export default function RootLayout({
     <html lang="en" className={roboto.className}>
       <body>
         <Provider store={store}>
-          <NavigationBar
-            labelPartner="Become a partner"
-            isSimpleNavbar={shouldHideSubNavigation}
-          />
-          <main className={styles.main}>{children}</main>
+          <NavigationBar labelPartner="Become a partner" />
+          <main className={styles.mainLayout}>{children}</main>
           <MenuBar />
         </Provider>
       </body>

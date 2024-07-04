@@ -1,13 +1,22 @@
 .main {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
   padding: 1.5rem;
-  min-height: 100vh;
+  padding-top: 0;
   background-color: var(--background-color);
   color: var(--text-color);
   margin-bottom: 4rem;
   margin-top: 5rem;
+  gap: 1.5rem;
+
+  @include respond-to($breakpoint-xl, min) {
+    margin-bottom: 0;
+  }
+}
+
+.mainLayout {
+  margin-top: 6rem;
 
   @include respond-to($breakpoint-xl, min) {
     margin-bottom: 0;

@@ -3,8 +3,6 @@ import navigationBar from "@/components/NavigationBar/navigationBar.module.scss"
 import SearchBar from "@/components/SearchBar/SearchBar";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import BigScreenLogoIcon from "@/assets/icons/BigScreenLogoIcon";
-import SubNavigationBar from "@/components/SubNavigationBar/SubNavigationBar";
-import { serviceItems } from "@/data/serviceList";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/lib/store";
@@ -83,9 +81,6 @@ const NavigationBar = ({
           </div>
         </div>
         {!isSimpleNavbar && <SearchBar />}
-        {/* {!isSimpleNavbar && !isScrolled && (
-          <SubNavigationBar items={serviceItems} />
-        )} */}
       </div>
     </div>
   );
