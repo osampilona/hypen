@@ -2,7 +2,7 @@ import accordion from "@/components/Accordion/accordion.module.scss";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
 import CustomTimeSlots from "@/components/CustomTimeSlots/CustomTimeSlots";
-import { format } from "date-fns";
+import { format, addMinutes } from "date-fns";
 
 interface AccordionProps {
   title: string;
@@ -11,18 +11,37 @@ interface AccordionProps {
 
 const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const [selectedTimes, setSelectedTimes] = useState<(Date | null)[]>(
+  const [selectedTimes, setSelectedTimes] = useState<(Date[] | null)[]>(
     new Array(options.length).fill(null),
   );
+  const [startSlot, setStartSlot] = useState<{
+    index: number;
+    time: Date | null;
+  }>({ index: -1, time: null });
 
   const handleClick = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
+    setStartSlot({ index: -1, time: null }); // Reset start slot when expanding/collapsing sections
   };
 
-  const handleTimeSlotSelect = (time: Date, index: number) => {
+  const handleTimeSlotSelect = (times: Date[], index: number) => {
     const newTimes = [...selectedTimes];
-    newTimes[index] = time;
+    newTimes[index] = times;
     setSelectedTimes(newTimes);
+    setStartSlot({ index: -1, time: null });
+  };
+
+  const handleStartSlotSelect = (time: Date, index: number) => {
+    setStartSlot({ index, time });
+  };
+
+  const formatTimeRange = (times: Date[]) => {
+    if (times.length === 1) {
+      return `${format(times[0], "HH:mm")} - `;
+    } else if (times.length > 1) {
+      return `${format(times[0], "HH:mm")} to ${format(addMinutes(times[times.length - 1], 30), "HH:mm")}`;
+    }
+    return "";
   };
 
   return (
@@ -45,9 +64,11 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
             >
               <span className={accordion.text}>
                 {option}{" "}
-                {selectedTimes[index]
-                  ? ` - ${format(selectedTimes[index], "h:mm aa")}`
-                  : ""}
+                {selectedTimes[index] && selectedTimes[index]?.length > 0
+                  ? ` - ${formatTimeRange(selectedTimes[index])}`
+                  : startSlot.index === index && startSlot.time
+                    ? `${format(startSlot.time, "HH:mm")} - `
+                    : ""}
               </span>
               <span className={accordion.icon} aria-hidden="true">
                 {expandedIndex === index ? (
@@ -61,7 +82,12 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
               <div className={accordion.content}>
                 <CustomTimeSlots
                   timeRange={option}
-                  onTimeSlotSelect={(time) => handleTimeSlotSelect(time, index)}
+                  onTimeSlotSelect={(times) =>
+                    handleTimeSlotSelect(times, index)
+                  }
+                  onStartSlotSelect={(time) =>
+                    handleStartSlotSelect(time, index)
+                  }
                 />
               </div>
             )}

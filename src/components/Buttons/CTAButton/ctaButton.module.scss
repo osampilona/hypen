@@ -12,6 +12,10 @@
     color: var(--items-bg-color);
     background-color: var(--primary-color);
     fill: var(--items-bg-color);
+
+    &:hover {
+      // background-color: var(--primary-color-dark);
+    }
   }
 
   &--secondary {
@@ -19,6 +23,12 @@
     background-color: var(--items-bg-color);
     border: 1px solid var(--primary-color);
     fill: var(--primary-color);
+
+    &:hover {
+      background-color: var(--primary-color);
+      color: var(--items-bg-color);
+      fill: var(--items-bg-color);
+    }
   }
 
   &--disabled {
@@ -30,6 +40,17 @@
     background-color: transparent;
     border: 0.5px solid var(--labels-color);
     color: var(--text-color);
+
+    &:hover {
+      background-color: var(--text-color);
+      color: var(--items-bg-color);
+    }
+
+    // &:focus {
+    //   background-color: var(--primary-color);
+    //   color: var(--items-bg-color);
+    //   border: none;
+    // }
   }
 
   &--micro {

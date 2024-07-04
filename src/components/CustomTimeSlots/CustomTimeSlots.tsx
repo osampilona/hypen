@@ -1,22 +1,31 @@
-import customTimeSlots from "@/components/CustomTimeSlots/customTimeSlots.module.scss";
+import React, { useState } from "react";
+import styles from "@/components/CustomTimeSlots/customTimeSlots.module.scss";
 import {
   format,
   addMinutes,
   startOfToday,
   setHours,
   setMinutes,
+  isSameMinute,
+  isBefore,
+  isAfter,
 } from "date-fns";
-import CtaButton from "../Buttons/CTAButton/CtaButton";
+import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
 
 interface CustomTimeSlotsProps {
   timeRange: string;
-  onTimeSlotSelect: (time: Date) => void;
+  onTimeSlotSelect: (times: Date[]) => void;
+  onStartSlotSelect: (time: Date) => void;
 }
 
 const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
   timeRange,
   onTimeSlotSelect,
+  onStartSlotSelect,
 }) => {
+  const [selectedSlots, setSelectedSlots] = useState<Date[]>([]);
+  const [startSlot, setStartSlot] = useState<Date | null>(null);
+
   const generateTimeSlots = (startHour: number, endHour: number): Date[] => {
     const slots: Date[] = [];
     let currentTime = setMinutes(setHours(startOfToday(), startHour), 0);
@@ -29,6 +38,38 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
 
     // Add the final slot ending exactly at endHour + 30 minutes
     slots.push(endTime);
+
+    return slots;
+  };
+
+  const handleSlotClick = (time: Date) => {
+    if (!startSlot) {
+      setStartSlot(time);
+      setSelectedSlots([time]);
+      onStartSlotSelect(time);
+    } else {
+      const newSlots = generateSelectedSlots(startSlot, time);
+      setSelectedSlots(newSlots);
+      setStartSlot(null);
+      onTimeSlotSelect(newSlots);
+    }
+  };
+
+  const generateSelectedSlots = (start: Date, end: Date): Date[] => {
+    const slots: Date[] = [];
+    let currentTime = start;
+
+    if (isBefore(start, end) || isSameMinute(start, end)) {
+      while (isBefore(currentTime, end) || isSameMinute(currentTime, end)) {
+        slots.push(currentTime);
+        currentTime = addMinutes(currentTime, 30);
+      }
+    } else {
+      while (isBefore(end, currentTime) || isSameMinute(end, currentTime)) {
+        slots.unshift(currentTime);
+        currentTime = addMinutes(currentTime, -30);
+      }
+    }
 
     return slots;
   };
@@ -49,17 +90,48 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
   }
 
   return (
-    <div className={customTimeSlots.container} data-testid="customTimeSlots">
-      {timeSlots.map((time, index) => (
-        <CtaButton
-          key={index}
-          label={format(time, "HH:mm")}
-          isPrimary={false}
-          outlined={true}
-          size="small"
-          onClick={() => onTimeSlotSelect(time)}
-        />
-      ))}
+    <div className={styles.container} data-testid="customTimeSlots">
+      {timeSlots.map((time, index) => {
+        const isSelected = selectedSlots.some((slot) =>
+          isSameMinute(slot, time),
+        );
+        const isRangeStart =
+          isSelected &&
+          isSameMinute(selectedSlots[0], time) &&
+          selectedSlots.length > 1;
+        const isRangeEnd =
+          isSelected &&
+          isSameMinute(selectedSlots[selectedSlots.length - 1], time) &&
+          selectedSlots.length > 1;
+        const isRangeMiddle =
+          isSelected &&
+          !isRangeStart &&
+          !isRangeEnd &&
+          selectedSlots.length > 1;
+
+        const classNames = [
+          isRangeStart ? styles.rangeStart : "",
+          isRangeEnd ? styles.rangeEnd : "",
+          isRangeMiddle ? styles.rangeMiddle : "",
+          isSelected && !isRangeStart && !isRangeEnd && !isRangeMiddle
+            ? styles.rangeSelected
+            : "",
+        ]
+          .filter(Boolean)
+          .join(" ");
+
+        return (
+          <CtaButton
+            key={index}
+            label={format(time, "HH:mm")}
+            isPrimary={false}
+            outlined={true}
+            size="small"
+            onClick={() => handleSlotClick(time)}
+            className={classNames}
+          />
+        );
+      })}
     </div>
   );
 };
