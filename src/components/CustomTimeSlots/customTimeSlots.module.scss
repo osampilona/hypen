@@ -1,0 +1,44 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin: 1rem 0;
+
+  .rangeSelected {
+    background-color: #7f7fff;
+    border: 1px solid #7f7fff;
+    color: white;
+    border-radius: 25px;
+  }
+
+  .rangeStart {
+    background-color: #7f7fff;
+    border: 1px solid #7f7fff;
+    color: white;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none; // Remove right border to connect with next slot
+  }
+
+  .rangeEnd {
+    background-color: #7f7fff;
+    border: 1px solid #7f7fff;
+    color: white;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-left: none; // Remove left border to connect with previous slot
+  }
+
+  .rangeMiddle {
+    background-color: #7f7fff;
+    border: 1px solid #7f7fff;
+    color: white;
+    border-radius: 0; // Ensure no border-radius for middle slots
+    border-left: none; // Remove left border to connect with previous slot
+    border-right: none; // Remove right border to connect with next slot
+  }
+}

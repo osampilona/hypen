@@ -7,9 +7,13 @@ export interface ICtaButtonProps {
   label: string;
   isPrimary?: boolean;
   disabled?: boolean;
+  outlined?: boolean;
   size?: "micro" | "small" | "medium" | "large";
   icon?: React.ReactNode;
   onClick?: () => void;
+  onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onMouseEnter?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
 }
 
 const CtaButton = ({
@@ -17,10 +21,15 @@ const CtaButton = ({
   isPrimary = true,
   disabled = false,
   size = "medium",
+  outlined = false,
   icon,
+  className,
+  onMouseDown,
+  onMouseEnter,
   ...props
 }: ICtaButtonProps) => {
   const modeClass = isPrimary ? "button--primary" : "button--secondary";
+  const outlinedClass = outlined ? "button--outlined" : "";
   const disabledClass = disabled ? "button--disabled" : "";
 
   return (
@@ -30,12 +39,16 @@ const CtaButton = ({
         styles.button,
         styles[`button--${size}`],
         styles[modeClass],
+        styles[outlinedClass],
         styles[disabledClass],
+        className,
       ]
         .filter(Boolean)
         .join(" ")}
       data-testid="CtaButton"
       disabled={disabled}
+      onMouseDown={onMouseDown}
+      onMouseEnter={onMouseEnter}
       {...props}
     >
       {icon && <GoSearch />}

@@ -3,6 +3,7 @@ import filterCard from "@/components/FilterCard/filterCard.module.scss";
 import { useEffect, useState } from "react";
 import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
 import Accordion from "@/components/Accordion/Accordion";
+
 interface FilterCardProps {
   // Add your component props here
 }
@@ -18,6 +19,7 @@ const FilterCard: React.FC<FilterCardProps> = (props) => {
 
     return () => clearTimeout(timer);
   }, [loading]);
+
   return (
     <div className={filterCard.container} data-testid="filterCard">
       {loading ? (
