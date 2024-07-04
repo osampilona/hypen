@@ -7,6 +7,7 @@ export interface ICtaButtonProps {
   label: string;
   isPrimary?: boolean;
   disabled?: boolean;
+  outlined?: boolean;
   size?: "micro" | "small" | "medium" | "large";
   icon?: React.ReactNode;
   onClick?: () => void;
@@ -17,10 +18,12 @@ const CtaButton = ({
   isPrimary = true,
   disabled = false,
   size = "medium",
+  outlined = false,
   icon,
   ...props
 }: ICtaButtonProps) => {
   const modeClass = isPrimary ? "button--primary" : "button--secondary";
+  const outlinedClass = outlined ? "button--outlined" : "";
   const disabledClass = disabled ? "button--disabled" : "";
 
   return (
@@ -30,6 +33,7 @@ const CtaButton = ({
         styles.button,
         styles[`button--${size}`],
         styles[modeClass],
+        styles[outlinedClass],
         styles[disabledClass],
       ]
         .filter(Boolean)

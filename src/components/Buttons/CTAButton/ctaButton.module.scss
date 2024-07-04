@@ -5,6 +5,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 
   &--primary {
@@ -23,6 +24,12 @@
   &--disabled {
     opacity: 0.7;
     cursor: unset;
+  }
+
+  &--outlined {
+    background-color: transparent;
+    border: 0.5px solid var(--labels-color);
+    color: var(--text-color);
   }
 
   &--micro {
