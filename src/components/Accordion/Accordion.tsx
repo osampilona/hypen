@@ -1,13 +1,13 @@
-import timeSelection from "@/components/TimeSelection/timeSelection.module.scss";
+import accordion from "@/components/Accordion/accordion.module.scss";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
 
-interface TimeSelectionProps {
+interface AccordionProps {
   title: string;
   options: string[];
 }
 
-const TimeSelection: React.FC<TimeSelectionProps> = ({ title, options }) => {
+const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const handleClick = (index: number) => {
@@ -16,24 +16,24 @@ const TimeSelection: React.FC<TimeSelectionProps> = ({ title, options }) => {
 
   return (
     <div
-      className={timeSelection.container}
-      data-testid="timeSelection"
+      className={accordion.container}
+      data-testid="accordion"
       role="region"
-      aria-labelledby="time-selection"
+      aria-labelledby="accordion"
     >
-      <h3 className={timeSelection.title} id="time-selection-title">
+      <h3 className={accordion.title} id="accordion-title">
         {title}
       </h3>
-      <ul className={timeSelection.list}>
+      <ul className={accordion.list}>
         {options.map((option, index) => (
-          <li className={timeSelection.item} key={index}>
+          <li className={accordion.item} key={index}>
             <button
-              className={timeSelection.button}
+              className={accordion.button}
               aria-expanded={expandedIndex === index}
               onClick={() => handleClick(index)}
             >
-              <span className={timeSelection.text}>{option}</span>
-              <span className={timeSelection.icon} aria-hidden="true">
+              <span className={accordion.text}>{option}</span>
+              <span className={accordion.icon} aria-hidden="true">
                 {expandedIndex === index ? (
                   <IoIosArrowUp />
                 ) : (
@@ -42,7 +42,7 @@ const TimeSelection: React.FC<TimeSelectionProps> = ({ title, options }) => {
               </span>
             </button>
             {expandedIndex === index && (
-              <div className={timeSelection.content}>
+              <div className={accordion.content}>
                 {/* Add content to show when expanded, if any */}
                 More details about {option}
               </div>
@@ -54,4 +54,4 @@ const TimeSelection: React.FC<TimeSelectionProps> = ({ title, options }) => {
   );
 };
 
-export default TimeSelection;
+export default Accordion;

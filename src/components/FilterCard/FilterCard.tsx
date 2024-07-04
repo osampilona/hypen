@@ -1,10 +1,8 @@
 "use client";
 import filterCard from "@/components/FilterCard/filterCard.module.scss";
 import { useEffect, useState } from "react";
-
 import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
-import TimeSelection from "../TimeSelection/TimeSelection";
-
+import Accordion from "@/components/Accordion/Accordion";
 interface FilterCardProps {
   // Add your component props here
 }
@@ -27,7 +25,7 @@ const FilterCard: React.FC<FilterCardProps> = (props) => {
       ) : (
         <>
           <h3>Filters</h3>
-          <TimeSelection
+          <Accordion
             title="Time Selection"
             options={["Morning", "Afternoon", "Evening"]}
           />
