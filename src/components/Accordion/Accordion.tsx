@@ -33,6 +33,9 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
 
   const handleStartSlotSelect = (time: Date, index: number) => {
     setStartSlot({ index, time });
+    const newTimes = [...selectedTimes];
+    newTimes[index] = [time]; // Set the new starting time
+    setSelectedTimes(newTimes);
   };
 
   const formatTimeRange = (times: Date[]) => {
