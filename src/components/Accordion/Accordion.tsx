@@ -2,7 +2,14 @@ import accordion from "@/components/Accordion/accordion.module.scss";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
 import CustomTimeSlots from "@/components/CustomTimeSlots/CustomTimeSlots";
-import { format, isBefore } from "date-fns";
+import {
+  format,
+  isBefore,
+  isSameMinute,
+  setHours,
+  setMinutes,
+  startOfDay,
+} from "date-fns";
 
 interface AccordionProps {
   title: string;
@@ -13,6 +20,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
   const [expandedIndices, setExpandedIndices] = useState<number[]>([]);
   const [startSlot, setStartSlot] = useState<Date | null>(null);
   const [endSlot, setEndSlot] = useState<Date | null>(null);
+  const [isLastSelected, setIsLastSelected] = useState<boolean>(false);
 
   const handleToggle = (index: number) => {
     if (expandedIndices.includes(index)) {
@@ -22,10 +30,17 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
     }
   };
 
-  const handleTimeSlotSelect = (time: Date) => {
-    if (!startSlot || (startSlot && endSlot)) {
+  const handleTimeSlotSelect = (time: Date, isLastSlot: boolean) => {
+    if (isLastSlot) {
+      setStartSlot(null);
+      setEndSlot(time);
+      setIsLastSelected(true);
+    } else if (isLastSelected) {
       setStartSlot(time);
-      setEndSlot(null); // Reset end slot if start slot is reselected
+      setIsLastSelected(false);
+    } else if (!startSlot || (startSlot && endSlot)) {
+      setStartSlot(time);
+      setEndSlot(null);
     } else if (startSlot && !endSlot) {
       if (isBefore(startSlot, time)) {
         setEndSlot(time);
@@ -36,13 +51,29 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
     }
   };
 
-  const formatTimeRange = (start: Date | null, end: Date | null) => {
+  const formatTimeRange = (
+    start: Date | null,
+    end: Date | null,
+    isLastSelected: boolean,
+  ) => {
     if (start && end) {
       return `${format(start, "HH:mm")} to ${format(end, "HH:mm")}`;
     } else if (start) {
       return `${format(start, "HH:mm")} - Choose end time`;
+    } else if (end && isLastSelected) {
+      return `Choose start time - ${format(setMinutes(setHours(startOfDay(end), 21), 0), "HH:mm")}`;
     }
     return "";
+  };
+
+  const isLastTimeSlot = (time: Date, timeRange: string): boolean => {
+    if (timeRange === "Evening") {
+      return isSameMinute(
+        time,
+        setHours(setMinutes(startOfDay(new Date()), 30), 21),
+      ); // 21:30 as the last slot
+    }
+    return false;
   };
 
   return (
@@ -53,7 +84,10 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
       aria-labelledby="accordion"
     >
       <h3 className={accordion.title} id="accordion-title">
-        {title} {startSlot && ` - ${formatTimeRange(startSlot, endSlot)}`}
+        {title}{" "}
+        {startSlot || endSlot
+          ? ` - ${formatTimeRange(startSlot, endSlot, isLastSelected)}`
+          : ""}
       </h3>
       <ul className={accordion.list}>
         {options.map((option, index) => (
@@ -77,9 +111,14 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
                 <CustomTimeSlots
                   timeRange={option}
                   onTimeSlotSelect={(times) =>
-                    handleTimeSlotSelect(times[times.length - 1])
+                    handleTimeSlotSelect(
+                      times[times.length - 1],
+                      isLastTimeSlot(times[times.length - 1], option),
+                    )
                   }
-                  onStartSlotSelect={handleTimeSlotSelect}
+                  onStartSlotSelect={(time) =>
+                    handleTimeSlotSelect(time, isLastTimeSlot(time, option))
+                  }
                   startSlot={startSlot}
                   endSlot={endSlot}
                 />
