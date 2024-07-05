@@ -30,6 +30,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
       if (isBefore(startSlot, time)) {
         setEndSlot(time);
       } else {
+        setEndSlot(startSlot);
         setStartSlot(time);
       }
     }
