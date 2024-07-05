@@ -10,12 +10,16 @@ interface AccordionProps {
 }
 
 const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [expandedIndices, setExpandedIndices] = useState<number[]>([]);
   const [startSlot, setStartSlot] = useState<Date | null>(null);
   const [endSlot, setEndSlot] = useState<Date | null>(null);
 
-  const handleClick = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+  const handleToggle = (index: number) => {
+    if (expandedIndices.includes(index)) {
+      setExpandedIndices(expandedIndices.filter((i) => i !== index));
+    } else {
+      setExpandedIndices([...expandedIndices, index]);
+    }
   };
 
   const handleTimeSlotSelect = (time: Date) => {
@@ -55,19 +59,19 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
           <li className={accordion.item} key={index}>
             <button
               className={accordion.button}
-              aria-expanded={expandedIndex === index}
-              onClick={() => handleClick(index)}
+              aria-expanded={expandedIndices.includes(index)}
+              onClick={() => handleToggle(index)}
             >
               <span className={accordion.text}>{option}</span>
               <span className={accordion.icon} aria-hidden="true">
-                {expandedIndex === index ? (
+                {expandedIndices.includes(index) ? (
                   <IoIosArrowUp />
                 ) : (
                   <IoIosArrowDown />
                 )}
               </span>
             </button>
-            {expandedIndex === index && (
+            {expandedIndices.includes(index) && (
               <div className={accordion.content}>
                 <CustomTimeSlots
                   timeRange={option}
