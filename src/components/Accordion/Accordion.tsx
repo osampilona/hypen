@@ -40,12 +40,17 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
 
   const formatTimeRange = (times: Date[]) => {
     if (times.length === 1) {
-      return `${format(times[0], "HH:mm")} - `;
+      return `${format(times[0], "HH:mm")} - Choose end time`;
     } else if (times.length > 1) {
       return `${format(times[0], "HH:mm")} to ${format(addMinutes(times[times.length - 1], 30), "HH:mm")}`;
     }
     return "";
   };
+
+  const selectedTimeRanges = selectedTimes
+    .filter((times) => times && times.length > 0)
+    .map((times) => formatTimeRange(times!))
+    .join(", ");
 
   return (
     <div
@@ -55,7 +60,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
       aria-labelledby="accordion"
     >
       <h3 className={accordion.title} id="accordion-title">
-        {title}
+        {title} {selectedTimeRanges && ` - ${selectedTimeRanges}`}
       </h3>
       <ul className={accordion.list}>
         {options.map((option, index) => (
@@ -65,14 +70,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
               aria-expanded={expandedIndex === index}
               onClick={() => handleClick(index)}
             >
-              <span className={accordion.text}>
-                {option}{" "}
-                {selectedTimes[index] && selectedTimes[index]?.length > 0
-                  ? ` - ${formatTimeRange(selectedTimes[index])}`
-                  : startSlot.index === index && startSlot.time
-                    ? `${format(startSlot.time, "HH:mm")} - `
-                    : ""}
-              </span>
+              <span className={accordion.text}>{option}</span>
               <span className={accordion.icon} aria-hidden="true">
                 {expandedIndex === index ? (
                   <IoIosArrowUp />
