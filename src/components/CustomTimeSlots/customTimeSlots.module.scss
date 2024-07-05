@@ -8,7 +8,8 @@
 
 .overlay {
   position: absolute;
-  background-color: #7f7fff;
+  background-color: var(--secondary-color);
+  opacity: 0.3;
   border-radius: 25px;
   z-index: 0; /* Ensure the overlay is behind the buttons */
 }
@@ -19,7 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px; /* Ensure a consistent height */
+  height: 30px; /* Ensure a consistent height */
 }
 
 .timeSlot button {

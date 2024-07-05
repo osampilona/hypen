@@ -72,7 +72,7 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
     }
 
     const columnWidth = 100 / 4; // Assuming 4 columns
-    const rowHeight = 40; // Height of each time slot button
+    const rowHeight = 30; // Height of each time slot button
     const margin = 2.5; // Margin around the buttons
     const extraMargin = 3; // Extra margin to separate rows
 
