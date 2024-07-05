@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "@/components/CustomTimeSlots/customTimeSlots.module.scss";
 import {
   format,
@@ -8,7 +8,6 @@ import {
   setMinutes,
   isSameMinute,
   isBefore,
-  isAfter,
 } from "date-fns";
 import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
 
@@ -16,15 +15,28 @@ interface CustomTimeSlotsProps {
   timeRange: string;
   onTimeSlotSelect: (times: Date[]) => void;
   onStartSlotSelect: (time: Date) => void;
+  startSlot: Date | null;
+  endSlot: Date | null;
 }
 
 const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
   timeRange,
   onTimeSlotSelect,
   onStartSlotSelect,
+  startSlot,
+  endSlot,
 }) => {
   const [selectedSlots, setSelectedSlots] = useState<Date[]>([]);
-  const [startSlot, setStartSlot] = useState<Date | null>(null);
+
+  useEffect(() => {
+    if (startSlot && endSlot) {
+      setSelectedSlots([startSlot, endSlot]);
+    } else if (startSlot) {
+      setSelectedSlots([startSlot]);
+    } else {
+      setSelectedSlots([]);
+    }
+  }, [startSlot, endSlot]);
 
   const generateTimeSlots = (startHour: number, endHour: number): Date[] => {
     const slots: Date[] = [];
@@ -43,35 +55,7 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
   };
 
   const handleSlotClick = (time: Date) => {
-    if (!startSlot) {
-      setStartSlot(time);
-      setSelectedSlots([time]);
-      onStartSlotSelect(time);
-    } else {
-      const newSlots = generateSelectedSlots(startSlot, time);
-      setSelectedSlots(newSlots);
-      setStartSlot(null);
-      onTimeSlotSelect(newSlots);
-    }
-  };
-
-  const generateSelectedSlots = (start: Date, end: Date): Date[] => {
-    const slots: Date[] = [];
-    let currentTime = start;
-
-    if (isBefore(start, end) || isSameMinute(start, end)) {
-      while (isBefore(currentTime, end) || isSameMinute(currentTime, end)) {
-        slots.push(currentTime);
-        currentTime = addMinutes(currentTime, 30);
-      }
-    } else {
-      while (isBefore(end, currentTime) || isSameMinute(end, currentTime)) {
-        slots.unshift(currentTime);
-        currentTime = addMinutes(currentTime, -30);
-      }
-    }
-
-    return slots;
+    onStartSlotSelect(time);
   };
 
   let timeSlots: Date[];
@@ -95,28 +79,8 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
         const isSelected = selectedSlots.some((slot) =>
           isSameMinute(slot, time),
         );
-        const isRangeStart =
-          isSelected &&
-          isSameMinute(selectedSlots[0], time) &&
-          selectedSlots.length > 1;
-        const isRangeEnd =
-          isSelected &&
-          isSameMinute(selectedSlots[selectedSlots.length - 1], time) &&
-          selectedSlots.length > 1;
-        const isRangeMiddle =
-          isSelected &&
-          !isRangeStart &&
-          !isRangeEnd &&
-          selectedSlots.length > 1;
 
-        const classNames = [
-          isRangeStart ? styles.rangeStart : "",
-          isRangeEnd ? styles.rangeEnd : "",
-          isRangeMiddle ? styles.rangeMiddle : "",
-          isSelected && !isRangeStart && !isRangeEnd && !isRangeMiddle
-            ? styles.rangeSelected
-            : "",
-        ]
+        const classNames = [isSelected ? styles.rangeSelected : ""]
           .filter(Boolean)
           .join(" ");
 
