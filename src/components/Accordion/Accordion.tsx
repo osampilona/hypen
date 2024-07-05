@@ -20,7 +20,8 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
   const [expandedIndices, setExpandedIndices] = useState<number[]>([]);
   const [startSlot, setStartSlot] = useState<Date | null>(null);
   const [endSlot, setEndSlot] = useState<Date | null>(null);
-  const [isLastSelected, setIsLastSelected] = useState<boolean>(false);
+  const [isLastSelectedFirst, setIsLastSelectedFirst] =
+    useState<boolean>(false);
 
   const handleToggle = (index: number) => {
     if (expandedIndices.includes(index)) {
@@ -31,16 +32,20 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
   };
 
   const handleTimeSlotSelect = (time: Date, isLastSlot: boolean) => {
-    if (isLastSlot) {
+    if (isLastSlot && !startSlot) {
       setStartSlot(null);
       setEndSlot(time);
-      setIsLastSelected(true);
-    } else if (isLastSelected) {
+      setIsLastSelectedFirst(true);
+    } else if (isLastSlot && startSlot) {
+      setEndSlot(time);
+      setIsLastSelectedFirst(false);
+    } else if (isLastSelectedFirst) {
       setStartSlot(time);
-      setIsLastSelected(false);
+      setIsLastSelectedFirst(false);
     } else if (!startSlot || (startSlot && endSlot)) {
       setStartSlot(time);
       setEndSlot(null);
+      setIsLastSelectedFirst(false);
     } else if (startSlot && !endSlot) {
       if (isBefore(startSlot, time)) {
         setEndSlot(time);
@@ -48,19 +53,20 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
         setEndSlot(startSlot);
         setStartSlot(time);
       }
+      setIsLastSelectedFirst(false);
     }
   };
 
   const formatTimeRange = (
     start: Date | null,
     end: Date | null,
-    isLastSelected: boolean,
+    isLastSelectedFirst: boolean,
   ) => {
     if (start && end) {
       return `${format(start, "HH:mm")} to ${format(end, "HH:mm")}`;
     } else if (start) {
       return `${format(start, "HH:mm")} - Choose end time`;
-    } else if (end && isLastSelected) {
+    } else if (end && isLastSelectedFirst) {
       return `Choose start time - ${format(setMinutes(setHours(startOfDay(end), 21), 0), "HH:mm")}`;
     }
     return "";
@@ -86,7 +92,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
       <h3 className={accordion.title} id="accordion-title">
         {title}{" "}
         {startSlot || endSlot
-          ? ` - ${formatTimeRange(startSlot, endSlot, isLastSelected)}`
+          ? ` - ${formatTimeRange(startSlot, endSlot, isLastSelectedFirst)}`
           : ""}
       </h3>
       <ul className={accordion.list}>
