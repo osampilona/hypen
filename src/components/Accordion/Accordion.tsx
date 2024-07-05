@@ -2,7 +2,7 @@ import accordion from "@/components/Accordion/accordion.module.scss";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
 import CustomTimeSlots from "@/components/CustomTimeSlots/CustomTimeSlots";
-import { format, addMinutes, isBefore } from "date-fns";
+import { format } from "date-fns";
 
 interface AccordionProps {
   title: string;
@@ -21,16 +21,13 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
   const handleTimeSlotSelect = (time: Date) => {
     if (!startSlot) {
       setStartSlot(time);
-      setEndSlot(null);
-    } else {
+      setEndSlot(null); // Reset end slot if start slot is reselected
+    } else if (startSlot && !endSlot) {
       setEndSlot(time);
-    }
-  };
-
-  const handleConfirmTimeSlot = (times: Date[]) => {
-    if (times.length > 1) {
-      setStartSlot(times[0]);
-      setEndSlot(times[times.length - 1]);
+    } else {
+      // If both start and end slots are selected and user selects a new slot, restart the selection
+      setStartSlot(time);
+      setEndSlot(null);
     }
   };
 
@@ -74,7 +71,9 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
               <div className={accordion.content}>
                 <CustomTimeSlots
                   timeRange={option}
-                  onTimeSlotSelect={handleConfirmTimeSlot}
+                  onTimeSlotSelect={(times) =>
+                    handleTimeSlotSelect(times[times.length - 1])
+                  }
                   onStartSlotSelect={handleTimeSlotSelect}
                 />
               </div>
