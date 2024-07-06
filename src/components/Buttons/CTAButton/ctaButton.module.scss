@@ -38,19 +38,19 @@
 
   &--outlined {
     background-color: transparent;
-    border: 0.5px solid var(--labels-color);
-    color: var(--text-color);
+    border: none;
+    color: var(--labels-color);
 
     &:hover {
-      background-color: var(--text-color);
+      background-color: var(--secondary-color);
       color: var(--items-bg-color);
     }
 
-    // &:focus {
-    //   background-color: var(--primary-color);
-    //   color: var(--items-bg-color);
-    //   border: none;
-    // }
+    &:focus {
+      background-color: var(--secondary-color);
+      color: var(--items-bg-color);
+      border: none;
+    }
   }
 
   &--micro {

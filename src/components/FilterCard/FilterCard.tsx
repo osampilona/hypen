@@ -2,7 +2,7 @@
 import filterCard from "@/components/FilterCard/filterCard.module.scss";
 import { useEffect, useState } from "react";
 import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
-import Accordion from "@/components/Accordion/Accordion";
+import TimeSlotSelector from "../TimeSlotsSelector/TimeSlotsSelector";
 
 interface FilterCardProps {
   // Add your component props here
@@ -10,6 +10,8 @@ interface FilterCardProps {
 
 const FilterCard: React.FC<FilterCardProps> = (props) => {
   const [loading, setLoading] = useState(true);
+  const [startSlot, setStartSlot] = useState<string | null>(null);
+  const [endSlot, setEndSlot] = useState<string | null>(null);
   const skeletonArray = Array.from({ length: 1 }, (_, index) => index + 1);
 
   useEffect(() => {
@@ -27,9 +29,24 @@ const FilterCard: React.FC<FilterCardProps> = (props) => {
       ) : (
         <>
           <h3>Filters</h3>
-          <Accordion
-            title="Time Selection"
-            options={["Morning", "Afternoon", "Evening"]}
+          <p>
+            {startSlot ? (
+              endSlot ? (
+                <>
+                  From {startSlot} to {endSlot}
+                </>
+              ) : (
+                <>From {startSlot} to</>
+              )
+            ) : (
+              <>Select a time range</>
+            )}
+          </p>
+          <TimeSlotSelector
+            startSlot={startSlot}
+            endSlot={endSlot}
+            setStartSlot={setStartSlot}
+            setEndSlot={setEndSlot}
           />
         </>
       )}
