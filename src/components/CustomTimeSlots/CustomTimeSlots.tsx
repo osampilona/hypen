@@ -8,7 +8,6 @@ import {
   setMinutes,
   isSameMinute,
   isBefore,
-  isAfter,
 } from "date-fns";
 import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
 
@@ -28,6 +27,7 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
   endSlot,
 }) => {
   const [selectedSlots, setSelectedSlots] = useState<Date[]>([]);
+  const [oppositeSelection, setOppositeSelection] = useState<boolean>(false);
 
   useEffect(() => {
     if (startSlot && endSlot) {
@@ -54,6 +54,7 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
   };
 
   const handleSlotClick = (time: Date) => {
+    setOppositeSelection(false); // Clear any previous error state
     if (!startSlot || (startSlot && endSlot)) {
       onStartSlotSelect(time);
       onTimeSlotSelect([time]); // Clear the previous selection
@@ -61,7 +62,8 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
       if (isBefore(startSlot, time)) {
         onTimeSlotSelect([startSlot, time]);
       } else {
-        onTimeSlotSelect([time, startSlot]);
+        onTimeSlotSelect([startSlot, time]);
+        setOppositeSelection(true);
       }
     }
   };
@@ -169,7 +171,7 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
           onClick={() => handleSlotClick(time)}
           className={`${styles.timeSlot} ${
             selectedSlots.some((slot) => isSameMinute(slot, time))
-              ? styles.selected
+              ? oppositeSelection && styles.selected
               : ""
           }`}
         />
