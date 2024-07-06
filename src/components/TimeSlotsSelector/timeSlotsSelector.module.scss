@@ -1,4 +1,3 @@
-/* components/TimeSlotsSelector/timeSlotsSelector.module.scss */
 .container {
   font-family: Arial, sans-serif;
   margin-top: 30px;
@@ -14,8 +13,8 @@
 
 .timeSlotButtons {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns */
-  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
 }
 
 .timeSlotButton {

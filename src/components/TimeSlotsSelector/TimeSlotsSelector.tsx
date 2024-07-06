@@ -1,18 +1,33 @@
 import styles from "@/components/TimeSlotsSelector/timeSlotsSelector.module.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CtaButton from "../Buttons/CTAButton/CtaButton";
 import { timeSlots } from "@/constants/timeSlots";
 
 interface TimeSlotsSelectorProps {
-  // Add your component props here
+  startSlot: string | null;
+  endSlot: string | null;
+  setStartSlot: (slot: string | null) => void;
+  setEndSlot: (slot: string | null) => void;
 }
 
 type TimeSlotPeriod = keyof typeof timeSlots;
 
-const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = () => {
+const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = ({
+  startSlot,
+  endSlot,
+  setStartSlot,
+  setEndSlot,
+}) => {
   const [selectedSlots, setSelectedSlots] = useState<string[]>([]);
-  const [startSlot, setStartSlot] = useState<string | null>(null);
-  const [endSlot, setEndSlot] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (startSlot && endSlot) {
+      const slotsInRange = getSlotsInRange(startSlot, endSlot);
+      setSelectedSlots(slotsInRange);
+    } else {
+      setSelectedSlots(startSlot ? [startSlot] : []);
+    }
+  }, [startSlot, endSlot]);
 
   const toggleSlot = (slot: string) => {
     if (!startSlot) {
@@ -22,8 +37,6 @@ const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = () => {
     } else if (!endSlot) {
       // Select end time
       setEndSlot(slot);
-      const slotsInRange = getSlotsInRange(startSlot, slot);
-      setSelectedSlots(slotsInRange);
     } else {
       // Reset selection
       setStartSlot(slot);
