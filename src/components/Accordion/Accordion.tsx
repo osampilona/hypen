@@ -89,12 +89,12 @@ const Accordion: React.FC<AccordionProps> = ({ title, options }) => {
       role="region"
       aria-labelledby="accordion"
     >
-      <h5 className={accordion.title} id="accordion-title">
+      <h3 className={accordion.title} id="accordion-title">
         {title}{" "}
         {startSlot || endSlot
           ? ` - ${formatTimeRange(startSlot, endSlot, isLastSelectedFirst)}`
           : ""}
-      </h5>
+      </h3>
       <ul className={accordion.list}>
         {options.map((option, index) => (
           <li className={accordion.item} key={index}>
