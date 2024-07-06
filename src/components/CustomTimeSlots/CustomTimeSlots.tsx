@@ -171,7 +171,9 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
           onClick={() => handleSlotClick(time)}
           className={`${styles.timeSlot} ${
             selectedSlots.some((slot) => isSameMinute(slot, time))
-              ? oppositeSelection && styles.selected
+              ? oppositeSelection
+                ? styles.oppositeSelection
+                : styles.selected
               : ""
           }`}
         />
