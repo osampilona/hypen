@@ -1,0 +1,45 @@
+/* components/TimeSlotsSelector/timeSlotsSelector.module.scss */
+.container {
+  font-family: Arial, sans-serif;
+}
+
+.timeSlotPeriod {
+  margin-bottom: 20px;
+}
+
+.timeSlotPeriod h3 {
+  margin-bottom: 10px;
+}
+
+.timeSlotButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.timeSlotButton {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #fff;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.timeSlotButton.selected {
+  background-color: var(--secondary-color);
+  color: $white-items-bg-color;
+}
+
+.timeSlotButton.inRange {
+  background-color: transparent;
+  color: var(--secondary-color);
+  border: none;
+  opacity: 0.75;
+}
+
+.timeSlotButton:hover {
+  background-color: #dfe6e9;
+}

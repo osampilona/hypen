@@ -3,6 +3,7 @@ import filterCard from "@/components/FilterCard/filterCard.module.scss";
 import { useEffect, useState } from "react";
 import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
 import Accordion from "@/components/Accordion/Accordion";
+import TimeSlotSelector from "../TimeSlotsSelector/TimeSlotsSelector";
 
 interface FilterCardProps {
   // Add your component props here
@@ -27,10 +28,11 @@ const FilterCard: React.FC<FilterCardProps> = (props) => {
       ) : (
         <>
           <h3>Filters</h3>
-          <Accordion
+          {/* <Accordion
             title="Time Selection"
             options={["Morning", "Afternoon", "Evening"]}
-          />
+          /> */}
+          <TimeSlotSelector />
         </>
       )}
     </div>
