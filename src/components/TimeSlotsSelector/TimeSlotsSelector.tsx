@@ -36,7 +36,13 @@ const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = ({
       setSelectedSlots([slot]);
     } else if (!endSlot) {
       // Select end time
-      setEndSlot(slot);
+      // Determine which slot is earlier and which is later
+      if (isEarlier(slot, startSlot)) {
+        setEndSlot(startSlot);
+        setStartSlot(slot);
+      } else {
+        setEndSlot(slot);
+      }
     } else {
       // Reset selection
       setStartSlot(slot);
@@ -54,6 +60,11 @@ const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = ({
       Math.min(startIndex, endIndex),
       Math.max(startIndex, endIndex) + 1,
     );
+  };
+
+  const isEarlier = (a: string, b: string): boolean => {
+    const allSlots = Object.values(timeSlots).flat();
+    return allSlots.indexOf(a) < allSlots.indexOf(b);
   };
 
   return (
