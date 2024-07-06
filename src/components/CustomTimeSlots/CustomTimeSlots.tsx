@@ -17,6 +17,7 @@ interface CustomTimeSlotsProps {
   onStartSlotSelect: (time: Date) => void;
   startSlot: Date | null;
   endSlot: Date | null;
+  selectedSlots: Date[]; // New prop for all selected slots
 }
 
 const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
@@ -25,36 +26,43 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
   onStartSlotSelect,
   startSlot,
   endSlot,
+  selectedSlots,
 }) => {
-  const [selectedSlots, setSelectedSlots] = useState<Date[]>([]);
-  const [oppositeSelection, setOppositeSelection] = useState<boolean>(false);
+  const [timeSlots, setTimeSlots] = useState<Date[]>([]);
 
   useEffect(() => {
-    if (startSlot && endSlot) {
-      setSelectedSlots([startSlot, endSlot]);
-    } else if (startSlot) {
-      setSelectedSlots([startSlot]);
-    } else {
-      setSelectedSlots([]);
+    const generateTimeSlots = (startHour: number, endHour: number): Date[] => {
+      const slots: Date[] = [];
+      let currentTime = setMinutes(setHours(startOfToday(), startHour), 0);
+      const endTime = setMinutes(setHours(startOfToday(), endHour), 30);
+
+      while (currentTime < endTime) {
+        slots.push(currentTime);
+        currentTime = addMinutes(currentTime, 30);
+      }
+
+      slots.push(endTime);
+      return slots;
+    };
+
+    let generatedTimeSlots: Date[];
+    switch (timeRange) {
+      case "Morning":
+        generatedTimeSlots = generateTimeSlots(6, 11); // 6:00 to 11:30 ending at 12:00
+        break;
+      case "Afternoon":
+        generatedTimeSlots = generateTimeSlots(12, 16); // 12:00 to 16:30 ending at 17:00
+        break;
+      case "Evening":
+        generatedTimeSlots = generateTimeSlots(17, 21); // 17:00 to 21:00
+        break;
+      default:
+        generatedTimeSlots = [];
     }
-  }, [startSlot, endSlot]);
-
-  const generateTimeSlots = (startHour: number, endHour: number): Date[] => {
-    const slots: Date[] = [];
-    let currentTime = setMinutes(setHours(startOfToday(), startHour), 0);
-    const endTime = setMinutes(setHours(startOfToday(), endHour), 30);
-
-    while (currentTime < endTime) {
-      slots.push(currentTime);
-      currentTime = addMinutes(currentTime, 30);
-    }
-
-    slots.push(endTime);
-    return slots;
-  };
+    setTimeSlots(generatedTimeSlots);
+  }, [timeRange]);
 
   const handleSlotClick = (time: Date) => {
-    setOppositeSelection(false); // Clear any previous error state
     if (!startSlot || (startSlot && endSlot)) {
       onStartSlotSelect(time);
       onTimeSlotSelect([time]); // Clear the previous selection
@@ -62,14 +70,13 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
       if (isBefore(startSlot, time)) {
         onTimeSlotSelect([startSlot, time]);
       } else {
-        onTimeSlotSelect([startSlot, time]);
-        setOppositeSelection(true);
+        onTimeSlotSelect([time, startSlot]);
       }
     }
   };
 
   const calculateOverlayStyle = () => {
-    if (!startSlot || !endSlot) {
+    if (!startSlot || !endSlot || selectedSlots.length === 0) {
       return { mainOverlay: {}, additionalOverlays: [] };
     }
 
@@ -138,21 +145,6 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
     };
   };
 
-  let timeSlots: Date[];
-  switch (timeRange) {
-    case "Morning":
-      timeSlots = generateTimeSlots(6, 11); // 6:00 to 11:30 ending at 12:00
-      break;
-    case "Afternoon":
-      timeSlots = generateTimeSlots(12, 16); // 12:00 to 16:30 ending at 17:00
-      break;
-    case "Evening":
-      timeSlots = generateTimeSlots(17, 21); // 17:00 to 21:00
-      break;
-    default:
-      timeSlots = [];
-  }
-
   const { mainOverlay, additionalOverlays } = calculateOverlayStyle();
 
   return (
@@ -171,9 +163,7 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
           onClick={() => handleSlotClick(time)}
           className={`${styles.timeSlot} ${
             selectedSlots.some((slot) => isSameMinute(slot, time))
-              ? oppositeSelection
-                ? styles.oppositeSelection
-                : styles.selected
+              ? styles.selected
               : ""
           }`}
         />
