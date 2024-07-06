@@ -47,7 +47,7 @@ const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = () => {
     <div className={styles.container}>
       {Object.keys(timeSlots).map((period) => (
         <div key={period} className={styles.timeSlotPeriod}>
-          <h3>{period.charAt(0).toUpperCase() + period.slice(1)}</h3>
+          <h5>{period.charAt(0).toUpperCase() + period.slice(1)}</h5>
           <div className={styles.timeSlotButtons}>
             {timeSlots[period as TimeSlotPeriod].map((slot) => (
               <CtaButton

@@ -1,19 +1,20 @@
 /* components/TimeSlotsSelector/timeSlotsSelector.module.scss */
 .container {
   font-family: Arial, sans-serif;
+  margin-top: 30px;
 }
 
 .timeSlotPeriod {
   margin-bottom: 20px;
 }
 
-.timeSlotPeriod h3 {
+.timeSlotPeriod h5 {
   margin-bottom: 10px;
 }
 
 .timeSlotButtons {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
   gap: 10px;
 }
 
@@ -30,7 +31,7 @@
 
 .timeSlotButton.selected {
   background-color: var(--secondary-color);
-  color: $white-items-bg-color;
+  color: #fff; /* Ensure text color is white */
 }
 
 .timeSlotButton.inRange {
