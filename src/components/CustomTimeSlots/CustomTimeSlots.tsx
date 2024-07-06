@@ -105,7 +105,7 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
           top: `${
             row * (rowHeight + margin * 2) +
             (row - 1) * extraMargin +
-            (isLastRow ? 2 : 0) // Add extra offset for the last row
+            (isLastRow ? 0.5 : 0) // Add extra offset for the last row
           }px`, // Center the overlay vertically
           left: "calc(-2% + 4px - 4px)", // Added extra padding on the left side and shift left by 2px
           height: `${overlayHeight + margin * 2}px`,
