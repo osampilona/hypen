@@ -107,7 +107,7 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
             (row - 1) * extraMargin +
             (isLastRow ? 2 : 0) // Add extra offset for the last row
           }px`, // Center the overlay vertically
-          left: "calc(-2% + 2px)", // Added extra padding on the left side
+          left: "calc(-2% + 4px - 4px)", // Added extra padding on the left side and shift left by 2px
           height: `${overlayHeight + margin * 2}px`,
           width: `calc(${isLastRow ? (endColumn + 1) * columnWidth : 100}% + ${
             isLastRow ? 5 : 8
@@ -119,9 +119,9 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
     return {
       mainOverlay: {
         top: `${topOffset}px`,
-        left: `calc(${startColumn * columnWidth}% - 3px)`, // Add padding to the left for the first row
+        left: `calc(${startColumn * columnWidth}% - 4px - 2px)`, // Adjusted padding to the left for the first row and shift left by 2px
         height: `${height}px`,
-        width: `calc(${width}% + ${margin * 1}px + 5px)`, // Add a little more width for the first row
+        width: `calc(${width}% + ${margin * 1}px + 7px)`, // Add a little more width for the first row
       },
       additionalOverlays,
     };
