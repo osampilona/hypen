@@ -7,6 +7,8 @@ import {
   setHours,
   setMinutes,
   isSameMinute,
+  isBefore,
+  isAfter,
 } from "date-fns";
 import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
 
@@ -47,14 +49,21 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
       currentTime = addMinutes(currentTime, 30);
     }
 
-    // Add the final slot ending exactly at endHour + 30 minutes
     slots.push(endTime);
-
     return slots;
   };
 
   const handleSlotClick = (time: Date) => {
-    onStartSlotSelect(time);
+    if (!startSlot || (startSlot && endSlot)) {
+      onStartSlotSelect(time);
+      onTimeSlotSelect([time]); // Clear the previous selection
+    } else if (startSlot && !endSlot) {
+      if (isBefore(startSlot, time)) {
+        onTimeSlotSelect([startSlot, time]);
+      } else {
+        onTimeSlotSelect([time, startSlot]);
+      }
+    }
   };
 
   const calculateOverlayStyle = () => {
@@ -158,7 +167,11 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
           outlined={true}
           size="small"
           onClick={() => handleSlotClick(time)}
-          className={styles.timeSlot}
+          className={`${styles.timeSlot} ${
+            selectedSlots.some((slot) => isSameMinute(slot, time))
+              ? styles.selected
+              : ""
+          }`}
         />
       ))}
     </div>
