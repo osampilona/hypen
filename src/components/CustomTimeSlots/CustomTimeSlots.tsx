@@ -73,16 +73,18 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
 
     const columnWidth = 100 / 4; // Assuming 4 columns
     const rowHeight = 30; // Height of each time slot button
+    const overlayHeight = rowHeight * 1; // Increase overlay height
     const margin = 2.5; // Margin around the buttons
-    const extraMargin = 3; // Extra margin to separate rows
+    const extraMargin = 1.5; // Reduce extra margin to separate rows
 
     const startColumn = startIndex % 4;
     const endColumn = endIndex % 4;
     const startRow = Math.floor(startIndex / 4);
     const endRow = Math.floor(endIndex / 4);
 
-    const topOffset = startRow * (rowHeight + margin * 2) - margin;
-    const height = rowHeight + margin * 2;
+    const topOffset =
+      startRow * (rowHeight + margin * 2) + rowHeight * 0 - margin; // Center the overlay vertically
+    const height = overlayHeight + margin * 2;
 
     let width = columnWidth * (4 - startColumn);
     if (startRow === endRow) {
@@ -100,10 +102,16 @@ const CustomTimeSlots: React.FC<CustomTimeSlotsProps> = ({
       for (let row = startRow + 1; row <= endRow; row++) {
         const isLastRow = row === endRow;
         additionalOverlays.push({
-          top: `${row * (rowHeight + margin * 2.2) + (row - 1) * extraMargin}px`, // Adjusted top offset with extra margin
+          top: `${
+            row * (rowHeight + margin * 2) +
+            (row - 1) * extraMargin +
+            (isLastRow ? 2 : 0) // Add extra offset for the last row
+          }px`, // Center the overlay vertically
           left: "calc(-2% + 2px)", // Added extra padding on the left side
-          height: `${rowHeight + margin * 2}px`,
-          width: `calc(${isLastRow ? (endColumn + 1) * columnWidth : 100}% + ${isLastRow ? 5 : 8}px)`, // Adjusted width calculation for all rows
+          height: `${overlayHeight + margin * 2}px`,
+          width: `calc(${isLastRow ? (endColumn + 1) * columnWidth : 100}% + ${
+            isLastRow ? 5 : 8
+          }px)`, // Adjusted width calculation for all rows
         });
       }
     }

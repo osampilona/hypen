@@ -12,6 +12,7 @@
   opacity: 0.3;
   border-radius: 25px;
   z-index: 0; /* Ensure the overlay is behind the buttons */
+  margin: 1px; /* Add some margin to create spacing between selected areas */
 }
 
 .timeSlot {
