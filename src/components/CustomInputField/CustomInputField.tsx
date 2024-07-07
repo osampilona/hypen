@@ -1,6 +1,4 @@
 import customInputField from "@/components/CustomInputField/customInputField.module.scss";
-import SearchButton from "@/components/Buttons/SearchButton/SearchButton";
-import SearchBarContent from "@/components/SearchBarContent/SearchBarContent";
 
 interface CustomInputFieldProps {
   isLabelClicked: string | null;
@@ -13,8 +11,6 @@ interface CustomInputFieldProps {
 }
 
 const CustomInputField: React.FC<CustomInputFieldProps> = ({
-  isLabelClicked,
-  handleClick,
   rightIcon,
   leftIcon,
   placeholder,
@@ -29,12 +25,6 @@ const CustomInputField: React.FC<CustomInputFieldProps> = ({
 
   return (
     <div className={customInputField.container}>
-      <div className={customInputField.popupHeader}>
-        <SearchBarContent
-          isLabelClicked={isLabelClicked}
-          onClick={handleClick}
-        />
-      </div>
       <div className={customInputField.inputContainer}>
         {leftIcon && (
           <span className={customInputField.leftIcon}>{leftIcon}</span>
@@ -50,9 +40,6 @@ const CustomInputField: React.FC<CustomInputFieldProps> = ({
         {rightIcon && (
           <span className={customInputField.rightIcon}>{rightIcon}</span>
         )}
-      </div>
-      <div className={customInputField.button}>
-        <SearchButton isPrimary label={"Search"} />
       </div>
     </div>
   );
