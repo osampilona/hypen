@@ -1,15 +1,46 @@
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
 .container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: 5rem;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 5rem;
   z-index: 1000;
+  overflow: hidden;
+
+  &.slideIn {
+    background: rgba(0, 0, 0, 0.5);
+    .content {
+      animation: slideIn 0.5s forwards;
+    }
+  }
+
+  &.slideOut {
+    .content {
+      animation: slideOut 0.5s forwards;
+    }
+  }
 }
 
 .content {
@@ -17,15 +48,9 @@
   align-items: center;
   justify-content: center;
   background-color: var(--items-bg-color);
-  padding: 40px 16px;
+  padding: 1rem;
   border-radius: 0;
   box-shadow: var(--box-shadow);
-  width: 100%;
-  margin-top: -4.5rem;
-
-  @include respond-to($breakpoint-lg, min) {
-    max-width: 600px;
-    border-radius: 50px;
-    padding: 20px;
-  }
+  width: 33%;
+  height: 100vh;
 }

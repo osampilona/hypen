@@ -8,7 +8,8 @@ import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { toggleTheme } from "@/lib/features/theme/theme";
 import { TbListSearch } from "react-icons/tb";
 import FilterCard from "@/components/FilterCard/FilterCard";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
+import Overlay from "../Overlay/Overlay";
 
 const BigScreenNavigation = () => {
   const currentTheme = useSelector(
@@ -70,10 +71,12 @@ const BigScreenNavigation = () => {
           </div>
         </div>
       </div>
-      <FilterCard
-        isVisible={filterCardVisible}
-        setIsVisible={setFilterCardVisible}
-      />
+      <Overlay show={filterCardVisible} onClose={toggleFilterCard}>
+        <FilterCard
+          isVisible={false}
+          setIsVisible={function (value: SetStateAction<boolean>): void {}}
+        />
+      </Overlay>
     </>
   );
 };
