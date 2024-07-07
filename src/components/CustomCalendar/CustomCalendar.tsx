@@ -3,30 +3,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { useState } from "react";
 import { enGB } from "date-fns/locale";
-import SearchButton from "@/components/Buttons/SearchButton/SearchButton";
-import SearchBarContent from "@/components/SearchBarContent/SearchBarContent";
 
 registerLocale("en-GB", enGB);
 
-interface CustomCalendarProps {
-  isLabelClicked: string | boolean;
-  handleClick: (label: string) => void;
-}
+interface CustomCalendarProps {}
 
-const CustomCalendar: React.FC<CustomCalendarProps> = ({
-  isLabelClicked,
-  handleClick,
-}) => {
+const CustomCalendar: React.FC<CustomCalendarProps> = ({}) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   return (
     <div className={customCalendar.container} data-testid="custom-calendar">
-      <div className={customCalendar.popupHeader}>
-        <SearchBarContent
-          isLabelClicked={isLabelClicked}
-          onClick={handleClick}
-        />
-      </div>
       <DatePicker
         selected={selectedDate}
         onChange={(date: Date | null) => setSelectedDate(date)}
@@ -35,9 +21,6 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({
         locale={"en-GB"}
         inline
       />
-      <div className={customCalendar.button}>
-        <SearchButton isPrimary label={"Search"} />
-      </div>
     </div>
   );
 };

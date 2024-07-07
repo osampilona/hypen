@@ -72,10 +72,7 @@ const BigScreenNavigation = () => {
         </div>
       </div>
       <Overlay show={filterCardVisible} onClose={toggleFilterCard}>
-        <FilterCard
-          isVisible={false}
-          setIsVisible={function (value: SetStateAction<boolean>): void {}}
-        />
+        <FilterCard />
       </Overlay>
     </>
   );

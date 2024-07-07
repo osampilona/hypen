@@ -9,28 +9,33 @@ interface OverlayProps {
 
 const Overlay: React.FC<OverlayProps> = ({ show, onClose, children }) => {
   const [isVisible, setIsVisible] = useState(show);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     if (show) {
       setIsVisible(true);
-    }
-  }, [show]);
-
-  const handleClose = () => {
-    if (isVisible) {
-      setIsVisible(false);
+      setIsAnimating(true);
+    } else if (!show && isVisible) {
+      setIsAnimating(false);
       setTimeout(() => {
-        onClose();
+        setIsVisible(false);
       }, 500); // Match the duration of the slideOut animation
     }
+  }, [show, isVisible]);
+
+  const handleClose = () => {
+    setIsAnimating(false);
+    setTimeout(() => {
+      onClose();
+    }, 500); // Match the duration of the slideOut animation
   };
 
   return (
-    (isVisible || show) && (
+    (isVisible || isAnimating) && (
       <div
         className={`${overlay.container} ${
-          show ? overlay.slideIn : overlay.slideOut
-        }`}
+          isAnimating ? overlay.slideIn : overlay.slideOut
+        } ${isVisible ? "visible" : ""}`}
         data-testid="overlay-container"
         onClick={handleClose}
       >
