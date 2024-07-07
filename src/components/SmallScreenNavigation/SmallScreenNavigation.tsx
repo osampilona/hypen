@@ -24,7 +24,7 @@ const SmallScreenNavigation = () => {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.container} data-testid="smallScreenSelector">
         <div className={styles.content}>
           <Link href="/">
             <RxSketchLogo size={36} className={styles.icon} />

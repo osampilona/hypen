@@ -32,7 +32,7 @@ const BigScreenNavigation = () => {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.container} data-testid="bigScreenNavigation">
         <div className={styles.content}>
           <div className={styles.groupIcons}>
             <Link href="/">
