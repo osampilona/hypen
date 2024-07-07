@@ -1,24 +1,30 @@
-.main {
+.layoutContainer {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding: 1.5rem;
-  padding-top: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  margin-bottom: 4rem;
-  margin-top: 5rem;
-  gap: 1.5rem;
+  flex-direction: column;
+  height: 100vh;
 
-  @include respond-to($breakpoint-xl, min) {
-    margin-bottom: 0;
+  @include respond-to($breakpoint-lg, min) {
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
   }
 }
 
-.mainLayout {
-  margin-top: 6rem;
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  padding-top: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin-top: 5rem;
+  width: 100%;
 
-  @include respond-to($breakpoint-xl, min) {
-    margin-bottom: 0;
+  @include respond-to($breakpoint-lg, min) {
+    margin-top: 0;
+    padding: 1.5rem;
+    flex: 1;
+    margin-left: 5rem;
   }
 }

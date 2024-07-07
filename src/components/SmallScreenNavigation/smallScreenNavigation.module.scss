@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 1rem 1.5rem;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 100;
+  background-color: var(--items-bg-color);
+  color: var(--labels-color);
+  box-shadow: var(--box-shadow);
+  width: 100vw;
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .mobileGroup {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .icon {
+      cursor: pointer;
+      color: var(--labels-color);
+    }
+  }
+
+  .themeToggle {
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+  }
+
+  @include respond-to($breakpoint-lg, min) {
+    display: none;
+  }
+}
