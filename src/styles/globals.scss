@@ -105,11 +105,11 @@ select {
   }
 
   &__day--selected {
-    background-color: $tertiary-color;
+    background-color: $secondary-color;
     color: var(--items-bg-color);
 
     &:hover {
-      background-color: darken($tertiary-color, 10%);
+      background-color: darken($secondary-color, 10%);
     }
   }
 
@@ -120,10 +120,7 @@ select {
   &__month {
     display: grid;
     grid-template-rows: repeat(5, 1fr);
-    gap: 0.25rem;
     width: 100%;
-    margin: 0;
-    margin-bottom: 20px;
   }
 
   @include respond-to($breakpoint-md, min) {
@@ -133,7 +130,7 @@ select {
 
     &__day,
     &__day-name {
-      margin: calc(0.5vw + 0.5rem); // Adjust margin for larger screens
+      margin: calc(0.3vw + 0.3rem); // Adjust margin for larger screens
     }
   }
 }

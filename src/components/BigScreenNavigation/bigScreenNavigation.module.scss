@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 1rem 1.5rem;
+  position: fixed;
+  z-index: 100;
+  background-color: var(--items-bg-color);
+  color: var(--labels-color);
+  box-shadow: var(--box-shadow);
+  height: 100vh;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+
+    .groupIcons {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: 1rem;
+    }
+
+    .icon {
+      cursor: pointer;
+      color: var(--labels-color);
+    }
+    svg {
+      stroke: var(--labels-color);
+    }
+  }
+
+  .themeToggle {
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+  }
+
+  @include respond-to($breakpoint-lg, max) {
+    display: none;
+  }
+}

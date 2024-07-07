@@ -1,14 +1,15 @@
-"use client";
 import filterCard from "@/components/FilterCard/filterCard.module.scss";
 import { useEffect, useState } from "react";
 import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
-import TimeSlotSelector from "../TimeSlotsSelector/TimeSlotsSelector";
+import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
+import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 
 interface FilterCardProps {
-  // Add your component props here
+  // isVisible: boolean;
+  // setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const FilterCard: React.FC<FilterCardProps> = (props) => {
+const FilterCard: React.FC<FilterCardProps> = () => {
   const [loading, setLoading] = useState(true);
   const [startSlot, setStartSlot] = useState<string | null>(null);
   const [endSlot, setEndSlot] = useState<string | null>(null);
@@ -42,12 +43,15 @@ const FilterCard: React.FC<FilterCardProps> = (props) => {
               <>Select a time range</>
             )}
           </p>
-          <TimeSlotSelector
-            startSlot={startSlot}
-            endSlot={endSlot}
-            setStartSlot={setStartSlot}
-            setEndSlot={setEndSlot}
-          />
+          <div className={filterCard.sectionContainer}>
+            <CustomCalendar />
+            <TimeSlotSelector
+              startSlot={startSlot}
+              endSlot={endSlot}
+              setStartSlot={setStartSlot}
+              setEndSlot={setEndSlot}
+            />
+          </div>
         </>
       )}
     </div>

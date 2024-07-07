@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import overlay from "@/components/Overlay/overlay.module.scss";
 
 interface OverlayProps {
@@ -7,12 +8,36 @@ interface OverlayProps {
 }
 
 const Overlay: React.FC<OverlayProps> = ({ show, onClose, children }) => {
+  const [isVisible, setIsVisible] = useState(show);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    if (show) {
+      setIsVisible(true);
+      setIsAnimating(true);
+    } else if (!show && isVisible) {
+      setIsAnimating(false);
+      setTimeout(() => {
+        setIsVisible(false);
+      }, 500); // Match the duration of the slideOut animation
+    }
+  }, [show, isVisible]);
+
+  const handleClose = () => {
+    setIsAnimating(false);
+    setTimeout(() => {
+      onClose();
+    }, 500); // Match the duration of the slideOut animation
+  };
+
   return (
-    show && (
+    (isVisible || isAnimating) && (
       <div
-        className={overlay.container}
+        className={`${overlay.container} ${
+          isAnimating ? overlay.slideIn : overlay.slideOut
+        } ${isVisible ? "visible" : ""}`}
         data-testid="overlay-container"
-        onClick={onClose}
+        onClick={handleClose}
       >
         <div
           className={overlay.content}
