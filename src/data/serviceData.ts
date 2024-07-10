@@ -11,6 +11,23 @@ import img_8 from "../assets/img/image_8.jpeg";
 import img_9 from "../assets/img/image_9.jpeg";
 import img_10 from "../assets/img/image_10.jpeg";
 
+const images = [
+  { url: img_1, alt: "Image 1" },
+  { url: img_2, alt: "Image 2" },
+  { url: img_3, alt: "Image 3" },
+  { url: img_4, alt: "Image 4" },
+  { url: img_5, alt: "Image 5" },
+  { url: img_6, alt: "Image 6" },
+  { url: img_7, alt: "Image 7" },
+  { url: img_8, alt: "Image 8" },
+  { url: img_9, alt: "Image 9" },
+  { url: img_10, alt: "Image 10" },
+];
+
+function getRandomImages() {
+  return images.sort(() => 0.5 - Math.random()).slice(0, 5);
+}
+
 export const serviceData: ServiceCardType[] = [
   {
     serviceId: "1",
@@ -25,48 +42,7 @@ export const serviceData: ServiceCardType[] = [
     companyAddress: "Hannemanns Alle 4A",
     companyAddressDetail: "st.3",
     companyFollowingState: false,
-    images: [
-      {
-        url: img_1,
-        alt: "Image 1",
-      },
-      {
-        url: img_2,
-        alt: "Image 2",
-      },
-      {
-        url: img_3,
-        alt: "Image 3",
-      },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
-    ],
+    images: getRandomImages(),
   },
   {
     serviceId: "2",
@@ -81,48 +57,7 @@ export const serviceData: ServiceCardType[] = [
     companyAddress: "123 Main Street",
     companyAddressDetail: "Suite 101",
     companyFollowingState: true,
-    images: [
-      {
-        url: img_1,
-        alt: "Image 1",
-      },
-      {
-        url: img_2,
-        alt: "Image 2",
-      },
-      {
-        url: img_3,
-        alt: "Image 3",
-      },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
-    ],
+    images: getRandomImages(),
   },
   {
     serviceId: "3",
@@ -137,48 +72,7 @@ export const serviceData: ServiceCardType[] = [
     companyAddress: "Beauty Plaza, 22nd Avenue",
     companyAddressDetail: "Shop #12",
     companyFollowingState: true,
-    images: [
-      {
-        url: img_1,
-        alt: "Image 1",
-      },
-      {
-        url: img_2,
-        alt: "Image 2",
-      },
-      {
-        url: img_3,
-        alt: "Image 3",
-      },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
-    ],
+    images: getRandomImages(),
   },
   {
     serviceId: "4",
@@ -193,48 +87,7 @@ export const serviceData: ServiceCardType[] = [
     companyAddress: "Elm Street",
     companyAddressDetail: "Building B, Unit 5",
     companyFollowingState: true,
-    images: [
-      {
-        url: img_1,
-        alt: "Image 1",
-      },
-      {
-        url: img_2,
-        alt: "Image 2",
-      },
-      {
-        url: img_3,
-        alt: "Image 3",
-      },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
-    ],
+    images: getRandomImages(),
   },
   {
     serviceId: "5",
@@ -249,48 +102,7 @@ export const serviceData: ServiceCardType[] = [
     companyAddress: "Market Street 5",
     companyAddressDetail: "Second Floor, Room 204",
     companyFollowingState: false,
-    images: [
-      {
-        url: img_1,
-        alt: "Image 1",
-      },
-      {
-        url: img_2,
-        alt: "Image 2",
-      },
-      {
-        url: img_3,
-        alt: "Image 3",
-      },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
-    ],
+    images: getRandomImages(),
   },
   {
     serviceId: "6",
@@ -305,48 +117,7 @@ export const serviceData: ServiceCardType[] = [
     companyAddress: "Pinecrest Avenue 17",
     companyAddressDetail: "Ground Floor",
     companyFollowingState: false,
-    images: [
-      {
-        url: img_1,
-        alt: "Image 1",
-      },
-      {
-        url: img_2,
-        alt: "Image 2",
-      },
-      {
-        url: img_3,
-        alt: "Image 3",
-      },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
-    ],
+    images: getRandomImages(),
   },
   {
     serviceId: "7",
@@ -361,48 +132,7 @@ export const serviceData: ServiceCardType[] = [
     companyAddress: "Harmony Street 10",
     companyAddressDetail: "Unit 2",
     companyFollowingState: true,
-    images: [
-      {
-        url: img_1,
-        alt: "Image 1",
-      },
-      {
-        url: img_2,
-        alt: "Image 2",
-      },
-      {
-        url: img_3,
-        alt: "Image 3",
-      },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
-    ],
+    images: getRandomImages(),
   },
   {
     serviceId: "8",
@@ -417,48 +147,7 @@ export const serviceData: ServiceCardType[] = [
     companyAddress: "Footpath Lane 8",
     companyAddressDetail: "Room 3B",
     companyFollowingState: false,
-    images: [
-      {
-        url: img_1,
-        alt: "Image 1",
-      },
-      {
-        url: img_2,
-        alt: "Image 2",
-      },
-      {
-        url: img_3,
-        alt: "Image 3",
-      },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
-    ],
+    images: getRandomImages(),
   },
   {
     serviceId: "9",
@@ -473,48 +162,7 @@ export const serviceData: ServiceCardType[] = [
     companyAddress: "Nail Street 15",
     companyAddressDetail: "Shop 4",
     companyFollowingState: true,
-    images: [
-      {
-        url: img_1,
-        alt: "Image 1",
-      },
-      {
-        url: img_2,
-        alt: "Image 2",
-      },
-      {
-        url: img_3,
-        alt: "Image 3",
-      },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
-    ],
+    images: getRandomImages(),
   },
   {
     serviceId: "10",
@@ -529,48 +177,7 @@ export const serviceData: ServiceCardType[] = [
     companyAddress: "Hue Avenue 21",
     companyAddressDetail: "Building A",
     companyFollowingState: false,
-    images: [
-      {
-        url: img_1,
-        alt: "Image 1",
-      },
-      {
-        url: img_2,
-        alt: "Image 2",
-      },
-      {
-        url: img_3,
-        alt: "Image 3",
-      },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
-    ],
+    images: getRandomImages(),
   },
   {
     serviceId: "11",
@@ -585,48 +192,7 @@ export const serviceData: ServiceCardType[] = [
     companyAddress: "Healing Road 5",
     companyAddressDetail: "Suite 201",
     companyFollowingState: true,
-    images: [
-      {
-        url: img_1,
-        alt: "Image 1",
-      },
-      {
-        url: img_2,
-        alt: "Image 2",
-      },
-      {
-        url: img_3,
-        alt: "Image 3",
-      },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
-    ],
+    images: getRandomImages(),
   },
   {
     serviceId: "12",
@@ -641,47 +207,6 @@ export const serviceData: ServiceCardType[] = [
     companyAddress: "Aroma Lane 9",
     companyAddressDetail: "Suite 103",
     companyFollowingState: false,
-    images: [
-      {
-        url: img_1,
-        alt: "Image 1",
-      },
-      {
-        url: img_2,
-        alt: "Image 2",
-      },
-      {
-        url: img_3,
-        alt: "Image 3",
-      },
-      {
-        url: img_4,
-        alt: "Image 4",
-      },
-      {
-        url: img_5,
-        alt: "Image 5",
-      },
-      {
-        url: img_6,
-        alt: "Image 6",
-      },
-      {
-        url: img_7,
-        alt: "Image 7",
-      },
-      {
-        url: img_8,
-        alt: "Image 8",
-      },
-      {
-        url: img_9,
-        alt: "Image 9",
-      },
-      {
-        url: img_10,
-        alt: "Image 10",
-      },
-    ],
+    images: getRandomImages(),
   },
 ];
