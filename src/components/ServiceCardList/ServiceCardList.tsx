@@ -9,7 +9,7 @@ import serviceCardList from "@/components/ServiceCardList/serviceCardList.module
 const ServiceCardList = () => {
   const [loading, setLoading] = useState(true);
   const [serviceData, setServiceData] = useState<ServiceCardType[]>([]);
-  const skeletonArray = Array.from({ length: 10 }, (_, index) => index + 1);
+  const skeletonArray = Array.from({ length: 12 }, (_, index) => index + 1);
 
   useEffect(() => {
     const timer = setTimeout(() => {
