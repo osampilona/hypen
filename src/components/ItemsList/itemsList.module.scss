@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--items-bg-color);
+  color: var(--labels-color);
+  padding: 1rem 1.5rem;
+  gap: 1.5rem;
+
+  li {
+    list-style: none;
+
+    a {
+      color: var(--labels-color);
+    }
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--labels-color);
+  }
+}
