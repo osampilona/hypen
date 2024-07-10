@@ -25,7 +25,8 @@ const images = [
 ];
 
 function getRandomImages() {
-  return images.sort(() => 0.5 - Math.random()).slice(0, 5);
+  const numImages = Math.floor(Math.random() * 10) + 1;
+  return images.sort(() => 0.5 - Math.random()).slice(0, numImages);
 }
 
 export const serviceData: ServiceCardType[] = [
