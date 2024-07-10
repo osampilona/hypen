@@ -348,4 +348,340 @@ export const serviceData: ServiceCardType[] = [
       },
     ],
   },
+  {
+    serviceId: "7",
+    serviceName: "Body Scrub",
+    serviceRate: 4.5,
+    workingDays: "Mon/Sun",
+    workingHours: "8:00-14:00",
+    serviceNote: "Pre-booking required",
+    serviceDistance: "2.8 km. away from you",
+    companyId: "6",
+    companyName: "Refresh Spa",
+    companyAddress: "Harmony Street 10",
+    companyAddressDetail: "Unit 2",
+    companyFollowingState: true,
+    images: [
+      {
+        url: img_1,
+        alt: "Image 1",
+      },
+      {
+        url: img_2,
+        alt: "Image 2",
+      },
+      {
+        url: img_3,
+        alt: "Image 3",
+      },
+      {
+        url: img_4,
+        alt: "Image 4",
+      },
+      {
+        url: img_5,
+        alt: "Image 5",
+      },
+      {
+        url: img_6,
+        alt: "Image 6",
+      },
+      {
+        url: img_7,
+        alt: "Image 7",
+      },
+      {
+        url: img_8,
+        alt: "Image 8",
+      },
+      {
+        url: img_9,
+        alt: "Image 9",
+      },
+      {
+        url: img_10,
+        alt: "Image 10",
+      },
+    ],
+  },
+  {
+    serviceId: "8",
+    serviceName: "Pedicure",
+    serviceRate: 4.2,
+    workingDays: "Wed/Sat",
+    workingHours: "10:00-17:00",
+    serviceNote: "Includes foot massage",
+    serviceDistance: "1.1 km. away from you",
+    companyId: "7",
+    companyName: "Sole Serenity",
+    companyAddress: "Footpath Lane 8",
+    companyAddressDetail: "Room 3B",
+    companyFollowingState: false,
+    images: [
+      {
+        url: img_1,
+        alt: "Image 1",
+      },
+      {
+        url: img_2,
+        alt: "Image 2",
+      },
+      {
+        url: img_3,
+        alt: "Image 3",
+      },
+      {
+        url: img_4,
+        alt: "Image 4",
+      },
+      {
+        url: img_5,
+        alt: "Image 5",
+      },
+      {
+        url: img_6,
+        alt: "Image 6",
+      },
+      {
+        url: img_7,
+        alt: "Image 7",
+      },
+      {
+        url: img_8,
+        alt: "Image 8",
+      },
+      {
+        url: img_9,
+        alt: "Image 9",
+      },
+      {
+        url: img_10,
+        alt: "Image 10",
+      },
+    ],
+  },
+  {
+    serviceId: "9",
+    serviceName: "Manicure",
+    serviceRate: 4.7,
+    workingDays: "Tue/Fri",
+    workingHours: "11:00-19:00",
+    serviceNote: "Includes nail art",
+    serviceDistance: "0.9 km. away from you",
+    companyId: "8",
+    companyName: "Hand Harmony",
+    companyAddress: "Nail Street 15",
+    companyAddressDetail: "Shop 4",
+    companyFollowingState: true,
+    images: [
+      {
+        url: img_1,
+        alt: "Image 1",
+      },
+      {
+        url: img_2,
+        alt: "Image 2",
+      },
+      {
+        url: img_3,
+        alt: "Image 3",
+      },
+      {
+        url: img_4,
+        alt: "Image 4",
+      },
+      {
+        url: img_5,
+        alt: "Image 5",
+      },
+      {
+        url: img_6,
+        alt: "Image 6",
+      },
+      {
+        url: img_7,
+        alt: "Image 7",
+      },
+      {
+        url: img_8,
+        alt: "Image 8",
+      },
+      {
+        url: img_9,
+        alt: "Image 9",
+      },
+      {
+        url: img_10,
+        alt: "Image 10",
+      },
+    ],
+  },
+  {
+    serviceId: "10",
+    serviceName: "Hair Coloring",
+    serviceRate: 4.8,
+    workingDays: "Thu/Sat",
+    workingHours: "9:00-18:00",
+    serviceNote: "Consultation required before service",
+    serviceDistance: "2.0 km. away from you",
+    companyId: "9",
+    companyName: "Color Craze Studio",
+    companyAddress: "Hue Avenue 21",
+    companyAddressDetail: "Building A",
+    companyFollowingState: false,
+    images: [
+      {
+        url: img_1,
+        alt: "Image 1",
+      },
+      {
+        url: img_2,
+        alt: "Image 2",
+      },
+      {
+        url: img_3,
+        alt: "Image 3",
+      },
+      {
+        url: img_4,
+        alt: "Image 4",
+      },
+      {
+        url: img_5,
+        alt: "Image 5",
+      },
+      {
+        url: img_6,
+        alt: "Image 6",
+      },
+      {
+        url: img_7,
+        alt: "Image 7",
+      },
+      {
+        url: img_8,
+        alt: "Image 8",
+      },
+      {
+        url: img_9,
+        alt: "Image 9",
+      },
+      {
+        url: img_10,
+        alt: "Image 10",
+      },
+    ],
+  },
+  {
+    serviceId: "11",
+    serviceName: "Acupuncture",
+    serviceRate: 4.3,
+    workingDays: "Mon/Thu",
+    workingHours: "9:00-17:00",
+    serviceNote: "Initial consultation required",
+    serviceDistance: "3.5 km. away from you",
+    companyId: "10",
+    companyName: "Wellness Acupuncture Clinic",
+    companyAddress: "Healing Road 5",
+    companyAddressDetail: "Suite 201",
+    companyFollowingState: true,
+    images: [
+      {
+        url: img_1,
+        alt: "Image 1",
+      },
+      {
+        url: img_2,
+        alt: "Image 2",
+      },
+      {
+        url: img_3,
+        alt: "Image 3",
+      },
+      {
+        url: img_4,
+        alt: "Image 4",
+      },
+      {
+        url: img_5,
+        alt: "Image 5",
+      },
+      {
+        url: img_6,
+        alt: "Image 6",
+      },
+      {
+        url: img_7,
+        alt: "Image 7",
+      },
+      {
+        url: img_8,
+        alt: "Image 8",
+      },
+      {
+        url: img_9,
+        alt: "Image 9",
+      },
+      {
+        url: img_10,
+        alt: "Image 10",
+      },
+    ],
+  },
+  {
+    serviceId: "12",
+    serviceName: "Aromatherapy",
+    serviceRate: 4.6,
+    workingDays: "Wed/Fri",
+    workingHours: "10:00-16:00",
+    serviceNote: "Essential oils provided",
+    serviceDistance: "2.9 km. away from you",
+    companyId: "11",
+    companyName: "Scented Bliss",
+    companyAddress: "Aroma Lane 9",
+    companyAddressDetail: "Suite 103",
+    companyFollowingState: false,
+    images: [
+      {
+        url: img_1,
+        alt: "Image 1",
+      },
+      {
+        url: img_2,
+        alt: "Image 2",
+      },
+      {
+        url: img_3,
+        alt: "Image 3",
+      },
+      {
+        url: img_4,
+        alt: "Image 4",
+      },
+      {
+        url: img_5,
+        alt: "Image 5",
+      },
+      {
+        url: img_6,
+        alt: "Image 6",
+      },
+      {
+        url: img_7,
+        alt: "Image 7",
+      },
+      {
+        url: img_8,
+        alt: "Image 8",
+      },
+      {
+        url: img_9,
+        alt: "Image 9",
+      },
+      {
+        url: img_10,
+        alt: "Image 10",
+      },
+    ],
+  },
 ];
