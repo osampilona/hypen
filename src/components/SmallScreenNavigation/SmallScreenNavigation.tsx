@@ -5,14 +5,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/lib/store";
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { toggleTheme } from "@/lib/features/theme/theme";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import ItemsList from "@/components/ItemsList/ItemsList";
 
 const SmallScreenNavigation = () => {
   const currentTheme = useSelector(
     (state: RootState) => state.theme.currentTheme,
   );
   const dispatch = useDispatch();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const menuItems = [
+    { text: "Profile", href: "/login" },
+    { text: "Settings", href: "/settings" },
+    { text: "Become a Partner", href: "/become-a-partner" },
+  ];
 
   useEffect(() => {
     if (currentTheme === "dark") {
@@ -21,6 +28,18 @@ const SmallScreenNavigation = () => {
       document.body.classList.remove("dark-theme");
     }
   }, [currentTheme]);
+
+  const handleMenuToggle = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleOverlayClick = () => {
+    setMenuOpen(false);
+  };
+
+  const handleItemClick = () => {
+    setMenuOpen(false);
+  };
 
   return (
     <>
@@ -45,8 +64,24 @@ const SmallScreenNavigation = () => {
                 <MdOutlineDarkMode />
               )}
             </button>
-            <RxHamburgerMenu size={24} className={styles.icon} />
+            <button
+              onClick={handleMenuToggle}
+              className={`${styles.hamburger} ${menuOpen ? styles.open : ""}`}
+              aria-label="Toggle menu"
+            >
+              <div />
+              <div />
+              <div />
+            </button>
           </div>
+        </div>
+      </div>
+      <div
+        className={`${styles.overlay} ${menuOpen ? styles.open : ""}`}
+        onClick={handleOverlayClick}
+      >
+        <div onClick={(e) => e.stopPropagation()}>
+          <ItemsList items={menuItems} onItemClicked={handleItemClick} />
         </div>
       </div>
     </>
