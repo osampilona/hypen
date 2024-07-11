@@ -40,6 +40,7 @@ const SmallScreenNavigation = () => {
 
   const handleOverlayClick = () => {
     setMenuOpen(false);
+    setFilterCardVisible(false);
   };
 
   const handleItemClick = () => {
@@ -48,6 +49,16 @@ const SmallScreenNavigation = () => {
 
   const toggleFilterCard = () => {
     setFilterCardVisible(!filterCardVisible);
+  };
+
+  const renderOverlayContent = () => {
+    if (menuOpen) {
+      return <ItemsList items={menuItems} onItemClicked={handleItemClick} />;
+    }
+    if (filterCardVisible) {
+      return <FilterCard />;
+    }
+    return null;
   };
 
   return (
@@ -83,14 +94,11 @@ const SmallScreenNavigation = () => {
         </div>
       </div>
       <Overlay
-        show={menuOpen}
+        show={menuOpen || filterCardVisible}
         onClose={handleOverlayClick}
         className={styles.overlay}
       >
-        <ItemsList items={menuItems} onItemClicked={handleItemClick} />
-      </Overlay>
-      <Overlay show={filterCardVisible} onClose={toggleFilterCard}>
-        <FilterCard />
+        {renderOverlayContent()}
       </Overlay>
     </>
   );
