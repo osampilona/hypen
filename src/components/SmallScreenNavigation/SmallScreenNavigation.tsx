@@ -8,6 +8,8 @@ import { toggleTheme } from "@/lib/features/theme/theme";
 import { useState, useEffect } from "react";
 import ItemsList from "@/components/ItemsList/ItemsList";
 import Overlay from "@/components/Overlay/Overlay";
+import { TbListSearch } from "react-icons/tb";
+import FilterCard from "../FilterCard/FilterCard";
 
 const SmallScreenNavigation = () => {
   const currentTheme = useSelector(
@@ -15,6 +17,7 @@ const SmallScreenNavigation = () => {
   );
   const dispatch = useDispatch();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [filterCardVisible, setFilterCardVisible] = useState(false);
 
   const menuItems = [
     { text: "Profile", href: "/login" },
@@ -42,6 +45,10 @@ const SmallScreenNavigation = () => {
     setMenuOpen(false);
   };
 
+  const toggleFilterCard = () => {
+    setFilterCardVisible(!filterCardVisible);
+  };
+
   return (
     <>
       <div className={styles.container} data-testid="smallScreenSelector">
@@ -65,6 +72,11 @@ const SmallScreenNavigation = () => {
                 <MdOutlineDarkMode />
               )}
             </button>
+            <TbListSearch
+              size={24}
+              onClick={toggleFilterCard}
+              className={styles.icon}
+            />
             <button
               onClick={handleMenuToggle}
               className={`${styles.hamburger} ${menuOpen ? styles.open : ""}`}
@@ -83,6 +95,9 @@ const SmallScreenNavigation = () => {
         className={styles.overlay}
       >
         <ItemsList items={menuItems} onItemClicked={handleItemClick} />
+      </Overlay>
+      <Overlay show={filterCardVisible} onClose={toggleFilterCard}>
+        <FilterCard />
       </Overlay>
     </>
   );
