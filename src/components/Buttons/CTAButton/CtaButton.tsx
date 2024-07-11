@@ -29,7 +29,7 @@ const CtaButton = ({
   ...props
 }: ICtaButtonProps) => {
   const modeClass = isPrimary ? "button--primary" : "button--secondary";
-  const outlinedClass = outlined ? "button--outlined" : "";
+  const simpleClass = outlined ? "button--simple" : "";
   const disabledClass = disabled ? "button--disabled" : "";
 
   return (
@@ -39,7 +39,7 @@ const CtaButton = ({
         styles.button,
         styles[`button--${size}`],
         styles[modeClass],
-        styles[outlinedClass],
+        styles[simpleClass],
         styles[disabledClass],
         className,
       ]
