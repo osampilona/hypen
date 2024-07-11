@@ -7,6 +7,7 @@ import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { toggleTheme } from "@/lib/features/theme/theme";
 import { useState, useEffect } from "react";
 import ItemsList from "@/components/ItemsList/ItemsList";
+import Overlay from "@/components/Overlay/Overlay";
 
 const SmallScreenNavigation = () => {
   const currentTheme = useSelector(
@@ -76,14 +77,13 @@ const SmallScreenNavigation = () => {
           </div>
         </div>
       </div>
-      <div
-        className={`${styles.overlay} ${menuOpen ? styles.open : ""}`}
-        onClick={handleOverlayClick}
+      <Overlay
+        show={menuOpen}
+        onClose={handleOverlayClick}
+        className={styles.overlay}
       >
-        <div onClick={(e) => e.stopPropagation()}>
-          <ItemsList items={menuItems} onItemClicked={handleItemClick} />
-        </div>
-      </div>
+        <ItemsList items={menuItems} onItemClicked={handleItemClick} />
+      </Overlay>
     </>
   );
 };
