@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
 import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
 import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
+import CtaButton from "../Buttons/CTAButton/CtaButton";
 
 interface FilterCardProps {
   // isVisible: boolean;
@@ -30,27 +31,30 @@ const FilterCard: React.FC<FilterCardProps> = () => {
       ) : (
         <>
           <h3>Filters</h3>
-          <p>
-            {startSlot ? (
-              endSlot ? (
-                <>
-                  From {startSlot} to {endSlot}
-                </>
-              ) : (
-                <>From {startSlot} to</>
-              )
-            ) : (
-              <>Select a time range</>
-            )}
-          </p>
           <div className={filterCard.sectionContainer}>
+            <hr />
             <CustomCalendar />
+            <hr />
+            <p>
+              {startSlot ? (
+                endSlot ? (
+                  <>
+                    From {startSlot} to {endSlot}
+                  </>
+                ) : (
+                  <>From {startSlot} to</>
+                )
+              ) : (
+                <>Select a time range</>
+              )}
+            </p>
             <TimeSlotSelector
               startSlot={startSlot}
               endSlot={endSlot}
               setStartSlot={setStartSlot}
               setEndSlot={setEndSlot}
             />
+            <hr />
           </div>
         </>
       )}
