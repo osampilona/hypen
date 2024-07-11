@@ -10,6 +10,7 @@ import ItemsList from "@/components/ItemsList/ItemsList";
 import Overlay from "@/components/Overlay/Overlay";
 import { TbListSearch } from "react-icons/tb";
 import FilterCard from "../FilterCard/FilterCard";
+import HamburgerMenuButton from "@/components/Buttons/HamburgerMenuButton/HamburgerMenuButton";
 
 const SmallScreenNavigation = () => {
   const currentTheme = useSelector(
@@ -77,15 +78,7 @@ const SmallScreenNavigation = () => {
               onClick={toggleFilterCard}
               className={styles.icon}
             />
-            <button
-              onClick={handleMenuToggle}
-              className={`${styles.hamburger} ${menuOpen ? styles.open : ""}`}
-              aria-label="Toggle menu"
-            >
-              <div />
-              <div />
-              <div />
-            </button>
+            <HamburgerMenuButton isOpen={menuOpen} onClick={handleMenuToggle} />
           </div>
         </div>
       </div>
