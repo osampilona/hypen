@@ -5,9 +5,15 @@ interface OverlayProps {
   show: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  className?: string;
 }
 
-const Overlay: React.FC<OverlayProps> = ({ show, onClose, children }) => {
+const Overlay: React.FC<OverlayProps> = ({
+  show,
+  onClose,
+  children,
+  className,
+}) => {
   const [isVisible, setIsVisible] = useState(show);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -33,7 +39,7 @@ const Overlay: React.FC<OverlayProps> = ({ show, onClose, children }) => {
   return (
     (isVisible || isAnimating) && (
       <div
-        className={`${overlay.container} ${
+        className={`${overlay.container} ${className} ${
           isAnimating ? overlay.slideIn : overlay.slideOut
         } ${isVisible ? "visible" : ""}`}
         data-testid="overlay-container"

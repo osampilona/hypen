@@ -7,6 +7,10 @@ import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { toggleTheme } from "@/lib/features/theme/theme";
 import { useState, useEffect } from "react";
 import ItemsList from "@/components/ItemsList/ItemsList";
+import Overlay from "@/components/Overlay/Overlay";
+import { TbListSearch } from "react-icons/tb";
+import FilterCard from "@/components/FilterCard/FilterCard";
+import HamburgerMenuButton from "@/components/Buttons/HamburgerMenuButton/HamburgerMenuButton";
 
 const SmallScreenNavigation = () => {
   const currentTheme = useSelector(
@@ -14,6 +18,7 @@ const SmallScreenNavigation = () => {
   );
   const dispatch = useDispatch();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [filterCardVisible, setFilterCardVisible] = useState(false);
 
   const menuItems = [
     { text: "Profile", href: "/login" },
@@ -35,10 +40,25 @@ const SmallScreenNavigation = () => {
 
   const handleOverlayClick = () => {
     setMenuOpen(false);
+    setFilterCardVisible(false);
   };
 
   const handleItemClick = () => {
     setMenuOpen(false);
+  };
+
+  const toggleFilterCard = () => {
+    setFilterCardVisible(!filterCardVisible);
+  };
+
+  const renderOverlayContent = () => {
+    if (menuOpen) {
+      return <ItemsList items={menuItems} onItemClicked={handleItemClick} />;
+    }
+    if (filterCardVisible) {
+      return <FilterCard />;
+    }
+    return null;
   };
 
   return (
@@ -64,26 +84,22 @@ const SmallScreenNavigation = () => {
                 <MdOutlineDarkMode />
               )}
             </button>
-            <button
-              onClick={handleMenuToggle}
-              className={`${styles.hamburger} ${menuOpen ? styles.open : ""}`}
-              aria-label="Toggle menu"
-            >
-              <div />
-              <div />
-              <div />
-            </button>
+            <TbListSearch
+              size={24}
+              onClick={toggleFilterCard}
+              className={styles.icon}
+            />
+            <HamburgerMenuButton isOpen={menuOpen} onClick={handleMenuToggle} />
           </div>
         </div>
       </div>
-      <div
-        className={`${styles.overlay} ${menuOpen ? styles.open : ""}`}
-        onClick={handleOverlayClick}
+      <Overlay
+        show={menuOpen || filterCardVisible}
+        onClose={handleOverlayClick}
+        className={styles.overlay}
       >
-        <div onClick={(e) => e.stopPropagation()}>
-          <ItemsList items={menuItems} onItemClicked={handleItemClick} />
-        </div>
-      </div>
+        {renderOverlayContent()}
+      </Overlay>
     </>
   );
 };

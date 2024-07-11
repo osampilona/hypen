@@ -16,6 +16,24 @@
   }
 }
 
+@keyframes slideInVertical {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutVertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
 .container {
   position: fixed;
   top: 0;
@@ -25,31 +43,56 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 5rem;
   z-index: 99;
   overflow: hidden;
+  margin-top: 4rem;
 
   &.slideIn {
     background: rgba(0, 0, 0, 0.5);
     .content {
-      animation: slideIn 0.5s forwards;
+      animation: slideInVertical 0.5s forwards;
     }
   }
 
   &.slideOut {
     .content {
-      animation: slideOut 0.5s forwards;
+      animation: slideOutVertical 0.5s forwards;
     }
   }
 
   .content {
     background-color: var(--items-bg-color);
     padding: 1rem 1.5rem;
-    border-radius: 0;
     box-shadow: var(--box-shadow);
-    width: 33%;
+    width: 100%;
     min-width: fit-content;
-    height: 100vh;
+    height: auto;
     overflow-y: auto;
+  }
+}
+
+@include respond-to($breakpoint-lg, min) {
+  .container {
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 5rem;
+    margin-top: 0;
+
+    &.slideIn {
+      .content {
+        animation: slideIn 0.5s forwards; // Horizontal animation for large screens
+      }
+    }
+
+    &.slideOut {
+      .content {
+        animation: slideOut 0.5s forwards; // Horizontal animation for large screens
+      }
+    }
+
+    .content {
+      width: 33%;
+      height: 100vh;
+    }
   }
 }

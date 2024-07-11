@@ -8,8 +8,8 @@ import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { toggleTheme } from "@/lib/features/theme/theme";
 import { TbListSearch } from "react-icons/tb";
 import FilterCard from "@/components/FilterCard/FilterCard";
-import { SetStateAction, useEffect, useState } from "react";
-import Overlay from "../Overlay/Overlay";
+import { useEffect, useState } from "react";
+import Overlay from "@/components/Overlay/Overlay";
 
 const BigScreenNavigation = () => {
   const currentTheme = useSelector(
