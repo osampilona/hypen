@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import ItemsList from "@/components/ItemsList/ItemsList";
 import Overlay from "@/components/Overlay/Overlay";
 import { TbListSearch } from "react-icons/tb";
-import FilterCard from "../FilterCard/FilterCard";
+import FilterCard from "@/components/FilterCard/FilterCard";
 import HamburgerMenuButton from "@/components/Buttons/HamburgerMenuButton/HamburgerMenuButton";
 
 const SmallScreenNavigation = () => {
