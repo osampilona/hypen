@@ -20,21 +20,23 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
   buttonSize,
 }) => {
   return (
-    <ul className={categoriesList.container} data-testid="categoriesList">
+    <div className={categoriesList.container} data-testid="categoriesList">
       <h4>{categoryName}</h4>
-      <div className={categoriesList.list}>
-        {categoriesItems.map((category, index) => (
-          <li key={index} className={categoriesList.item}>
-            <CtaButton
-              label={getCategoryLabelForCategory(category)}
-              onClick={getCategoryHandlerForCategory(category)}
-              isPrimary={false}
-              size={buttonSize}
-            />
-          </li>
-        ))}
+      <div className={categoriesList["list-container"]}>
+        <ul className={categoriesList.list}>
+          {categoriesItems.map((category, index) => (
+            <li key={index} className={categoriesList.item}>
+              <CtaButton
+                label={getCategoryLabelForCategory(category)}
+                onClick={getCategoryHandlerForCategory(category)}
+                isPrimary={false}
+                size={buttonSize}
+              />
+            </li>
+          ))}
+        </ul>
       </div>
-    </ul>
+    </div>
   );
 };
 
