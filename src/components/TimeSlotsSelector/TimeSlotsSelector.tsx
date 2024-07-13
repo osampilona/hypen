@@ -2,22 +2,16 @@ import styles from "@/components/TimeSlotsSelector/timeSlotsSelector.module.scss
 import React, { useState, useEffect } from "react";
 import CtaButton from "../Buttons/CTAButton/CtaButton";
 import { timeSlots } from "@/constants/timeSlots";
-
-interface TimeSlotsSelectorProps {
-  startSlot: string | null;
-  endSlot: string | null;
-  setStartSlot: (slot: string | null) => void;
-  setEndSlot: (slot: string | null) => void;
-}
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/lib/store";
+import { toggleSlot } from "@/lib/features/filters/filters";
 
 type TimeSlotPeriod = keyof typeof timeSlots;
 
-const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = ({
-  startSlot,
-  endSlot,
-  setStartSlot,
-  setEndSlot,
-}) => {
+const TimeSlotSelector: React.FC = () => {
+  const dispatch = useDispatch();
+  const startSlot = useSelector((state: RootState) => state.filters.startSlot);
+  const endSlot = useSelector((state: RootState) => state.filters.endSlot);
   const [selectedSlots, setSelectedSlots] = useState<string[]>([]);
 
   useEffect(() => {
@@ -29,28 +23,6 @@ const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = ({
     }
   }, [startSlot, endSlot]);
 
-  const toggleSlot = (slot: string) => {
-    if (!startSlot) {
-      // Select start time
-      setStartSlot(slot);
-      setSelectedSlots([slot]);
-    } else if (!endSlot) {
-      // Select end time
-      // Determine which slot is earlier and which is later
-      if (isEarlier(slot, startSlot)) {
-        setEndSlot(startSlot);
-        setStartSlot(slot);
-      } else {
-        setEndSlot(slot);
-      }
-    } else {
-      // Reset selection
-      setStartSlot(slot);
-      setEndSlot(null);
-      setSelectedSlots([slot]);
-    }
-  };
-
   const getSlotsInRange = (start: string, end: string): string[] => {
     const allSlots = Object.values(timeSlots).flat();
     const startIndex = allSlots.indexOf(start);
@@ -60,11 +32,6 @@ const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = ({
       Math.min(startIndex, endIndex),
       Math.max(startIndex, endIndex) + 1,
     );
-  };
-
-  const isEarlier = (a: string, b: string): boolean => {
-    const allSlots = Object.values(timeSlots).flat();
-    return allSlots.indexOf(a) < allSlots.indexOf(b);
   };
 
   return (
@@ -83,7 +50,7 @@ const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = ({
                       : styles.inRange
                     : ""
                 }`}
-                onClick={() => toggleSlot(slot)}
+                onClick={() => dispatch(toggleSlot(slot))}
                 label={slot}
                 outlined={true}
                 size={"small"}

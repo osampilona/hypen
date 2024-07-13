@@ -13,8 +13,6 @@ import { RootState } from "@/lib/store";
 import {
   toggleCategory,
   toggleSubCategory,
-  setStartSlot,
-  setEndSlot,
   setSelectedDate,
 } from "@/lib/features/filters/filters";
 
@@ -49,25 +47,9 @@ const FilterCard: React.FC = () => {
 
   const getCategoryLabelForCategory = (category: string) => `${category}`;
 
-  const handleStartSlotChange = (slot: string | null) => {
-    dispatch(setStartSlot(slot));
-  };
-
-  const handleEndSlotChange = (slot: string | null) => {
-    dispatch(setEndSlot(slot));
-  };
-
   const handleDateChange = (date: Date | null) => {
     dispatch(setSelectedDate(date));
   };
-
-  useEffect(() => {
-    console.log("Selected categories:", selectedCategories);
-  }, [selectedCategories]);
-
-  useEffect(() => {
-    console.log("Selected subcategories:", selectedSubCategories);
-  }, [selectedSubCategories]);
 
   return (
     <div className={filterCard.container} data-testid="filterCard">
@@ -115,12 +97,7 @@ const FilterCard: React.FC = () => {
                 <>Select a time range</>
               )}
             </p>
-            <TimeSlotSelector
-              startSlot={startSlot}
-              endSlot={endSlot}
-              setStartSlot={handleStartSlotChange}
-              setEndSlot={handleEndSlotChange}
-            />
+            <TimeSlotSelector />
             <hr />
           </div>
         </>

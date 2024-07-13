@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import categoriesList from "@/components/CategoriesList/categoriesList.module.scss";
 import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
 import { Categories, SubCategories } from "@/types/services/categories";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleCategory } from "@/lib/features/filters/filters";
+import { RootState } from "@/lib/store";
 
 interface CategoriesListProps {
   categoryName: string;
@@ -20,9 +23,14 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
   getCategoryLabelForCategory,
   buttonSize,
 }) => {
-  const handleButtonClick = (category: string) => {
-    onCategoriesItemClicked(category);
-  };
+  const dispatch = useDispatch();
+
+  const selectedCategories = useSelector(
+    (state: RootState) => state.filters.selectedCategories,
+  );
+  const selectedSubCategories = useSelector(
+    (state: RootState) => state.filters.selectedSubCategories,
+  );
 
   useEffect(() => {}, [selectedItems]);
 
@@ -37,9 +45,9 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
             <li key={index} className={categoriesList.item}>
               <CtaButton
                 label={getCategoryLabelForCategory(category)}
-                onClick={() => handleButtonClick(category)}
+                onClick={() => dispatch(toggleCategory(category))}
                 size={buttonSize}
-                className={`button--secondary ${selectedItems.includes(category) && categoriesList.active}`}
+                className={`${selectedCategories.includes(category) ? categoriesList.active : "button--secondary"}`}
                 isPrimary={false}
               />
             </li>

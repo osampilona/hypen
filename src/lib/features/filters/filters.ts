@@ -44,6 +44,24 @@ const filtersSlice = createSlice({
     setEndSlot: (state, action: PayloadAction<string | null>) => {
       state.endSlot = action.payload;
     },
+    toggleSlot: (state, action: PayloadAction<string>) => {
+      const slot = action.payload;
+      if (!state.startSlot) {
+        state.startSlot = slot;
+      } else if (!state.endSlot) {
+        if (state.startSlot === slot) {
+          state.startSlot = null;
+        } else if (state.startSlot < slot) {
+          state.endSlot = slot;
+        } else {
+          state.endSlot = state.startSlot;
+          state.startSlot = slot;
+        }
+      } else {
+        state.startSlot = slot;
+        state.endSlot = null;
+      }
+    },
     setSelectedDate: (state, action: PayloadAction<Date | null>) => {
       state.selectedDate = action.payload;
     },
@@ -55,6 +73,7 @@ export const {
   toggleSubCategory,
   setStartSlot,
   setEndSlot,
+  toggleSlot,
   setSelectedDate,
 } = filtersSlice.actions;
 export default filtersSlice.reducer;
