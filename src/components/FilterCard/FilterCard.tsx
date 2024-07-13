@@ -15,6 +15,7 @@ import {
   toggleSubCategory,
   setStartSlot,
   setEndSlot,
+  setSelectedDate,
 } from "@/lib/features/filters/filters";
 
 const FilterCard: React.FC = () => {
@@ -29,6 +30,9 @@ const FilterCard: React.FC = () => {
   );
   const startSlot = useSelector((state: RootState) => state.filters.startSlot);
   const endSlot = useSelector((state: RootState) => state.filters.endSlot);
+  const selectedDate = useSelector(
+    (state: RootState) => state.filters.selectedDate,
+  );
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1000);
@@ -53,12 +57,16 @@ const FilterCard: React.FC = () => {
     dispatch(setEndSlot(slot));
   };
 
+  const handleDateChange = (date: Date | null) => {
+    dispatch(setSelectedDate(date));
+  };
+
   useEffect(() => {
-    console.log("Selected categories:", selectedCategories); // Log selected categories
+    console.log("Selected categories:", selectedCategories);
   }, [selectedCategories]);
 
   useEffect(() => {
-    console.log("Selected subcategories:", selectedSubCategories); // Log selected subcategories
+    console.log("Selected subcategories:", selectedSubCategories);
   }, [selectedSubCategories]);
 
   return (
@@ -89,7 +97,10 @@ const FilterCard: React.FC = () => {
               buttonSize="small"
             />
             <hr />
-            <CustomCalendar />
+            <CustomCalendar
+              selectedDate={selectedDate}
+              onDateChange={handleDateChange}
+            />
             <hr />
             <p>
               {startSlot ? (

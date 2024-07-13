@@ -1,21 +1,24 @@
 import customCalendar from "@/components/CustomCalendar/customCalendar.module.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker, { registerLocale } from "react-datepicker";
-import { useState } from "react";
 import { enGB } from "date-fns/locale";
 
 registerLocale("en-GB", enGB);
 
-interface CustomCalendarProps {}
+interface CustomCalendarProps {
+  selectedDate: Date | null;
+  onDateChange: (date: Date | null) => void;
+}
 
-const CustomCalendar: React.FC<CustomCalendarProps> = ({}) => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-
+const CustomCalendar: React.FC<CustomCalendarProps> = ({
+  selectedDate,
+  onDateChange,
+}) => {
   return (
     <div className={customCalendar.container} data-testid="custom-calendar">
       <DatePicker
         selected={selectedDate}
-        onChange={(date: Date | null) => setSelectedDate(date)}
+        onChange={onDateChange}
         className={customCalendar.customDatePicker}
         calendarClassName={customCalendar.customDatePicker}
         locale={"en-GB"}

@@ -5,6 +5,7 @@ interface FiltersState {
   selectedSubCategories: string[];
   startSlot: string | null;
   endSlot: string | null;
+  selectedDate: Date | null;
 }
 
 const initialState: FiltersState = {
@@ -12,6 +13,7 @@ const initialState: FiltersState = {
   selectedSubCategories: [],
   startSlot: null,
   endSlot: null,
+  selectedDate: null,
 };
 
 const filtersSlice = createSlice({
@@ -42,9 +44,17 @@ const filtersSlice = createSlice({
     setEndSlot: (state, action: PayloadAction<string | null>) => {
       state.endSlot = action.payload;
     },
+    setSelectedDate: (state, action: PayloadAction<Date | null>) => {
+      state.selectedDate = action.payload;
+    },
   },
 });
 
-export const { toggleCategory, toggleSubCategory, setStartSlot, setEndSlot } =
-  filtersSlice.actions;
+export const {
+  toggleCategory,
+  toggleSubCategory,
+  setStartSlot,
+  setEndSlot,
+  setSelectedDate,
+} = filtersSlice.actions;
 export default filtersSlice.reducer;
