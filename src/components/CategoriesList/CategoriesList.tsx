@@ -38,8 +38,6 @@ const CategoriesList: React.FC<CategoriesListProps> = ({ categoryName }) => {
     }
   };
 
-  const getCategoryLabelForCategory = (category: string) => `${category}`;
-
   return (
     <div className={categoriesList.container} data-testid="categoriesList">
       <h4>{categoryName}</h4>
@@ -48,7 +46,7 @@ const CategoriesList: React.FC<CategoriesListProps> = ({ categoryName }) => {
           {categoriesItems.map((category, index) => (
             <li key={index} className={categoriesList.item}>
               <CtaButton
-                label={getCategoryLabelForCategory(category)}
+                label={category}
                 onClick={() => handleCategoryClick(category)}
                 size={buttonSize}
                 className={`${selectedItems.includes(category) ? categoriesList.active : "button--secondary"}`}

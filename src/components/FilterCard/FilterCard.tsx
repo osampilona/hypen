@@ -16,9 +16,7 @@ const FilterCard: React.FC = () => {
   return (
     <div className={filterCard.container} data-testid="filterCard">
       {loading ? (
-        <SkeletonCardList
-          skeletonArray={Array.from({ length: 1 }, (_, index) => index + 1)}
-        />
+        <SkeletonCardList skeletonArray={[1]} />
       ) : (
         <>
           <h3>Filters</h3>
