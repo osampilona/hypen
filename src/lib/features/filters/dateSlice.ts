@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface DateState {
-  selectedDate: Date | null;
+  selectedDate: string | null; // Store date as ISO string
 }
 
 const initialState: DateState = {
@@ -12,7 +12,7 @@ const dateSlice = createSlice({
   name: "date",
   initialState,
   reducers: {
-    setSelectedDate: (state, action: PayloadAction<Date | null>) => {
+    setSelectedDate: (state, action: PayloadAction<string | null>) => {
       state.selectedDate = action.payload;
     },
   },

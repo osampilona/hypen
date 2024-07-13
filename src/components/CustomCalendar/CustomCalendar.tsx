@@ -8,25 +8,20 @@ import { useDispatch, useSelector } from "react-redux";
 
 registerLocale("en-GB", enGB);
 
-interface CustomCalendarProps {
-  // Add any additional props here if needed
-}
-
-const CustomCalendar: React.FC<CustomCalendarProps> = () => {
+const CustomCalendar: React.FC = () => {
   const dispatch = useDispatch();
   const selectedDate = useSelector(
     (state: RootState) => state.date.selectedDate,
   );
-
-  const handleDateChange = (date: Date | null) => {
-    dispatch(setSelectedDate(date));
-  };
+  const parsedDate = selectedDate ? new Date(selectedDate) : null;
 
   return (
     <div className={customCalendar.container} data-testid="custom-calendar">
       <DatePicker
-        selected={selectedDate}
-        onChange={handleDateChange}
+        selected={parsedDate}
+        onChange={(date) =>
+          dispatch(setSelectedDate(date ? date.toISOString() : null))
+        }
         className={customCalendar.customDatePicker}
         calendarClassName={customCalendar.customDatePicker}
         locale={"en-GB"}
