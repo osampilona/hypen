@@ -1,10 +1,6 @@
-import filterCard from "@/components/FilterCard/filterCard.module.scss";
 import { useEffect, useState } from "react";
-import { RootState } from "@/lib/store";
-import {
-  toggleCategory,
-  toggleSubCategory,
-} from "@/lib/features/filters/filters";
+import { useDispatch, useSelector } from "react-redux";
+import filterCard from "@/components/FilterCard/filterCard.module.scss";
 import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
 import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
 import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
@@ -13,31 +9,29 @@ import {
   CATEGORIES_LIST,
   SUB_CATEGORIES_LIST,
 } from "@/types/services/categories";
-import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/lib/store";
+import {
+  toggleCategory,
+  toggleSubCategory,
+  setStartSlot,
+  setEndSlot,
+} from "@/lib/features/filters/filters";
 
-interface FilterCardProps {
-  // isVisible: boolean;
-  // setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const FilterCard: React.FC<FilterCardProps> = () => {
+const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const [startSlot, setStartSlot] = useState<string | null>(null);
-  const [endSlot, setEndSlot] = useState<string | null>(null);
   const dispatch = useDispatch();
+
   const selectedCategories = useSelector(
     (state: RootState) => state.filters.selectedCategories,
   );
   const selectedSubCategories = useSelector(
     (state: RootState) => state.filters.selectedSubCategories,
   );
-  const skeletonArray = Array.from({ length: 1 }, (_, index) => index + 1);
+  const startSlot = useSelector((state: RootState) => state.filters.startSlot);
+  const endSlot = useSelector((state: RootState) => state.filters.endSlot);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
+    const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -51,6 +45,14 @@ const FilterCard: React.FC<FilterCardProps> = () => {
 
   const getCategoryLabelForCategory = (category: string) => `${category}`;
 
+  const handleStartSlotChange = (slot: string | null) => {
+    dispatch(setStartSlot(slot));
+  };
+
+  const handleEndSlotChange = (slot: string | null) => {
+    dispatch(setEndSlot(slot));
+  };
+
   useEffect(() => {
     console.log("Selected categories:", selectedCategories); // Log selected categories
   }, [selectedCategories]);
@@ -62,7 +64,9 @@ const FilterCard: React.FC<FilterCardProps> = () => {
   return (
     <div className={filterCard.container} data-testid="filterCard">
       {loading ? (
-        <SkeletonCardList skeletonArray={skeletonArray} />
+        <SkeletonCardList
+          skeletonArray={Array.from({ length: 1 }, (_, index) => index + 1)}
+        />
       ) : (
         <>
           <h3>Filters</h3>
@@ -70,19 +74,19 @@ const FilterCard: React.FC<FilterCardProps> = () => {
             <CategoriesList
               categoryName="Categories"
               categoriesItems={CATEGORIES_LIST}
-              selectedItems={selectedCategories} // Pass selected categories
-              onCategoriesItemClicked={handleCategoryClick} // Handle category clicks
+              selectedItems={selectedCategories}
+              onCategoriesItemClicked={handleCategoryClick}
               getCategoryLabelForCategory={getCategoryLabelForCategory}
-              buttonSize="large" // Define the button size here
+              buttonSize="large"
             />
             <hr />
             <CategoriesList
               categoryName="Sub categories"
               categoriesItems={SUB_CATEGORIES_LIST}
-              selectedItems={selectedSubCategories} // Pass selected subcategories
-              onCategoriesItemClicked={handleSubCategoryClick} // Handle subcategory clicks
+              selectedItems={selectedSubCategories}
+              onCategoriesItemClicked={handleSubCategoryClick}
               getCategoryLabelForCategory={getCategoryLabelForCategory}
-              buttonSize="small" // Define the button size here
+              buttonSize="small"
             />
             <hr />
             <CustomCalendar />
@@ -103,8 +107,8 @@ const FilterCard: React.FC<FilterCardProps> = () => {
             <TimeSlotSelector
               startSlot={startSlot}
               endSlot={endSlot}
-              setStartSlot={setStartSlot}
-              setEndSlot={setEndSlot}
+              setStartSlot={handleStartSlotChange}
+              setEndSlot={handleEndSlotChange}
             />
             <hr />
           </div>
