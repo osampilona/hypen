@@ -1,40 +1,62 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import categoriesList from "@/components/CategoriesList/categoriesList.module.scss";
 import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
+import {
+  toggleCategory,
+  toggleSubCategory,
+} from "@/lib/features/filters/categoriesSlice";
+import { RootState } from "@/lib/store";
+import {
+  CATEGORIES_LIST,
+  SUB_CATEGORIES_LIST,
+} from "@/types/services/categories";
 
 interface CategoriesListProps {
-  categoryName: string;
-  categoriesItems: string[];
-  onCategoriesItemClicked?: (category: string) => void;
-  getCategoryLabelForCategory: (category: string) => string;
-  getCategoryHandlerForCategory: (category: string) => () => void;
-  buttonSize: "micro" | "small" | "medium" | "large";
+  categoryName: "Categories" | "Sub categories";
 }
 
-const CategoriesList: React.FC<CategoriesListProps> = ({
-  categoryName,
-  categoriesItems,
-  onCategoriesItemClicked,
-  getCategoryLabelForCategory,
-  getCategoryHandlerForCategory,
-  buttonSize,
-}) => {
+const CategoriesList: React.FC<CategoriesListProps> = ({ categoryName }) => {
+  const dispatch = useDispatch();
+
+  const categoriesItems =
+    categoryName === "Categories" ? CATEGORIES_LIST : SUB_CATEGORIES_LIST;
+
+  const selectedItems = useSelector((state: RootState) =>
+    categoryName === "Categories"
+      ? state.categories.selectedCategories
+      : state.categories.selectedSubCategories,
+  );
+
+  const buttonSize = categoryName === "Categories" ? "large" : "small";
+
+  const handleCategoryClick = (category: string) => {
+    if (categoryName === "Categories") {
+      dispatch(toggleCategory(category));
+    } else {
+      dispatch(toggleSubCategory(category));
+    }
+  };
+
   return (
-    <ul className={categoriesList.container} data-testid="categoriesList">
+    <div className={categoriesList.container} data-testid="categoriesList">
       <h4>{categoryName}</h4>
-      <div className={categoriesList.list}>
-        {categoriesItems.map((category, index) => (
-          <li key={index} className={categoriesList.item}>
-            <CtaButton
-              label={getCategoryLabelForCategory(category)}
-              onClick={getCategoryHandlerForCategory(category)}
-              isPrimary={false}
-              size={buttonSize}
-            />
-          </li>
-        ))}
+      <div className={categoriesList["list-container"]}>
+        <ul className={categoriesList.list}>
+          {categoriesItems.map((category, index) => (
+            <li key={`${category}-${index}`} className={categoriesList.item}>
+              <CtaButton
+                label={category}
+                onClick={() => handleCategoryClick(category)}
+                size={buttonSize}
+                isActive={selectedItems.includes(category)}
+                isPrimary={false}
+              />
+            </li>
+          ))}
+        </ul>
       </div>
-    </ul>
+    </div>
   );
 };
 

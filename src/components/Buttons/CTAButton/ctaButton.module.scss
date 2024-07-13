@@ -14,8 +14,17 @@
     background-color: var(--primary-color);
     fill: var(--items-bg-color);
 
-    &:hover {
-      // background-color: var(--primary-color-dark);
+    &:hover,
+    &:focus {
+      color: var(--primary-color);
+      background-color: var(--items-bg-color);
+      fill: var(--primary-color);
+    }
+
+    &.active {
+      color: var(--primary-color);
+      background-color: var(--items-bg-color);
+      fill: var(--primary-color);
     }
   }
 
@@ -25,7 +34,14 @@
     border: 1px solid var(--text-color);
     fill: var(--text-color);
 
-    &:hover {
+    &:hover,
+    &:focus {
+      background-color: var(--text-color);
+      color: var(--items-bg-color);
+      fill: var(--items-bg-color);
+    }
+
+    &.active {
       background-color: var(--text-color);
       color: var(--items-bg-color);
       fill: var(--items-bg-color);
@@ -42,15 +58,15 @@
     border: none;
     color: var(--labels-color);
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: var(--secondary-color);
       color: var(--items-bg-color);
     }
 
-    &:focus {
+    &.active {
       background-color: var(--secondary-color);
       color: var(--items-bg-color);
-      border: none;
     }
   }
 

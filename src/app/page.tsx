@@ -1,5 +1,4 @@
 import ServiceCardList from "@/components/ServiceCardList/ServiceCardList";
-import styles from "@/app/styles.module.scss";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

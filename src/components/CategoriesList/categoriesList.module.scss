@@ -1,3 +1,4 @@
+/* categoriesList.module.scss */
 .container {
   display: flex;
   flex-direction: column;
@@ -5,23 +6,31 @@
   align-items: flex-start;
   margin: 20px 0;
   width: 100%;
-  overflow-x: auto;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
 
-  &::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
+  h4 {
+    margin: 0;
+  }
+
+  .list-container {
+    width: 100%;
+    overflow-x: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+
+    .list {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+      align-items: center;
+    }
   }
 
   li {
     list-style-type: none;
     width: auto;
-  }
-
-  .list {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    align-items: center;
   }
 }
