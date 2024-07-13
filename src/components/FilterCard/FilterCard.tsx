@@ -23,9 +23,9 @@ const FilterCard: React.FC = () => {
         <>
           <h3>Filters</h3>
           <div className={filterCard.sectionContainer}>
-            <CategoriesList categoryName="Categories" buttonSize="large" />
+            <CategoriesList categoryName="Categories" />
             <hr />
-            <CategoriesList categoryName="Sub categories" buttonSize="small" />
+            <CategoriesList categoryName="Sub categories" />
             <hr />
             <CustomCalendar />
             <hr />

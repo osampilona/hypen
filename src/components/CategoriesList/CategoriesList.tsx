@@ -14,13 +14,9 @@ import {
 
 interface CategoriesListProps {
   categoryName: "Categories" | "Sub categories";
-  buttonSize: "micro" | "small" | "medium" | "large";
 }
 
-const CategoriesList: React.FC<CategoriesListProps> = ({
-  categoryName,
-  buttonSize,
-}) => {
+const CategoriesList: React.FC<CategoriesListProps> = ({ categoryName }) => {
   const dispatch = useDispatch();
 
   const categoriesItems =
@@ -31,6 +27,8 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
       ? state.categories.selectedCategories
       : state.categories.selectedSubCategories,
   );
+
+  const buttonSize = categoryName === "Categories" ? "large" : "small";
 
   const handleCategoryClick = (category: string) => {
     if (categoryName === "Categories") {
