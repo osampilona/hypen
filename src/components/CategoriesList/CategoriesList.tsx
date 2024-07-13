@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import categoriesList from "@/components/CategoriesList/categoriesList.module.scss";
 import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
 import { Categories, SubCategories } from "@/types/services/categories";
@@ -23,6 +23,8 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
   const handleButtonClick = (category: string) => {
     onCategoriesItemClicked(category);
   };
+
+  useEffect(() => {}, [selectedItems]);
 
   console.log("rendering child. All categories selected... ", selectedItems);
 

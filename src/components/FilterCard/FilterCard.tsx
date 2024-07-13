@@ -1,5 +1,10 @@
 import filterCard from "@/components/FilterCard/filterCard.module.scss";
 import { useEffect, useState } from "react";
+import { RootState } from "@/lib/store";
+import {
+  toggleCategory,
+  toggleSubCategory,
+} from "@/lib/features/filters/filters";
 import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
 import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
 import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
@@ -8,6 +13,7 @@ import {
   CATEGORIES_LIST,
   SUB_CATEGORIES_LIST,
 } from "@/types/services/categories";
+import { useDispatch, useSelector } from "react-redux";
 
 interface FilterCardProps {
   // isVisible: boolean;
@@ -18,9 +24,12 @@ const FilterCard: React.FC<FilterCardProps> = () => {
   const [loading, setLoading] = useState(true);
   const [startSlot, setStartSlot] = useState<string | null>(null);
   const [endSlot, setEndSlot] = useState<string | null>(null);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedSubCategories, setSelectedSubCategories] = useState<string[]>(
-    [],
+  const dispatch = useDispatch();
+  const selectedCategories = useSelector(
+    (state: RootState) => state.filters.selectedCategories,
+  );
+  const selectedSubCategories = useSelector(
+    (state: RootState) => state.filters.selectedSubCategories,
   );
   const skeletonArray = Array.from({ length: 1 }, (_, index) => index + 1);
 
@@ -33,37 +42,11 @@ const FilterCard: React.FC<FilterCardProps> = () => {
   }, []);
 
   const handleCategoryClick = (category: string) => {
-    setSelectedCategories((prevSelected) => {
-      const isSelected = prevSelected.includes(category);
-      const newSelectedCategories = isSelected
-        ? prevSelected.filter((item) => item !== category)
-        : [...prevSelected, category];
-
-      console.log(
-        isSelected
-          ? `Unselected category: ${category}`
-          : `Selected category: ${category}`,
-      );
-      console.log("Updated selected categories:", newSelectedCategories);
-      return newSelectedCategories;
-    });
+    dispatch(toggleCategory(category));
   };
 
   const handleSubCategoryClick = (subCategory: string) => {
-    setSelectedSubCategories((prevSelected) => {
-      const isSelected = prevSelected.includes(subCategory);
-      const newSelectedSubCategories = isSelected
-        ? prevSelected.filter((item) => item !== subCategory)
-        : [...prevSelected, subCategory];
-
-      console.log(
-        isSelected
-          ? `Unselected subcategory: ${subCategory}`
-          : `Selected subcategory: ${subCategory}`,
-      );
-      console.log("Updated selected subcategories:", newSelectedSubCategories);
-      return newSelectedSubCategories;
-    });
+    dispatch(toggleSubCategory(subCategory));
   };
 
   const getCategoryLabelForCategory = (category: string) => `${category}`;
