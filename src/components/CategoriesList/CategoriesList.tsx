@@ -5,7 +5,7 @@ import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
 import {
   toggleCategory,
   toggleSubCategory,
-} from "@/lib/features/filters/filters";
+} from "@/lib/features/filters/categoriesSlice";
 import { RootState } from "@/lib/store";
 import {
   CATEGORIES_LIST,
@@ -23,14 +23,13 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
 }) => {
   const dispatch = useDispatch();
 
-  // Determine which list to use based on the category name
   const categoriesItems =
     categoryName === "Categories" ? CATEGORIES_LIST : SUB_CATEGORIES_LIST;
 
   const selectedItems = useSelector((state: RootState) =>
     categoryName === "Categories"
-      ? state.filters.selectedCategories
-      : state.filters.selectedSubCategories,
+      ? state.categories.selectedCategories
+      : state.categories.selectedSubCategories,
   );
 
   const handleCategoryClick = (category: string) => {

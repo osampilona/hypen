@@ -1,11 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from "@/lib/features/theme/theme";
-import filterReducer from "@/lib/features/filters/filters";
+import categoriesReducer from "@/lib/features/filters/categoriesSlice";
+import timeSlotsReducer from "@/lib/features/filters/timeSlotsSlice";
+import dateReducer from "@/lib/features/filters/dateSlice";
 
 export const store = configureStore({
   reducer: {
     theme: themeReducer,
-    filters: filterReducer,
+    categories: categoriesReducer,
+    timeSlots: timeSlotsReducer,
+    date: dateReducer,
   },
 });
 

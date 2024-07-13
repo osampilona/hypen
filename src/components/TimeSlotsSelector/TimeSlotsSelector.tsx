@@ -4,14 +4,20 @@ import CtaButton from "../Buttons/CTAButton/CtaButton";
 import { timeSlots } from "@/constants/timeSlots";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/lib/store";
-import { toggleSlot } from "@/lib/features/filters/filters";
+import {
+  toggleSlot,
+  setStartSlot,
+  setEndSlot,
+} from "@/lib/features/filters/timeSlotsSlice";
 
 type TimeSlotPeriod = keyof typeof timeSlots;
 
 const TimeSlotSelector: React.FC = () => {
   const dispatch = useDispatch();
-  const startSlot = useSelector((state: RootState) => state.filters.startSlot);
-  const endSlot = useSelector((state: RootState) => state.filters.endSlot);
+  const startSlot = useSelector(
+    (state: RootState) => state.timeSlots.startSlot,
+  );
+  const endSlot = useSelector((state: RootState) => state.timeSlots.endSlot);
   const [selectedSlots, setSelectedSlots] = useState<string[]>([]);
 
   useEffect(() => {
@@ -32,6 +38,24 @@ const TimeSlotSelector: React.FC = () => {
       Math.min(startIndex, endIndex),
       Math.max(startIndex, endIndex) + 1,
     );
+  };
+
+  const handleSlotClick = (slot: string) => {
+    if (!startSlot) {
+      dispatch(setStartSlot(slot));
+    } else if (!endSlot) {
+      if (startSlot === slot) {
+        dispatch(setStartSlot(null));
+      } else if (startSlot < slot) {
+        dispatch(setEndSlot(slot));
+      } else {
+        dispatch(setEndSlot(startSlot));
+        dispatch(setStartSlot(slot));
+      }
+    } else {
+      dispatch(setStartSlot(slot));
+      dispatch(setEndSlot(null));
+    }
   };
 
   return (
@@ -63,7 +87,7 @@ const TimeSlotSelector: React.FC = () => {
                       : styles.inRange
                     : ""
                 }`}
-                onClick={() => dispatch(toggleSlot(slot))}
+                onClick={() => handleSlotClick(slot)}
                 label={slot}
                 outlined={true}
                 size={"small"}
