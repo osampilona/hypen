@@ -1,24 +1,31 @@
 import React from "react";
 import categoriesList from "@/components/CategoriesList/categoriesList.module.scss";
 import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
+import { Categories, SubCategories } from "@/types/services/categories";
 
 interface CategoriesListProps {
   categoryName: string;
-  categoriesItems: string[];
-  onCategoriesItemClicked?: (category: string) => void;
+  categoriesItems: Categories[] | SubCategories[];
+  selectedItems: string[];
+  onCategoriesItemClicked: (category: string) => void;
   getCategoryLabelForCategory: (category: string) => string;
-  getCategoryHandlerForCategory: (category: string) => () => void;
   buttonSize: "micro" | "small" | "medium" | "large";
 }
 
 const CategoriesList: React.FC<CategoriesListProps> = ({
   categoryName,
   categoriesItems,
+  selectedItems,
   onCategoriesItemClicked,
   getCategoryLabelForCategory,
-  getCategoryHandlerForCategory,
   buttonSize,
 }) => {
+  const handleButtonClick = (category: string) => {
+    onCategoriesItemClicked(category);
+  };
+
+  console.log("rendering child. All categories selected... ", selectedItems);
+
   return (
     <div className={categoriesList.container} data-testid="categoriesList">
       <h4>{categoryName}</h4>
@@ -28,9 +35,10 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
             <li key={index} className={categoriesList.item}>
               <CtaButton
                 label={getCategoryLabelForCategory(category)}
-                onClick={getCategoryHandlerForCategory(category)}
-                isPrimary={false}
+                onClick={() => handleButtonClick(category)}
                 size={buttonSize}
+                className={`button--secondary ${selectedItems.includes(category) && categoriesList.active}`}
+                isPrimary={false}
               />
             </li>
           ))}

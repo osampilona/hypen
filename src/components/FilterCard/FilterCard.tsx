@@ -4,6 +4,10 @@ import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCa
 import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
 import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 import CategoriesList from "@/components/CategoriesList/CategoriesList";
+import {
+  CATEGORIES_LIST,
+  SUB_CATEGORIES_LIST,
+} from "@/types/services/categories";
 
 interface FilterCardProps {
   // isVisible: boolean;
@@ -14,6 +18,10 @@ const FilterCard: React.FC<FilterCardProps> = () => {
   const [loading, setLoading] = useState(true);
   const [startSlot, setStartSlot] = useState<string | null>(null);
   const [endSlot, setEndSlot] = useState<string | null>(null);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedSubCategories, setSelectedSubCategories] = useState<string[]>(
+    [],
+  );
   const skeletonArray = Array.from({ length: 1 }, (_, index) => index + 1);
 
   useEffect(() => {
@@ -22,72 +30,51 @@ const FilterCard: React.FC<FilterCardProps> = () => {
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [loading]);
-
-  const categories = [
-    "Makeup",
-    "Hair",
-    "Nails",
-    "Skincare",
-    "Massage",
-    "Spa",
-    "Barbershop",
-    "Tattoo",
-    "Piercing",
-    "Hair removal",
-    "Facial",
-    "Eyelash",
-    "Eyebrow",
-  ];
-
-  const subCategories = [
-    "Full makeup",
-    "Partial makeup",
-    "Bridal makeup",
-    "Special event makeup",
-    "Haircut",
-    "Hair coloring",
-    "Hair styling",
-    "Hair treatment",
-    "Manicure",
-    "Pedicure",
-    "Gel nails",
-    "Acrylic nails",
-    "Nail art",
-    "Facial",
-    "Body massage",
-    "Foot massage",
-    "Back massage",
-    "Full body massage",
-    "Spa day",
-    "Spa treatment",
-    "Barber haircut",
-    "Beard trimming",
-    "Beard styling",
-    "Tattoo design",
-    "Tattoo removal",
-    "Piercing",
-    "Ear piercing",
-    "Nose piercing",
-    "Eyebrow waxing",
-    "Leg waxing",
-    "Arm waxing",
-    "Underarm waxing",
-    "Bikini waxing",
-    "Brazilian waxing",
-    "Eyelash extension",
-    "Eyebrow tinting",
-    "Eyebrow shaping",
-  ];
+  }, []);
 
   const handleCategoryClick = (category: string) => {
-    console.log("Category clicked:", category);
+    setSelectedCategories((prevSelected) => {
+      const isSelected = prevSelected.includes(category);
+      const newSelectedCategories = isSelected
+        ? prevSelected.filter((item) => item !== category)
+        : [...prevSelected, category];
+
+      console.log(
+        isSelected
+          ? `Unselected category: ${category}`
+          : `Selected category: ${category}`,
+      );
+      console.log("Updated selected categories:", newSelectedCategories);
+      return newSelectedCategories;
+    });
+  };
+
+  const handleSubCategoryClick = (subCategory: string) => {
+    setSelectedSubCategories((prevSelected) => {
+      const isSelected = prevSelected.includes(subCategory);
+      const newSelectedSubCategories = isSelected
+        ? prevSelected.filter((item) => item !== subCategory)
+        : [...prevSelected, subCategory];
+
+      console.log(
+        isSelected
+          ? `Unselected subcategory: ${subCategory}`
+          : `Selected subcategory: ${subCategory}`,
+      );
+      console.log("Updated selected subcategories:", newSelectedSubCategories);
+      return newSelectedSubCategories;
+    });
   };
 
   const getCategoryLabelForCategory = (category: string) => `${category}`;
 
-  const getCategoryHandlerForCategory = (category: string) => () =>
-    handleCategoryClick(category);
+  useEffect(() => {
+    console.log("Selected categories:", selectedCategories); // Log selected categories
+  }, [selectedCategories]);
+
+  useEffect(() => {
+    console.log("Selected subcategories:", selectedSubCategories); // Log selected subcategories
+  }, [selectedSubCategories]);
 
   return (
     <div className={filterCard.container} data-testid="filterCard">
@@ -99,19 +86,19 @@ const FilterCard: React.FC<FilterCardProps> = () => {
           <div className={filterCard.sectionContainer}>
             <CategoriesList
               categoryName="Categories"
-              categoriesItems={categories}
-              onCategoriesItemClicked={handleCategoryClick}
+              categoriesItems={CATEGORIES_LIST}
+              selectedItems={selectedCategories} // Pass selected categories
+              onCategoriesItemClicked={handleCategoryClick} // Handle category clicks
               getCategoryLabelForCategory={getCategoryLabelForCategory}
-              getCategoryHandlerForCategory={getCategoryHandlerForCategory}
               buttonSize="large" // Define the button size here
             />
             <hr />
             <CategoriesList
               categoryName="Sub categories"
-              categoriesItems={subCategories}
-              onCategoriesItemClicked={handleCategoryClick}
+              categoriesItems={SUB_CATEGORIES_LIST}
+              selectedItems={selectedSubCategories} // Pass selected subcategories
+              onCategoriesItemClicked={handleSubCategoryClick} // Handle subcategory clicks
               getCategoryLabelForCategory={getCategoryLabelForCategory}
-              getCategoryHandlerForCategory={getCategoryHandlerForCategory}
               buttonSize="small" // Define the button size here
             />
             <hr />
