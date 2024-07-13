@@ -1,40 +1,47 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import categoriesList from "@/components/CategoriesList/categoriesList.module.scss";
 import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
-import { Categories, SubCategories } from "@/types/services/categories";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleCategory } from "@/lib/features/filters/filters";
+import {
+  toggleCategory,
+  toggleSubCategory,
+} from "@/lib/features/filters/filters";
 import { RootState } from "@/lib/store";
+import {
+  CATEGORIES_LIST,
+  SUB_CATEGORIES_LIST,
+} from "@/types/services/categories";
 
 interface CategoriesListProps {
-  categoryName: string;
-  categoriesItems: Categories[] | SubCategories[];
-  selectedItems: string[];
-  onCategoriesItemClicked: (category: string) => void;
-  getCategoryLabelForCategory: (category: string) => string;
+  categoryName: "Categories" | "Sub categories";
   buttonSize: "micro" | "small" | "medium" | "large";
 }
 
 const CategoriesList: React.FC<CategoriesListProps> = ({
   categoryName,
-  categoriesItems,
-  selectedItems,
-  onCategoriesItemClicked,
-  getCategoryLabelForCategory,
   buttonSize,
 }) => {
   const dispatch = useDispatch();
 
-  const selectedCategories = useSelector(
-    (state: RootState) => state.filters.selectedCategories,
-  );
-  const selectedSubCategories = useSelector(
-    (state: RootState) => state.filters.selectedSubCategories,
+  // Determine which list to use based on the category name
+  const categoriesItems =
+    categoryName === "Categories" ? CATEGORIES_LIST : SUB_CATEGORIES_LIST;
+
+  const selectedItems = useSelector((state: RootState) =>
+    categoryName === "Categories"
+      ? state.filters.selectedCategories
+      : state.filters.selectedSubCategories,
   );
 
-  useEffect(() => {}, [selectedItems]);
+  const handleCategoryClick = (category: string) => {
+    if (categoryName === "Categories") {
+      dispatch(toggleCategory(category));
+    } else {
+      dispatch(toggleSubCategory(category));
+    }
+  };
 
-  console.log("rendering child. All categories selected... ", selectedItems);
+  const getCategoryLabelForCategory = (category: string) => `${category}`;
 
   return (
     <div className={categoriesList.container} data-testid="categoriesList">
@@ -45,9 +52,9 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
             <li key={index} className={categoriesList.item}>
               <CtaButton
                 label={getCategoryLabelForCategory(category)}
-                onClick={() => dispatch(toggleCategory(category))}
+                onClick={() => handleCategoryClick(category)}
                 size={buttonSize}
-                className={`${selectedCategories.includes(category) ? categoriesList.active : "button--secondary"}`}
+                className={`${selectedItems.includes(category) ? categoriesList.active : "button--secondary"}`}
                 isPrimary={false}
               />
             </li>
