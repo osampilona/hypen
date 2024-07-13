@@ -15,16 +15,16 @@
     fill: var(--items-bg-color);
 
     &:hover,
-    &.active {
+    &:focus {
       color: var(--primary-color);
       background-color: var(--items-bg-color);
       fill: var(--primary-color);
     }
 
-    &:focus {
-      color: var(--items-bg-color);
-      background-color: var(--primary-color);
-      fill: var(--items-bg-color);
+    &.active {
+      color: var(--primary-color);
+      background-color: var(--items-bg-color);
+      fill: var(--primary-color);
     }
   }
 
@@ -35,7 +35,12 @@
     fill: var(--text-color);
 
     &:hover,
-    &:focus,
+    &:focus {
+      background-color: var(--text-color);
+      color: var(--items-bg-color);
+      fill: var(--items-bg-color);
+    }
+
     &.active {
       background-color: var(--text-color);
       color: var(--items-bg-color);
@@ -54,7 +59,11 @@
     color: var(--labels-color);
 
     &:hover,
-    &:focus,
+    &:focus {
+      background-color: var(--secondary-color);
+      color: var(--items-bg-color);
+    }
+
     &.active {
       background-color: var(--secondary-color);
       color: var(--items-bg-color);

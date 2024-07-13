@@ -10,6 +10,7 @@ export interface ICtaButtonProps {
   outlined?: boolean;
   size?: "micro" | "small" | "medium" | "large";
   icon?: React.ReactNode;
+  isActive?: boolean;
   onClick?: () => void;
   onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onMouseEnter?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -23,6 +24,7 @@ const CtaButton = ({
   size = "medium",
   outlined = false,
   icon,
+  isActive = false,
   className,
   onMouseDown,
   onMouseEnter,
@@ -31,6 +33,7 @@ const CtaButton = ({
   const modeClass = isPrimary ? "button--primary" : "button--secondary";
   const simpleClass = outlined ? "button--simple" : "";
   const disabledClass = disabled ? "button--disabled" : "";
+  const activeClass = isActive ? "active" : "";
 
   return (
     <button
@@ -41,6 +44,7 @@ const CtaButton = ({
         styles[modeClass],
         styles[simpleClass],
         styles[disabledClass],
+        styles[activeClass],
         className,
       ]
         .filter(Boolean)

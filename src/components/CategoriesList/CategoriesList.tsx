@@ -44,12 +44,12 @@ const CategoriesList: React.FC<CategoriesListProps> = ({ categoryName }) => {
       <div className={categoriesList["list-container"]}>
         <ul className={categoriesList.list}>
           {categoriesItems.map((category, index) => (
-            <li key={index} className={categoriesList.item}>
+            <li key={`${category}-${index}`} className={categoriesList.item}>
               <CtaButton
                 label={category}
                 onClick={() => handleCategoryClick(category)}
                 size={buttonSize}
-                className={`${selectedItems.includes(category) ? categoriesList.active : "button--secondary"}`}
+                isActive={selectedItems.includes(category)}
                 isPrimary={false}
               />
             </li>
