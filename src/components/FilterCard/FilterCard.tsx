@@ -13,7 +13,6 @@ import { RootState } from "@/lib/store";
 import {
   toggleCategory,
   toggleSubCategory,
-  setSelectedDate,
 } from "@/lib/features/filters/filters";
 
 const FilterCard: React.FC = () => {
@@ -25,11 +24,6 @@ const FilterCard: React.FC = () => {
   );
   const selectedSubCategories = useSelector(
     (state: RootState) => state.filters.selectedSubCategories,
-  );
-  const startSlot = useSelector((state: RootState) => state.filters.startSlot);
-  const endSlot = useSelector((state: RootState) => state.filters.endSlot);
-  const selectedDate = useSelector(
-    (state: RootState) => state.filters.selectedDate,
   );
 
   useEffect(() => {
@@ -46,10 +40,6 @@ const FilterCard: React.FC = () => {
   };
 
   const getCategoryLabelForCategory = (category: string) => `${category}`;
-
-  const handleDateChange = (date: Date | null) => {
-    dispatch(setSelectedDate(date));
-  };
 
   return (
     <div className={filterCard.container} data-testid="filterCard">
@@ -79,24 +69,8 @@ const FilterCard: React.FC = () => {
               buttonSize="small"
             />
             <hr />
-            <CustomCalendar
-              selectedDate={selectedDate}
-              onDateChange={handleDateChange}
-            />
+            <CustomCalendar />
             <hr />
-            <p>
-              {startSlot ? (
-                endSlot ? (
-                  <>
-                    From {startSlot} to {endSlot}
-                  </>
-                ) : (
-                  <>From {startSlot} to</>
-                )
-              ) : (
-                <>Select a time range</>
-              )}
-            </p>
             <TimeSlotSelector />
             <hr />
           </div>
