@@ -3,7 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { enGB } from "date-fns/locale";
 import { RootState } from "@/lib/store";
-import { setSelectedDate } from "@/lib/features/filters/dateSlice"; // Updated import path for setSelectedDate
+import { setSelectedDate } from "@/lib/features/filters/dateSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 registerLocale("en-GB", enGB);

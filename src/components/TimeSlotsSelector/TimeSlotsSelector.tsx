@@ -4,11 +4,7 @@ import CtaButton from "../Buttons/CTAButton/CtaButton";
 import { timeSlots } from "@/constants/timeSlots";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/lib/store";
-import {
-  toggleSlot,
-  setStartSlot,
-  setEndSlot,
-} from "@/lib/features/filters/timeSlotsSlice";
+import { toggleSlot } from "@/lib/features/filters/timeSlotsSlice";
 
 type TimeSlotPeriod = keyof typeof timeSlots;
 
@@ -22,8 +18,7 @@ const TimeSlotSelector: React.FC = () => {
 
   useEffect(() => {
     if (startSlot && endSlot) {
-      const slotsInRange = getSlotsInRange(startSlot, endSlot);
-      setSelectedSlots(slotsInRange);
+      setSelectedSlots(getSlotsInRange(startSlot, endSlot));
     } else {
       setSelectedSlots(startSlot ? [startSlot] : []);
     }
@@ -40,35 +35,13 @@ const TimeSlotSelector: React.FC = () => {
     );
   };
 
-  const handleSlotClick = (slot: string) => {
-    if (!startSlot) {
-      dispatch(setStartSlot(slot));
-    } else if (!endSlot) {
-      if (startSlot === slot) {
-        dispatch(setStartSlot(null));
-      } else if (startSlot < slot) {
-        dispatch(setEndSlot(slot));
-      } else {
-        dispatch(setEndSlot(startSlot));
-        dispatch(setStartSlot(slot));
-      }
-    } else {
-      dispatch(setStartSlot(slot));
-      dispatch(setEndSlot(null));
-    }
-  };
-
   return (
     <div className={styles.container} data-testid="timeSlotsSelector">
       <p>
         {startSlot ? (
-          endSlot ? (
-            <>
-              From {startSlot} to {endSlot}
-            </>
-          ) : (
-            <>From {startSlot} to</>
-          )
+          <>
+            From {startSlot} to {endSlot || "..."}
+          </>
         ) : (
           <>Select a time range</>
         )}
@@ -87,7 +60,7 @@ const TimeSlotSelector: React.FC = () => {
                       : styles.inRange
                     : ""
                 }`}
-                onClick={() => handleSlotClick(slot)}
+                onClick={() => dispatch(toggleSlot(slot))}
                 label={slot}
                 outlined={true}
                 size={"small"}
