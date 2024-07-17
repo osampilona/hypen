@@ -6,12 +6,14 @@ import { FaAsterisk } from "react-icons/fa6";
 
 interface CheckboxProps {
   label: string;
+  id: string;
   isDisabled?: boolean;
   isRequired?: boolean;
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
   label,
+  id,
   isDisabled = false,
   isRequired = false,
 }) => {
@@ -35,8 +37,8 @@ const Checkbox: React.FC<CheckboxProps> = ({
       <div className={containerClassName} data-testid="checkbox">
         <input
           type="checkbox"
-          name="checkbox"
-          id="checkbox"
+          name={id}
+          id={id}
           disabled={isDisabled}
           checked={isChecked}
           required={isRequired}
@@ -45,7 +47,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
         <span className={checkboxStyles.customCheckbox}>
           {isChecked && <IoMdCheckmark />}
         </span>
-        <label htmlFor="checkbox">
+        <label htmlFor={id}>
           {label}
           {isRequired && <FaAsterisk className={checkboxStyles.required} />}
         </label>

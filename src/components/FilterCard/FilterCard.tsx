@@ -7,6 +7,7 @@ import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 import CategoriesList from "@/components/CategoriesList/CategoriesList";
 import { RootState } from "@/lib/store";
 import Checkbox from "../Checkbox/Checkbox";
+import CheckboxItemsList from "../CheckboxItemsList/CheckboxItemsList";
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -33,23 +34,37 @@ const FilterCard: React.FC = () => {
         <>
           <h3>Filters</h3>
           <div className={filterCard.sectionContainer}>
-            {/* <Checkbox label="This is test" />
-            <Checkbox label="This is test required" isRequired={true} />
-            <Checkbox label="This is test required" isDisabled={true} /> */}
             <CategoriesList
               key={`categories-${selectedCategories.join("-")}`}
               categoryName="Categories"
             />
-            <hr />
             <CategoriesList
               key={`subcategories-${selectedSubCategories.join("-")}`}
               categoryName="Sub categories"
             />
-            <hr />
             <CustomCalendar />
-            <hr />
             <TimeSlotSelector />
-            <hr />
+            <CheckboxItemsList
+              title="Ratings"
+              description="Find high quality service based on other people's experiences"
+              items={["1 star", "2 stars", "3 stars", "4 stars", "5 stars"]}
+              requiredItems={["5 stars"]} // Add required items here
+            />
+            <CheckboxItemsList
+              title="Accessibility and facilities"
+              items={[
+                "Wheelchair accessible for people with dissabilities so they can use the service as well",
+                "Elevator",
+                "Parking",
+                "Toilet",
+                "Wi-Fi",
+                "English speaking staff",
+              ]}
+              requiredItems={[
+                "Wheelchair accessible for people with dissabilities so they can use the service as well",
+                "Wi-Fi",
+              ]} // Add required items here
+            />
           </div>
         </>
       )}
