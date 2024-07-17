@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 1px solid var(--labels-color);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--items-bg-color);
+
+    &:checked {
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+
+      + .customCheckbox {
+        color: var(--items-bg-color);
+      }
+    }
+  }
+
+  .customCheckbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    position: absolute;
+    pointer-events: none;
+    color: transparent;
+  }
+
+  label {
+    display: flex;
+    max-width: 100%;
+    cursor: pointer;
+  }
+
+  .required {
+    color: #ff4c4c;
+    height: 0.8rem;
+  }
+
+  &.error {
+    input[type="checkbox"] {
+      border-color: #ff4c4c;
+    }
+    label {
+      color: #ff4c4c;
+    }
+  }
+
+  &.disabled {
+    input[type="checkbox"] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    label {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .error-message {
+    color: #ff4c4c;
+    font-size: 0.8rem;
+  }
+}

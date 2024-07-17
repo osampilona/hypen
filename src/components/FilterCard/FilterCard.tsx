@@ -6,6 +6,7 @@ import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
 import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 import CategoriesList from "@/components/CategoriesList/CategoriesList";
 import { RootState } from "@/lib/store";
+import Checkbox from "../Checkbox/Checkbox";
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -32,6 +33,9 @@ const FilterCard: React.FC = () => {
         <>
           <h3>Filters</h3>
           <div className={filterCard.sectionContainer}>
+            {/* <Checkbox label="This is test" />
+            <Checkbox label="This is test required" isRequired={true} />
+            <Checkbox label="This is test required" isDisabled={true} /> */}
             <CategoriesList
               key={`categories-${selectedCategories.join("-")}`}
               categoryName="Categories"
