@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  h4 {
+    margin-top: 0.5rem;
+  }
+
+  small {
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+    font-size: small;
+  }
+
+  li {
+    list-style: none;
+
+    a {
+      color: var(--labels-color);
+    }
+  }
+}
