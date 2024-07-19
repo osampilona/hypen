@@ -54,21 +54,23 @@ const BigScreenNavigation = () => {
               <RxSketchLogo size={24} className={styles.icon} />
               <p>Beautify</p>
             </Link>
-            <button
-              onClick={() => dispatch(toggleTheme())}
-              aria-label={
-                currentTheme === "light"
-                  ? "Switch to dark mode"
-                  : "Switch to light mode"
-              }
-              className={styles.themeToggle}
-            >
-              {currentTheme === "light" ? (
-                <MdOutlineLightMode />
-              ) : (
-                <MdOutlineDarkMode />
-              )}
-            </button>
+            <div className={styles.navIcons}>
+              <button
+                onClick={() => dispatch(toggleTheme())}
+                aria-label={
+                  currentTheme === "light"
+                    ? "Switch to dark mode"
+                    : "Switch to light mode"
+                }
+                className={styles.themeToggle}
+              >
+                {currentTheme === "light" ? (
+                  <MdOutlineLightMode />
+                ) : (
+                  <MdOutlineDarkMode />
+                )}
+              </button>
+            </div>
             <div
               className={`${styles.navIcons} ${activeIcon === "filters" ? styles.active : ""}`}
               onClick={() => handleIconClick("filters")}
