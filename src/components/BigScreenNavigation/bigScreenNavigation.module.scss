@@ -1,10 +1,24 @@
+// Mixin to change color
+@mixin change-color($color) {
+  color: $color;
+
+  .icon,
+  p {
+    color: $color;
+  }
+
+  svg {
+    stroke: $color;
+  }
+}
+
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 1rem 1.5rem;
+  padding: 1.5rem;
   position: fixed;
   z-index: 100;
   background-color: var(--items-bg-color);
@@ -24,17 +38,49 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: center;
       width: 100%;
       gap: 1rem;
+    }
+
+    .navIcons {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        @include change-color(var(--primary-color));
+      }
+
+      &.active {
+        @include change-color(var(--primary-color));
+      }
+    }
+
+    a {
+      color: var(--labels-color);
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        @include change-color(var(--primary-color));
+      }
+
+      &.active {
+        @include change-color(var(--primary-color));
+      }
     }
 
     .icon {
       cursor: pointer;
       color: var(--labels-color);
     }
+
     svg {
       stroke: var(--labels-color);
+      height: 100%;
+      width: auto;
     }
   }
 
@@ -43,6 +89,12 @@
     height: 24px;
     width: 24px;
     cursor: pointer;
+    border: none;
+    background-color: transparent;
+
+    svg {
+      fill: var(--labels-color);
+    }
   }
 
   @include respond-to($breakpoint-lg, max) {
