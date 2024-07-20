@@ -37,7 +37,7 @@ const TimeSlotSelector: React.FC = () => {
 
   return (
     <div className={styles.container} data-testid="timeSlotsSelector">
-      <p>
+      {/* <p>
         {startSlot ? (
           <>
             From {startSlot} to {endSlot || "..."}
@@ -45,7 +45,7 @@ const TimeSlotSelector: React.FC = () => {
         ) : (
           <>Select a time range</>
         )}
-      </p>
+      </p> */}
       {Object.keys(timeSlots).map((period) => (
         <div key={period} className={styles.timeSlotPeriod}>
           <h5>{period.charAt(0).toUpperCase() + period.slice(1)}</h5>

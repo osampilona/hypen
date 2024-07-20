@@ -29,9 +29,16 @@ const BigScreenNavigation = () => {
     }
   }, [currentTheme]);
 
+  useEffect(() => {
+    if (activePageIcon !== "filters") {
+      setFilterCardVisible(false);
+    }
+  }, [activePageIcon]);
+
   const handleIconClick = (iconName: string) => {
     if (iconName === "filters") {
       setFilterCardVisible(!filterCardVisible);
+      setActivePageIcon(filterCardVisible ? null : "filters");
     } else {
       setActivePageIcon(iconName);
     }
@@ -72,7 +79,7 @@ const BigScreenNavigation = () => {
               </button>
             </div>
             <div
-              className={`${styles.navIcons} ${filterCardVisible ? styles.activeFilters : ""}`}
+              className={`${styles.navIcons} ${filterCardVisible ? styles.active : ""}`}
               onClick={() => handleIconClick("filters")}
             >
               <TbListSearch size={24} className={styles.icon} />
