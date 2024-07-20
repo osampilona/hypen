@@ -16,4 +16,8 @@
     margin-bottom: 20px;
     width: 100%;
   }
+
+  .pastDate {
+    color: lighten($primary-color, 20%);
+  }
 }

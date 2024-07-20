@@ -15,6 +15,11 @@ const CustomCalendar: React.FC = () => {
   );
   const parsedDate = selectedDate ? new Date(selectedDate) : null;
 
+  const isPastDate = (date: Date) => {
+    const today = new Date();
+    return date.getTime() < today.setHours(0, 0, 0, 0);
+  };
+
   return (
     <div className={customCalendar.container} data-testid="custom-calendar">
       <DatePicker
@@ -26,6 +31,10 @@ const CustomCalendar: React.FC = () => {
         calendarClassName={customCalendar.customDatePicker}
         locale={"en-GB"}
         inline
+        minDate={new Date()} // Disable past dates
+        dayClassName={(date) =>
+          isPastDate(date) ? customCalendar.pastDate : ""
+        } // Apply custom class for past dates
       />
     </div>
   );
