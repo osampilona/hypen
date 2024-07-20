@@ -3,6 +3,7 @@ import themeReducer from "@/lib/features/theme/theme";
 import categoriesReducer from "@/lib/features/filters/categoriesSlice";
 import timeSlotsReducer from "@/lib/features/filters/timeSlotsSlice";
 import dateReducer from "@/lib/features/filters/dateSlice";
+import checkboxReducer from "@/lib/features/filters/checkboxSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     categories: categoriesReducer,
     timeSlots: timeSlotsReducer,
     date: dateReducer,
+    checkbox: checkboxReducer,
   },
 });
 

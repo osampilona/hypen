@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoMdCheckmark } from "react-icons/io";
 import checkboxStyles from "@/components/Checkbox/checkbox.module.scss";
 import classNames from "classnames";
 import { FaAsterisk } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/lib/store";
+import { toggleCheckbox } from "@/lib/features/filters/checkboxSlice";
 
 interface CheckboxProps {
   label: string;
@@ -17,19 +20,26 @@ const Checkbox: React.FC<CheckboxProps> = ({
   isDisabled = false,
   isRequired = false,
 }) => {
-  const [isChecked, setIsChecked] = useState(false);
+  const isChecked = useSelector((state: RootState) => state.checkbox[id]);
+  const dispatch = useDispatch();
+
+  const [localIsDisabled, setLocalIsDisabled] = useState(isDisabled);
   const [isError, setIsError] = useState(false);
 
   const handleCheckboxChange = () => {
-    if (!isDisabled) {
-      setIsChecked(!isChecked);
+    if (!localIsDisabled) {
+      dispatch(toggleCheckbox(id));
     }
   };
+
+  useEffect(() => {
+    setLocalIsDisabled(isDisabled);
+  }, [isDisabled]);
 
   const containerClassName = classNames(checkboxStyles.container, {
     [checkboxStyles.checked]: isChecked,
     [checkboxStyles.error]: isError,
-    [checkboxStyles.disabled]: isDisabled,
+    [checkboxStyles.disabled]: localIsDisabled,
   });
 
   return (
@@ -39,8 +49,8 @@ const Checkbox: React.FC<CheckboxProps> = ({
           type="checkbox"
           name={id}
           id={id}
-          disabled={isDisabled}
-          checked={isChecked}
+          disabled={localIsDisabled}
+          checked={!!isChecked} // ensure it is boolean
           required={isRequired}
           onChange={handleCheckboxChange}
         />
