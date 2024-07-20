@@ -64,7 +64,7 @@
     background-color: var(--items-bg-color);
     box-shadow: var(--box-shadow);
     width: 100%;
-    min-width: fit-content;
+    min-width: auto;
     height: auto;
     overflow-y: auto;
   }

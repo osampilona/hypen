@@ -91,6 +91,7 @@ select {
     flex-direction: column;
     align-items: center; // Center align the header content
     letter-spacing: $letter-spacing-body; // Add letter spacing
+    padding: 1.25rem 0;
 
     h2 {
       color: var(--text-color);
@@ -103,8 +104,17 @@ select {
     color: var(--text-color);
     text-align: center;
     box-sizing: border-box;
-    margin: calc(0.3vw + 0.3rem); // Dynamic margin
+    margin: calc(0.5vw + 0.5rem); // Dynamic margin
     letter-spacing: $letter-spacing-body; // Add letter spacing
+  }
+
+  &__day--keyboard-selected {
+    background-color: $secondary-color;
+    color: var(--items-bg-color);
+
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+    }
   }
 
   &__day--selected {
@@ -126,14 +136,15 @@ select {
     width: 100%;
   }
 
-  @include respond-to($breakpoint-md, min) {
-    &__header {
-      padding: 1.5rem 0;
-    }
+  &__navigation--previous,
+  &__navigation--next {
+    top: 1rem;
+  }
 
+  @include respond-to($breakpoint-md, min) {
     &__day,
     &__day-name {
-      // margin: calc(0.4vw + 0.4rem); // Adjust margin for larger screens
+      margin: calc(0.4vw + 0.4rem); // Adjust margin for larger screens
     }
   }
 }

@@ -31,8 +31,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid var(--labels-color);
-    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
     margin-bottom: 1rem;
     padding: 0 0.5rem;
     width: 100%; // Ensure it takes full width of the sectionContainer
