@@ -1,17 +1,3 @@
-// Mixin to change color
-@mixin change-color($color) {
-  color: $color;
-
-  .icon,
-  p {
-    color: $color;
-  }
-
-  svg {
-    stroke: $color;
-  }
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -56,9 +42,13 @@
 
       &.active {
         @include change-color(var(--primary-color));
-        background-color: var(--forms-bg-color);
+        background-color: var(--background-color);
         padding: 0.5rem 0.75rem;
         border-radius: 0.5rem;
+      }
+
+      &.activeFilters {
+        @include change-color-activeFilters(var(--primary-color));
       }
     }
 
@@ -73,7 +63,7 @@
 
       &.active {
         @include change-color(var(--primary-color));
-        background-color: var(--forms-bg-color);
+        background-color: var(--background-color);
         padding: 0.5rem 0.75rem;
         border-radius: 0.5rem;
       }

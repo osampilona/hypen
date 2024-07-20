@@ -16,7 +16,9 @@ const BigScreenNavigation = () => {
     (state: RootState) => state.theme.currentTheme,
   );
   const dispatch = useDispatch();
-  const [activeIcon, setActiveIcon] = useState<string | null>("beautify");
+  const [activePageIcon, setActivePageIcon] = useState<string | null>(
+    "beautify",
+  );
   const [filterCardVisible, setFilterCardVisible] = useState(false);
 
   useEffect(() => {
@@ -30,15 +32,13 @@ const BigScreenNavigation = () => {
   const handleIconClick = (iconName: string) => {
     if (iconName === "filters") {
       setFilterCardVisible(!filterCardVisible);
-      setActiveIcon(filterCardVisible ? null : "filters");
     } else {
-      setActiveIcon(iconName);
+      setActivePageIcon(iconName);
     }
   };
 
   const handleCloseOverlay = () => {
     setFilterCardVisible(false);
-    setActiveIcon(null);
   };
 
   return (
@@ -48,7 +48,7 @@ const BigScreenNavigation = () => {
           <div className={styles.groupIcons}>
             <Link
               href="/"
-              className={`${styles.navIcons} ${activeIcon === "beautify" ? styles.active : ""}`}
+              className={`${styles.navIcons} ${activePageIcon === "beautify" ? styles.active : ""}`}
               onClick={() => handleIconClick("beautify")}
             >
               <RxSketchLogo size={24} className={styles.icon} />
@@ -72,7 +72,7 @@ const BigScreenNavigation = () => {
               </button>
             </div>
             <div
-              className={`${styles.navIcons} ${activeIcon === "filters" ? styles.active : ""}`}
+              className={`${styles.navIcons} ${filterCardVisible ? styles.activeFilters : ""}`}
               onClick={() => handleIconClick("filters")}
             >
               <TbListSearch size={24} className={styles.icon} />
@@ -81,7 +81,7 @@ const BigScreenNavigation = () => {
           </div>
           <div className={styles.groupIcons}>
             <div
-              className={`${styles.navIcons} ${activeIcon === "partner" ? styles.active : ""}`}
+              className={`${styles.navIcons} ${activePageIcon === "partner" ? styles.active : ""}`}
               onClick={() => handleIconClick("partner")}
             >
               <HiOutlineBriefcase size={24} className={styles.icon} />
@@ -89,7 +89,7 @@ const BigScreenNavigation = () => {
             </div>
             <Link
               href="/login"
-              className={`${styles.navIcons} ${activeIcon === "login" ? styles.active : ""}`}
+              className={`${styles.navIcons} ${activePageIcon === "login" ? styles.active : ""}`}
               onClick={() => handleIconClick("login")}
             >
               <HiOutlineUserCircle

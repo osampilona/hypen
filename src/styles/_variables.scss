@@ -37,10 +37,10 @@ $letter-spacing-body: 0.5px;
 $letter-spacing-headings: 0px;
 
 $font-size-base: 16px;
-$font-size-sm: 0.9em;
-$font-size-md: 1em;
-$font-size-lg: 1.1em;
-$font-size-xl: 1.2em;
+$font-size-sm: 0.7em;
+$font-size-md: 0.9em;
+$font-size-lg: 1em;
+$font-size-xl: 1.1em;
 
 $breakpoint-xs: 480px;
 $breakpoint-sm: 576px;
@@ -48,15 +48,3 @@ $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 $breakpoint-xxl: 1400px;
-
-@mixin respond-to($breakpoint, $type: max) {
-  @if $type == max {
-    @media (max-width: $breakpoint) {
-      @content;
-    }
-  } @else if $type == min {
-    @media (min-width: $breakpoint) {
-      @content;
-    }
-  }
-}
