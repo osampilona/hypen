@@ -16,6 +16,9 @@ const BigScreenNavigation = () => {
     (state: RootState) => state.theme.currentTheme,
   );
   const dispatch = useDispatch();
+  const [activePageIcon, setActivePageIcon] = useState<string | null>(
+    "beautify",
+  );
   const [filterCardVisible, setFilterCardVisible] = useState(false);
 
   useEffect(() => {
@@ -26,8 +29,16 @@ const BigScreenNavigation = () => {
     }
   }, [currentTheme]);
 
-  const toggleFilterCard = () => {
-    setFilterCardVisible(!filterCardVisible);
+  const handleIconClick = (iconName: string) => {
+    if (iconName === "filters") {
+      setFilterCardVisible(!filterCardVisible);
+    } else {
+      setActivePageIcon(iconName);
+    }
+  };
+
+  const handleCloseOverlay = () => {
+    setFilterCardVisible(false);
   };
 
   return (
@@ -35,43 +46,63 @@ const BigScreenNavigation = () => {
       <div className={styles.container} data-testid="bigScreenNavigation">
         <div className={styles.content}>
           <div className={styles.groupIcons}>
-            <Link href="/">
-              <RxSketchLogo size={36} className={styles.icon} />
-            </Link>
-            <button
-              onClick={() => dispatch(toggleTheme())}
-              aria-label={
-                currentTheme === "light"
-                  ? "Switch to dark mode"
-                  : "Switch to light mode"
-              }
-              className={styles.themeToggle}
+            <Link
+              href="/"
+              className={`${styles.navIcons} ${activePageIcon === "beautify" ? styles.active : ""}`}
+              onClick={() => handleIconClick("beautify")}
             >
-              {currentTheme === "light" ? (
-                <MdOutlineLightMode />
-              ) : (
-                <MdOutlineDarkMode />
-              )}
-            </button>
-            <TbListSearch
-              size={24}
-              onClick={toggleFilterCard}
-              className={styles.icon}
-            />
+              <RxSketchLogo size={24} className={styles.icon} />
+              <p>Beautify</p>
+            </Link>
+            <div className={styles.navIcons}>
+              <button
+                onClick={() => dispatch(toggleTheme())}
+                aria-label={
+                  currentTheme === "light"
+                    ? "Switch to dark mode"
+                    : "Switch to light mode"
+                }
+                className={styles.themeToggle}
+              >
+                {currentTheme === "light" ? (
+                  <MdOutlineLightMode />
+                ) : (
+                  <MdOutlineDarkMode />
+                )}
+              </button>
+            </div>
+            <div
+              className={`${styles.navIcons} ${filterCardVisible ? styles.activeFilters : ""}`}
+              onClick={() => handleIconClick("filters")}
+            >
+              <TbListSearch size={24} className={styles.icon} />
+              <p>Filters</p>
+            </div>
           </div>
           <div className={styles.groupIcons}>
-            <HiOutlineBriefcase size={24} className={styles.icon} />
-            <Link href="/login">
+            <div
+              className={`${styles.navIcons} ${activePageIcon === "partner" ? styles.active : ""}`}
+              onClick={() => handleIconClick("partner")}
+            >
+              <HiOutlineBriefcase size={24} className={styles.icon} />
+              <p>Partner</p>
+            </div>
+            <Link
+              href="/login"
+              className={`${styles.navIcons} ${activePageIcon === "login" ? styles.active : ""}`}
+              onClick={() => handleIconClick("login")}
+            >
               <HiOutlineUserCircle
                 aria-label="profile-icon"
-                size={36}
+                size={24}
                 data-testid="user-icon"
               />
+              <p>Log in</p>
             </Link>
           </div>
         </div>
       </div>
-      <Overlay show={filterCardVisible} onClose={toggleFilterCard}>
+      <Overlay show={filterCardVisible} onClose={() => handleCloseOverlay()}>
         <FilterCard />
       </Overlay>
     </>

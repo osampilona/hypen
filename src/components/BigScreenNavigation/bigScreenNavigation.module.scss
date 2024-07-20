@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 1rem 1.5rem;
+  padding: 1.5rem 1rem;
   position: fixed;
   z-index: 100;
   background-color: var(--items-bg-color);
@@ -24,17 +24,60 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: center;
       width: 100%;
       gap: 1rem;
+    }
+
+    .navIcons {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      padding: 0.5rem 0.75rem;
+
+      &:hover,
+      &:focus {
+        @include change-color(var(--primary-color));
+      }
+
+      &.active {
+        @include change-color(var(--primary-color));
+        background-color: var(--background-color);
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+      }
+
+      &.activeFilters {
+        @include change-color-activeFilters(var(--primary-color));
+      }
+    }
+
+    a {
+      color: var(--labels-color);
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        @include change-color(var(--primary-color));
+      }
+
+      &.active {
+        @include change-color(var(--primary-color));
+        background-color: var(--background-color);
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+      }
     }
 
     .icon {
       cursor: pointer;
       color: var(--labels-color);
     }
+
     svg {
       stroke: var(--labels-color);
+      height: 100%;
+      width: auto;
     }
   }
 
@@ -43,6 +86,12 @@
     height: 24px;
     width: 24px;
     cursor: pointer;
+    border: none;
+    background-color: transparent;
+
+    svg {
+      fill: var(--labels-color);
+    }
   }
 
   @include respond-to($breakpoint-lg, max) {

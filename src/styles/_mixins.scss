@@ -1,0 +1,38 @@
+@mixin change-color($color) {
+  color: $color;
+
+  .icon,
+  p {
+    color: $color;
+  }
+
+  svg {
+    stroke: $color;
+  }
+}
+
+@mixin change-color-activeFilters($color) {
+  color: $color;
+
+  .icon,
+  p {
+    color: $color;
+  }
+
+  svg {
+    stroke: $color;
+  }
+}
+
+// Defining mixins for breakpoints
+@mixin respond-to($breakpoint, $type: min) {
+  @if $type == min {
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  } @else if $type == max {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  }
+}
