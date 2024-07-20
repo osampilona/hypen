@@ -1,6 +1,7 @@
 .container {
   font-family: Arial, sans-serif;
   margin-top: 30px;
+  width: 100%;
 }
 
 .timeSlotPeriod {
@@ -15,6 +16,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
+  justify-items: center;
 }
 
 .timeSlotButton {

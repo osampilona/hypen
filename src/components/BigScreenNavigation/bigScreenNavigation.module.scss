@@ -46,10 +46,6 @@
         padding: 0.5rem 0.75rem;
         border-radius: 0.5rem;
       }
-
-      &.activeFilters {
-        @include change-color-activeFilters(var(--primary-color));
-      }
     }
 
     a {

@@ -62,7 +62,6 @@
 
   .content {
     background-color: var(--items-bg-color);
-    padding: 1rem 1.5rem;
     box-shadow: var(--box-shadow);
     width: 100%;
     min-width: fit-content;
@@ -91,8 +90,9 @@
     }
 
     .content {
-      width: 33%;
+      width: 30%;
       height: 100vh;
+      padding: 0;
     }
   }
 }
