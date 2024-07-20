@@ -8,7 +8,7 @@ interface CheckboxItemsListProps {
   requiredItems?: string[];
   onItemClicked?: () => void;
   description?: string;
-  disabledItems?: string[]; // Add this prop to handle disabled items
+  disabledItems?: string[];
 }
 
 const CheckboxItemsList: React.FC<CheckboxItemsListProps> = ({
