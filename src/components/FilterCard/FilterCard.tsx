@@ -48,7 +48,7 @@ const FilterCard: React.FC = () => {
               title="Ratings"
               description="Find high quality service based on other people's experiences"
               items={["1 star", "2 stars", "3 stars", "4 stars", "5 stars"]}
-              requiredItems={["5 stars"]} // Add required items here
+              requiredItems={["5 stars"]}
             />
             <CheckboxItemsList
               title="Accessibility and facilities"
@@ -60,10 +60,11 @@ const FilterCard: React.FC = () => {
                 "Wi-Fi",
                 "English speaking staff",
               ]}
+              disabledItems={["Elevator", "Parking", "Toilet"]}
               requiredItems={[
                 "Wheelchair accessible for people with dissabilities so they can use the service as well",
                 "Wi-Fi",
-              ]} // Add required items here
+              ]}
             />
           </div>
         </>

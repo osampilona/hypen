@@ -1,3 +1,4 @@
+import React from "react";
 import checkboxItemsList from "@/components/CheckboxItemsList/checkboxItemsList.module.scss";
 import Checkbox from "@/components/Checkbox/Checkbox";
 
@@ -7,6 +8,7 @@ interface CheckboxItemsListProps {
   requiredItems?: string[];
   onItemClicked?: () => void;
   description?: string;
+  disabledItems?: string[]; // Add this prop to handle disabled items
 }
 
 const CheckboxItemsList: React.FC<CheckboxItemsListProps> = ({
@@ -14,6 +16,7 @@ const CheckboxItemsList: React.FC<CheckboxItemsListProps> = ({
   items,
   requiredItems = [],
   description,
+  disabledItems = [],
 }) => {
   return (
     <ul className={checkboxItemsList.container} data-testid="checkboxItemsList">
@@ -25,6 +28,7 @@ const CheckboxItemsList: React.FC<CheckboxItemsListProps> = ({
             label={item}
             id={`checkbox-${title}-${index}`}
             isRequired={requiredItems.includes(item)}
+            isDisabled={disabledItems.includes(item)}
           />
         </li>
       ))}
