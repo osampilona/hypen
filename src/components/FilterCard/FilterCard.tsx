@@ -7,6 +7,7 @@ import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 import CategoriesList from "@/components/CategoriesList/CategoriesList";
 import { RootState } from "@/lib/store";
 import CheckboxItemsList from "../CheckboxItemsList/CheckboxItemsList";
+import PriceRangeSlider from "../PriceRangeSlider/PriceRangeSlider";
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -41,6 +42,9 @@ const FilterCard: React.FC = () => {
                 key={`subcategories-${selectedSubCategories.join("-")}`}
                 categoryName="Sub categories"
               />
+            </div>
+            <div className={filterCard.groupContainer}>
+              <PriceRangeSlider />
             </div>
             <div className={filterCard.groupContainer}>
               <CustomCalendar />

@@ -149,3 +149,43 @@ select {
     }
   }
 }
+
+//React PriceRangeSlider custom styles
+
+.rheostat {
+  cursor: pointer;
+}
+
+.handleContainer {
+  top: -4px;
+}
+
+.DefaultBackground {
+  height: 0.5rem;
+}
+
+.DefaultProgressBar_progressBar {
+  background-color: var(--secondary-color);
+  height: 0.5rem;
+  top: -2px;
+
+  &:hover {
+    background-color: darken($secondary-color, 10%);
+  }
+}
+
+.DefaultHandle_handle__horizontal {
+  background-color: var(
+    --items-bg-color
+  ); /* Change the background color of the handle */
+  border-radius: 50%;
+
+  &:hover {
+    background-color: --forms-bg-color;
+  }
+
+  &::before,
+  &::after {
+    display: none;
+  }
+}
