@@ -1,16 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Rheostat, { PublicState } from "rheostat";
 import "rheostat/initialize";
 import "rheostat/css/rheostat.css";
 import priceRangeSlider from "@/components/PriceRangeSlider/priceRangeSlider.module.scss";
-
-interface PriceRangeSliderProps {
-  // Add your component props here
-}
+import { RootState } from "@/lib/store";
+import { useDispatch, useSelector } from "react-redux";
+import { setPriceRange } from "@/lib/features/filters/priceRangeSlice";
 
 const PriceRangeSlider = () => {
-  const [values, setValues] = useState<[number, number]>([20, 80]);
+  const dispatch = useDispatch();
+  const { min, max } = useSelector((state: RootState) => state.priceRange);
 
+  // Initialize local state with Redux state values
+  const [values, setValues] = useState<[number, number]>([min, max]);
+
+  // Update local state when Redux state changes
+  useEffect(() => {
+    setValues([min, max]);
+  }, [min, max]);
+
+  // Dispatch action to update Redux state whenever local values change
+  useEffect(() => {
+    dispatch(setPriceRange({ min: values[0], max: values[1] }));
+  }, [values, dispatch]);
+
+  // Handle slider value changes
   const handleChange = (publicState: PublicState) => {
     setValues([publicState.values[0], publicState.values[1]]);
   };
