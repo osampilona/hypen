@@ -24,6 +24,7 @@
   }
 
   .pastDate {
-    color: lighten($primary-color, 30%);
+    color: var(--text-color);
+    opacity: 0.2;
   }
 }

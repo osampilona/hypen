@@ -129,7 +129,7 @@ select {
 
   &__day--outside-month {
     // Apply the same styling for past dates
-    color: lighten($primary-color, 20%);
+    color: lighten($secondary-color, 20%);
   }
 
   &__month {
