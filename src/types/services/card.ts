@@ -4,6 +4,7 @@ export interface ServiceCardType {
   serviceId: string;
   serviceName: string;
   serviceRate: number;
+  servicePrice: number;
   workingDays: string;
   workingHours: string;
   serviceNote: string;
