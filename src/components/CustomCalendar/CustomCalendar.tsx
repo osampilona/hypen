@@ -8,7 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 registerLocale("en-GB", enGB);
 
-const CustomCalendar: React.FC = () => {
+interface CustomCalendarProps {
+  categoryName: string;
+}
+
+const CustomCalendar: React.FC<CustomCalendarProps> = ({ categoryName }) => {
   const dispatch = useDispatch();
   const selectedDate = useSelector(
     (state: RootState) => state.date.selectedDate,
@@ -21,22 +25,25 @@ const CustomCalendar: React.FC = () => {
   };
 
   return (
-    <div className={customCalendar.container} data-testid="custom-calendar">
-      <DatePicker
-        selected={parsedDate}
-        onChange={(date) =>
-          dispatch(setSelectedDate(date ? date.toISOString() : null))
-        }
-        className={customCalendar.customDatePicker}
-        calendarClassName={customCalendar.customDatePicker}
-        locale={"en-GB"}
-        inline
-        minDate={new Date()} // Disable past dates
-        dayClassName={(date) =>
-          isPastDate(date) ? customCalendar.pastDate : ""
-        } // Apply custom class for past dates
-      />
-    </div>
+    <>
+      <h4 className={customCalendar.title}>{categoryName}</h4>
+      <div className={customCalendar.container} data-testid="custom-calendar">
+        <DatePicker
+          selected={parsedDate}
+          onChange={(date) =>
+            dispatch(setSelectedDate(date ? date.toISOString() : null))
+          }
+          className={customCalendar.customDatePicker}
+          calendarClassName={customCalendar.customDatePicker}
+          locale={"en-GB"}
+          inline
+          minDate={new Date()} // Disable past dates
+          dayClassName={(date) =>
+            isPastDate(date) ? customCalendar.pastDate : ""
+          } // Apply custom class for past dates
+        />
+      </div>
+    </>
   );
 };
 

@@ -44,11 +44,11 @@ const FilterCard: React.FC = () => {
               />
             </div>
             <div className={filterCard.groupContainer}>
-              <PriceRangeSlider />
+              <PriceRangeSlider categoryName="Price range" />
             </div>
             <div className={filterCard.groupContainer}>
-              <CustomCalendar />
-              <TimeSlotSelector />
+              <CustomCalendar categoryName="Date picker" />
+              <TimeSlotSelector categoryName="Time range selector" />
             </div>
             <div className={filterCard.groupContainer}>
               <CheckboxItemsList

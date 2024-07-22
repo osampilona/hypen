@@ -1,0 +1,20 @@
+.histogram {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  position: relative;
+
+  .bar {
+    transition: background-color 0.3s;
+  }
+
+  .inRange {
+    background-color: var(--text-color);
+    margin: 0 1px; // Color for columns in the selected range
+  }
+
+  .outOfRange {
+    background-color: var(--greyed-out-color);
+    margin: 0 1px; // Color for columns outside the selected range
+  }
+}

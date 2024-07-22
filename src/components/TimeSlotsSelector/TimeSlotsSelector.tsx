@@ -8,7 +8,13 @@ import { toggleSlot } from "@/lib/features/filters/timeSlotsSlice";
 
 type TimeSlotPeriod = keyof typeof timeSlots;
 
-const TimeSlotSelector: React.FC = () => {
+interface TimeSlotsSelectorProps {
+  categoryName: string;
+}
+
+const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = ({
+  categoryName,
+}) => {
   const dispatch = useDispatch();
   const startSlot = useSelector(
     (state: RootState) => state.timeSlots.startSlot,
@@ -37,15 +43,19 @@ const TimeSlotSelector: React.FC = () => {
 
   return (
     <div className={styles.container} data-testid="timeSlotsSelector">
-      {/* <p>
-        {startSlot ? (
-          <>
-            From {startSlot} to {endSlot || "..."}
-          </>
-        ) : (
-          <>Select a time range</>
-        )}
-      </p> */}
+      <div>
+        <h4>
+          <span className={styles.categoryName}>{categoryName}</span>
+          {startSlot ? (
+            <>
+              <span className={styles.slotTime}>
+                {startSlot} to {endSlot || "..."}
+              </span>
+            </>
+          ) : null}
+        </h4>
+        <p></p>
+      </div>
       {Object.keys(timeSlots).map((period) => (
         <div key={period} className={styles.timeSlotPeriod}>
           <h5>{period.charAt(0).toUpperCase() + period.slice(1)}</h5>
@@ -63,7 +73,7 @@ const TimeSlotSelector: React.FC = () => {
                 onClick={() => dispatch(toggleSlot(slot))}
                 label={slot}
                 outlined={true}
-                size={"small"}
+                size={"large"}
               />
             ))}
           </div>
