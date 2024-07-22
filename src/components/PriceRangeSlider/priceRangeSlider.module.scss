@@ -16,4 +16,42 @@
       font-weight: bold;
     }
   }
+
+  .track {
+    height: 6px;
+    width: 100%;
+    background: #e0e0e0; //general fixed slider color
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .trackHighlight {
+    position: absolute;
+    height: 100%;
+    background: var(--secondary-color); //slider color
+    border-radius: 2px;
+    width: 100%;
+    left: 0;
+  }
+
+  .thumb {
+    height: 24px;
+    width: 24px;
+    background-color: #fff;
+    border: 2px solid var(--secondary-color); //slider color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    top: 1px;
+  }
+
+  .thumbLabel {
+    display: none;
+  }
 }

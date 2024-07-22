@@ -1,47 +1,71 @@
-import React, { useState, useEffect } from "react";
-import Rheostat, { PublicState } from "rheostat";
-import "rheostat/initialize";
-import "rheostat/css/rheostat.css";
-import priceRangeSlider from "@/components/PriceRangeSlider/priceRangeSlider.module.scss";
+import React, { useState, useEffect, useMemo } from "react";
+import { Range } from "react-range";
+import styles from "@/components/PriceRangeSlider/priceRangeSlider.module.scss";
 import { RootState } from "@/lib/store";
 import { useDispatch, useSelector } from "react-redux";
 import { setPriceRange } from "@/lib/features/filters/priceRangeSlice";
+import { serviceData } from "@/data/serviceData";
 
-const PriceRangeSlider = () => {
+const PriceRangeSlider: React.FC = () => {
   const dispatch = useDispatch();
   const { min, max } = useSelector((state: RootState) => state.priceRange);
 
-  // Initialize local state with Redux state values
-  const [values, setValues] = useState<[number, number]>([min, max]);
+  const { sliderMin, sliderMax } = useMemo(() => {
+    const prices = serviceData.map((service) => service.servicePrice);
+    return {
+      sliderMin: Math.min(...prices),
+      sliderMax: Math.max(...prices),
+    };
+  }, []);
 
-  // Update local state when Redux state changes
+  const [values, setValues] = useState([min || sliderMin, max || sliderMax]);
+
   useEffect(() => {
-    setValues([min, max]);
-  }, [min, max]);
+    if (values[0] !== min || values[1] !== max) {
+      dispatch(setPriceRange({ min: values[0], max: values[1] }));
+    }
+  }, [values, dispatch, min, max]);
 
-  // Dispatch action to update Redux state whenever local values change
-  useEffect(() => {
-    dispatch(setPriceRange({ min: values[0], max: values[1] }));
-  }, [values, dispatch]);
+  const renderTrack = ({
+    props,
+    children,
+  }: {
+    props: any;
+    children: React.ReactNode;
+  }) => (
+    <div {...props} className={styles.track}>
+      <div
+        className={styles.trackHighlight}
+        style={{
+          left: `${((values[0] - sliderMin) / (sliderMax - sliderMin)) * 100}%`,
+          width: `${((values[1] - values[0]) / (sliderMax - sliderMin)) * 100}%`,
+        }}
+      />
+      {children}
+    </div>
+  );
 
-  // Handle slider value changes
-  const handleChange = (publicState: PublicState) => {
-    setValues([publicState.values[0], publicState.values[1]]);
-  };
+  const renderThumb = ({ props, index }: { props: any; index: number }) => (
+    <div {...props} className={styles.thumb}>
+      <div className={styles.thumbLabel}>${values[index]}</div>
+    </div>
+  );
 
   return (
-    <div className={priceRangeSlider.container}>
+    <div className={styles.container}>
       <h3>Price Range</h3>
-      <Rheostat
-        min={0}
-        max={100}
+      <Range
+        step={1}
+        min={sliderMin}
+        max={sliderMax}
         values={values}
-        onValuesUpdated={handleChange}
-        snap
-        className={priceRangeSlider.slider}
+        onChange={setValues}
+        renderTrack={renderTrack}
+        renderThumb={renderThumb}
       />
-      <div className={priceRangeSlider.values}>
-        <span>${values[0]}</span> - <span>${values[1]}</span>
+      <div className={styles.values}>
+        <span>${Math.round(values[0])}</span> -{" "}
+        <span>${Math.round(values[1])}</span>
       </div>
     </div>
   );
