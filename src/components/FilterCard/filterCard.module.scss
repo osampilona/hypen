@@ -13,9 +13,7 @@
 
   .sectionContainer {
     width: 100%;
-    max-width: 430px;
-    margin: 2rem auto;
-    padding: 0 0.5rem; // Add some padding for better spacing on smaller screens
+    padding: 2rem; // Add some padding for better spacing on smaller screens
     box-sizing: border-box;
 
     // Ensure internal elements are responsive
@@ -53,5 +51,7 @@
 
   .sectionContainer {
     max-width: 95vw;
+    margin: 2rem auto;
+    padding: 0 0.5rem; // Add some padding for better spacing on smaller screens
   }
 }

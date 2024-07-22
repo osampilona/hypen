@@ -47,8 +47,8 @@ const FilterCard: React.FC = () => {
               <PriceRangeSlider />
             </div>
             <div className={filterCard.groupContainer}>
-              <CustomCalendar />
-              <TimeSlotSelector />
+              <CustomCalendar categoryName="Date picker" />
+              <TimeSlotSelector categoryName="Time range selector" />
             </div>
             <div className={filterCard.groupContainer}>
               <CheckboxItemsList
