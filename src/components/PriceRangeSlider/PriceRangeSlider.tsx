@@ -7,7 +7,13 @@ import { setPriceRange } from "@/lib/features/filters/priceRangeSlice";
 import { serviceData } from "@/data/serviceData";
 import Histogram from "@/components/Histogram/Histogram";
 
-const PriceRangeSlider: React.FC = () => {
+interface PriceRangeSliderProps {
+  categoryName: string;
+}
+
+const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
+  categoryName,
+}) => {
   const dispatch = useDispatch();
   const { min, max } = useSelector((state: RootState) => state.priceRange);
 
@@ -59,49 +65,53 @@ const PriceRangeSlider: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h3>Price Range</h3>
-      <Histogram
-        data={histogram}
-        height={50} // Increased height for better visibility
-      />
-      <Range
-        values={values}
-        step={1}
-        min={sliderMin}
-        max={sliderMax}
-        onChange={setValues}
-        renderTrack={({ props, children }) => (
-          <div
-            {...props}
-            className={styles.track}
-            style={{
-              ...props.style,
-              background: getTrackBackground({
-                values,
-                colors: ["#ccc", "#4caf50", "#ccc"],
-                min: sliderMin,
-                max: sliderMax,
-              }),
-            }}
-          >
-            {children}
+      <h4 className={styles.categoryName}>{categoryName}</h4>
+      <div className={styles.priceGroup}>
+        <Histogram
+          data={histogram}
+          height={50} // Increased height for better visibility
+        />
+        <Range
+          values={values}
+          step={1}
+          min={sliderMin}
+          max={sliderMax}
+          onChange={setValues}
+          renderTrack={({ props, children }) => (
+            <div
+              {...props}
+              className={styles.track}
+              style={{
+                ...props.style,
+                background: getTrackBackground({
+                  values,
+                  colors: ["#ccc", "#4caf50", "#ccc"],
+                  min: sliderMin,
+                  max: sliderMax,
+                }),
+              }}
+            >
+              {children}
+            </div>
+          )}
+          renderThumb={({ props }) => (
+            <div {...props} className={styles.thumb} />
+          )}
+        />
+        <div className={styles.values}>
+          <div className={styles.valueBox}>
+            <span>Minimum</span>
+            <span>€ {Math.round(values[0])}</span>
           </div>
-        )}
-        renderThumb={({ props }) => <div {...props} className={styles.thumb} />}
-      />
-      <div className={styles.values}>
-        <div className={styles.valueBox}>
-          <span>Minimum</span>
-          <span>€ {Math.round(values[0])}</span>
-        </div>
-        <div className={styles.valueBox}>
-          <span>Maximum</span>
-          <span>
-            €{" "}
-            {values[1] === sliderMax
-              ? `${Math.round(values[1])}+`
-              : Math.round(values[1])}
-          </span>
+          <div className={styles.valueBox}>
+            <span>Maximum</span>
+            <span>
+              €{" "}
+              {values[1] === sliderMax
+                ? `${Math.round(values[1])}+`
+                : Math.round(values[1])}
+            </span>
+          </div>
         </div>
       </div>
     </div>

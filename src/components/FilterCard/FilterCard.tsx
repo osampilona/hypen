@@ -44,7 +44,7 @@ const FilterCard: React.FC = () => {
               />
             </div>
             <div className={filterCard.groupContainer}>
-              <PriceRangeSlider />
+              <PriceRangeSlider categoryName="Price range" />
             </div>
             <div className={filterCard.groupContainer}>
               <CustomCalendar categoryName="Date picker" />
