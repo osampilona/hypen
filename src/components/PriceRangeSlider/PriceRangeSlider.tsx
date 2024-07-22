@@ -17,45 +17,29 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
   const dispatch = useDispatch();
   const { min, max } = useSelector((state: RootState) => state.priceRange);
 
-  const { sliderMin, sliderMax } = useMemo(() => {
+  const { sliderMin, sliderMax, histogram } = useMemo(() => {
     const prices = serviceData.map((service) => service.servicePrice);
     const min = Math.min(...prices);
     const max = Math.max(...prices);
-    return { sliderMin: min, sliderMax: max };
+    const buckets = 50;
+    const bucketSize = (max - min) / buckets;
+    const histogramData = new Array(buckets).fill(0);
+
+    prices.forEach((price) => {
+      const index = Math.min(
+        Math.floor((price - min) / bucketSize),
+        buckets - 1,
+      );
+      histogramData[index]++;
+    });
+
+    const maxCount = Math.max(...histogramData);
+    const normalizedHistogram = histogramData.map((count) => count / maxCount);
+
+    return { sliderMin: min, sliderMax: max, histogram: normalizedHistogram };
   }, []);
 
   const [values, setValues] = useState([min || sliderMin, max || sliderMax]);
-  const [histogram, setHistogram] = useState<number[]>([]);
-
-  useEffect(() => {
-    const calculateHistogram = () => {
-      const prices = serviceData
-        .map((service) => service.servicePrice)
-        .filter((price) => price >= values[0] && price <= values[1]);
-      const min = values[0];
-      const max = values[1];
-      const buckets = 50;
-      const bucketSize = (max - min) / buckets;
-      const histogramData = new Array(buckets).fill(0);
-
-      prices.forEach((price) => {
-        const index = Math.min(
-          Math.floor((price - min) / bucketSize),
-          buckets - 1,
-        );
-        histogramData[index]++;
-      });
-
-      const maxCount = Math.max(...histogramData);
-      const normalizedHistogram = histogramData.map(
-        (count) => count / maxCount,
-      );
-
-      setHistogram(normalizedHistogram);
-    };
-
-    calculateHistogram();
-  }, [values]);
 
   useEffect(() => {
     if (values[0] !== min || values[1] !== max) {
@@ -70,6 +54,10 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
         <Histogram
           data={histogram}
           height={50} // Increased height for better visibility
+          min={values[0]}
+          max={values[1]}
+          sliderMin={sliderMin}
+          sliderMax={sliderMax}
         />
         <Range
           values={values}
