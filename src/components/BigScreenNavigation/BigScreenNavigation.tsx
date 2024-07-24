@@ -72,28 +72,31 @@ const BigScreenNavigation = () => {
                 className={styles.themeToggle}
               >
                 {currentTheme === "light" ? (
-                  <MdOutlineLightMode />
+                  <MdOutlineLightMode height={24} width={24} />
                 ) : (
-                  <MdOutlineDarkMode />
+                  <MdOutlineDarkMode height={24} width={24} />
                 )}
               </button>
             </div>
-            <div
+            <button
               className={`${styles.navIcons} ${filterCardVisible ? styles.active : ""}`}
               onClick={() => handleIconClick("filters")}
+              aria-label="Toggle filters"
+              aria-expanded={filterCardVisible}
             >
               <TbListSearch size={24} className={styles.icon} />
               <p>Filters</p>
-            </div>
+            </button>
           </div>
           <div className={styles.groupIcons}>
-            <div
+            <button
               className={`${styles.navIcons} ${activePageIcon === "partner" ? styles.active : ""}`}
               onClick={() => handleIconClick("partner")}
+              aria-label="Partner"
             >
               <HiOutlineBriefcase size={24} className={styles.icon} />
               <p>Partner</p>
-            </div>
+            </button>
             <Link
               href="/login"
               className={`${styles.navIcons} ${activePageIcon === "login" ? styles.active : ""}`}
