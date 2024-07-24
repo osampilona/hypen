@@ -9,7 +9,6 @@ import { RootState } from "@/lib/store";
 import CheckboxItemsList from "@/components/CheckboxItemsList/CheckboxItemsList";
 import PriceRangeSlider from "@/components/PriceRangeSlider/PriceRangeSlider";
 import LocationSearchInputField from "@/components/LocationSearchInputField/LocationSearchinputField";
-import CustomInputField from "../CustomInputField/CustomInputField";
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
