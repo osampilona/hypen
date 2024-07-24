@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CustomInputField from "@/components/Forms/CustomInputField/CustomInputField";
 import SuggestionsList from "@/components/Forms/SuggestionsList/SuggestionsList";
@@ -6,6 +6,8 @@ import { GoSearch } from "react-icons/go";
 import { PiGpsFixFill } from "react-icons/pi";
 import { RootState, AppDispatch } from "@/lib/store";
 import { setSearchValue } from "@/lib/features/filters/inputSlice";
+import styles from "@/components/Forms/LocationSearchInputField/locationSearchInputField.module.scss";
+import classNames from "classnames";
 
 const SUGGESTIONS = [
   "New York",
@@ -30,6 +32,12 @@ const LocationSearchInputField: React.FC<{ categoryName: string }> = ({
   const [filteredItems, setFilteredItems] = useState<string[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [isOpen, setIsOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const suggestionListRef = useRef<HTMLDivElement>(null);
+
+  const openClassName = classNames(styles.container, {
+    [styles.open]: isOpen || isAnimating,
+  });
 
   const updateFilteredItems = useCallback(() => {
     if (searchValue && !SUGGESTIONS.includes(searchValue)) {
@@ -38,10 +46,15 @@ const LocationSearchInputField: React.FC<{ categoryName: string }> = ({
       ).slice(0, 5); // Limit to 5 items
       setFilteredItems(filtered);
       setSelectedIndex(-1);
-      setIsOpen(filtered.length > 0);
+      setIsOpen(true);
+      setIsAnimating(true);
     } else {
-      setFilteredItems([]);
       setIsOpen(false);
+      setIsAnimating(true);
+      setTimeout(() => {
+        setFilteredItems([]);
+        setIsAnimating(false);
+      }, 300); // Match this with the transition duration in CSS
     }
   }, [searchValue]);
 
@@ -55,9 +68,13 @@ const LocationSearchInputField: React.FC<{ categoryName: string }> = ({
   const selectItem = useCallback(
     (item: string) => {
       dispatch(setSearchValue(item));
-      setFilteredItems([]);
-      setSelectedIndex(-1);
       setIsOpen(false);
+      setIsAnimating(true);
+      setTimeout(() => {
+        setFilteredItems([]);
+        setSelectedIndex(-1);
+        setIsAnimating(false);
+      }, 300);
     },
     [dispatch],
   );
@@ -83,11 +100,17 @@ const LocationSearchInputField: React.FC<{ categoryName: string }> = ({
 
   useEffect(updateFilteredItems, [searchValue, updateFilteredItems]);
 
+  useEffect(() => {
+    if (isOpen && suggestionListRef.current) {
+      suggestionListRef.current.style.maxHeight = `${suggestionListRef.current.scrollHeight}px`;
+    }
+  }, [isOpen, filteredItems]);
+
   const inputId = `location-search-input`;
   const listboxId = `${inputId}-listbox`;
 
   return (
-    <>
+    <div className={openClassName}>
       <CustomInputField
         categoryName={categoryName}
         placeholder="Search for location"
@@ -97,18 +120,24 @@ const LocationSearchInputField: React.FC<{ categoryName: string }> = ({
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-      {isOpen && filteredItems.length > 0 && (
-        <SuggestionsList
-          items={filteredItems}
-          onSelect={selectItem}
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-          id={listboxId}
-          role="listbox"
-          aria-label={`Suggestions for ${categoryName}`}
-        />
-      )}
-    </>
+      <div
+        ref={suggestionListRef}
+        className={styles.suggestionsList}
+        style={{ display: isOpen || isAnimating ? "block" : "none" }}
+      >
+        {filteredItems.length > 0 && (
+          <SuggestionsList
+            items={filteredItems}
+            onSelect={selectItem}
+            selectedIndex={selectedIndex}
+            setSelectedIndex={setSelectedIndex}
+            id={listboxId}
+            role="listbox"
+            aria-label={`Suggestions for ${categoryName}`}
+          />
+        )}
+      </div>
+    </div>
   );
 };
 

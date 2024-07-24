@@ -39,13 +39,70 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
     return { sliderMin: min, sliderMax: max, histogram: normalizedHistogram };
   }, []);
 
-  const [values, setValues] = useState([min || sliderMin, max || sliderMax]);
+  const [sliderValues, setSliderValues] = useState([
+    Math.max(min || sliderMin, sliderMin),
+    Math.min(max || sliderMax, sliderMax),
+  ]);
+  const [inputValues, setInputValues] = useState([
+    min !== undefined ? min.toString() : "",
+    max !== undefined ? max.toString() : "",
+  ]);
+  const [minValidationMessage, setMinValidationMessage] = useState("");
+  const [maxValidationMessage, setMaxValidationMessage] = useState("");
 
   useEffect(() => {
-    if (values[0] !== min || values[1] !== max) {
-      dispatch(setPriceRange({ min: values[0], max: values[1] }));
+    dispatch(
+      setPriceRange({
+        min: Number(inputValues[0]),
+        max: Number(inputValues[1]),
+      }),
+    );
+  }, [inputValues, dispatch]);
+
+  const handleSliderChange = (newValues: number[]) => {
+    setSliderValues(newValues);
+    setInputValues(newValues.map(String));
+    setMinValidationMessage("");
+    setMaxValidationMessage("");
+  };
+
+  const handleInputChange = (index: number, value: string) => {
+    const numericValue = value.replace(/[^0-9.]/g, "");
+
+    const newInputValues = [...inputValues];
+    newInputValues[index] = numericValue;
+    setInputValues(newInputValues);
+
+    const numValue =
+      numericValue === ""
+        ? index === 0
+          ? sliderMin
+          : sliderMax
+        : Number(numericValue);
+    if (!isNaN(numValue)) {
+      const newSliderValues = [...sliderValues];
+      newSliderValues[index] = Math.max(
+        Math.min(numValue, sliderMax),
+        sliderMin,
+      );
+      setSliderValues(newSliderValues);
+
+      // Validation
+      if (index === 0) {
+        if (numValue < sliderMin) {
+          setMinValidationMessage(`Minimum value is €${sliderMin}`);
+        } else {
+          setMinValidationMessage("");
+        }
+      } else {
+        if (numValue > sliderMax) {
+          setMaxValidationMessage(`Maximum value is €${sliderMax}`);
+        } else {
+          setMaxValidationMessage("");
+        }
+      }
     }
-  }, [values, dispatch, min, max]);
+  };
 
   return (
     <div className={styles.container}>
@@ -53,18 +110,18 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
       <div className={styles.priceGroup}>
         <Histogram
           data={histogram}
-          height={50} // Increased height for better visibility
-          min={values[0]}
-          max={values[1]}
+          height={50}
+          min={sliderValues[0]}
+          max={sliderValues[1]}
           sliderMin={sliderMin}
           sliderMax={sliderMax}
         />
         <Range
-          values={values}
+          values={sliderValues}
           step={1}
           min={sliderMin}
           max={sliderMax}
-          onChange={setValues}
+          onChange={handleSliderChange}
           renderTrack={({ props, children }) => (
             <div
               {...props}
@@ -72,8 +129,8 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
               style={{
                 ...props.style,
                 background: getTrackBackground({
-                  values,
-                  colors: ["#ccc", "#4caf50", "#ccc"],
+                  values: sliderValues,
+                  colors: ["#ccc", "#7acc34", "#ccc"],
                   min: sliderMin,
                   max: sliderMax,
                 }),
@@ -87,18 +144,44 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
           )}
         />
         <div className={styles.values}>
-          <div className={styles.valueBox}>
-            <span>Minimum</span>
-            <span>€ {Math.round(values[0])}</span>
+          <div className={styles.infoBox}>
+            <div className={styles.valueBox}>
+              <span>Minimum</span>
+              <div className={styles.inputWrapper}>
+                <span className={styles.currencySymbol}>€</span>
+                <input
+                  type="text"
+                  value={inputValues[0]}
+                  onChange={(e) => handleInputChange(0, e.target.value)}
+                  className={styles.input}
+                />
+              </div>
+            </div>
+            {minValidationMessage && (
+              <span className={styles.validationMessage}>
+                <small>{minValidationMessage}</small>
+              </span>
+            )}
           </div>
-          <div className={styles.valueBox}>
-            <span>Maximum</span>
-            <span>
-              €{" "}
-              {values[1] === sliderMax
-                ? `${Math.round(values[1])}+`
-                : Math.round(values[1])}
-            </span>
+          <p>-</p>
+          <div className={styles.infoBox}>
+            <div className={styles.valueBox}>
+              <span>Maximum</span>
+              <div className={styles.inputWrapper}>
+                <span className={styles.currencySymbol}>€</span>
+                <input
+                  type="text"
+                  value={inputValues[1]}
+                  onChange={(e) => handleInputChange(1, e.target.value)}
+                  className={styles.input}
+                />
+              </div>
+            </div>
+            {maxValidationMessage && (
+              <span className={styles.validationMessage}>
+                <small>{maxValidationMessage}</small>
+              </span>
+            )}
           </div>
         </div>
       </div>

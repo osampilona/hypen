@@ -48,16 +48,16 @@
   }
 
   .required {
-    color: #ff4c4c;
+    color: $error-color;
     height: 0.5rem;
   }
 
   &.error {
     input[type="checkbox"] {
-      border-color: #ff4c4c;
+      border-color: $error-color;
     }
     label {
-      color: #ff4c4c;
+      color: $error-color;
     }
   }
 
@@ -73,7 +73,7 @@
   }
 
   .error-message {
-    color: #ff4c4c;
+    color: $error-color;
     font-size: 0.8rem;
   }
 }

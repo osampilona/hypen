@@ -31,7 +31,7 @@ const InputField: React.FC<InputFieldProps> = ({
   "aria-activedescendant": ariaActivedescendant,
 }) => (
   <div className={styles.inputContainer}>
-    {leftIcon && <span className={styles.leftIcon}>{leftIcon}</span>}
+    {leftIcon && <div className={styles.leftIcon}>{leftIcon}</div>}
     <input
       className={styles.input}
       type="text"
@@ -45,7 +45,9 @@ const InputField: React.FC<InputFieldProps> = ({
       aria-controls={ariaControls}
       aria-activedescendant={ariaActivedescendant}
     />
-    {rightIcon && <span className={styles.rightIcon}>{rightIcon}</span>}
+    <button style={{ display: "contents" }}>
+      {rightIcon && <div className={styles.rightIcon}>{rightIcon}</div>}
+    </button>
   </div>
 );
 
