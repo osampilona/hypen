@@ -51,12 +51,8 @@ const FilterCard: React.FC = () => {
               <CustomInputField
                 categoryName="Search"
                 placeholder="Search for location"
-                isLabelClicked={null}
-                handleClick={function (label: string): void {}}
                 leftIcon={<GoSearch />}
                 rightIcon={<PiGpsFixFill />}
-                value={searchValue}
-                onChange={setSearchValue}
               />
             </div>
             <div className={filterCard.groupContainer}>

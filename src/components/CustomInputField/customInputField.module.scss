@@ -76,6 +76,12 @@
       padding-left: 1rem;
       cursor: pointer;
       width: 90%;
+
+      &.selectedItem {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        font-weight: bold;
+      }
     }
 
     .placeItem:hover {

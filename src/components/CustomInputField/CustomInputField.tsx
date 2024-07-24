@@ -1,21 +1,17 @@
-import React, { useState, useRef, KeyboardEvent } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import customInputField from "@/components/CustomInputField/customInputField.module.scss";
+import styles from "./customInputField.module.scss";
 import { RootState, AppDispatch } from "@/lib/store";
 import { setSearchValue } from "@/lib/features/filters/inputSlice";
 
 interface CustomInputFieldProps {
-  isLabelClicked: string | null;
-  handleClick: (label: string) => void;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   placeholder?: string;
   categoryName: string;
-  value: string;
-  onChange: (value: string) => void;
 }
 
-const hardcodedSuggestions = [
+const SUGGESTIONS = [
   "New York",
   "Los Angeles",
   "Chicago",
@@ -26,89 +22,106 @@ const hardcodedSuggestions = [
 const CustomInputField: React.FC<CustomInputFieldProps> = ({
   leftIcon,
   rightIcon,
-  placeholder,
+  placeholder = "Type here...",
   categoryName,
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const searchValue = useSelector(
     (state: RootState) => state.input.searchValue,
   );
-
   const [filteredPlaces, setFilteredPlaces] = useState<string[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    dispatch(setSearchValue(value));
-    if (value) {
-      const filtered = hardcodedSuggestions.filter((place) =>
-        place.toLowerCase().includes(value.toLowerCase()),
+  const updateFilteredPlaces = useCallback(() => {
+    if (searchValue) {
+      const filtered = SUGGESTIONS.filter((place) =>
+        place.toLowerCase().includes(searchValue.toLowerCase()),
       );
-      setFilteredPlaces(filtered);
+      setFilteredPlaces(filtered.filter((place) => place !== searchValue));
       setSelectedIndex(-1);
     } else {
       setFilteredPlaces([]);
     }
-  };
+  }, [searchValue]);
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (filteredPlaces.length === 0) return;
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(setSearchValue(e.target.value));
+    },
+    [dispatch],
+  );
 
-    switch (e.key) {
-      case "ArrowDown":
-        e.preventDefault();
-        setSelectedIndex((prev) =>
-          prev < filteredPlaces.length - 1 ? prev + 1 : prev,
-        );
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        setSelectedIndex((prev) => (prev > 0 ? prev - 1 : 0));
-        break;
-      case "Enter":
-        if (selectedIndex >= 0) {
-          dispatch(setSearchValue(filteredPlaces[selectedIndex]));
-          setFilteredPlaces([]);
-          setSelectedIndex(-1);
-        }
-        break;
+  const updateSelectedItem = useCallback((newIndex: number) => {
+    if (listRef.current) {
+      Array.from(listRef.current.children).forEach((item, i) => {
+        item.classList.toggle(styles.selectedItem, i === newIndex);
+      });
     }
-  };
+  }, []);
+
+  const selectItem = useCallback(
+    (item: string) => {
+      dispatch(setSearchValue(item));
+      setFilteredPlaces([]);
+      setSelectedIndex(-1);
+    },
+    [dispatch],
+  );
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (filteredPlaces.length === 0) return;
+
+      switch (e.key) {
+        case "ArrowDown":
+        case "ArrowUp":
+          e.preventDefault();
+          setSelectedIndex((prev) => {
+            const newIndex =
+              e.key === "ArrowDown"
+                ? Math.min(prev + 1, filteredPlaces.length - 1)
+                : Math.max(prev - 1, 0);
+            updateSelectedItem(newIndex);
+            return newIndex;
+          });
+          break;
+        case "Enter":
+          if (selectedIndex >= 0) {
+            selectItem(filteredPlaces[selectedIndex]);
+          }
+          break;
+      }
+    },
+    [filteredPlaces, selectedIndex, updateSelectedItem, selectItem],
+  );
+
+  React.useEffect(updateFilteredPlaces, [searchValue, updateFilteredPlaces]);
 
   return (
-    <div className={customInputField.container}>
-      <h4 className={customInputField.title}>{categoryName}</h4>
-      <div className={customInputField.inputContainer}>
-        {leftIcon && (
-          <span className={customInputField.leftIcon}>{leftIcon}</span>
-        )}
+    <div className={styles.container}>
+      <h4 className={styles.title}>{categoryName}</h4>
+      <div className={styles.inputContainer}>
+        {leftIcon && <span className={styles.leftIcon}>{leftIcon}</span>}
         <input
           ref={inputRef}
-          className={customInputField.input}
+          className={styles.input}
           type="text"
           value={searchValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
-          placeholder={placeholder || "Type here..."}
+          placeholder={placeholder}
         />
-        {rightIcon && (
-          <span className={customInputField.rightIcon}>{rightIcon}</span>
-        )}
+        {rightIcon && <span className={styles.rightIcon}>{rightIcon}</span>}
       </div>
       {filteredPlaces.length > 0 && (
-        <ul className={customInputField.placesList}>
+        <ul className={styles.placesList} ref={listRef}>
           {filteredPlaces.map((place, index) => (
             <li
               key={index}
-              className={`${customInputField.placeItem} ${
-                index === selectedIndex ? customInputField.selectedItem : ""
-              }`}
-              onClick={() => {
-                dispatch(setSearchValue(place));
-                setFilteredPlaces([]);
-                setSelectedIndex(-1);
-              }}
+              className={styles.placeItem}
+              onClick={() => selectItem(place)}
             >
               {place}
             </li>
