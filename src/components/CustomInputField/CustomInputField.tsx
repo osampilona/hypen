@@ -1,5 +1,4 @@
-// CustomInputField.tsx
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./customInputField.module.scss";
 import { RootState, AppDispatch } from "@/lib/store";
@@ -72,7 +71,27 @@ function CustomInputField<T>({
     [dispatch, setValue, onSelect, displayProperty],
   );
 
-  React.useEffect(updateFilteredItems, [searchValue, updateFilteredItems]);
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (filteredItems.length === 0) return;
+
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setSelectedIndex((prevIndex) =>
+          prevIndex < filteredItems.length - 1 ? prevIndex + 1 : prevIndex,
+        );
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setSelectedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : -1));
+      } else if (e.key === "Enter" && selectedIndex !== -1) {
+        e.preventDefault();
+        selectItem(filteredItems[selectedIndex]);
+      }
+    },
+    [filteredItems, selectedIndex, selectItem],
+  );
+
+  useEffect(updateFilteredItems, [searchValue, updateFilteredItems]);
 
   return (
     <div className={styles.container}>
@@ -83,9 +102,7 @@ function CustomInputField<T>({
         placeholder={placeholder}
         value={searchValue}
         onChange={handleInputChange}
-        onKeyDown={(e) => {
-          /* Handle key down */
-        }}
+        onKeyDown={handleKeyDown}
       />
       <SuggestionsList
         items={filteredItems}
