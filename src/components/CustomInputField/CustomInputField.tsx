@@ -8,6 +8,7 @@ interface CustomInputFieldProps {
   placeholder?: string;
   value?: string;
   onChange?: (value: string) => void;
+  categoryName: string;
 }
 
 const CustomInputField: React.FC<CustomInputFieldProps> = ({
@@ -16,6 +17,7 @@ const CustomInputField: React.FC<CustomInputFieldProps> = ({
   placeholder,
   value,
   onChange,
+  categoryName,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
@@ -25,6 +27,7 @@ const CustomInputField: React.FC<CustomInputFieldProps> = ({
 
   return (
     <div className={customInputField.container}>
+      <h4 className={customInputField.title}>{categoryName}</h4>
       <div className={customInputField.inputContainer}>
         {leftIcon && (
           <span className={customInputField.leftIcon}>{leftIcon}</span>

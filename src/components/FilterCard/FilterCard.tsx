@@ -6,11 +6,15 @@ import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
 import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 import CategoriesList from "@/components/CategoriesList/CategoriesList";
 import { RootState } from "@/lib/store";
-import CheckboxItemsList from "../CheckboxItemsList/CheckboxItemsList";
-import PriceRangeSlider from "../PriceRangeSlider/PriceRangeSlider";
+import CheckboxItemsList from "@/components/CheckboxItemsList/CheckboxItemsList";
+import PriceRangeSlider from "@/components/PriceRangeSlider/PriceRangeSlider";
+import CustomInputField from "@/components/CustomInputField/CustomInputField";
+import { GoSearch } from "react-icons/go";
+import { PiGpsFixFill } from "react-icons/pi";
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1000);
@@ -41,6 +45,18 @@ const FilterCard: React.FC = () => {
               <CategoriesList
                 key={`subcategories-${selectedSubCategories.join("-")}`}
                 categoryName="Sub categories"
+              />
+            </div>
+            <div className={filterCard.groupContainer}>
+              <CustomInputField
+                categoryName="Search"
+                placeholder="Search for location"
+                isLabelClicked={null}
+                handleClick={function (label: string): void {}}
+                leftIcon={<GoSearch />}
+                rightIcon={<PiGpsFixFill />}
+                value={searchValue}
+                onChange={setSearchValue}
               />
             </div>
             <div className={filterCard.groupContainer}>

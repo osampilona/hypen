@@ -4,6 +4,12 @@
   width: 100%;
   align-items: flex-end;
 
+  .title {
+    text-align: left;
+    width: 100%;
+    margin: 20px 0;
+  }
+
   .popupHeader {
     display: flex;
     margin-bottom: 20px;
