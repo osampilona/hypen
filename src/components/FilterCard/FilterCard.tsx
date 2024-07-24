@@ -11,7 +11,7 @@ import PriceRangeSlider from "@/components/PriceRangeSlider/PriceRangeSlider";
 import CustomInputField from "@/components/CustomInputField/CustomInputField";
 import { GoSearch } from "react-icons/go";
 import { PiGpsFixFill } from "react-icons/pi";
-import { setSearchValue } from "@/lib/features/filters/inputSlice"; // Make sure this import is correct
+import InputField from "../InputField/InputField";
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
