@@ -6,8 +6,9 @@ import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
 import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 import CategoriesList from "@/components/CategoriesList/CategoriesList";
 import { RootState } from "@/lib/store";
-import CheckboxItemsList from "../CheckboxItemsList/CheckboxItemsList";
-import PriceRangeSlider from "../PriceRangeSlider/PriceRangeSlider";
+import CheckboxItemsList from "@/components/CheckboxItemsList/CheckboxItemsList";
+import PriceRangeSlider from "@/components/PriceRangeSlider/PriceRangeSlider";
+import LocationSearchInputField from "@/components/LocationSearchInputField/LocationSearchinputField";
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -42,6 +43,9 @@ const FilterCard: React.FC = () => {
                 key={`subcategories-${selectedSubCategories.join("-")}`}
                 categoryName="Sub categories"
               />
+            </div>
+            <div className={filterCard.groupContainer}>
+              <LocationSearchInputField categoryName="Location selection" />
             </div>
             <div className={filterCard.groupContainer}>
               <PriceRangeSlider categoryName="Price range" />

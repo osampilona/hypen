@@ -3,9 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  padding: 1.5rem 1rem;
   position: fixed;
+  padding: 1.5rem 1rem;
   z-index: 100;
   background-color: var(--items-bg-color);
   color: var(--labels-color);
@@ -34,6 +33,14 @@
       gap: 1rem;
       cursor: pointer;
       padding: 0.5rem 0.75rem;
+      text-decoration: none;
+      color: inherit;
+      background: none;
+      border: none;
+      font: inherit;
+      outline: inherit;
+      width: 100%;
+      text-align: left;
 
       &:hover,
       &:focus {
@@ -43,26 +50,13 @@
       &.active {
         @include change-color(var(--primary-color));
         background-color: var(--background-color);
-        padding: 0.5rem 0.75rem;
         border-radius: 0.5rem;
       }
     }
 
-    a {
-      color: var(--labels-color);
-      text-decoration: none;
-
-      &:hover,
-      &:focus {
-        @include change-color(var(--primary-color));
-      }
-
-      &.active {
-        @include change-color(var(--primary-color));
-        background-color: var(--background-color);
-        padding: 0.5rem 0.75rem;
-        border-radius: 0.5rem;
-      }
+    a,
+    button:not(.themeToggle) {
+      @extend .navIcons;
     }
 
     .icon {
@@ -75,18 +69,22 @@
       height: 100%;
       width: auto;
     }
-  }
 
-  .themeToggle {
-    border-radius: 50%;
-    height: 24px;
-    width: 24px;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
+    .themeToggle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      height: 24px;
+      width: 24px;
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      padding: 0;
 
-    svg {
-      fill: var(--labels-color);
+      svg {
+        fill: var(--labels-color);
+      }
     }
   }
 

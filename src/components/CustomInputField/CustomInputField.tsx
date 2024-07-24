@@ -1,46 +1,50 @@
-import customInputField from "@/components/CustomInputField/customInputField.module.scss";
+import React from "react";
+import styles from "./customInputField.module.scss";
+import InputField from "@/components/InputField/InputField";
 
 interface CustomInputFieldProps {
-  isLabelClicked: string | null;
-  handleClick: (label: string) => void;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   placeholder?: string;
-  value?: string;
-  onChange?: (value: string) => void;
+  categoryName: string;
+  value: string;
+  onChange: (value: string) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const CustomInputField: React.FC<CustomInputFieldProps> = ({
-  rightIcon,
   leftIcon,
-  placeholder,
+  rightIcon,
+  placeholder = "Type here...",
+  categoryName,
   value,
   onChange,
+  onKeyDown = () => {}, // Provide a default empty function
 }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (onChange) {
-      onChange(e.target.value);
-    }
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value);
   };
 
+  const inputId = `${categoryName.toLowerCase().replace(/\s+/g, "-")}-input`;
+
   return (
-    <div className={customInputField.container}>
-      <div className={customInputField.inputContainer}>
-        {leftIcon && (
-          <span className={customInputField.leftIcon}>{leftIcon}</span>
-        )}
-        <input
-          data-testid="customInputField"
-          className={customInputField.input}
-          type="text"
-          placeholder={placeholder || "Type here..."}
-          value={value || ""}
-          onChange={handleChange}
-        />
-        {rightIcon && (
-          <span className={customInputField.rightIcon}>{rightIcon}</span>
-        )}
-      </div>
+    <div className={styles.container}>
+      <h4 className={styles.title} id={`${inputId}-label`}>
+        {categoryName}
+      </h4>
+      <InputField
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        placeholder={placeholder}
+        value={value}
+        onChange={handleInputChange}
+        onKeyDown={onKeyDown}
+        id={inputId}
+        aria-label={categoryName}
+        aria-autocomplete="list"
+        aria-controls={`${inputId}-listbox`}
+        aria-expanded={false}
+      />
     </div>
   );
 };
