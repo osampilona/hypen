@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.suggestionsList {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.3s ease-out,
+    opacity 0.3s ease-out,
+    padding 0.3s ease-out;
+  padding: 0;
+}
+
+.open .suggestionsList {
+  max-height: 200px;
+  opacity: 1;
+  padding: 8px 0; // Add padding when open
+}

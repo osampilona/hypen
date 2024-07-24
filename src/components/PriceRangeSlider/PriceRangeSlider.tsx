@@ -53,7 +53,7 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
       <div className={styles.priceGroup}>
         <Histogram
           data={histogram}
-          height={50} // Increased height for better visibility
+          height={50}
           min={values[0]}
           max={values[1]}
           sliderMin={sliderMin}
