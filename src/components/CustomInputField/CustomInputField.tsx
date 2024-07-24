@@ -1,135 +1,101 @@
-import React, { useState, useRef, useCallback } from "react";
+// CustomInputField.tsx
+import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./customInputField.module.scss";
 import { RootState, AppDispatch } from "@/lib/store";
-import { setSearchValue } from "@/lib/features/filters/inputSlice";
+import InputField from "@/components/InputField/InputField";
+import SuggestionsList from "@/components/SuggestionsList/SuggestionsList";
 
-interface CustomInputFieldProps {
+interface CustomInputFieldProps<T> {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   placeholder?: string;
   categoryName: string;
+  suggestions: T[];
+  displayProperty?: keyof T;
+  onSelect: (item: T) => void;
+  getValue: (state: RootState) => string;
+  setValue: (value: string) => { type: string; payload: string };
 }
 
-const SUGGESTIONS = [
-  "New York",
-  "Los Angeles",
-  "Chicago",
-  "Houston",
-  "Phoenix",
-];
-
-const CustomInputField: React.FC<CustomInputFieldProps> = ({
+function CustomInputField<T>({
   leftIcon,
   rightIcon,
   placeholder = "Type here...",
   categoryName,
-}) => {
+  suggestions,
+  displayProperty,
+  onSelect,
+  getValue,
+  setValue,
+}: CustomInputFieldProps<T>) {
   const dispatch = useDispatch<AppDispatch>();
-  const searchValue = useSelector(
-    (state: RootState) => state.input.searchValue,
-  );
-  const [filteredPlaces, setFilteredPlaces] = useState<string[]>([]);
+  const searchValue = useSelector(getValue);
+  const [filteredItems, setFilteredItems] = useState<T[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const listRef = useRef<HTMLUListElement>(null);
 
-  const updateFilteredPlaces = useCallback(() => {
+  const updateFilteredItems = useCallback(() => {
     if (searchValue) {
-      const filtered = SUGGESTIONS.filter((place) =>
-        place.toLowerCase().includes(searchValue.toLowerCase()),
+      const filtered = suggestions.filter((item) =>
+        String(displayProperty ? item[displayProperty] : item)
+          .toLowerCase()
+          .includes(searchValue.toLowerCase()),
       );
-      setFilteredPlaces(filtered.filter((place) => place !== searchValue));
+      setFilteredItems(
+        filtered.filter(
+          (item) =>
+            String(displayProperty ? item[displayProperty] : item) !==
+            searchValue,
+        ),
+      );
       setSelectedIndex(-1);
     } else {
-      setFilteredPlaces([]);
+      setFilteredItems([]);
     }
-  }, [searchValue]);
+  }, [searchValue, suggestions, displayProperty]);
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      dispatch(setSearchValue(e.target.value));
+      dispatch(setValue(e.target.value));
     },
-    [dispatch],
+    [dispatch, setValue],
   );
-
-  const updateSelectedItem = useCallback((newIndex: number) => {
-    if (listRef.current) {
-      Array.from(listRef.current.children).forEach((item, i) => {
-        item.classList.toggle(styles.selectedItem, i === newIndex);
-      });
-    }
-  }, []);
 
   const selectItem = useCallback(
-    (item: string) => {
-      dispatch(setSearchValue(item));
-      setFilteredPlaces([]);
+    (item: T) => {
+      const value = String(displayProperty ? item[displayProperty] : item);
+      dispatch(setValue(value));
+      setFilteredItems([]);
       setSelectedIndex(-1);
+      onSelect(item);
     },
-    [dispatch],
+    [dispatch, setValue, onSelect, displayProperty],
   );
 
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (filteredPlaces.length === 0) return;
-
-      switch (e.key) {
-        case "ArrowDown":
-        case "ArrowUp":
-          e.preventDefault();
-          setSelectedIndex((prev) => {
-            const newIndex =
-              e.key === "ArrowDown"
-                ? Math.min(prev + 1, filteredPlaces.length - 1)
-                : Math.max(prev - 1, 0);
-            updateSelectedItem(newIndex);
-            return newIndex;
-          });
-          break;
-        case "Enter":
-          if (selectedIndex >= 0) {
-            selectItem(filteredPlaces[selectedIndex]);
-          }
-          break;
-      }
-    },
-    [filteredPlaces, selectedIndex, updateSelectedItem, selectItem],
-  );
-
-  React.useEffect(updateFilteredPlaces, [searchValue, updateFilteredPlaces]);
+  React.useEffect(updateFilteredItems, [searchValue, updateFilteredItems]);
 
   return (
     <div className={styles.container}>
       <h4 className={styles.title}>{categoryName}</h4>
-      <div className={styles.inputContainer}>
-        {leftIcon && <span className={styles.leftIcon}>{leftIcon}</span>}
-        <input
-          ref={inputRef}
-          className={styles.input}
-          type="text"
-          value={searchValue}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          placeholder={placeholder}
-        />
-        {rightIcon && <span className={styles.rightIcon}>{rightIcon}</span>}
-      </div>
-      {filteredPlaces.length > 0 && (
-        <ul className={styles.placesList} ref={listRef}>
-          {filteredPlaces.map((place, index) => (
-            <li
-              key={index}
-              className={styles.placeItem}
-              onClick={() => selectItem(place)}
-            >
-              {place}
-            </li>
-          ))}
-        </ul>
-      )}
+      <InputField
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        placeholder={placeholder}
+        value={searchValue}
+        onChange={handleInputChange}
+        onKeyDown={(e) => {
+          /* Handle key down */
+        }}
+      />
+      <SuggestionsList
+        items={filteredItems}
+        displayProperty={displayProperty}
+        onSelect={selectItem}
+        selectedIndex={selectedIndex}
+        setSelectedIndex={setSelectedIndex}
+      />
     </div>
   );
-};
+}
 
 export default CustomInputField;
