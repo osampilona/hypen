@@ -1,6 +1,6 @@
 import React from "react";
-import checkboxItemsList from "@/components/CheckboxItemsList/checkboxItemsList.module.scss";
-import Checkbox from "@/components/Checkbox/Checkbox";
+import checkboxItemsList from "@/components/Forms/CheckboxItemsList/checkboxItemsList.module.scss";
+import Checkbox from "@/components/Forms/Checkbox/Checkbox";
 
 interface CheckboxItemsListProps {
   title: string;
