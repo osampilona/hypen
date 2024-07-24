@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   margin: 20px 0;
+  margin-bottom: 0;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -65,24 +66,75 @@
 
 .values {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   margin-top: 20px;
 }
 
-.valueBox {
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
+.infoBox {
   display: flex;
   flex-direction: column;
+  width: 46%;
 
-  span:first-child {
-    font-size: 14px;
+  .minMaxValues {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
     color: #666;
   }
 
-  span:last-child {
-    font-size: 16px;
-    font-weight: bold;
+  .validationMessage {
+    color: $error-color;
+    margin-top: 4px;
+  }
+
+  .valueBox {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    span:first-child {
+      font-size: 14px;
+      color: #666;
+    }
+
+    span:last-child {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .inputWrapper {
+      position: relative;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .currencySymbol {
+    }
+
+    .input {
+      -moz-appearance: textfield; /* Firefox */
+      appearance: textfield; /* Default */
+      border: none;
+      background-color: transparent;
+      outline: none;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0; /* Chrome, Safari, Edge */
+      border: none;
+      background-color: transparent;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield; /* Firefox */
+      border: none;
+      background-color: transparent;
+    }
   }
 }
