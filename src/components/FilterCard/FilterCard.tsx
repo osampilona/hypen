@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import filterCard from "@/components/FilterCard/filterCard.module.scss";
 import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
 import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
@@ -8,13 +8,11 @@ import CategoriesList from "@/components/CategoriesList/CategoriesList";
 import { RootState } from "@/lib/store";
 import CheckboxItemsList from "@/components/CheckboxItemsList/CheckboxItemsList";
 import PriceRangeSlider from "@/components/PriceRangeSlider/PriceRangeSlider";
-import CustomInputField from "@/components/CustomInputField/CustomInputField";
-import { GoSearch } from "react-icons/go";
-import { PiGpsFixFill } from "react-icons/pi";
+import LocationSearchInputField from "@/components/LocationSearchInputField/LocationSearchinputField";
+import CustomInputField from "../CustomInputField/CustomInputField";
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1000);
@@ -27,19 +25,6 @@ const FilterCard: React.FC = () => {
   const selectedSubCategories = useSelector(
     (state: RootState) => state.categories.selectedSubCategories,
   );
-
-  const suggestions = [
-    "New York",
-    "Los Angeles",
-    "Chicago",
-    "Houston",
-    "Phoenix",
-    "Philadelphia",
-    "San Antonio",
-    "San Diego",
-    "Dallas",
-    "San Jose",
-  ];
 
   return (
     <div className={filterCard.container} data-testid="filterCard">
@@ -61,19 +46,7 @@ const FilterCard: React.FC = () => {
               />
             </div>
             <div className={filterCard.groupContainer}>
-              <CustomInputField<string>
-                categoryName="Search"
-                placeholder="Search for location"
-                leftIcon={<GoSearch />}
-                rightIcon={<PiGpsFixFill />}
-                suggestions={suggestions}
-                onSelect={(item) => console.log("Selected:", item)}
-                getValue={(state: RootState) => state.input.searchValue}
-                setValue={(value: string) => ({
-                  type: "input/setSearchValue",
-                  payload: value,
-                })}
-              />
+              <LocationSearchInputField categoryName="Location selection" />
             </div>
             <div className={filterCard.groupContainer}>
               <PriceRangeSlider categoryName="Price range" />
@@ -92,7 +65,7 @@ const FilterCard: React.FC = () => {
               <CheckboxItemsList
                 title="Accessibility and facilities"
                 items={[
-                  "Wheelchair accessible for people with disabilities so they can use the service as well",
+                  "Wheelchair accessible for people with dissabilities so they can use the service as well",
                   "Elevator",
                   "Parking",
                   "Toilet",
@@ -101,7 +74,7 @@ const FilterCard: React.FC = () => {
                 ]}
                 disabledItems={["Elevator", "Parking", "Toilet"]}
                 requiredItems={[
-                  "Wheelchair accessible for people with disabilities so they can use the service as well",
+                  "Wheelchair accessible for people with dissabilities so they can use the service as well",
                   "Wi-Fi",
                 ]}
               />

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import styles from "@/components/SuggestionsList/suggestionsList.module.scss";
+import styles from "./suggestionsList.module.scss";
 
 interface SuggestionsListProps<T> {
   items: T[];
@@ -40,8 +40,6 @@ function SuggestionsList<T>({
 
   if (items.length === 0) return null;
 
-  const displayedItems = items.slice(0, 5);
-
   return (
     <ul
       className={styles.placesList}
@@ -50,7 +48,7 @@ function SuggestionsList<T>({
       role={role}
       aria-label={ariaLabel}
     >
-      {displayedItems.map((item, index) => (
+      {items.map((item, index) => (
         <li
           key={index}
           id={`${id}-option-${index}`}
