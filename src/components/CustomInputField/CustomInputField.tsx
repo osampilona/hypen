@@ -36,20 +36,47 @@ function CustomInputField<T>({
 
   const updateFilteredItems = useCallback(() => {
     if (searchValue) {
-      const filtered = suggestions.filter((item) =>
-        String(displayProperty ? item[displayProperty] : item)
-          .toLowerCase()
-          .includes(searchValue.toLowerCase()),
-      );
-      setFilteredItems(
-        filtered.filter(
+      const filtered = suggestions
+        .filter((item) =>
+          String(displayProperty ? item[displayProperty] : item)
+            .toLowerCase()
+            .includes(searchValue.toLowerCase()),
+        )
+        .filter(
           (item) =>
             String(displayProperty ? item[displayProperty] : item) !==
             searchValue,
-        ),
-      );
+        )
+        .sort((a, b) => {
+          const aValue = String(displayProperty ? a[displayProperty] : a);
+          const bValue = String(displayProperty ? b[displayProperty] : b);
+          const aLower = aValue.toLowerCase();
+          const bLower = bValue.toLowerCase();
+          const searchLower = searchValue.toLowerCase();
+
+          // If one string starts with the search value and the other doesn't,
+          // the one that does comes first
+          if (
+            aLower.startsWith(searchLower) &&
+            !bLower.startsWith(searchLower)
+          ) {
+            return -1;
+          }
+          if (
+            !aLower.startsWith(searchLower) &&
+            bLower.startsWith(searchLower)
+          ) {
+            return 1;
+          }
+
+          // If both or neither start with the search value, sort alphabetically
+          return aLower.localeCompare(bLower);
+        })
+        .slice(0, 5); // Limit to 5 items
+
+      setFilteredItems(filtered);
       setSelectedIndex(-1);
-      setIsOpen(true);
+      setIsOpen(filtered.length > 0);
     } else {
       setFilteredItems([]);
       setIsOpen(false);
