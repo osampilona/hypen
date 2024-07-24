@@ -73,7 +73,7 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
                 ...props.style,
                 background: getTrackBackground({
                   values,
-                  colors: ["#ccc", "#4caf50", "#ccc"],
+                  colors: ["#ccc", "#7acc34", "#ccc"],
                   min: sliderMin,
                   max: sliderMax,
                 }),
