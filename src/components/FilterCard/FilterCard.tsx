@@ -8,7 +8,7 @@ import CategoriesList from "@/components/CategoriesList/CategoriesList";
 import { RootState } from "@/lib/store";
 import CheckboxItemsList from "@/components/Forms/CheckboxItemsList/CheckboxItemsList";
 import PriceRangeSlider from "@/components/PriceRangeSlider/PriceRangeSlider";
-import LocationSearchInputField from "@/components/Forms/LocationSearchInputField/LocationSearchinputField";
+import LocationSearchInputField from "@/components/Forms/LocationSearchInputField/LocationSearchInputField";
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
