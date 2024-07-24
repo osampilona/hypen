@@ -7,6 +7,9 @@ interface SuggestionsListProps<T> {
   onSelect: (item: T) => void;
   selectedIndex: number;
   setSelectedIndex: React.Dispatch<React.SetStateAction<number>>;
+  id: string;
+  role: string;
+  "aria-label": string;
 }
 
 function SuggestionsList<T>({
@@ -15,25 +18,45 @@ function SuggestionsList<T>({
   onSelect,
   selectedIndex,
   setSelectedIndex,
+  id,
+  role,
+  "aria-label": ariaLabel,
 }: SuggestionsListProps<T>) {
   const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     if (listRef.current) {
-      Array.from(listRef.current.children).forEach((item, i) => {
-        item.classList.toggle(styles.selectedItem, i === selectedIndex);
-      });
+      const selectedElement = listRef.current.children[
+        selectedIndex
+      ] as HTMLElement;
+      if (selectedElement) {
+        selectedElement.scrollIntoView({
+          block: "nearest",
+          behavior: "smooth",
+        });
+      }
     }
   }, [selectedIndex]);
 
   if (items.length === 0) return null;
 
+  const displayedItems = items.slice(0, 5);
+
   return (
-    <ul className={styles.placesList} ref={listRef}>
-      {items.map((item, index) => (
+    <ul
+      className={styles.placesList}
+      ref={listRef}
+      id={id}
+      role={role}
+      aria-label={ariaLabel}
+    >
+      {displayedItems.map((item, index) => (
         <li
           key={index}
-          className={styles.placeItem}
+          id={`${id}-option-${index}`}
+          role="option"
+          aria-selected={index === selectedIndex}
+          className={`${styles.placeItem} ${index === selectedIndex ? styles.selectedItem : ""}`}
           onClick={() => onSelect(item)}
           onMouseEnter={() => setSelectedIndex(index)}
         >

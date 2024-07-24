@@ -11,7 +11,6 @@ import PriceRangeSlider from "@/components/PriceRangeSlider/PriceRangeSlider";
 import CustomInputField from "@/components/CustomInputField/CustomInputField";
 import { GoSearch } from "react-icons/go";
 import { PiGpsFixFill } from "react-icons/pi";
-import InputField from "../InputField/InputField";
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -35,7 +34,11 @@ const FilterCard: React.FC = () => {
     "Chicago",
     "Houston",
     "Phoenix",
-    // Add more suggestions as needed
+    "Philadelphia",
+    "San Antonio",
+    "San Diego",
+    "Dallas",
+    "San Jose",
   ];
 
   return (

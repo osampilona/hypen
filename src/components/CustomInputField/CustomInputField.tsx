@@ -32,6 +32,7 @@ function CustomInputField<T>({
   const searchValue = useSelector(getValue);
   const [filteredItems, setFilteredItems] = useState<T[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [isOpen, setIsOpen] = useState(false);
 
   const updateFilteredItems = useCallback(() => {
     if (searchValue) {
@@ -48,8 +49,10 @@ function CustomInputField<T>({
         ),
       );
       setSelectedIndex(-1);
+      setIsOpen(true);
     } else {
       setFilteredItems([]);
+      setIsOpen(false);
     }
   }, [searchValue, suggestions, displayProperty]);
 
@@ -66,6 +69,7 @@ function CustomInputField<T>({
       dispatch(setValue(value));
       setFilteredItems([]);
       setSelectedIndex(-1);
+      setIsOpen(false);
       onSelect(item);
     },
     [dispatch, setValue, onSelect, displayProperty],
@@ -86,6 +90,8 @@ function CustomInputField<T>({
       } else if (e.key === "Enter" && selectedIndex !== -1) {
         e.preventDefault();
         selectItem(filteredItems[selectedIndex]);
+      } else if (e.key === "Escape") {
+        setIsOpen(false);
       }
     },
     [filteredItems, selectedIndex, selectItem],
@@ -93,9 +99,14 @@ function CustomInputField<T>({
 
   useEffect(updateFilteredItems, [searchValue, updateFilteredItems]);
 
+  const inputId = `${categoryName.toLowerCase().replace(/\s+/g, "-")}-input`;
+  const listboxId = `${inputId}-listbox`;
+
   return (
     <div className={styles.container}>
-      <h4 className={styles.title}>{categoryName}</h4>
+      <h4 className={styles.title} id={`${inputId}-label`}>
+        {categoryName}
+      </h4>
       <InputField
         leftIcon={leftIcon}
         rightIcon={rightIcon}
@@ -103,6 +114,16 @@ function CustomInputField<T>({
         value={searchValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
+        id={inputId}
+        aria-label={categoryName}
+        aria-autocomplete="list"
+        aria-controls={listboxId}
+        aria-expanded={isOpen}
+        aria-activedescendant={
+          selectedIndex >= 0
+            ? `${listboxId}-option-${selectedIndex}`
+            : undefined
+        }
       />
       <SuggestionsList
         items={filteredItems}
@@ -110,6 +131,9 @@ function CustomInputField<T>({
         onSelect={selectItem}
         selectedIndex={selectedIndex}
         setSelectedIndex={setSelectedIndex}
+        id={listboxId}
+        role="listbox"
+        aria-label={`Suggestions for ${categoryName}`}
       />
     </div>
   );
