@@ -15,41 +15,72 @@
     margin-bottom: 20px;
     width: 100%;
   }
-}
 
-.inputContainer {
-  display: flex;
-  align-items: center;
-  border: 1px solid var(--labels-color);
-  border-radius: 25px;
-  padding: 5px;
-  width: 100%;
-  position: relative;
-  margin-bottom: 20px;
-}
+  .inputContainer {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--labels-color);
+    border-radius: 25px;
+    padding: 5px 20px; /* Increased padding to accommodate the icons */
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px;
 
-.leftIcon {
-  margin-right: 1rem;
-  color: #888;
-  position: absolute;
-  left: 10px;
-  pointer-events: none; // Prevent icon from interfering with input focus
-}
+    .leftIcon {
+      margin-right: 1rem;
+      color: var(--labels-color);
+      position: absolute;
+      left: 10px;
+      pointer-events: none; /* Prevent icon from interfering with input focus */
+    }
 
-.rightIcon {
-  margin-left: 1rem;
-  color: #888;
-  position: absolute;
-  right: 10px;
-  pointer-events: none; // Prevent icon from interfering with input focus
-}
+    .input {
+      margin: 0 1rem;
+      flex: 1;
+      padding: 0.5rem 1rem;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      background-color: transparent;
+      padding-left: 1rem; /* Added padding to accommodate left icon */
+      padding-right: 1rem; /* Added padding to accommodate right icon */
+    }
 
-.input {
-  margin: 0 1rem;
-  flex: 1;
-  padding: 0.5rem 1rem;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  background-color: transparent;
+    .rightIcon {
+      margin-left: 1rem;
+      color: var(--labels-color);
+      position: absolute;
+      right: 10px;
+      cursor: pointer; /* Prevent icon from interfering with input focus */
+    }
+  }
+
+  .placesList {
+    border-radius: 4px;
+    color: var(--labels-color);
+    z-index: 1000;
+    max-height: 200px;
+    width: 100%;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    scroll-behavior: smooth;
+
+    .placeItem {
+      padding: 10px;
+      padding-left: 1rem;
+      cursor: pointer;
+      width: 90%;
+    }
+
+    .placeItem:hover {
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+  }
 }

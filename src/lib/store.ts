@@ -5,6 +5,7 @@ import timeSlotsReducer from "@/lib/features/filters/timeSlotsSlice";
 import dateReducer from "@/lib/features/filters/dateSlice";
 import checkboxReducer from "@/lib/features/filters/checkboxSlice";
 import priceRangeSlice from "@/lib/features/filters/priceRangeSlice";
+import inputSlice from "@/lib/features/filters/inputSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     date: dateReducer,
     checkbox: checkboxReducer,
     priceRange: priceRangeSlice,
+    input: inputSlice,
   },
 });
 
