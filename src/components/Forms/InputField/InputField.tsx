@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/components/InputField/InputField.module.scss";
+import styles from "@/components/Forms/InputField/InputField.module.scss";
 
 interface InputFieldProps {
   leftIcon?: React.ReactNode;

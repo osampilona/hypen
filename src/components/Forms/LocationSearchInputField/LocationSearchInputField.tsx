@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CustomInputField from "@/components/CustomInputField/CustomInputField";
-import SuggestionsList from "@/components/SuggestionsList/SuggestionsList";
+import CustomInputField from "@/components/Forms/CustomInputField/CustomInputField";
+import SuggestionsList from "@/components/Forms/SuggestionsList/SuggestionsList";
 import { GoSearch } from "react-icons/go";
 import { PiGpsFixFill } from "react-icons/pi";
 import { RootState, AppDispatch } from "@/lib/store";

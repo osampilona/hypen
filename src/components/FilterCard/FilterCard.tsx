@@ -6,9 +6,9 @@ import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
 import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 import CategoriesList from "@/components/CategoriesList/CategoriesList";
 import { RootState } from "@/lib/store";
-import CheckboxItemsList from "@/components/CheckboxItemsList/CheckboxItemsList";
+import CheckboxItemsList from "@/components/Forms/CheckboxItemsList/CheckboxItemsList";
 import PriceRangeSlider from "@/components/PriceRangeSlider/PriceRangeSlider";
-import LocationSearchInputField from "@/components/LocationSearchInputField/LocationSearchinputField";
+import LocationSearchInputField from "@/components/Forms/LocationSearchInputField/LocationSearchinputField";
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./customInputField.module.scss";
-import InputField from "@/components/InputField/InputField";
+import InputField from "@/components/Forms/InputField/InputField";
 
 interface CustomInputFieldProps {
   leftIcon?: React.ReactNode;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IoMdCheckmark } from "react-icons/io";
-import checkboxStyles from "@/components/Checkbox/checkbox.module.scss";
+import checkboxStyles from "@/components/Forms/Checkbox/checkbox.module.scss";
 import classNames from "classnames";
 import { FaAsterisk } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
