@@ -9,6 +9,7 @@ import { RootState } from "@/lib/store";
 import CheckboxItemsList from "@/components/Forms/CheckboxItemsList/CheckboxItemsList";
 import PriceRangeSlider from "@/components/PriceRangeSlider/PriceRangeSlider";
 import LocationSearchInputField from "@/components/Forms/LocationSearchInputField/LocationSearchInputField";
+import DistanceRangeSlider from "@/components/DistanceRangeSlider/DistanceRangeSlider";
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -46,6 +47,7 @@ const FilterCard: React.FC = () => {
             </div>
             <div className={filterCard.groupContainer}>
               <LocationSearchInputField categoryName="Location selection" />
+              <DistanceRangeSlider categoryName="Distance range" />
             </div>
             <div className={filterCard.groupContainer}>
               <PriceRangeSlider categoryName="Price range" />

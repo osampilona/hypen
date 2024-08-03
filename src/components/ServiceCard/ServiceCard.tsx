@@ -60,7 +60,7 @@ const ServiceCard = (props: ServiceCardType) => {
                 {props.serviceNote}
               </p>
               <p className={serviceCard.container__info__details__days__hours}>
-                {props.serviceDistance}
+                {props.serviceDistance} km away from you
               </p>
             </div>
           </div>

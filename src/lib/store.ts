@@ -6,6 +6,7 @@ import dateReducer from "@/lib/features/filters/dateSlice";
 import checkboxReducer from "@/lib/features/filters/checkboxSlice";
 import priceRangeSlice from "@/lib/features/filters/priceRangeSlice";
 import inputSlice from "@/lib/features/filters/inputSlice";
+import distanceRangeSlice from "@/lib/features/filters/distanceRangeSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     checkbox: checkboxReducer,
     priceRange: priceRangeSlice,
     input: inputSlice,
+    distanceRange: distanceRangeSlice,
   },
 });
 
