@@ -9,7 +9,10 @@ import CheckboxItemsList from "@/components/Forms/CheckboxItemsList/CheckboxItem
 import PriceRangeSlider from "@/components/PriceRangeSlider/PriceRangeSlider";
 import LocationSearchInputField from "@/components/Forms/LocationSearchInputField/LocationSearchInputField";
 import DistanceRangeSlider from "@/components/DistanceRangeSlider/DistanceRangeSlider";
-import { setVisibility } from "@/lib/features/filters/distanceRangeSlice";
+import {
+  setVisibility,
+  setValue,
+} from "@/lib/features/filters/distanceRangeSlice";
 
 const FilterCard: React.FC = () => {
   const dispatch = useDispatch();
@@ -24,7 +27,12 @@ const FilterCard: React.FC = () => {
   );
 
   const handleLocationChange = (location: string) => {
-    dispatch(setVisibility(location !== ""));
+    if (location !== "") {
+      dispatch(setVisibility(true));
+    } else {
+      dispatch(setVisibility(false));
+      dispatch(setValue(0)); // Reset the slider value to 0 (or your preferred initial value)
+    }
   };
   return (
     <div className={filterCard.container} data-testid="filterCard">
