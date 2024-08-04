@@ -9,6 +9,11 @@ import { setSearchValue } from "@/lib/features/filters/inputSlice";
 import styles from "@/components/Forms/LocationSearchInputField/locationSearchInputField.module.scss";
 import classNames from "classnames";
 
+interface LocationSearchInputFieldProps {
+  categoryName: string;
+  onLocationChange?: (location: string) => void;
+}
+
 const SUGGESTIONS = [
   "New York",
   "Los Angeles",
@@ -22,8 +27,9 @@ const SUGGESTIONS = [
   "San Jose",
 ];
 
-const LocationSearchInputField: React.FC<{ categoryName: string }> = ({
+const LocationSearchInputField: React.FC<LocationSearchInputFieldProps> = ({
   categoryName,
+  onLocationChange = () => {}, // Default empty function
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const searchValue = useSelector(
@@ -61,13 +67,17 @@ const LocationSearchInputField: React.FC<{ categoryName: string }> = ({
   const handleInputChange = useCallback(
     (value: string) => {
       dispatch(setSearchValue(value));
+      if (value === "") {
+        onLocationChange(""); // Notify parent component that input is cleared
+      }
     },
-    [dispatch],
+    [dispatch, onLocationChange],
   );
 
   const selectItem = useCallback(
     (item: string) => {
       dispatch(setSearchValue(item));
+      setTimeout(() => onLocationChange(item), 100); // Notify parent component with delay
       setIsOpen(false);
       setIsAnimating(true);
       setTimeout(() => {
@@ -76,7 +86,7 @@ const LocationSearchInputField: React.FC<{ categoryName: string }> = ({
         setIsAnimating(false);
       }, 300);
     },
-    [dispatch],
+    [dispatch, onLocationChange],
   );
 
   const handleKeyDown = useCallback(

@@ -61,7 +61,10 @@ const DistanceRangeSlider: React.FC<DistanceRangeSliderProps> = ({
             <div {...props} className={styles.thumb} />
           )}
         />
-        <p>{value} km</p>
+        <div className={styles.sliderLabels}>
+          <span>10 km</span>
+          <span>100 km</span>
+        </div>
         <div className={styles.serviceList}>
           {filteredServices.length > 0 ? (
             <p>
