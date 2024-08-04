@@ -1,35 +1,27 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import filterCard from "@/components/FilterCard/filterCard.module.scss";
 import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
 import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
 import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 import CategoriesList from "@/components/CategoriesList/CategoriesList";
-import { RootState } from "@/lib/store";
 import CheckboxItemsList from "@/components/Forms/CheckboxItemsList/CheckboxItemsList";
 import PriceRangeSlider from "@/components/PriceRangeSlider/PriceRangeSlider";
 import LocationSearchInputField from "@/components/Forms/LocationSearchInputField/LocationSearchInputField";
 import DistanceRangeSlider from "@/components/DistanceRangeSlider/DistanceRangeSlider";
+import { RootState } from "@/lib/store";
+import { setVisibility } from "@/lib/features/filters/distanceRangeSlice";
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
-  const [isDistanceSliderVisible, setIsDistanceSliderVisible] = useState(false);
-
+  const dispatch = useDispatch();
+  const isDistanceSliderVisible = useSelector(
+    (state: RootState) => state.distanceRange.isVisible,
+  );
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (selectedLocation) {
-      const timer = setTimeout(() => setIsDistanceSliderVisible(true), 100);
-      return () => clearTimeout(timer);
-    } else {
-      setIsDistanceSliderVisible(false);
-    }
-  }, [selectedLocation]);
-
   const selectedCategories = useSelector(
     (state: RootState) => state.categories.selectedCategories,
   );
@@ -38,7 +30,9 @@ const FilterCard: React.FC = () => {
   );
 
   const handleLocationChange = (location: string) => {
-    setSelectedLocation(location !== "" ? location : null);
+    if (location !== "" && !isDistanceSliderVisible) {
+      dispatch(setVisibility(true));
+    }
   };
 
   return (
@@ -56,7 +50,9 @@ const FilterCard: React.FC = () => {
                 categoryName="Categories"
               />
               <div
-                className={`${filterCard.sliderContainer} ${selectedCategories.length > 0 ? filterCard.show : ""}`}
+                className={`${filterCard.sliderContainer} ${
+                  selectedCategories.length > 0 ? filterCard.show : ""
+                }`}
               >
                 <CategoriesList
                   key={`subcategories-${selectedSubCategories.join("-")}`}
@@ -70,7 +66,9 @@ const FilterCard: React.FC = () => {
                 onLocationChange={handleLocationChange}
               />
               <div
-                className={`${filterCard.sliderContainer} ${isDistanceSliderVisible ? filterCard.show : ""}`}
+                className={`${filterCard.sliderContainer} ${
+                  isDistanceSliderVisible ? filterCard.show : ""
+                }`}
               >
                 <DistanceRangeSlider categoryName="Distance range" />
               </div>
@@ -92,7 +90,7 @@ const FilterCard: React.FC = () => {
               <CheckboxItemsList
                 title="Accessibility and facilities"
                 items={[
-                  "Wheelchair accessible for people with dissabilities so they can use the service as well",
+                  "Wheelchair accessible for people with disabilities so they can use the service as well",
                   "Elevator",
                   "Parking",
                   "Toilet",
@@ -101,7 +99,7 @@ const FilterCard: React.FC = () => {
                 ]}
                 disabledItems={["Elevator", "Parking", "Toilet"]}
                 requiredItems={[
-                  "Wheelchair accessible for people with dissabilities so they can use the service as well",
+                  "Wheelchair accessible for people with disabilities so they can use the service as well",
                   "Wi-Fi",
                 ]}
               />
