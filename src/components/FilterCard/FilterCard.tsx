@@ -40,10 +40,12 @@ const FilterCard: React.FC = () => {
                 key={`categories-${selectedCategories.join("-")}`}
                 categoryName="Categories"
               />
-              <CategoriesList
-                key={`subcategories-${selectedSubCategories.join("-")}`}
-                categoryName="Sub categories"
-              />
+              {selectedCategories.length > 0 && (
+                <CategoriesList
+                  key={`subcategories-${selectedSubCategories.join("-")}`}
+                  categoryName="Sub categories"
+                />
+              )}
             </div>
             <div className={filterCard.groupContainer}>
               <LocationSearchInputField categoryName="Location selection" />
