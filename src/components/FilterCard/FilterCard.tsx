@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import filterCard from "@/components/FilterCard/filterCard.module.scss";
+import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
 import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
 import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 import CategoriesList from "@/components/CategoriesList/CategoriesList";
@@ -15,6 +16,7 @@ import {
 } from "@/lib/features/filters/distanceRangeSlice";
 
 const FilterCard: React.FC = () => {
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const isDistanceSliderVisible = useSelector(
     (state: RootState) => state.distanceRange.isVisible,
@@ -26,6 +28,11 @@ const FilterCard: React.FC = () => {
     (state: RootState) => state.categories.selectedSubCategories,
   );
 
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000); // Show skeleton for 1 second
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleLocationChange = (location: string) => {
     if (location !== "") {
       dispatch(setVisibility(true));
@@ -34,6 +41,15 @@ const FilterCard: React.FC = () => {
       dispatch(setValue(0)); // Reset the slider value to 0 (or your preferred initial value)
     }
   };
+
+  if (loading) {
+    return (
+      <SkeletonCardList
+        skeletonArray={Array.from({ length: 1 }, (_, index) => index + 1)}
+      />
+    );
+  }
+
   return (
     <div className={filterCard.container} data-testid="filterCard">
       <div className={filterCard.sectionContainer}>
