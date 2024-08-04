@@ -13,11 +13,22 @@ import DistanceRangeSlider from "@/components/DistanceRangeSlider/DistanceRangeS
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+  const [isDistanceSliderVisible, setIsDistanceSliderVisible] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (selectedLocation) {
+      const timer = setTimeout(() => setIsDistanceSliderVisible(true), 100);
+      return () => clearTimeout(timer);
+    } else {
+      setIsDistanceSliderVisible(false);
+    }
+  }, [selectedLocation]);
 
   const selectedCategories = useSelector(
     (state: RootState) => state.categories.selectedCategories,
@@ -25,6 +36,10 @@ const FilterCard: React.FC = () => {
   const selectedSubCategories = useSelector(
     (state: RootState) => state.categories.selectedSubCategories,
   );
+
+  const handleLocationChange = (location: string) => {
+    setSelectedLocation(location !== "" ? location : null);
+  };
 
   return (
     <div className={filterCard.container} data-testid="filterCard">
@@ -40,16 +55,25 @@ const FilterCard: React.FC = () => {
                 key={`categories-${selectedCategories.join("-")}`}
                 categoryName="Categories"
               />
-              {selectedCategories.length > 0 && (
+              <div
+                className={`${filterCard.sliderContainer} ${selectedCategories.length > 0 ? filterCard.show : ""}`}
+              >
                 <CategoriesList
                   key={`subcategories-${selectedSubCategories.join("-")}`}
                   categoryName="Sub categories"
                 />
-              )}
+              </div>
             </div>
             <div className={filterCard.groupContainer}>
-              <LocationSearchInputField categoryName="Location selection" />
-              <DistanceRangeSlider categoryName="Distance range" />
+              <LocationSearchInputField
+                categoryName="Location selection"
+                onLocationChange={handleLocationChange}
+              />
+              <div
+                className={`${filterCard.sliderContainer} ${isDistanceSliderVisible ? filterCard.show : ""}`}
+              >
+                <DistanceRangeSlider categoryName="Distance range" />
+              </div>
             </div>
             <div className={filterCard.groupContainer}>
               <PriceRangeSlider categoryName="Price range" />
