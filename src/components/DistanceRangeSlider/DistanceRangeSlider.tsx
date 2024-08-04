@@ -48,7 +48,7 @@ const DistanceRangeSlider: React.FC<DistanceRangeSliderProps> = ({
                 ...props.style,
                 background: getTrackBackground({
                   values: [value],
-                  colors: ["#7acc34", "#ccc"], // Green from 0 to handle, grey elsewhere
+                  colors: ["#7acc34", "var(--greyed-out-color)"], // Green from 0 to handle, grey elsewhere
                   min: 10, // Reflecting the minimum value
                   max: 100,
                 }),
