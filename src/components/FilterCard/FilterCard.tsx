@@ -14,6 +14,14 @@ import {
   setVisibility,
   setValue,
 } from "@/lib/features/filters/distanceRangeSlice";
+import Accordion from "../Accordion/Accordion";
+
+const accordionItems = [
+  {
+    title: "Time Slots",
+    content: <TimeSlotSelector categoryName="Time range selector" />,
+  },
+];
 
 const FilterCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -87,7 +95,7 @@ const FilterCard: React.FC = () => {
         </div>
         <div className={filterCard.groupContainer}>
           <CustomCalendar categoryName="Date picker" />
-          <TimeSlotSelector categoryName="Time range selector" />
+          <Accordion items={accordionItems} />
         </div>
         <div className={filterCard.groupContainer}>
           <CheckboxItemsList
