@@ -1,71 +1,44 @@
-import React, { useState, useRef, useEffect } from "react";
-import accordion from "@/components/Accordion/accordion.module.scss";
-import { IoIosArrowDown } from "react-icons/io";
-
-interface AccordionItem {
-  title: string;
-  content: string | React.ReactNode; // Use React.ReactNode for JSX elements
-}
+import React, { useState } from "react";
+import styles from "@/components/Accordion/accordion.module.scss";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 interface AccordionProps {
-  items: AccordionItem[];
+  title: string;
+  children: React.ReactNode;
+  isOpen?: boolean;
+  onToggle?: () => void;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ items }) => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
+const Accordion: React.FC<AccordionProps> = ({
+  title,
+  children,
+  isOpen: propIsOpen,
+  onToggle,
+}) => {
+  const [isOpenState, setIsOpenState] = useState(false);
 
-  const handleToggle = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
+  const isOpen = propIsOpen !== undefined ? propIsOpen : isOpenState;
+
+  const handleToggle = () => {
+    if (onToggle) {
+      onToggle();
+    } else {
+      setIsOpenState(!isOpen);
+    }
   };
 
-  useEffect(() => {
-    if (activeIndex !== null && contentRefs.current[activeIndex]) {
-      contentRefs.current[activeIndex]!.style.height =
-        `${contentRefs.current[activeIndex]!.scrollHeight}px`;
-    }
-  }, [activeIndex]);
-
   return (
-    <div className={accordion.container} data-testid="accordion">
-      {items.map((item, index) => (
-        <div
-          key={index}
-          className={accordion.item}
-          style={{
-            height:
-              activeIndex === index
-                ? `${(contentRefs.current[index]?.scrollHeight ?? 0) + 48}px`
-                : "3rem",
-          }}
-        >
-          <div
-            className={accordion.title}
-            onClick={() => handleToggle(index)}
-            data-testid={`accordion-title-${index}`}
-          >
-            {item.title}
-            <IoIosArrowDown
-              className={`${accordion.icon} ${
-                activeIndex === index ? accordion.iconActive : ""
-              }`}
-            />
-          </div>
-          <div
-            ref={(el) => {
-              contentRefs.current[index] = el;
-            }}
-            className={accordion.content}
-            style={{
-              height: activeIndex === index ? "auto" : "0",
-              opacity: activeIndex === index ? "1" : "0",
-            }}
-            data-testid={`accordion-content-${index}`}
-          >
-            {item.content}
-          </div>
-        </div>
-      ))}
+    <div className={styles.accordion}>
+      <button
+        className={`${styles.accordionHeader} ${isOpen ? styles.open : ""}`}
+        onClick={handleToggle}
+      >
+        {title}
+        <span className={styles.icon}>
+          {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+        </span>
+      </button>
+      {isOpen && <div className={styles.accordionContent}>{children}</div>}
     </div>
   );
 };

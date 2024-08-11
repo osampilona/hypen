@@ -37,8 +37,19 @@ const categoriesSlice = createSlice({
         ];
       }
     },
+    resetCategories: (state) => {
+      state.selectedCategories = [];
+    },
+    resetSubCategories: (state) => {
+      state.selectedSubCategories = [];
+    },
   },
 });
 
-export const { toggleCategory, toggleSubCategory } = categoriesSlice.actions;
+export const {
+  toggleCategory,
+  toggleSubCategory,
+  resetCategories,
+  resetSubCategories,
+} = categoriesSlice.actions;
 export default categoriesSlice.reducer;

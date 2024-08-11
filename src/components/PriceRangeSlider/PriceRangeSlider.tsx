@@ -3,7 +3,10 @@ import { Range, getTrackBackground } from "react-range";
 import styles from "@/components/PriceRangeSlider/priceRangeSlider.module.scss";
 import { RootState } from "@/lib/store";
 import { useDispatch, useSelector } from "react-redux";
-import { setPriceRange } from "@/lib/features/filters/priceRangeSlice";
+import {
+  setPriceRange,
+  selectPriceRange,
+} from "@/lib/features/filters/priceRangeSlice";
 import { serviceData } from "@/data/serviceData";
 import Histogram from "@/components/Histogram/Histogram";
 
@@ -15,7 +18,7 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
   categoryName,
 }) => {
   const dispatch = useDispatch();
-  const { min, max } = useSelector((state: RootState) => state.priceRange);
+  const { min, max, currentMin, currentMax } = useSelector(selectPriceRange);
 
   const { sliderMin, sliderMax, histogram } = useMemo(() => {
     const prices = serviceData.map((service) => service.servicePrice);
@@ -40,15 +43,26 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
   }, []);
 
   const [sliderValues, setSliderValues] = useState([
-    Math.max(min || sliderMin, sliderMin),
-    Math.min(max || sliderMax, sliderMax),
+    Math.max(currentMin || sliderMin, sliderMin),
+    Math.min(currentMax || sliderMax, sliderMax),
   ]);
   const [inputValues, setInputValues] = useState([
-    min !== undefined ? min.toString() : "",
-    max !== undefined ? max.toString() : "",
+    currentMin !== undefined ? currentMin.toString() : "",
+    currentMax !== undefined ? currentMax.toString() : "",
   ]);
   const [minValidationMessage, setMinValidationMessage] = useState("");
   const [maxValidationMessage, setMaxValidationMessage] = useState("");
+
+  useEffect(() => {
+    setSliderValues([
+      Math.max(currentMin || sliderMin, sliderMin),
+      Math.min(currentMax || sliderMax, sliderMax),
+    ]);
+    setInputValues([
+      currentMin !== undefined ? currentMin.toString() : "",
+      currentMax !== undefined ? currentMax.toString() : "",
+    ]);
+  }, [currentMin, currentMax, sliderMin, sliderMax]);
 
   useEffect(() => {
     dispatch(

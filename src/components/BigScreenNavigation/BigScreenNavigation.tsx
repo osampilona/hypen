@@ -113,7 +113,7 @@ const BigScreenNavigation = () => {
         </div>
       </div>
       <Overlay show={filterCardVisible} onClose={() => handleCloseOverlay()}>
-        <FilterCard />
+        <FilterCard onClose={handleCloseOverlay} />
       </Overlay>
     </>
   );

@@ -21,10 +21,12 @@ const Overlay: React.FC<OverlayProps> = ({
     if (show) {
       setIsVisible(true);
       setIsAnimating(true);
+      document.body.style.overflow = "hidden"; // Prevent background scrolling
     } else if (!show && isVisible) {
       setIsAnimating(false);
       setTimeout(() => {
         setIsVisible(false);
+        document.body.style.overflow = ""; // Re-enable background scrolling
       }, 500); // Match the duration of the slideOut animation
     }
   }, [show, isVisible]);
