@@ -17,6 +17,7 @@ import {
 } from "@/lib/features/filters/distanceRangeSlice";
 import Accordion from "../Accordion/Accordion";
 import CtaButton from "../Buttons/CTAButton/CtaButton";
+import FilterActionButtons from "../FilterActionsButtons/FilterActionsButtons";
 
 const accordionItems = [
   {
@@ -25,7 +26,11 @@ const accordionItems = [
   },
 ];
 
-const FilterCard: React.FC = () => {
+interface FilterCardProps {
+  onClose: () => void;
+}
+
+const FilterCard: React.FC<FilterCardProps> = ({ onClose }) => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const scrollableRef = useRef<HTMLDivElement>(null);
@@ -188,7 +193,7 @@ const FilterCard: React.FC = () => {
         aria-label="Filter actions"
       >
         {/* MOJA BUBICA <3 */}
-        <div className={styles.buttonsSection}>
+        {/* <div className={styles.buttonsSection}>
           <CtaButton
             label={"Clear all filters"}
             isPrimary={false}
@@ -200,7 +205,8 @@ const FilterCard: React.FC = () => {
             size={"large"}
             aria-label="Apply filters"
           />
-        </div>
+        </div> */}
+        <FilterActionButtons onClose={onClose} />
       </div>
     </section>
   );

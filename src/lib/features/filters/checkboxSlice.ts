@@ -21,8 +21,14 @@ const checkboxSlice = createSlice({
       const { id, checked } = action.payload;
       state[id] = checked;
     },
+    resetCheckboxes: (state) => {
+      Object.keys(state).forEach((key) => {
+        state[key] = false;
+      });
+    },
   },
 });
 
-export const { toggleCheckbox, setCheckboxState } = checkboxSlice.actions;
+export const { toggleCheckbox, setCheckboxState, resetCheckboxes } =
+  checkboxSlice.actions;
 export default checkboxSlice.reducer;
