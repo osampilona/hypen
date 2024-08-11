@@ -193,19 +193,6 @@ const FilterCard: React.FC<FilterCardProps> = ({ onClose }) => {
         aria-label="Filter actions"
       >
         {/* MOJA BUBICA <3 */}
-        {/* <div className={styles.buttonsSection}>
-          <CtaButton
-            label={"Clear all filters"}
-            isPrimary={false}
-            size={"large"}
-            aria-label="Clear all filters"
-          />
-          <CtaButton
-            label={"Search"}
-            size={"large"}
-            aria-label="Apply filters"
-          />
-        </div> */}
         <FilterActionButtons onClose={onClose} />
       </div>
     </section>
