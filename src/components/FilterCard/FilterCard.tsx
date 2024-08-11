@@ -1,28 +1,86 @@
-// FilterCard.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./FilterCard.module.scss";
+import { RootState } from "@/lib/store";
 import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
 import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
 import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 import CategoriesList from "@/components/CategoriesList/CategoriesList";
-import { RootState } from "@/lib/store";
 import CheckboxItemsList from "@/components/Forms/CheckboxItemsList/CheckboxItemsList";
 import PriceRangeSlider from "@/components/PriceRangeSlider/PriceRangeSlider";
 import LocationSearchInputField from "@/components/Forms/LocationSearchInputField/LocationSearchInputField";
 import DistanceRangeSlider from "@/components/DistanceRangeSlider/DistanceRangeSlider";
+import FilterActionButtons from "@/components/FilterActionsButtons/FilterActionsButtons";
 import {
   setVisibility,
   setValue,
 } from "@/lib/features/filters/distanceRangeSlice";
-import Accordion from "../Accordion/Accordion";
-import CtaButton from "../Buttons/CTAButton/CtaButton";
-import FilterActionButtons from "../FilterActionsButtons/FilterActionsButtons";
+import AccordionList from "@/components/AccordionList/AccordionList";
 
 const accordionItems = [
   {
     title: "Time Slots",
     content: <TimeSlotSelector categoryName="Time range selector" />,
+  },
+  {
+    title: "Delivery",
+    content: (
+      <CheckboxItemsList
+        title="Delivery options"
+        items={["Delivery", "Pick-up", "Dine-in"]}
+        requiredItems={["Delivery"]}
+      />
+    ),
+  },
+  {
+    title: "Payment",
+    content: (
+      <CheckboxItemsList
+        title="Payment options"
+        items={["Cash", "Card", "Mobile payment"]}
+        requiredItems={["Card"]}
+      />
+    ),
+  },
+  {
+    title: "Service Type",
+    content: (
+      <CheckboxItemsList
+        title="Service types"
+        items={["Service 1", "Service 2", "Service 3"]}
+        requiredItems={["Service 1"]}
+      />
+    ),
+  },
+  {
+    title: "Service Quality",
+    content: (
+      <CheckboxItemsList
+        title="Service quality"
+        items={["Good", "Very good", "Excellent"]}
+        requiredItems={["Excellent"]}
+      />
+    ),
+  },
+  {
+    title: "Service Speed",
+    content: (
+      <CheckboxItemsList
+        title="Service speed"
+        items={["Fast", "Very fast", "Lightning fast"]}
+        requiredItems={["Lightning fast"]}
+      />
+    ),
+  },
+  {
+    title: "Service Price",
+    content: (
+      <CheckboxItemsList
+        title="Service price"
+        items={["Cheap", "Affordable", "Expensive"]}
+        requiredItems={["Cheap"]}
+      />
+    ),
   },
 ];
 
@@ -155,7 +213,7 @@ const FilterCard: React.FC<FilterCardProps> = ({ onClose }) => {
             aria-label="Date and time selection"
           >
             <CustomCalendar categoryName="Date picker" />
-            <Accordion items={accordionItems} />
+            <AccordionList items={accordionItems} allowMultipleOpen={true} />
           </div>
           <div
             className={styles.groupContainer}
