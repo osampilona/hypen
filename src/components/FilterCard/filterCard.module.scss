@@ -1,60 +1,56 @@
-//filter card
+// FilterCard.module.scss
+@import "@/styles/variables";
+@import "@/styles/mixins";
+
 .container {
-  width: 100%;
-  height: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%; // Take full height of parent
+  overflow: hidden; // Prevent scrolling on the container
+}
+
+.scrollableSection {
+  flex-grow: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
   position: relative;
-  margin-bottom: 30px;
 
-  h3,
-  p {
-    font-size: $font-size-md;
-    margin-top: 20px;
-    color: var(--text-color);
-  }
-
-  .sectionContainer {
-    width: 100%;
-    padding: 2rem; // Add some padding for better spacing on smaller screens
-    box-sizing: border-box;
-
-    // Ensure internal elements are responsive
-    .innerItem {
-      width: 100%;
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-  }
-
-  .groupContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-    padding: 0 0.5rem;
-    width: 100%; // Ensure it takes full width of the sectionContainer
-    box-sizing: border-box;
-  }
-
-  @media (max-width: $breakpoint-md) {
-    .sectionContainer {
-      padding: 0 0.25rem;
-    }
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
   }
 }
 
-@media (max-width: $breakpoint-sm) {
-  .container {
-    margin-bottom: 5rem;
-  }
+.content {
+  padding: 2rem;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
-  .sectionContainer {
-    max-width: 95vw;
-    margin: 2rem auto;
-    padding: 0 0.5rem; // Add some padding for better spacing on smaller screens
-  }
+.fixedSection {
+  border-top: 1px solid var(--border-color);
+  padding: 1rem 2rem;
+  background-color: var(--background-color);
+}
+
+.buttonsSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.groupContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .sliderContainer {
@@ -70,7 +66,13 @@
 }
 
 .show {
-  max-height: 1000px; // Adjust this value based on your actual content height
+  max-height: 1000px;
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (max-width: $breakpoint-sm) {
+  .container {
+    margin-bottom: 5rem;
+  }
 }
