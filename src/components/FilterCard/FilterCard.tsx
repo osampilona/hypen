@@ -23,16 +23,6 @@ const accordionItems = [
     content: <TimeSlotSelector categoryName="Time range selector" />,
   },
   {
-    title: "Delivery",
-    content: (
-      <CheckboxItemsList
-        title="Delivery options"
-        items={["Delivery", "Pick-up", "Dine-in"]}
-        requiredItems={["Delivery"]}
-      />
-    ),
-  },
-  {
     title: "Payment",
     content: (
       <CheckboxItemsList
@@ -43,42 +33,34 @@ const accordionItems = [
     ),
   },
   {
-    title: "Service Type",
+    title: "Ratings",
     content: (
       <CheckboxItemsList
-        title="Service types"
-        items={["Service 1", "Service 2", "Service 3"]}
-        requiredItems={["Service 1"]}
+        title="Ratings"
+        description="Find high quality service based on other people's experiences"
+        items={["1 star", "2 stars", "3 stars", "4 stars", "5 stars"]}
+        requiredItems={["5 stars"]}
       />
     ),
   },
   {
-    title: "Service Quality",
+    title: "Accessibility and facilities",
     content: (
       <CheckboxItemsList
-        title="Service quality"
-        items={["Good", "Very good", "Excellent"]}
-        requiredItems={["Excellent"]}
-      />
-    ),
-  },
-  {
-    title: "Service Speed",
-    content: (
-      <CheckboxItemsList
-        title="Service speed"
-        items={["Fast", "Very fast", "Lightning fast"]}
-        requiredItems={["Lightning fast"]}
-      />
-    ),
-  },
-  {
-    title: "Service Price",
-    content: (
-      <CheckboxItemsList
-        title="Service price"
-        items={["Cheap", "Affordable", "Expensive"]}
-        requiredItems={["Cheap"]}
+        title="Accessibility and facilities"
+        items={[
+          "Wheelchair accessible for people with disabilities so they can use the service as well",
+          "Elevator",
+          "Parking",
+          "Toilet",
+          "Wi-Fi",
+          "English speaking staff",
+        ]}
+        disabledItems={["Elevator", "Parking", "Toilet"]}
+        requiredItems={[
+          "Wheelchair accessible for people with disabilities so they can use the service as well",
+          "Wi-Fi",
+        ]}
       />
     ),
   },
@@ -141,9 +123,11 @@ const FilterCard: React.FC<FilterCardProps> = ({ onClose }) => {
 
   if (loading) {
     return (
-      <SkeletonCardList
-        skeletonArray={Array.from({ length: 1 }, (_, index) => index + 1)}
-      />
+      <div style={{ margin: "2rem" }}>
+        <SkeletonCardList
+          skeletonArray={Array.from({ length: 1 }, (_, index) => index + 1)}
+        />
+      </div>
     );
   }
 
@@ -214,34 +198,6 @@ const FilterCard: React.FC<FilterCardProps> = ({ onClose }) => {
           >
             <CustomCalendar categoryName="Date picker" />
             <AccordionList items={accordionItems} allowMultipleOpen={true} />
-          </div>
-          <div
-            className={styles.groupContainer}
-            role="group"
-            aria-label="Additional filters"
-          >
-            <CheckboxItemsList
-              title="Ratings"
-              description="Find high quality service based on other people's experiences"
-              items={["1 star", "2 stars", "3 stars", "4 stars", "5 stars"]}
-              requiredItems={["5 stars"]}
-            />
-            <CheckboxItemsList
-              title="Accessibility and facilities"
-              items={[
-                "Wheelchair accessible for people with disabilities so they can use the service as well",
-                "Elevator",
-                "Parking",
-                "Toilet",
-                "Wi-Fi",
-                "English speaking staff",
-              ]}
-              disabledItems={["Elevator", "Parking", "Toilet"]}
-              requiredItems={[
-                "Wheelchair accessible for people with disabilities so they can use the service as well",
-                "Wi-Fi",
-              ]}
-            />
           </div>
         </div>
       </div>

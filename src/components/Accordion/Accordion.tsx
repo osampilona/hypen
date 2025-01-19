@@ -33,7 +33,7 @@ const Accordion: React.FC<AccordionProps> = ({
         className={`${styles.accordionHeader} ${isOpen ? styles.open : ""}`}
         onClick={handleToggle}
       >
-        {title}
+        <h4>{title}</h4>
         <span className={styles.icon}>
           {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </span>
