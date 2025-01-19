@@ -181,7 +181,7 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
               </span>
             )}
           </div>
-          <p>-</p>
+          <div className={styles.dash}>-</div>
           <div className={styles.infoBox}>
             <div className={styles.valueBox}>
               <span>Maximum</span>
