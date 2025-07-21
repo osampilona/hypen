@@ -107,24 +107,21 @@ select {
     box-sizing: border-box;
     margin: calc(0.5vw + 0.5rem); // Dynamic margin
     letter-spacing: $letter-spacing-body; // Add letter spacing
+
+    &:hover {
+      color: var(--items-bg-color);
+      background-color: var(--secondary-color);
+    }
   }
 
   &__day--keyboard-selected {
-    background-color: $secondary-color;
+    background-color: var(--secondary-color);
     color: var(--items-bg-color);
-
-    &:hover {
-      background-color: darken($secondary-color, 10%);
-    }
   }
 
   &__day--selected {
-    background-color: $secondary-color;
+    background-color: var(--secondary-color);
     color: var(--items-bg-color);
-
-    &:hover {
-      background-color: darken($secondary-color, 10%);
-    }
   }
 
   &__day--outside-month {

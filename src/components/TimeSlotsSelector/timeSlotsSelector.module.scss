@@ -1,24 +1,9 @@
 .container {
-  margin-top: 30px;
   width: 100%;
-
-  h4 {
-    .categoryName {
-      margin-right: 10px; // Adjust the value as needed
-    }
-
-    .slotTime {
-      margin-left: 10px; // Adjust the value as needed
-    }
-  }
 }
 
 .timeSlotPeriod {
-  margin-bottom: 20px;
-}
-
-.timeSlotPeriod h5 {
-  margin-bottom: 10px;
+  margin: 0.5rem 0;
 }
 
 .timeSlotButtons {
@@ -26,31 +11,157 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
   justify-items: center;
+  position: relative;
 }
 
 .timeSlotButton {
   padding: 10px 20px;
   border: 1px solid #ccc;
-  border-radius: 20px;
+  border-radius: 25px;
   background-color: #fff;
   cursor: pointer;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
+  transition: all 0.3s;
+  position: relative;
+  width: -webkit-fill-available !important;
+  width: -moz-available !important;
+  width: fill-available !important;
 }
 
+// Base style for all slots in range (including selected)
+.timeSlotButton.inRange {
+  color: var(--primary-color);
+  border-color: transparent;
+  position: relative;
+
+  // Create the connected background effect for ALL slots in range
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -4px;
+    right: -4px;
+    bottom: 0;
+    background-color: rgba(var(--secondary-color-rgb), 0.15);
+    z-index: -1;
+  }
+
+  // Remove rounded corners for middle slots
+  &:not(.rangeStart):not(.rangeEnd) {
+    &::before {
+      border-radius: 0;
+    }
+  }
+
+  // Style for range start
+  &.rangeStart {
+    &::before {
+      left: 0;
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  // Style for range end
+  &.rangeEnd {
+    &::before {
+      right: 0;
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  // Style for single slot in range (both start and end)
+  &.rangeStart.rangeEnd {
+    &::before {
+      left: 0;
+      right: 0;
+      border-radius: 25px;
+    }
+  }
+}
+
+// Selected start and end slots (applied on top of inRange styles)
 .timeSlotButton.selected {
   background-color: var(--secondary-color);
-  color: #fff; /* Ensure text color is white */
+  color: #fff;
+  border-color: var(--secondary-color);
+  border-radius: 25px; // Keep the rounded corners for selected slots
+  z-index: 2;
+
+  // Create the connected background effect for ALL slots in range
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -4px;
+    right: -4px;
+    bottom: 0;
+    background-color: rgba(var(--secondary-color-rgb), 0.15);
+    z-index: -1;
+  }
+
+  // Apply border radius based on position
+  &.rangeStart {
+    &::before {
+      left: 0;
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &.rangeEnd {
+    &::before {
+      right: 0;
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  // When selected is both start and end (single selection)
+  &.rangeStart.rangeEnd {
+    &::before {
+      left: 0;
+      right: 0;
+      border-radius: 25px;
+    }
+  }
+
+  // When selected is in the middle (shouldn't happen often but just in case)
+  &:not(.rangeStart):not(.rangeEnd) {
+    &::before {
+      border-radius: 0;
+    }
+  }
+}
+// Non-selected slots in range
+.timeSlotButton.inRange:not(.selected) {
+  background-color: transparent; // Keep transparent to show the ::before background
+  border-radius: 0; // Remove border radius for middle slots
+
+  // Add back border radius for start/end non-selected slots
+  &.rangeStart {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+  }
+
+  &.rangeEnd {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
+
+  &.rangeStart.rangeEnd {
+    border-radius: 25px;
+  }
 }
 
-.timeSlotButton.inRange {
-  background-color: transparent;
-  color: var(--secondary-color);
-  border: none;
-  opacity: 0.75;
-}
-
-.timeSlotButton:hover {
-  background-color: #dfe6e9;
+.timeSlotButton:hover:not(.selected):not(.inRange) {
+  background-color: var(--secondary-color);
 }
