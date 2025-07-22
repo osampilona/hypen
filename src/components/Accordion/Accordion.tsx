@@ -28,7 +28,7 @@ const Accordion: React.FC<AccordionProps> = ({
   };
 
   return (
-    <div className={styles.accordion}>
+    <div className={styles.accordion} data-testid="accordion">
       <button
         className={`${styles.accordionHeader} ${isOpen ? styles.open : ""}`}
         onClick={handleToggle}

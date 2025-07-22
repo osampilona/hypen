@@ -28,7 +28,7 @@ const CustomInputField: React.FC<CustomInputFieldProps> = ({
   const inputId = `${categoryName.toLowerCase().replace(/\s+/g, "-")}-input`;
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="customInputField">
       <h4 className={styles.title} id={`${inputId}-label`}>
         {categoryName}
       </h4>

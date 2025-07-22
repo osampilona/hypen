@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import styles from "./FilterCard.module.scss";
+import styles from "./filterCard.module.scss";
 import { RootState } from "@/lib/store";
 import SkeletonCardList from "@/components/Skeletons/SkeletonCardList/SkeletonCardList";
 import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
