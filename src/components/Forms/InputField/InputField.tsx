@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/components/Forms/InputField/InputField.module.scss";
+import styles from "@/components/Forms/InputField/inputField.module.scss";
 
 interface InputFieldProps {
   leftIcon?: React.ReactNode;
@@ -30,7 +30,7 @@ const InputField: React.FC<InputFieldProps> = ({
   "aria-expanded": ariaExpanded,
   "aria-activedescendant": ariaActivedescendant,
 }) => (
-  <div className={styles.inputContainer}>
+  <div className={styles.inputContainer} data-testid="inputField">
     {leftIcon && <div className={styles.leftIcon}>{leftIcon}</div>}
     <input
       className={styles.input}

@@ -47,6 +47,7 @@ function SuggestionsList<T>({
       id={id}
       role={role}
       aria-label={ariaLabel}
+      data-testid="suggestionsList"
     >
       {items.map((item, index) => (
         <li
