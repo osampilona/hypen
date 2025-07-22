@@ -56,7 +56,13 @@ const SmallScreenNavigation = () => {
       return <ItemsList items={menuItems} onItemClicked={handleItemClick} />;
     }
     if (filterCardVisible) {
-      return <FilterCard />;
+      return (
+        <FilterCard
+          onClose={function (): void {
+            setFilterCardVisible(false);
+          }}
+        />
+      );
     }
     return null;
   };
