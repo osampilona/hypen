@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import styles from "@/components/Accordion/accordion.module.scss";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";

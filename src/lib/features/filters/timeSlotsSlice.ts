@@ -38,8 +38,13 @@ const timeSlotsSlice = createSlice({
         state.endSlot = null;
       }
     },
+    resetTimeSlots: (state) => {
+      state.startSlot = null;
+      state.endSlot = null;
+    },
   },
 });
 
-export const { setStartSlot, setEndSlot, toggleSlot } = timeSlotsSlice.actions;
+export const { setStartSlot, setEndSlot, toggleSlot, resetTimeSlots } =
+  timeSlotsSlice.actions;
 export default timeSlotsSlice.reducer;
