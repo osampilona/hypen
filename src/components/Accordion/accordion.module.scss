@@ -28,5 +28,10 @@
 
   .accordionContent {
     padding: 15px;
+
+    // Ensure child components maintain their styling
+    * {
+      position: relative;
+    }
   }
 }

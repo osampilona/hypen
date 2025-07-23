@@ -1,5 +1,31 @@
 .container {
   width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.categoryName {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0;
+}
+
+.slotTime {
+  font-weight: normal;
+  color: var(--secondary-color);
+  margin-left: 1rem;
+}
+
+.resetButton {
+  margin-left: 0;
 }
 
 .timeSlotPeriod {
@@ -12,6 +38,7 @@
   gap: 0.5rem;
   justify-items: center;
   position: relative;
+  z-index: 1;
 }
 
 .timeSlotButton {
@@ -25,13 +52,15 @@
   width: -webkit-fill-available !important;
   width: -moz-available !important;
   width: fill-available !important;
+  z-index: 1;
 }
 
 // Base style for all slots in range (including selected)
 .timeSlotButton.inRange {
-  color: var(--primary-color);
-  border-color: transparent;
+  color: var(--primary-color) !important;
+  border-color: transparent !important;
   position: relative;
+  z-index: 1;
 
   // Create the connected background effect for ALL slots in range
   &::before {
@@ -41,7 +70,7 @@
     left: -4px;
     right: -4px;
     bottom: 0;
-    background-color: rgba(var(--secondary-color-rgb), 0.15);
+    background-color: rgba(var(--secondary-color-rgb), 0.15) !important;
     z-index: -1;
   }
 
@@ -86,10 +115,10 @@
 
 // Selected start and end slots (applied on top of inRange styles)
 .timeSlotButton.selected {
-  background-color: var(--secondary-color);
-  color: #fff;
-  border-color: var(--secondary-color);
-  border-radius: 25px; // Keep the rounded corners for selected slots
+  background-color: var(--secondary-color) !important;
+  color: #fff !important;
+  border-color: var(--secondary-color) !important;
+  border-radius: 25px !important; // Keep the rounded corners for selected slots
   z-index: 2;
 
   // Create the connected background effect for ALL slots in range
@@ -100,7 +129,7 @@
     left: -4px;
     right: -4px;
     bottom: 0;
-    background-color: rgba(var(--secondary-color-rgb), 0.15);
+    background-color: rgba(var(--secondary-color-rgb), 0.15) !important;
     z-index: -1;
   }
 
@@ -163,5 +192,6 @@
 }
 
 .timeSlotButton:hover:not(.selected):not(.inRange) {
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-color) !important;
+  color: #fff !important;
 }
