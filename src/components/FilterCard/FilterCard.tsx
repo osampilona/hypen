@@ -200,14 +200,14 @@ const FilterCard: React.FC<FilterCardProps> = ({ onClose }) => {
             <AccordionList items={accordionItems} allowMultipleOpen={true} />
           </div>
         </div>
-      </div>
-      <div
-        className={styles.fixedSection}
-        role="group"
-        aria-label="Filter actions"
-      >
-        {/* MOJA BUBICA <3 */}
-        <FilterActionButtons onClose={onClose} />
+        <div
+          className={styles.fixedSection}
+          role="group"
+          aria-label="Filter actions"
+        >
+          {/* MOJA BUBICA <3 */}
+          <FilterActionButtons onClose={onClose} />
+        </div>
       </div>
     </section>
   );

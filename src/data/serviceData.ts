@@ -23,8 +23,8 @@ const images = [
   { url: img_10, alt: "Image 10" },
 ];
 
-function getRandomImages() {
-  const numImages = Math.floor(Math.random() * 10) + 1;
+export function getRandomImages(minNum = 5) {
+  const numImages = Math.floor(Math.random() * 6) + minNum; // minNum to minNum+5 images
   return images.sort(() => 0.5 - Math.random()).slice(0, numImages);
 }
 

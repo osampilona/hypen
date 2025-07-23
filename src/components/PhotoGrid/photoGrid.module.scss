@@ -1,0 +1,95 @@
+.container {
+  background-color: aqua;
+  height: auto;
+  width: 50%;
+  columns: 2;
+  column-gap: 16px;
+  padding: 16px;
+
+  @media (max-width: 480px) {
+    columns: 1;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  break-inside: avoid;
+  display: inline-block;
+
+  // Different shapes for variety - but they'll stack nicely
+  &:nth-child(1) {
+    aspect-ratio: 1;
+  } // Square
+  &:nth-child(2) {
+    aspect-ratio: 4/3;
+  } // Landscape
+  &:nth-child(3) {
+    aspect-ratio: 3/4;
+  } // Portrait
+  &:nth-child(4) {
+    aspect-ratio: 1;
+  } // Square
+  &:nth-child(5) {
+    aspect-ratio: 16/9;
+  } // Wide landscape
+  &:nth-child(6) {
+    aspect-ratio: 3/4;
+  } // Portrait
+  &:nth-child(7) {
+    aspect-ratio: 1;
+  } // Square
+  &:nth-child(8) {
+    aspect-ratio: 4/3;
+  } // Landscape
+  &:nth-child(9) {
+    aspect-ratio: 3/4;
+  } // Portrait
+  &:nth-child(10) {
+    aspect-ratio: 1;
+  } // Square
+
+  // Repeat pattern for more images
+  &:nth-child(10n + 1) {
+    aspect-ratio: 1;
+  }
+  &:nth-child(10n + 2) {
+    aspect-ratio: 4/3;
+  }
+  &:nth-child(10n + 3) {
+    aspect-ratio: 3/4;
+  }
+  &:nth-child(10n + 4) {
+    aspect-ratio: 1;
+  }
+  &:nth-child(10n + 5) {
+    aspect-ratio: 16/9;
+  }
+  &:nth-child(10n + 6) {
+    aspect-ratio: 3/4;
+  }
+  &:nth-child(10n + 7) {
+    aspect-ratio: 1;
+  }
+  &:nth-child(10n + 8) {
+    aspect-ratio: 4/3;
+  }
+  &:nth-child(10n + 9) {
+    aspect-ratio: 3/4;
+  }
+  &:nth-child(10n + 10) {
+    aspect-ratio: 1;
+  }
+}
+
+.image {
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.image:hover {
+  transform: scale(1.05);
+}
