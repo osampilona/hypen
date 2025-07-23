@@ -4,7 +4,10 @@ import CtaButton from "../Buttons/CTAButton/CtaButton";
 import { timeSlots } from "@/constants/timeSlots";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/lib/store";
-import { toggleSlot } from "@/lib/features/filters/timeSlotsSlice";
+import {
+  toggleSlot,
+  resetTimeSlots,
+} from "@/lib/features/filters/timeSlotsSlice";
 
 type TimeSlotPeriod = keyof typeof timeSlots;
 
@@ -86,7 +89,7 @@ const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = ({
 
   return (
     <div className={styles.container} data-testid="timeSlotsSelector">
-      <div>
+      <div className={styles.header}>
         <h4 className={styles.categoryName}>
           {categoryName}
           {startSlot ? (
@@ -97,6 +100,14 @@ const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = ({
             </>
           ) : null}
         </h4>
+        <CtaButton
+          className={styles.resetButton}
+          onClick={() => dispatch(resetTimeSlots())}
+          label="Reset Selection"
+          isPrimary={false}
+          size="small"
+          disabled={!startSlot && !endSlot}
+        />
       </div>
       {Object.keys(timeSlots).map((period) => (
         <div key={period} className={styles.timeSlotPeriod}>
