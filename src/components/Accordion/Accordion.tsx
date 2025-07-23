@@ -2,12 +2,15 @@
 import React, { useState } from "react";
 import styles from "@/components/Accordion/accordion.module.scss";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/store";
 
 interface AccordionProps {
   title: string;
   children: React.ReactNode;
   isOpen?: boolean;
   onToggle?: () => void;
+  showTimeslotInTitle?: boolean;
 }
 
 const Accordion: React.FC<AccordionProps> = ({
@@ -15,8 +18,21 @@ const Accordion: React.FC<AccordionProps> = ({
   children,
   isOpen: propIsOpen,
   onToggle,
+  showTimeslotInTitle = false,
 }) => {
   const [isOpenState, setIsOpenState] = useState(false);
+
+  // Get timeslot state from Redux if showTimeslotInTitle is true
+  const { startSlot, endSlot } = useSelector(
+    (state: RootState) => state.timeSlots,
+  );
+  const hasPreselectedSlot = startSlot !== null && endSlot !== null;
+
+  // Determine the display title
+  const displayTitle =
+    showTimeslotInTitle && hasPreselectedSlot
+      ? `Selected: ${startSlot} - ${endSlot}`
+      : title;
 
   const isOpen = propIsOpen !== undefined ? propIsOpen : isOpenState;
 
@@ -34,7 +50,7 @@ const Accordion: React.FC<AccordionProps> = ({
         className={`${styles.accordionHeader} ${isOpen ? styles.open : ""}`}
         onClick={handleToggle}
       >
-        <h3>{title}</h3>
+        <h3>{displayTitle}</h3>
         <span className={styles.icon}>
           {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </span>

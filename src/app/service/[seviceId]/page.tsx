@@ -5,7 +5,7 @@ const ServicePage = () => {
   return (
     <main>
       <h1>Service page</h1>
-      <Accordion title="Timeslot Details">
+      <Accordion title="Timeslot Details" showTimeslotInTitle={true}>
         <TimeSlotSelector categoryName="Service Time Slots" />
       </Accordion>
     </main>
