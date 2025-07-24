@@ -2,6 +2,12 @@
   width: 100%;
 }
 
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
 .timeSlotPeriod {
   margin: 0.5rem 0;
 }

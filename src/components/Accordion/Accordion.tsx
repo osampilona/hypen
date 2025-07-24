@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "@/components/Accordion/accordion.module.scss";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useSelector } from "react-redux";
@@ -10,7 +10,8 @@ interface AccordionProps {
   children: React.ReactNode;
   isOpen?: boolean;
   onToggle?: () => void;
-  showTimeslotInTitle?: boolean;
+  initiallyOpen?: boolean;
+  selectionType?: "timeslot" | "date" | null; // Type of selection to show in title
 }
 
 const Accordion: React.FC<AccordionProps> = ({
@@ -18,34 +19,78 @@ const Accordion: React.FC<AccordionProps> = ({
   children,
   isOpen: propIsOpen,
   onToggle,
-  showTimeslotInTitle = false,
+  initiallyOpen = true,
+  selectionType = null,
 }) => {
-  const [isOpenState, setIsOpenState] = useState(true); // Start open by default
+  const [isOpenState, setIsOpenState] = useState(initiallyOpen);
+  const accordionRef = useRef<HTMLDivElement>(null);
 
-  // Get timeslot state from Redux if showTimeslotInTitle is true
-  const { startSlot, endSlot } = useSelector(
-    (state: RootState) => state.timeSlots,
+  // Get accordion selections from Redux
+  const accordionSelections = useSelector(
+    (state: RootState) => state.accordionSelections,
   );
-  const hasPreselectedSlot = startSlot !== null && endSlot !== null;
 
-  // Determine the display title
-  const displayTitle =
-    showTimeslotInTitle && hasPreselectedSlot
-      ? `Selected: ${startSlot} - ${endSlot}`
-      : title;
+  // Determine the display title based on selection type
+  const getDisplayTitle = () => {
+    if (!selectionType) return title;
+    
+    const selection = accordionSelections[selectionType];
+    if (selection.displayText) {
+      return `${title} - ${selection.displayText}`;
+    }
+    
+    return title;
+  };
+
+  const displayTitle = getDisplayTitle();
 
   const isOpen = propIsOpen !== undefined ? propIsOpen : isOpenState;
 
+  // Function to check if user has scrolled near the bottom
+  const isNearBottom = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    // Consider "near bottom" if user is within 200px of the bottom
+    return scrollTop + windowHeight >= documentHeight - 200;
+  };
+
+  // Function to scroll accordion into view
+  const scrollIntoView = () => {
+    if (accordionRef.current) {
+      accordionRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
+    }
+  };
+
   const handleToggle = () => {
+    const wasOpen = isOpen;
+
     if (onToggle) {
       onToggle();
     } else {
       setIsOpenState(!isOpen);
     }
+
+    // If accordion is being opened and user is near bottom, scroll it into view
+    if (!wasOpen && isNearBottom()) {
+      // Delay the scroll to allow the accordion to open first
+      setTimeout(() => {
+        scrollIntoView();
+      }, 100);
+    }
   };
 
   return (
-    <div className={styles.accordion} data-testid="accordion">
+    <div
+      className={styles.accordion}
+      data-testid="accordion"
+      ref={accordionRef}
+    >
       <button
         className={`${styles.accordionHeader} ${isOpen ? styles.open : ""}`}
         onClick={handleToggle}

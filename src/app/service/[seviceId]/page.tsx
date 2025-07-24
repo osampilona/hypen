@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Accordion from "@/components/Accordion/Accordion";
 import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
@@ -6,7 +7,7 @@ import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
 import { getRandomImages, getServiceById } from "@/data/serviceData";
 import { CardImage } from "@/types/services/card";
 import styles from "./servicePage.module.scss";
-import { FiUserCheck, FiUserPlus } from "react-icons/fi";
+import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 
 const ServicePage = ({ params }: { params: { seviceId: string } }) => {
   const service = getServiceById(params.seviceId);
@@ -28,8 +29,11 @@ const ServicePage = ({ params }: { params: { seviceId: string } }) => {
         />
       </div>
       <div className={styles.accordionContainer}>
-        <Accordion title="Timeslot Details" showTimeslotInTitle={true}>
-          <TimeSlotSelector categoryName="Service Time Slots" />
+        <Accordion title="Timeslot Details" selectionType="timeslot">
+          <TimeSlotSelector categoryName={serviceName} />
+        </Accordion>
+        <Accordion title="Service Description" initiallyOpen={false} selectionType="date">
+          <CustomCalendar categoryName={serviceName} />
         </Accordion>
       </div>
       <div className={styles.photoGridContainer}>

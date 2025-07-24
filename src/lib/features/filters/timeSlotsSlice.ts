@@ -3,11 +3,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface TimeSlotsState {
   startSlot: string | null;
   endSlot: string | null;
+  showTimeslotInTitle: boolean;
 }
 
 const initialState: TimeSlotsState = {
   startSlot: null,
   endSlot: null,
+  showTimeslotInTitle: false,
 };
 
 const timeSlotsSlice = createSlice({
@@ -42,9 +44,15 @@ const timeSlotsSlice = createSlice({
       state.startSlot = null;
       state.endSlot = null;
     },
+    setShowTimeslotInTitle: (state, action: PayloadAction<boolean>) => {
+      state.showTimeslotInTitle = action.payload;
+    },
+    toggleShowTimeslotInTitle: (state) => {
+      state.showTimeslotInTitle = !state.showTimeslotInTitle;
+    },
   },
 });
 
-export const { setStartSlot, setEndSlot, toggleSlot, resetTimeSlots } =
+export const { setStartSlot, setEndSlot, toggleSlot, resetTimeSlots, setShowTimeslotInTitle, toggleShowTimeslotInTitle } =
   timeSlotsSlice.actions;
 export default timeSlotsSlice.reducer;

@@ -2,6 +2,9 @@
   text-align: left;
   width: 100%;
   margin: 20px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-color);
 }
 
 .container {
@@ -9,6 +12,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 
   .button {
     display: flex;
@@ -26,5 +30,132 @@
   .pastDate {
     color: var(--text-color);
     opacity: 0.2;
+  }
+}
+
+.customDatePicker {
+  width: 100%;
+  border: none;
+  background: transparent;
+  
+  :global {
+    .react-datepicker {
+      width: 100%;
+      background: transparent;
+      border: none;
+      font-family: inherit;
+    }
+
+    .react-datepicker__month-container {
+      float: none !important;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .react-datepicker__header {
+      background: transparent;
+      border-bottom: 1px solid var(--border-color, #e0e0e0);
+      padding: 1rem;
+    }
+
+    .react-datepicker__current-month {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+
+    .react-datepicker__navigation {
+      top: 1.2rem;
+      
+      &--previous {
+        left: 1rem;
+      }
+      
+      &--next {
+        right: 1rem;
+      }
+    }
+
+    .react-datepicker__navigation-icon {
+      &::before {
+        border-color: var(--text-color);
+      }
+    }
+
+    .react-datepicker__day-names {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .react-datepicker__day-name {
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 0.9rem;
+      width: 2.5rem;
+      line-height: 2.5rem;
+      text-align: center;
+    }
+
+    .react-datepicker__month {
+      margin: 0;
+      padding: 0 1rem 1rem 1rem;
+    }
+
+    .react-datepicker__week {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.25rem;
+    }
+
+    .react-datepicker__day {
+      color: var(--text-color);
+      font-size: 0.9rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      text-align: center;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: rgba(var(--secondary-color-rgb), 0.1);
+        color: var(--primary-color);
+      }
+
+      &--selected {
+        background-color: var(--primary-color) !important;
+        color: white !important;
+        font-weight: 600;
+      }
+
+      &--today {
+        // Today will be selected by default, so it uses selected styling
+        // Only apply today styling if it's not selected (edge case)
+        &:not(.react-datepicker__day--selected) {
+          background-color: transparent;
+          color: var(--text-color);
+          font-weight: normal;
+        }
+      }
+
+      &--disabled {
+        color: var(--greyed-out-color) !important;
+        cursor: not-allowed;
+        opacity: 0.3;
+        
+        &:hover {
+          background-color: transparent !important;
+          color: var(--greyed-out-color) !important;
+        }
+      }
+
+      &--outside-month {
+        color: var(--labels-color);
+      }
+    }
   }
 }
