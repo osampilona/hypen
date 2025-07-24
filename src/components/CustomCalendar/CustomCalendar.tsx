@@ -19,7 +19,7 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({ categoryName }) => {
   const selectedDate = useSelector(
     (state: RootState) => state.date.selectedDate,
   );
-  
+
   // If no date is selected, use today as default
   const today = new Date();
   const parsedDate = selectedDate ? new Date(selectedDate) : today;
@@ -30,16 +30,18 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({ categoryName }) => {
       const today = new Date();
       const todayISO = today.toISOString();
       dispatch(setSelectedDate(todayISO));
-      
+
       const formattedDate = today.toLocaleDateString("en-GB", {
         day: "2-digit",
         month: "short",
-        year: "numeric"
+        year: "numeric",
       });
-      dispatch(setDateSelection({
-        value: todayISO,
-        displayText: formattedDate
-      }));
+      dispatch(
+        setDateSelection({
+          value: todayISO,
+          displayText: formattedDate,
+        }),
+      );
     }
   }, [selectedDate, dispatch]);
 
@@ -57,34 +59,41 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({ categoryName }) => {
     if (isPastDate(date)) {
       return customCalendar.pastDate;
     }
-    
+
     // Only show today styling if no date is selected or if today is the selected date
-    if (isToday(date) && (!parsedDate || parsedDate.toDateString() === date.toDateString())) {
+    if (
+      isToday(date) &&
+      (!parsedDate || parsedDate.toDateString() === date.toDateString())
+    ) {
       return "";
     }
-    
+
     return "";
   };
 
   const handleDateChange = (date: Date | null) => {
     dispatch(setSelectedDate(date ? date.toISOString() : null));
-    
+
     // Update accordion selection
     if (date) {
       const formattedDate = date.toLocaleDateString("en-GB", {
         day: "2-digit",
         month: "short",
-        year: "numeric"
+        year: "numeric",
       });
-      dispatch(setDateSelection({
-        value: date.toISOString(),
-        displayText: formattedDate
-      }));
+      dispatch(
+        setDateSelection({
+          value: date.toISOString(),
+          displayText: formattedDate,
+        }),
+      );
     } else {
-      dispatch(setDateSelection({
-        value: null,
-        displayText: null
-      }));
+      dispatch(
+        setDateSelection({
+          value: null,
+          displayText: null,
+        }),
+      );
     }
   };
 

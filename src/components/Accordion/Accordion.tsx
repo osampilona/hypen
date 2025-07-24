@@ -33,12 +33,12 @@ const Accordion: React.FC<AccordionProps> = ({
   // Determine the display title based on selection type
   const getDisplayTitle = () => {
     if (!selectionType) return title;
-    
+
     const selection = accordionSelections[selectionType];
     if (selection.displayText) {
       return `${title} - ${selection.displayText}`;
     }
-    
+
     return title;
   };
 
