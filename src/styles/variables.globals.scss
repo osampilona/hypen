@@ -7,6 +7,7 @@
 
   --background-color: #fbf7f5;
   --items-bg-color: #ffffff;
+  --items-bg-rgb: 255, 255, 255;
   --text-color: #282828;
   --forms-bg-color: #fafafa;
   --labels-color: #686868;
@@ -28,6 +29,7 @@
 .dark-theme {
   --background-color: #121212;
   --items-bg-color: #1e1e1e;
+  --items-bg-rgb: 30, 30, 30;
   --text-color: #f5f5f5;
   --forms-bg-color: #282828;
   --labels-color: #cccccc;

@@ -72,7 +72,7 @@ select {
   width: auto;
   display: flex;
   justify-content: center;
-  border: none;
+  border: none !important;
 
   &__month-container {
     float: none;

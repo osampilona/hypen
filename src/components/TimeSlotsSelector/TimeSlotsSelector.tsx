@@ -39,20 +39,26 @@ const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = ({
   // Update accordion selection when timeslots change
   useEffect(() => {
     if (startSlot && endSlot) {
-      dispatch(setTimeslotSelection({
-        value: `${startSlot}-${endSlot}`,
-        displayText: `${startSlot} - ${endSlot}`
-      }));
+      dispatch(
+        setTimeslotSelection({
+          value: `${startSlot}-${endSlot}`,
+          displayText: `${startSlot} - ${endSlot}`,
+        }),
+      );
     } else if (startSlot) {
-      dispatch(setTimeslotSelection({
-        value: startSlot,
-        displayText: startSlot
-      }));
+      dispatch(
+        setTimeslotSelection({
+          value: startSlot,
+          displayText: startSlot,
+        }),
+      );
     } else {
-      dispatch(setTimeslotSelection({
-        value: null,
-        displayText: null
-      }));
+      dispatch(
+        setTimeslotSelection({
+          value: null,
+          displayText: null,
+        }),
+      );
     }
   }, [startSlot, endSlot, dispatch]);
 
@@ -123,7 +129,6 @@ const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = ({
       </div>
       {Object.keys(timeSlots).map((period) => (
         <div key={period} className={styles.timeSlotPeriod}>
-          <h5>{period.charAt(0).toUpperCase() + period.slice(1)}</h5>
           <div className={styles.timeSlotButtons}>
             {timeSlots[period as TimeSlotPeriod].map((slot, index) => {
               const isInRange = selectedSlots.includes(slot);
