@@ -16,9 +16,6 @@
 
 .timeSlotButton {
   padding: 10px 20px;
-  border: 1px solid #ccc;
-  border-radius: 25px;
-  background-color: #fff;
   cursor: pointer;
   transition: all 0.3s;
   position: relative;
@@ -42,7 +39,7 @@
     right: -4px;
     bottom: 0;
     background-color: rgba(var(--secondary-color-rgb), 0.15);
-    z-index: -1;
+    z-index: 1;
   }
 
   // Remove rounded corners for middle slots
