@@ -20,7 +20,7 @@ const Accordion: React.FC<AccordionProps> = ({
   onToggle,
   showTimeslotInTitle = false,
 }) => {
-  const [isOpenState, setIsOpenState] = useState(false);
+  const [isOpenState, setIsOpenState] = useState(true); // Start open by default
 
   // Get timeslot state from Redux if showTimeslotInTitle is true
   const { startSlot, endSlot } = useSelector(

@@ -28,6 +28,13 @@ function getRandomImages() {
   return images.sort(() => 0.5 - Math.random()).slice(0, numImages);
 }
 
+export { getRandomImages };
+
+// Function to find service by ID
+export const getServiceById = (serviceId: string) => {
+  return serviceData.find((service) => service.serviceId === serviceId);
+};
+
 export const serviceData: ServiceCardType[] = [
   {
     serviceId: "1",
