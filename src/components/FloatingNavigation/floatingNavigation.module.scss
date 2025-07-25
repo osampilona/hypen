@@ -2,21 +2,23 @@
 
 .container {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: var(--items-bg-color);
   color: var(--labels-color);
   box-shadow: var(--box-shadow);
   z-index: 100;
-  padding: 0.5rem;
+  padding: 1rem;
+  border-radius: 25px;
+  width: fit-content;
+  overflow: visible;
 
   .content {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    max-width: 100%;
-    margin: 0 auto;
+    gap: 2rem;
+    overflow: visible;
   }
 
   .navItem {
@@ -31,18 +33,19 @@
     border: none;
     font: inherit;
     outline: inherit;
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.5, 1);
     min-width: 48px;
     min-height: 48px;
 
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: var(--background-color);
       @include change-color(var(--primary-color));
+      transform: scale(1.4) translateY(-12px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      z-index: 10;
     }
-
-    &.active {
+    &:focus {
       @include change-color(var(--primary-color));
       background-color: var(--background-color);
     }
@@ -50,6 +53,10 @@
 
   .icon {
     color: var(--labels-color);
-    transition: color 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.5, 1);
+
+    .navItem:hover & {
+      transform: scale(1.3);
+    }
   }
 }

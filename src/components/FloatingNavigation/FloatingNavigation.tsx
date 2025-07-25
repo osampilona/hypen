@@ -2,7 +2,9 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useAppDispatch } from "@/lib/hooks";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/store";
 import { toggleTheme } from "@/lib/features/theme/theme";
 
 // Icons
@@ -20,7 +22,9 @@ import styles from "./floatingNavigation.module.scss";
 
 const FloatingNavigation: React.FC = () => {
   const dispatch = useAppDispatch();
-  const currentTheme = useAppSelector((state: any) => state.theme.currentTheme);
+  const currentTheme = useSelector(
+    (state: RootState) => state.theme.currentTheme,
+  );
   const [filterCardVisible, setFilterCardVisible] = useState(false);
 
   const handleFilterToggle = () => {
