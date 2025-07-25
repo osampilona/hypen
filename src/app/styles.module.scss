@@ -18,13 +18,11 @@
   padding-top: 0;
   background-color: var(--background-color);
   color: var(--text-color);
-  margin-top: 5rem;
   width: 100%;
 
   @include respond-to($breakpoint-lg, min) {
     margin-top: 0;
     padding: 1.5rem;
     flex: 1;
-    margin-left: 10rem;
   }
 }

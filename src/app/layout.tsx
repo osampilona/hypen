@@ -2,6 +2,7 @@
 import { Roboto } from "next/font/google";
 import SmallScreenNavigation from "@/components/SmallScreenNavigation/SmallScreenNavigation";
 import BigScreenNavigation from "@/components/BigScreenNavigation/BigScreenNavigation";
+import FloatingNavigation from "@/components/FloatingNavigation/FloatingNavigation";
 import "@/styles/globals.scss";
 import "@/styles/variables.globals.scss";
 import styles from "@/app/styles.module.scss";
@@ -47,14 +48,8 @@ export default function RootLayout({
       <body>
         <Provider store={store}>
           <div className={styles.layoutContainer}>
-            {isMobile ? (
-              <SmallScreenNavigation />
-            ) : (
-              <>
-                <BigScreenNavigation />
-              </>
-            )}
             <main className={styles.main}>{children}</main>
+            <FloatingNavigation />
           </div>
         </Provider>
       </body>
