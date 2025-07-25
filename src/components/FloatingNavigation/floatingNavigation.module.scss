@@ -14,15 +14,53 @@
   width: fit-content;
   overflow: visible;
 
-  // Mobile styles
+  // Mobile styles - positioned as FAB in bottom right
   @include respond-to($breakpoint-sm, max) {
-    bottom: 1rem;
-    left: 1rem;
-    right: 1rem;
-    width: auto;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    left: auto;
     transform: none;
-    border-radius: 20px;
-    padding: 0.75rem;
+    border-radius: 50px;
+    padding: 0;
+    width: auto;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  // FAB toggle button - only visible on mobile
+  .fabToggle {
+    display: none;
+
+    @include respond-to($breakpoint-sm, max) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: var(--items-bg-color);
+      color: var(--labels-color);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--box-shadow);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.5, 1);
+      z-index: 101;
+
+      &:hover,
+      &:focus {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      &.expanded {
+        background-color: var(--background-color);
+        @include change-color(var(--primary-color));
+      }
+    }
   }
 
   .content {
@@ -31,10 +69,61 @@
     gap: 2rem;
     overflow: visible;
 
-    // Mobile styles
+    // Mobile styles - glassy container with individual floating icons
     @include respond-to($breakpoint-sm, max) {
-      justify-content: space-around;
-      gap: 0;
+      position: absolute;
+      bottom: 60px; // Closer to the FAB toggle
+      right: 50%;
+      transform: translateX(50%) translateY(100%);
+      flex-direction: column;
+      gap: 0.75rem;
+
+      // Glassy background effect
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+
+      padding: 0.75rem;
+      border-radius: 25px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease-out;
+      transform-origin: bottom center;
+
+      // Subtle gradient overlay for extra depth
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.15) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
+        border-radius: inherit;
+        pointer-events: none;
+      }
+    }
+
+    // Mobile collapsed state
+    &.mobileCollapsed {
+      @include respond-to($breakpoint-sm, max) {
+        display: none;
+      }
+    }
+
+    // Mobile expanded state
+    &.mobileExpanded {
+      @include respond-to($breakpoint-sm, max) {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(50%) translateY(0);
+      }
     }
   }
 
@@ -55,13 +144,23 @@
     min-width: 48px;
     min-height: 48px;
 
-    // Mobile styles
+    // Mobile styles - individual floating icons with rounded background
     @include respond-to($breakpoint-sm, max) {
-      padding: 0.5rem;
-      min-width: 44px;
-      min-height: 44px;
-      flex: 1;
-      max-width: 60px;
+      width: 48px;
+      height: 48px;
+      padding: 0.75rem;
+      border-radius: 50%;
+      min-width: 48px;
+      min-height: 48px;
+      justify-content: center;
+      gap: 0;
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
     }
 
     &:hover {
@@ -71,10 +170,15 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
       z-index: 10;
 
-      // Mobile hover (touch devices)
+      // Mobile hover
       @include respond-to($breakpoint-sm, max) {
-        transform: scale(1.1) translateY(-4px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transform: scale(1.1);
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        @include change-color(var(--primary-color));
       }
     }
 
@@ -95,9 +199,14 @@
     &.active {
       @include change-color(var(--primary-color));
       background-color: var(--background-color);
-      
+
       @include respond-to($breakpoint-sm, max) {
         transform: scale(1.05);
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        @include change-color(var(--primary-color));
       }
     }
   }

@@ -9,7 +9,7 @@ const meta: Meta<typeof FloatingNavigation> = {
     docs: {
       description: {
         component:
-          "A floating navigation bar that appears at the bottom of the screen on mobile devices. Contains quick access to main navigation items from the BigScreenNavigation.",
+          "A floating navigation bar that appears at the bottom of the screen. On desktop, it displays as a centered navigation bar. On mobile, it shows as a FAB (Floating Action Button) in the bottom right corner that expands to show navigation items when tapped.",
       },
     },
   },
@@ -38,6 +38,20 @@ export const WithDarkTheme: Story = {
     docs: {
       description: {
         story: "FloatingNavigation in dark theme mode",
+      },
+    },
+  },
+};
+
+export const MobileView: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: "mobile1",
+    },
+    docs: {
+      description: {
+        story:
+          "FloatingNavigation on mobile devices shows as a FAB (Floating Action Button) in the bottom right corner. Tap the menu icon to expand and show navigation items.",
       },
     },
   },
