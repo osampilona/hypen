@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAppDispatch } from "@/lib/hooks";
 import { useSelector } from "react-redux";
@@ -26,6 +26,18 @@ const FloatingNavigation: React.FC = () => {
     (state: RootState) => state.theme.currentTheme,
   );
   const [filterCardVisible, setFilterCardVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleFilterToggle = () => {
     setFilterCardVisible(!filterCardVisible);
@@ -34,6 +46,9 @@ const FloatingNavigation: React.FC = () => {
   const handleCloseModal = () => {
     setFilterCardVisible(false);
   };
+
+  // Dynamic icon size based on screen size
+  const iconSize = isMobile ? 20 : 24;
 
   return (
     <>
@@ -44,7 +59,7 @@ const FloatingNavigation: React.FC = () => {
             className={styles.navItem}
             aria-label="Beautify - Home"
           >
-            <RxSketchLogo size={24} className={styles.icon} />
+            <RxSketchLogo size={iconSize} className={styles.icon} />
           </Link>
 
           <button
@@ -57,9 +72,9 @@ const FloatingNavigation: React.FC = () => {
             className={styles.navItem}
           >
             {currentTheme === "light" ? (
-              <MdOutlineLightMode size={24} className={styles.icon} />
+              <MdOutlineLightMode size={iconSize} className={styles.icon} />
             ) : (
-              <MdOutlineDarkMode size={24} className={styles.icon} />
+              <MdOutlineDarkMode size={iconSize} className={styles.icon} />
             )}
           </button>
 
@@ -69,15 +84,15 @@ const FloatingNavigation: React.FC = () => {
             aria-label="Toggle filters"
             aria-expanded={filterCardVisible}
           >
-            <TbListSearch size={24} className={styles.icon} />
+            <TbListSearch size={iconSize} className={styles.icon} />
           </button>
 
           <button className={styles.navItem} aria-label="Partner">
-            <HiOutlineBriefcase size={24} className={styles.icon} />
+            <HiOutlineBriefcase size={iconSize} className={styles.icon} />
           </button>
 
           <Link href="/login" className={styles.navItem} aria-label="Login">
-            <HiOutlineUserCircle size={24} className={styles.icon} />
+            <HiOutlineUserCircle size={iconSize} className={styles.icon} />
           </Link>
         </div>
       </nav>
@@ -86,7 +101,7 @@ const FloatingNavigation: React.FC = () => {
         isOpen={filterCardVisible}
         onClose={handleCloseModal}
         title="Filters"
-        size="large"
+        size={isMobile ? "fullscreen" : "large"}
         closeOnBackdropClick={true}
         closeOnEscape={true}
       >
