@@ -1,6 +1,6 @@
 # Modal Component
 
-A flexible and accessible modal component with support for different sizes, custom styling, and comprehensive keyboard navigation.
+A flexible and accessible modal component with support for different sizes, custom styling and comprehensive keyboard navigation.
 
 ## Features
 
