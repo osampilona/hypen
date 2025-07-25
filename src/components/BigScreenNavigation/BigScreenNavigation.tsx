@@ -9,7 +9,7 @@ import { toggleTheme } from "@/lib/features/theme/theme";
 import { TbListSearch } from "react-icons/tb";
 import FilterCard from "@/components/FilterCard/FilterCard";
 import { useEffect, useState } from "react";
-import Overlay from "@/components/Overlay/Overlay";
+import Modal from "@/components/Modal/Modal";
 
 const BigScreenNavigation = () => {
   const currentTheme = useSelector(
@@ -44,7 +44,7 @@ const BigScreenNavigation = () => {
     }
   };
 
-  const handleCloseOverlay = () => {
+  const handleCloseModal = () => {
     setFilterCardVisible(false);
   };
 
@@ -112,9 +112,16 @@ const BigScreenNavigation = () => {
           </div>
         </div>
       </div>
-      <Overlay show={filterCardVisible} onClose={() => handleCloseOverlay()}>
-        <FilterCard onClose={handleCloseOverlay} />
-      </Overlay>
+      <Modal
+        isOpen={filterCardVisible}
+        onClose={handleCloseModal}
+        title="Filters"
+        size="large"
+        closeOnBackdropClick={true}
+        closeOnEscape={true}
+      >
+        <FilterCard onClose={handleCloseModal} />
+      </Modal>
     </>
   );
 };

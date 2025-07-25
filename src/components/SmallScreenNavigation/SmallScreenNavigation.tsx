@@ -7,7 +7,7 @@ import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { toggleTheme } from "@/lib/features/theme/theme";
 import { useState, useEffect } from "react";
 import ItemsList from "@/components/ItemsList/ItemsList";
-import Overlay from "@/components/Overlay/Overlay";
+import Modal from "@/components/Modal/Modal";
 import { TbListSearch } from "react-icons/tb";
 import FilterCard from "@/components/FilterCard/FilterCard";
 import HamburgerMenuButton from "@/components/Buttons/HamburgerMenuButton/HamburgerMenuButton";
@@ -38,8 +38,11 @@ const SmallScreenNavigation = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const handleOverlayClick = () => {
+  const handleMenuClose = () => {
     setMenuOpen(false);
+  };
+
+  const handleFilterClose = () => {
     setFilterCardVisible(false);
   };
 
@@ -49,22 +52,6 @@ const SmallScreenNavigation = () => {
 
   const toggleFilterCard = () => {
     setFilterCardVisible(!filterCardVisible);
-  };
-
-  const renderOverlayContent = () => {
-    if (menuOpen) {
-      return <ItemsList items={menuItems} onItemClicked={handleItemClick} />;
-    }
-    if (filterCardVisible) {
-      return (
-        <FilterCard
-          onClose={function (): void {
-            setFilterCardVisible(false);
-          }}
-        />
-      );
-    }
-    return null;
   };
 
   return (
@@ -99,13 +86,30 @@ const SmallScreenNavigation = () => {
           </div>
         </div>
       </div>
-      <Overlay
-        show={menuOpen || filterCardVisible}
-        onClose={handleOverlayClick}
-        className={styles.overlay}
+
+      {/* Menu Modal */}
+      <Modal
+        isOpen={menuOpen}
+        onClose={handleMenuClose}
+        title="Menu"
+        size="small"
+        closeOnBackdropClick={true}
+        closeOnEscape={true}
       >
-        {renderOverlayContent()}
-      </Overlay>
+        <ItemsList items={menuItems} onItemClicked={handleItemClick} />
+      </Modal>
+
+      {/* Filter Modal */}
+      <Modal
+        isOpen={filterCardVisible}
+        onClose={handleFilterClose}
+        title="Filters"
+        size="large"
+        closeOnBackdropClick={true}
+        closeOnEscape={true}
+      >
+        <FilterCard onClose={handleFilterClose} />
+      </Modal>
     </>
   );
 };
