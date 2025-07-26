@@ -1,17 +1,24 @@
+@import "@/styles/variables";
+@import "@/styles/mixins";
+
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  position: fixed;
   padding: 1rem 1.5rem;
   top: 0;
   left: 0;
-  position: fixed;
   z-index: 100;
+  width: 100vw;
+
+  // Apply glassy effect
+  @include glassy-effect(0.1, 20px, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+  // Fallback for browsers that don't support backdrop-filter
   background-color: var(--items-bg-color);
   color: var(--labels-color);
-  box-shadow: var(--box-shadow);
-  width: 100vw;
 
   .content {
     display: flex;
@@ -32,9 +39,29 @@
 
   .themeToggle {
     border-radius: 50%;
-    height: 24px;
-    width: 24px;
+    height: 48px;
+    width: 48px;
     cursor: pointer;
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.5, 1);
+    position: relative;
+
+    // Apply subtle glassy effect
+    @include glassy-effect(0.05, 15px, 0.1);
+
+    &:hover {
+      @include glassy-effect-hover(0.15, 15px, 0.3);
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
   }
 
   @include respond-to($breakpoint-lg, min) {

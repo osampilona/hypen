@@ -3,22 +3,28 @@
 
 .container {
   position: fixed;
-  bottom: 2rem;
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--items-bg-color);
   color: var(--labels-color);
-  box-shadow: var(--box-shadow);
   z-index: 100;
   padding: 1rem;
   border-radius: 25px;
   width: fit-content;
   overflow: visible;
 
+  // Apply glassy effect to desktop version
+  @include glassy-effect(
+    $glassy-opacity-light,
+    $glassy-blur-medium,
+    $glassy-border-opacity
+  );
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
   // Mobile styles - positioned as FAB in bottom right
   @include respond-to($breakpoint-sm, max) {
-    bottom: 1.5rem;
-    right: 1.5rem;
+    bottom: 1rem;
+    right: 1rem;
     left: auto;
     transform: none;
     border-radius: 50px;
@@ -39,17 +45,29 @@
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      background-color: var(--items-bg-color);
       color: var(--labels-color);
       border: none;
       cursor: pointer;
-      box-shadow: var(--box-shadow);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.5, 1);
       z-index: 101;
+      position: relative;
+
+      // Apply glassy effect
+      @include glassy-effect(
+        $glassy-opacity-medium,
+        $glassy-blur-medium,
+        $glassy-border-opacity
+      );
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 
       &:hover,
       &:focus {
         transform: scale(1.05);
+        @include glassy-effect-hover(
+          $glassy-opacity-strong,
+          $glassy-blur-light,
+          $glassy-border-opacity
+        );
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
       }
 
@@ -58,7 +76,11 @@
       }
 
       &.expanded {
-        background-color: var(--background-color);
+        @include glassy-effect-hover(
+          $glassy-opacity-strong,
+          $glassy-blur-strong,
+          $glassy-border-opacity
+        );
         @include change-color(var(--primary-color));
       }
     }
@@ -78,37 +100,12 @@
       transform: translateX(50%) translateY(100%);
       flex-direction: column;
       gap: 0.75rem;
-
-      // Glassy background effect
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-
       padding: 0.75rem;
       border-radius: 25px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease-out;
       transform-origin: bottom center;
-
-      // Subtle gradient overlay for extra depth
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.15) 0%,
-          rgba(255, 255, 255, 0.05) 100%
-        );
-        border-radius: inherit;
-        pointer-events: none;
-      }
     }
 
     // Mobile collapsed state
@@ -144,8 +141,29 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.5, 1);
     min-width: 48px;
     min-height: 48px;
+    position: relative;
+    // Apply glassy effect to content container
+    @include glassy-effect(
+      $glassy-opacity-medium,
+      $glassy-blur-strong,
+      $glassy-border-opacity
+    );
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 
-    // Mobile styles - individual floating icons with rounded background
+    // Desktop glassy effect on hover
+    &:hover {
+      @include glassy-effect-hover(
+        $glassy-opacity-medium,
+        $glassy-blur-light,
+        $glassy-border-opacity
+      );
+      @include change-color(var(--primary-color));
+      transform: scale(1.4) translateY(-12px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    // Mobile styles - simple clean icons
     @include respond-to($breakpoint-sm, max) {
       width: 48px;
       height: 48px;
@@ -155,59 +173,51 @@
       min-height: 48px;
       justify-content: center;
       gap: 0;
-      background-color: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
       position: relative;
       z-index: 1;
+
+      // Apply glassy effect using mixin with variables
+      @include glassy-effect(
+        $glassy-opacity-strong,
+        $glassy-blur-strong,
+        $glassy-border-opacity
+      );
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+      // // Mobile hover effect
+      // &:hover {
+      //   transform: scale(1.1);
+      //   @include glassy-effect-hover(0.25, 25px, 0.4);
+      //   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+      //   @include change-color(var(--primary-color));
+      // }
     }
 
-    &:hover {
-      background-color: var(--background-color);
-      @include change-color(var(--primary-color));
-      transform: scale(1.4) translateY(-12px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      z-index: 10;
-
-      // Mobile hover
-      @include respond-to($breakpoint-sm, max) {
-        transform: scale(1.1);
-        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
-        background: rgba(255, 255, 255, 0.25);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        @include change-color(var(--primary-color));
-      }
-    }
-
-    // Mobile active/focus states
-    &:active {
-      @include respond-to($breakpoint-sm, max) {
-        transform: scale(0.95);
-        transition: all 0.1s ease;
-      }
-    }
-
+    // Remove commented mobile code
     &:focus {
       @include change-color(var(--primary-color));
-      background-color: var(--background-color);
+
+      // Desktop focus only
+      @include respond-to($breakpoint-sm, min) {
+        @include glassy-effect-hover(
+          $glassy-opacity-medium,
+          $glassy-blur-light,
+          $glassy-border-opacity
+        );
+      }
     }
 
     // Active state for filter button
     &.active {
       @include change-color(var(--primary-color));
-      background-color: var(--background-color);
 
-      @include respond-to($breakpoint-sm, max) {
-        transform: scale(1.05);
-        background: rgba(255, 255, 255, 0.25);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        @include change-color(var(--primary-color));
+      // Desktop active only
+      @include respond-to($breakpoint-sm, min) {
+        @include glassy-effect-hover(
+          $glassy-opacity-medium,
+          $glassy-blur-light,
+          $glassy-border-opacity
+        );
       }
     }
   }
@@ -223,17 +233,9 @@
     }
 
     .navItem:hover & {
-      transform: scale(1.3);
-
-      // Mobile icon scaling
-      @include respond-to($breakpoint-sm, max) {
-        transform: scale(1.1);
-      }
-    }
-
-    .navItem.active & {
-      @include respond-to($breakpoint-sm, max) {
-        transform: scale(1.05);
+      // Desktop icon scaling only
+      @include respond-to($breakpoint-sm, min) {
+        transform: scale(1.3);
       }
     }
   }
