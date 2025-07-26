@@ -22,14 +22,6 @@ const BigScreenNavigation = () => {
   const [filterCardVisible, setFilterCardVisible] = useState(false);
 
   useEffect(() => {
-    if (currentTheme === "dark") {
-      document.body.classList.add("dark-theme");
-    } else {
-      document.body.classList.remove("dark-theme");
-    }
-  }, [currentTheme]);
-
-  useEffect(() => {
     if (activePageIcon !== "filters") {
       setFilterCardVisible(false);
     }

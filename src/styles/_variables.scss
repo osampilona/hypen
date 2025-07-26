@@ -53,3 +53,24 @@ $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 $breakpoint-xxl: 1400px;
+
+// Glassy effect variables for consistent theming
+$glassy-opacity-light: 0.1;
+$glassy-opacity-medium: 0.15;
+$glassy-opacity-strong: 0.25;
+$glassy-blur-light: 15px;
+$glassy-blur-medium: 20px;
+$glassy-blur-strong: 25px;
+$glassy-border-opacity: 0.4;
+
+// Light theme glassy effects
+$glassy-light-gradient-start: rgba(255, 255, 255, 0.15);
+$glassy-light-gradient-end: rgba(255, 255, 255, 0.05);
+$glassy-light-background-color: #ffffff; // Proper color value
+$glassy-light-border-color: #ffffff;
+
+// Dark theme glassy effects
+$glassy-dark-gradient-start: rgba(40, 40, 40, 0.25);
+$glassy-dark-gradient-end: rgba(20, 20, 20, 0.15);
+$glassy-dark-background-color: #2a2a2a; // Dark background for better contrast
+$glassy-dark-border-color: #555555;

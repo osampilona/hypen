@@ -1,14 +1,45 @@
+@import "@/styles/variables";
+@import "@/styles/mixins";
+
 .hamburger {
   position: relative;
-  width: 24px;
-  height: 24px;
+  width: 48px;
+  height: 48px;
   cursor: pointer;
   z-index: 2;
   background: none;
   border: none;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.5, 1);
+
+  // Apply glassy effect
+  @include glassy-effect(0.1, 20px, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+  // Container for hamburger lines
+  .lines {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    @include glassy-effect-hover(0.25, 15px, 0.4);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: scale(0.95);
+    transition: all 0.1s ease;
+  }
 }
 
 .hamburger div {
@@ -18,22 +49,22 @@
   transition: all 0.3s ease;
 }
 
-.hamburger div:nth-child(1) {
+.hamburger .lines div:nth-child(1) {
   transform-origin: top left;
 }
 
-.hamburger div:nth-child(3) {
+.hamburger .lines div:nth-child(3) {
   transform-origin: bottom left;
 }
 
-.hamburger.open div:nth-child(1) {
+.hamburger.open .lines div:nth-child(1) {
   transform: rotate(45deg) translate(4px, 0px);
 }
 
-.hamburger.open div:nth-child(2) {
+.hamburger.open .lines div:nth-child(2) {
   opacity: 0;
 }
 
-.hamburger.open div:nth-child(3) {
+.hamburger.open .lines div:nth-child(3) {
   transform: rotate(-45deg) translate(4px, 0px);
 }

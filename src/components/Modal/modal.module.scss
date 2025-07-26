@@ -25,10 +25,10 @@
 }
 
 .container {
-  background-color: $white-items-bg-color;
+  background-color: var(--items-bg-color);
   border-radius: 8px;
-  box-shadow: $light-bg-box-shadow;
-  max-height: 90vh;
+  box-shadow: var(--box-shadow);
+  height: -webkit-fill-available;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -41,12 +41,6 @@
   // Desktop styles
   @media (min-width: $breakpoint-sm) {
     border-radius: 12px;
-  }
-
-  // Dark mode support
-  @media (prefers-color-scheme: dark) {
-    background-color: $dark-items-bg-color;
-    box-shadow: $dark-bg-box-shadow;
   }
 }
 
@@ -78,27 +72,25 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 0.5rem 0;
-  border-bottom: 1px solid $light-bg-border-color;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border-color);
 
   // Desktop styles
   @media (min-width: $breakpoint-sm) {
     padding: 1rem 1rem 0;
     padding-bottom: 1rem;
   }
-
-  @media (prefers-color-scheme: dark) {
-    border-bottom-color: $dark-bg-border-color;
-  }
 }
 
 .title {
   font-size: $font-size-lg;
   font-weight: 600;
-  color: $light-bg-text-color;
+  color: var(--text-color);
   margin: 0;
   letter-spacing: $letter-spacing-headings;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 
   // Desktop styles
   @media (min-width: $breakpoint-sm) {
@@ -107,6 +99,7 @@
 
   @media (prefers-color-scheme: dark) {
     color: $dark-bg-text-color;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -119,12 +112,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $light-bg-labels-color;
+  color: var(--labels-color);
   transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
 
   svg {
     width: 1.25rem;
     height: 1.25rem;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
   }
 
   // Desktop styles
@@ -138,39 +134,23 @@
   }
 
   &:hover {
-    background-color: $light-bg-forms-bg-color;
-    color: $light-bg-text-color;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--text-color);
+    transform: scale(1.05);
   }
 
   &:focus {
-    outline: 2px solid $primary-color;
+    outline: 2px solid var(--primary-color);
     outline-offset: 2px;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    color: $dark-bg-labels-color;
-
-    &:hover {
-      background-color: $dark-bg-forms-bg-color;
-      color: $dark-bg-text-color;
-    }
   }
 }
 
 .content {
   flex: 1;
-  padding: 0 0.5rem 0.5rem;
   overflow-y: auto;
-  color: $light-bg-text-color;
-
-  // Desktop styles
-  @media (min-width: $breakpoint-sm) {
-    padding: 0 1rem 1rem;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    color: $dark-bg-text-color;
-  }
+  color: var(--text-color);
 
   // Custom scrollbar
   &::-webkit-scrollbar {
@@ -182,20 +162,12 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: $light-bg-greyed-out-color;
+    background: var(--greyed-out-color);
     border-radius: 3px;
-
-    @media (prefers-color-scheme: dark) {
-      background: $dark-bg-greyed-out-color;
-    }
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: $light-bg-labels-color;
-
-    @media (prefers-color-scheme: dark) {
-      background: $dark-bg-labels-color;
-    }
+    background: var(--labels-color);
   }
 }
 

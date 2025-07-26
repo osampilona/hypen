@@ -24,6 +24,71 @@
   }
 }
 
+// Glassy effect mixin - light theme
+@mixin glassy-effect(
+  $opacity: $glassy-opacity-light,
+  $blur: $glassy-blur-medium,
+  $border-opacity: $glassy-border-opacity
+) {
+  background: rgba($glassy-light-background-color, $opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba($glassy-light-border-color, $border-opacity);
+
+  // Add subtle gradient overlay for extra depth
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      $glassy-light-gradient-start 0%,
+      $glassy-light-gradient-end 100%
+    );
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  // Dark theme variant
+  :global(.dark-theme) & {
+    background: rgba(
+      $glassy-dark-background-color,
+      $opacity * 1.2
+    ); // Increased opacity for visibility
+    border: 1px solid rgba($glassy-dark-border-color, $border-opacity * 0.8);
+
+    &::before {
+      background: linear-gradient(
+        135deg,
+        $glassy-dark-gradient-start 0%,
+        $glassy-dark-gradient-end 100%
+      );
+    }
+  }
+}
+
+// Enhanced glassy effect for hover states
+@mixin glassy-effect-hover(
+  $opacity: $glassy-opacity-strong,
+  $blur: $glassy-blur-light,
+  $border-opacity: $glassy-border-opacity
+) {
+  background: rgba($glassy-light-background-color, $opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba($glassy-light-border-color, $border-opacity);
+
+  // Dark theme variant
+  :global(.dark-theme) & {
+    background: rgba($glassy-dark-background-color, $opacity * 1.2);
+    border: 1px solid rgba($glassy-dark-border-color, $border-opacity * 0.8);
+  }
+}
+
 // Defining mixins for breakpoints
 @mixin respond-to($breakpoint, $type: min) {
   @if $type == min {

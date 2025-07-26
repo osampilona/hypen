@@ -15,9 +15,11 @@ const HamburgerMenuButton: React.FC<HamburgerMenuButtonProps> = ({
       className={`${hamburgerMenuButton.hamburger} ${isOpen ? hamburgerMenuButton.open : ""}`}
       aria-label="Toggle menu"
     >
-      <div />
-      <div />
-      <div />
+      <div className={hamburgerMenuButton.lines}>
+        <div />
+        <div />
+        <div />
+      </div>
     </button>
   );
 };
