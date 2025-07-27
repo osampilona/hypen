@@ -157,9 +157,10 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
               {children}
             </div>
           )}
-          renderThumb={({ props }) => (
-            <div {...props} className={styles.thumb} />
-          )}
+          renderThumb={({ props }) => {
+            const { key, ...restProps } = props;
+            return <div key={key} {...restProps} className={styles.thumb} />;
+          }}
         />
         <div className={styles.values}>
           <div className={styles.infoBox}>

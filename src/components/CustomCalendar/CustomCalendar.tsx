@@ -4,7 +4,6 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import { enGB } from "date-fns/locale";
 import { RootState } from "@/lib/store";
 import { setSelectedDate } from "@/lib/features/filters/dateSlice";
-import { setDateSelection } from "@/lib/features/filters/accordionSelectionsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 
@@ -30,18 +29,7 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({ categoryName }) => {
       const today = new Date();
       const todayISO = today.toISOString();
       dispatch(setSelectedDate(todayISO));
-
-      const formattedDate = today.toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      });
-      dispatch(
-        setDateSelection({
-          value: todayISO,
-          displayText: formattedDate,
-        }),
-      );
+      // Note: accordion selections will automatically sync via extraReducers
     }
   }, [selectedDate, dispatch]);
 
@@ -73,28 +61,7 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({ categoryName }) => {
 
   const handleDateChange = (date: Date | null) => {
     dispatch(setSelectedDate(date ? date.toISOString() : null));
-
-    // Update accordion selection
-    if (date) {
-      const formattedDate = date.toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      });
-      dispatch(
-        setDateSelection({
-          value: date.toISOString(),
-          displayText: formattedDate,
-        }),
-      );
-    } else {
-      dispatch(
-        setDateSelection({
-          value: null,
-          displayText: null,
-        }),
-      );
-    }
+    // Note: accordion selections will automatically sync via extraReducers
   };
 
   return (

@@ -1,0 +1,93 @@
+@import "@/styles/variables";
+@import "@/styles/mixins";
+
+.bookingDetails {
+  flex-shrink: 0;
+  min-width: 280px;
+
+  @include respond-to($breakpoint-md, max) {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+.selectionSummary {
+  background-color: var(--forms-bg-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(var(--labels-color-rgb), 0.1);
+
+  h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+    color: var(--text-color);
+  }
+}
+
+.selectedItems {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.selectedDate,
+.selectedTime,
+.selectedService,
+.selectedLocation,
+.selectedCategories,
+.selectedPriceRange,
+.selectedPaymentOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(var(--labels-color-rgb), 0.1);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.label {
+  font-weight: 500;
+  color: var(--labels-color);
+  font-size: 0.9rem;
+}
+
+.value {
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  text-align: right;
+
+  &.notSelected {
+    color: var(--labels-color);
+    font-style: italic;
+    opacity: 0.7;
+    font-weight: 400;
+  }
+}
+
+.bookingActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.wishlistButton {
+  background: none;
+  border: 1px solid var(--labels-color);
+  color: var(--labels-color);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: var(--labels-color);
+    color: var(--items-bg-color);
+  }
+}

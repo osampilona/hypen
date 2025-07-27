@@ -49,8 +49,7 @@
 
 .headerSection {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
   flex-shrink: 0;
   position: sticky;
   top: 0;
@@ -66,11 +65,48 @@
   transition:
     border-top-left-radius 0.3s ease,
     border-top-right-radius 0.3s ease;
+  gap: 1rem;
+
+  @include respond-to($breakpoint-lg, min) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 
   &.stuck {
     border-top-left-radius: 0 !important;
     border-top-right-radius: 0 !important;
   }
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @include respond-to($breakpoint-lg, min) {
+    flex: 1;
+    max-width: 50%;
+  }
+}
+
+.headerRight {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+
+  @include respond-to($breakpoint-lg, min) {
+    flex: 1;
+    max-width: 50%;
+    align-items: flex-end;
+  }
+}
+
+.headerTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 .companyInfo {
@@ -107,5 +143,74 @@
   &:hover {
     background-color: var(--secondary-color);
     color: white;
+  }
+}
+
+.followButtonContainer {
+  flex-shrink: 0;
+
+  @include respond-to($breakpoint-md, max) {
+    align-self: flex-start;
+  }
+}
+
+.quickBookingSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: rgba(var(--primary-color), 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(var(--primary-color), 0.1);
+  align-self: flex-end;
+
+  @include respond-to($breakpoint-lg, min) {
+    align-self: flex-end;
+  }
+}
+
+.dateDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: left;
+
+  @include respond-to($breakpoint-md, min) {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  @include respond-to($breakpoint-lg, min) {
+    text-align: right;
+    justify-content: flex-end;
+  }
+}
+
+.dateLabel {
+  font-weight: 500;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+}
+
+.dateValue {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: end;
+
+  @include respond-to($breakpoint-md, min) {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  @include respond-to($breakpoint-lg, min) {
+    justify-content: flex-end;
+    align-items: center;
   }
 }

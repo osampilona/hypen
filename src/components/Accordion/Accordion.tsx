@@ -11,7 +11,7 @@ interface AccordionProps {
   isOpen?: boolean;
   onToggle?: () => void;
   initiallyOpen?: boolean;
-  selectionType?: "timeslot" | "date" | null; // Type of selection to show in title
+  selectionType?: "timeSlot" | "date" | null; // Type of selection to show in title
 }
 
 const Accordion: React.FC<AccordionProps> = ({
@@ -25,18 +25,16 @@ const Accordion: React.FC<AccordionProps> = ({
   const [isOpenState, setIsOpenState] = useState(initiallyOpen);
   const accordionRef = useRef<HTMLDivElement>(null);
 
-  // Get accordion selections from Redux
-  const accordionSelections = useSelector(
-    (state: RootState) => state.accordionSelections,
-  );
+  // Get filter display from Redux
+  const filterDisplay = useSelector((state: RootState) => state.filterDisplay);
 
   // Determine the display title based on selection type
   const getDisplayTitle = () => {
     if (!selectionType) return title;
 
-    const selection = accordionSelections[selectionType];
-    if (selection.displayText) {
-      return `${title} - ${selection.displayText}`;
+    const selection = filterDisplay.displaySummary[selectionType];
+    if (selection) {
+      return `${title} - ${selection}`;
     }
 
     return title;

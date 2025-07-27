@@ -57,9 +57,10 @@ const DistanceRangeSlider: React.FC<DistanceRangeSliderProps> = ({
               {children}
             </div>
           )}
-          renderThumb={({ props }) => (
-            <div {...props} className={styles.thumb} />
-          )}
+          renderThumb={({ props }) => {
+            const { key, ...restProps } = props;
+            return <div key={key} {...restProps} className={styles.thumb} />;
+          }}
         />
         <div className={styles.sliderLabels}>
           <span>10 km</span>
