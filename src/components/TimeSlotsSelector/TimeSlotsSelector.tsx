@@ -9,7 +9,7 @@ import {
   toggleSlot,
   resetTimeSlots,
 } from "@/lib/features/filters/timeSlotsSlice";
-import { setTimeslotSelection } from "@/lib/features/filters/accordionSelectionsSlice";
+import { updateTimeSlotDisplay } from "@/lib/features/filters/filterDisplaySlice";
 
 type TimeSlotPeriod = keyof typeof timeSlots;
 
@@ -38,28 +38,7 @@ const TimeSlotSelector: React.FC<TimeSlotsSelectorProps> = ({
 
   // Update accordion selection when timeslots change
   useEffect(() => {
-    if (startSlot && endSlot) {
-      dispatch(
-        setTimeslotSelection({
-          value: `${startSlot}-${endSlot}`,
-          displayText: `${startSlot} - ${endSlot}`,
-        }),
-      );
-    } else if (startSlot) {
-      dispatch(
-        setTimeslotSelection({
-          value: startSlot,
-          displayText: startSlot,
-        }),
-      );
-    } else {
-      dispatch(
-        setTimeslotSelection({
-          value: null,
-          displayText: null,
-        }),
-      );
-    }
+    dispatch(updateTimeSlotDisplay({ startSlot, endSlot }));
   }, [startSlot, endSlot, dispatch]);
 
   // Handle responsive button size

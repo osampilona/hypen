@@ -7,7 +7,7 @@ import checkboxReducer from "@/lib/features/filters/checkboxSlice";
 import priceRangeSlice from "@/lib/features/filters/priceRangeSlice";
 import inputSlice from "@/lib/features/filters/inputSlice";
 import distanceRangeSlice from "@/lib/features/filters/distanceRangeSlice";
-import accordionSelectionsReducer from "@/lib/features/filters/accordionSelectionsSlice";
+import filterDisplayReducer from "@/lib/features/filters/filterDisplaySlice";
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +19,7 @@ export const store = configureStore({
     priceRange: priceRangeSlice,
     input: inputSlice,
     distanceRange: distanceRangeSlice,
-    accordionSelections: accordionSelectionsReducer,
+    filterDisplay: filterDisplayReducer,
   },
 });
 
