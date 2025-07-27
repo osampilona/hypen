@@ -1,8 +1,6 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Accordion from "@/components/Accordion/Accordion";
-import TimeSlotSelector from "@/components/TimeSlotsSelector/TimeSlotsSelector";
 import PhotoGrid from "@/components/PhotoGrid/PhotoGrid";
 import CtaButton from "@/components/Buttons/CTAButton/CtaButton";
 import SelectionDetailsSection from "@/components/SelectionDetailsSection/SelectionDetailsSection";
@@ -10,7 +8,6 @@ import { getRandomImages, getServiceById } from "@/data/serviceData";
 import { CardImage } from "@/types/services/card";
 import { RootState } from "@/lib/store";
 import styles from "./servicePage.module.scss";
-import CustomCalendar from "@/components/CustomCalendar/CustomCalendar";
 
 const ServicePage = ({ params }: { params: { seviceId: string } }) => {
   const service = getServiceById(params.seviceId);
@@ -40,16 +37,33 @@ const ServicePage = ({ params }: { params: { seviceId: string } }) => {
 
   const headerRef = useRef<HTMLDivElement>(null);
   const [isStuck, setIsStuck] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure client-side rendering to avoid hydration mismatch
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Format date for display
   const formatDate = (dateString: string | null) => {
-    if (!dateString) return "Not selected";
+    if (!dateString) return "Date not selected";
     const date = new Date(dateString);
     return date.toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "2-digit",
       year: "2-digit",
     });
+  };
+
+  // Safe formatting functions that avoid hydration mismatches
+  const getDisplayDate = () => {
+    if (!isClient) return "Loading...";
+    return displaySummary.date || formatDate(selectedDate);
+  };
+
+  const getDisplayTimeSlot = () => {
+    if (!isClient) return "Loading...";
+    return displaySummary.timeSlot || formatTimeSlots(startSlot, endSlot);
   };
 
   // Format time slots for display
@@ -116,68 +130,109 @@ const ServicePage = ({ params }: { params: { seviceId: string } }) => {
     };
   }, []);
 
+  // Don't render Redux-dependent content until client-side
+  if (!isClient) {
+    return (
+      <div className={styles.headerSection}>
+        <div className={styles.headerLeft}>
+          <div className={styles.headerTopRow}>
+            <div className={styles.companyInfo}>
+              <h1 className={styles.title}>{serviceName}</h1>
+              <h2>{service?.companyName}</h2>
+            </div>
+          </div>
+        </div>
+        <div className={styles.headerRight}>
+          <div className={styles.quickBookingSection}>
+            <div className={styles.dateDisplay}>
+              <span className={styles.dateValue}>Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div
         ref={headerRef}
         className={`${styles.headerSection} ${isStuck ? styles.stuck : ""}`}
       >
-        <div className={styles.companyInfo}>
-          <h1 className={styles.title}>{serviceName}</h1>
-          <h2>{service?.companyName}</h2>
-          <p>{service?.companyAddress}</p>
+        <div className={styles.headerLeft}>
+          <div className={styles.headerTopRow}>
+            <div className={styles.companyInfo}>
+              <h1 className={styles.title}>{serviceName}</h1>
+              <h2>{service?.companyName}</h2>
+            </div>
+          </div>
         </div>
-        <div className={styles.followButtonContainer}>
-          <CtaButton
-            label={service?.companyFollowingState ? "Following" : "Follow"}
-            isPrimary={!service?.companyFollowingState}
-            size="medium"
-          />
+
+        <div className={styles.headerRight}>
+          {/* Quick booking section */}
+          <div className={styles.quickBookingSection}>
+            <div className={styles.dateDisplay}>
+              <span className={styles.dateValue}>{getDisplayDate()}</span>
+            </div>
+            <div className={styles.actionButtons}>
+              <CtaButton
+                label="Book Appointment"
+                isPrimary={true}
+                size="large"
+                onClick={() => {
+                  console.log("Book appointment clicked with:", {
+                    selectedDate: getDisplayDate(),
+                    service: serviceName,
+                  });
+                }}
+              />
+              <CtaButton
+                label="Add to Wishlist"
+                isPrimary={false}
+                size="medium"
+                onClick={() => {
+                  console.log("Add to wishlist clicked for:", serviceName);
+                }}
+              />
+            </div>
+          </div>
         </div>
-        <SelectionDetailsSection
-          serviceName={serviceName}
-          selectedDate={displaySummary.date || formatDate(selectedDate)}
-          selectedTime={
-            displaySummary.timeSlot || formatTimeSlots(startSlot, endSlot)
-          }
-          selectedLocation={formatLocation()}
-          selectedCategories={
-            displaySummary.categories || formatCategories(selectedCategories)
-          }
-          selectedPriceRange={
-            displaySummary.priceRange || formatPriceRange(priceRange)
-          }
-          selectedPaymentOptions={formatPaymentOptions()}
-          onBookingClick={() => {
-            // TODO: Implement booking logic
-            console.log("Booking clicked with:", {
-              selectedDate: displaySummary.date || formatDate(selectedDate),
-              selectedTime:
-                displaySummary.timeSlot || formatTimeSlots(startSlot, endSlot),
-              selectedLocation: formatLocation(),
-              selectedCategories:
-                displaySummary.categories ||
-                formatCategories(selectedCategories),
-              selectedPriceRange:
-                displaySummary.priceRange || formatPriceRange(priceRange),
-              selectedPaymentOptions: formatPaymentOptions(),
-              service: serviceName,
-            });
-          }}
-          onWishlistClick={() => {
-            // TODO: Implement wishlist logic
-            console.log("Add to wishlist clicked for:", serviceName);
-          }}
-        />
       </div>
+
       <main className={styles.main}>
         <div className={styles.container}>
-          <div className={styles.itemContainer}>
-            <CustomCalendar categoryName={""} />
-          </div>
-          <div className={styles.itemContainer}>
-            <TimeSlotSelector categoryName={""} />
-          </div>
+          <SelectionDetailsSection
+            serviceName={serviceName}
+            selectedDate={getDisplayDate()}
+            selectedTime={getDisplayTimeSlot()}
+            selectedLocation={formatLocation()}
+            selectedCategories={
+              displaySummary.categories || formatCategories(selectedCategories)
+            }
+            selectedPriceRange={
+              displaySummary.priceRange || formatPriceRange(priceRange)
+            }
+            selectedPaymentOptions={formatPaymentOptions()}
+            onBookingClick={() => {
+              // TODO: Implement booking logic
+              console.log("Booking clicked with:", {
+                selectedDate: getDisplayDate(),
+                selectedTime: getDisplayTimeSlot(),
+                selectedLocation: formatLocation(),
+                selectedCategories:
+                  displaySummary.categories ||
+                  formatCategories(selectedCategories),
+                selectedPriceRange:
+                  displaySummary.priceRange || formatPriceRange(priceRange),
+                selectedPaymentOptions: formatPaymentOptions(),
+                service: serviceName,
+              });
+            }}
+            onWishlistClick={() => {
+              // TODO: Implement wishlist logic
+              console.log("Add to wishlist clicked for:", serviceName);
+            }}
+          />
         </div>
         <div className={styles.photoGridContainer}>
           <PhotoGrid

@@ -8,6 +8,7 @@ import priceRangeSlice from "@/lib/features/filters/priceRangeSlice";
 import inputSlice from "@/lib/features/filters/inputSlice";
 import distanceRangeSlice from "@/lib/features/filters/distanceRangeSlice";
 import filterDisplayReducer from "@/lib/features/filters/filterDisplaySlice";
+import followReducer from "@/lib/features/followSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     input: inputSlice,
     distanceRange: distanceRangeSlice,
     filterDisplay: filterDisplayReducer,
+    follow: followReducer,
   },
 });
 

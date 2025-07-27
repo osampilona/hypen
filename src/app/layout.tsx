@@ -1,7 +1,5 @@
 "use client";
 import { Roboto } from "next/font/google";
-import SmallScreenNavigation from "@/components/SmallScreenNavigation/SmallScreenNavigation";
-import BigScreenNavigation from "@/components/BigScreenNavigation/BigScreenNavigation";
 import FloatingNavigation from "@/components/FloatingNavigation/FloatingNavigation";
 import ThemeWrapper from "@/components/ThemeWrapper/ThemeWrapper";
 import "@/styles/globals.scss";
@@ -46,7 +44,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={roboto.className}>
-      <body>
+      <body suppressHydrationWarning={true}>
         <Provider store={store}>
           <ThemeWrapper className={styles.layoutContainer}>
             <main className={styles.main}>{children}</main>

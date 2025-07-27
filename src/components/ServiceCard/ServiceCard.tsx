@@ -9,7 +9,7 @@ import {
 } from "react-icons/ti";
 import { AiOutlineUser } from "react-icons/ai";
 import { ServiceCardType } from "@/types/services/card";
-import { FiUserPlus, FiUserCheck } from "react-icons/fi";
+import FollowButton from "@/components/FollowButton/FollowButton";
 import Link from "next/link";
 
 const ServiceCard = (props: ServiceCardType) => {
@@ -83,16 +83,13 @@ const ServiceCard = (props: ServiceCardType) => {
                 </div>
               </div>
             </Link>
-            <p className={serviceCard.container__business__follow}>
-              {props.companyFollowingState ? (
-                <FiUserCheck size={24} data-testid="company-following-icon" />
-              ) : (
-                <FiUserPlus
-                  size={24}
-                  data-testid="company-not-following-icon"
-                />
-              )}
-            </p>
+            <div className={serviceCard.container__business__follow}>
+              <FollowButton
+                companyId={props.companyId}
+                companyName={props.companyName}
+                initialFollowState={props.companyFollowingState}
+              />
+            </div>
           </div>
         </div>
       </div>
